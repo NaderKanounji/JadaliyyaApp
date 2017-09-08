@@ -1,0 +1,19 @@
+/* ------------------------------------------------------------ *\
+	Progress
+\* ------------------------------------------------------------ */
+
+.progress {
+	width: 100%; height: 37px; background: #f5f5f5; border-bottom: 1px solid #ddd; position: relative; text-align: right; font-size: 12px; color: #666; padding: 9px 10px; 
+
+	a i { font-size: 16px; color: #444; margin-left: 10px; }
+
+	&-bar {
+		position: absolute; top: 0; bottom: 0; left: 0; background: #0c6cad; font-size: 13px; text-align: left; 
+
+		span { display: block; position: absolute; top: 0; bottom: 0; left: 0px; padding: 7px 10px; color: #191f1f; }
+		span.passed { color: #fff; }
+	}
+
+	& ~ & { margin-top: 0px; }
+	& + .form-upload-info { border-top: 0; }
+}

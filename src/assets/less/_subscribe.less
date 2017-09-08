@@ -1,0 +1,40 @@
+/* ------------------------------------------------------------ *\
+	Subscribe
+\* ------------------------------------------------------------ */
+
+.subscribe {
+	border: 1px solid #717578; padding: 37px 35px 39px; position: relative; margin-bottom: 7px; .ltr;
+
+	&:before { content: ''; position: absolute; top: -4px; right: -4px; width: 35px; height: 30px; background: @body-bg; display: block; }
+	&:after { .clearfix; }
+
+	& > .ico-newsletter { position: absolute; top: -5px; right: 5px; }
+
+	label {
+		font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #191f1f; display: block; vertical-align: middle; line-height: 1.18; font-family: @font-open-sans; margin-bottom: 30px;
+
+		&:after { .clearfix; }
+
+		span { border: 1px solid  #0d6dad; width: 44px; height: 44px; display: inline-block; vertical-align: middle; text-align: center; color: #0d6dad; padding-top: 10px; float: left; }
+		strong { overflow: hidden; display: block; padding-left: 13px; }
+	}
+
+	&-field { border: 0; border-bottom: 2px solid  #25282c; background: none; font-family: @font-open-sans; font-size: 12px; color: #6b6b6b; width: ~"calc(100% - 77px)"; float: left; height: 27px; padding-right: 10px; border-radius: 0; }
+	&-btn { width: 77px; height: 27px; color: #fff; background: #25282c; border: 0; text-transform: uppercase; font-size: 13px; font-family: @font-open-sans; float: right; border-radius: 0; }
+	&-btn:hover { background: @blue; }
+
+	/*  Rtl  */
+
+	&.rtl {
+		label { font-family: @font-geflow; text-align: right; position: relative; font-size: 22px; margin-right: 25px; }
+
+		.subscribe-field { font-family: @font-tahoma; float: right; text-align: right; font-size: 13px; }
+		.subscribe-btn { font-family: @font-geflow; float: left; font-size: 16px; }
+	}
+
+	@media @tablet{
+		padding-top: 45px; padding-bottom: 45px; margin-bottom: 25px;
+
+		label { margin-bottom: 38px; font-size: 17px; }
+	}
+}

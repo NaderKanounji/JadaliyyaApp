@@ -1,0 +1,62 @@
+/* ------------------------------------------------------------ *\
+	Updates
+\* ------------------------------------------------------------ */
+
+.updates {
+	list-style: none; max-width: 1207px; margin: auto;
+
+	@media @mobile {
+		margin-top: -30px; 
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Update
+\* ------------------------------------------------------------ */
+
+.update {
+	&-head {
+		margin-bottom: 15px; display: flex; align-items: center; 
+
+		p { display: inline-block; vertical-align: middle; color: #878787; font-size: 15px; font-family: @font-open-sans; }
+		strong { font-weight: 400; color: #262626; }
+	}
+	&-avatar { display: inline-block; vertical-align: middle; width: 45px; height: 45px; border-radius: 50%; margin-right: 10px; margin-left: 7px; flex: 0 0 45px; }
+
+	& ~ & { margin-top: 30px; }
+
+	.accordion {
+		position: relative; 
+
+		&:before { content: ''; display: inline-block; width: 0; height: 0; border-style: solid; border-width: 0 9.5px 10px 9.5px; border-color: transparent transparent #0c6cad transparent; position: absolute; bottom: 100%; left: 20px; }
+
+		.table-row {
+			&:before { display: none; }
+
+			label { padding-top: 15px; }
+		}
+
+		.accordion-head {
+			label:before { margin: 0px;  }
+		}
+	}
+
+	.table-row {
+		position: relative; 
+
+		&:before { content: ''; display: inline-block; width: 0; height: 0; border-style: solid; border-width: 0 9.5px 10px 9.5px; border-color: transparent transparent #eee transparent; position: absolute; bottom: 100%; left: 20px; }
+	}
+	.checkbox {
+		label:before { margin: -10px 0 0;  }
+	}
+
+	@media @mobile{
+		&-head {
+			p { font-size: 14px; }
+		}
+
+		.table-col .checkbox label:before { left: 5px;  }
+		.accordion .table-col .checkbox label:before { left: 50%; }
+		.table-articles h3 span { font-size: 14px; }
+	}
+}

@@ -1,0 +1,78 @@
+/* ------------------------------------------------------------ *\
+	Socials
+\* ------------------------------------------------------------ */
+
+.socials {
+	background: #25282c; padding: 16px 24px 18px; 
+
+	ul { list-style: none; display: flex; justify-content: space-between; }
+	a { width: 45px; height: 45px; background: #3b3e42; color: #ddd; display: block; text-align: center; position: relative; font-size: 18px; }
+	i { .center }
+
+	.link-twitter:hover { background: #22a1f2; }
+	.link-facebook:hover { background: #4867aa; }
+	.link-youtube:hover { background: #e52c27; }
+	.link-vimeo:hover { background: #00b3ed; }
+	.link-soundcloud:hover { background: #fd5121; }
+
+	/*  Secondary  */
+
+	&-secondary {
+		background: none; padding: 0; float: left; margin-top: -7px; 
+
+		a { width: auto; height: auto; background: none; color: #5a5c5e; transition: color .3s; }
+		a:hover { color: #8c8d8f; }
+		ul { display: block; }
+		li { display: inline-block; vertical-align: middle; font-size: 23px; }
+		li ~ li { margin-left: 35px; }
+		i { position: static; transform: none; }
+	}
+
+	/*  Tertiary  */
+
+	&-tertiary {
+		margin: 34px 0 28px; display: inline-block; 
+
+		a { width: 58px; height: 60px; display: block; position: relative; color: #fff; float: right; transition: opacity .3s; }
+		a:hover { opacity: .7; }
+		i { position: absolute; top: 50%; transform: translate(-50%, -50%); left: 50%; }
+		ul { display: none; list-style: none; clear: both; }
+		
+		&:after,
+		ul:after,
+		li:after { .clearfix; }
+
+		li:nth-child(1) a { background: #0a6099; }
+		li:nth-child(2) a { background: #064d79; }
+		li:nth-child(3) a { background: #032b44; }
+		li:nth-child(4) a { background: #031e31; }
+		
+		.toggle-share { background: #0b69a7; }
+	}
+
+	@media @lg-screens {
+		padding: 16px 14px 18px; 
+
+		&-secondary { padding: 0; }
+	}
+
+	@media @tablet {
+		padding: 16px 24px 18px; 
+
+		&-secondary { padding: 0; float: none; margin-left: 0; }
+	}
+
+	@media @mobile{
+		&-tertiary {
+			position: fixed; bottom: 0; left: 0; padding: 0; width: 100%; z-index: 20; margin: 0; 
+
+			a { float: none; width: 100%; }
+			a:hover { opacity: 1; }
+			ul { position: fixed; bottom: 58px; left: 0; width: 100%; display: none !important; }
+			ul.active { display: flex !important; }
+			li { flex: 1 0 auto; }
+
+			.toggle-share { width: 16.66%; height: 58px; }
+		}
+	}
+}

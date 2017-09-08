@@ -1,0 +1,49 @@
+/* ------------------------------------------------------------ *\
+	Quote
+\* ------------------------------------------------------------ */
+
+.quote {
+	width: 288px; height: 288px; background: rgba(221, 238, 254, 0.75); text-align: center; font-family: @font-open-sans; font-size: 13px; line-height: 1.6; display: flex; align-items: center; justify-content: center; border-radius: 50%; padding: 30px; position: relative; 
+
+	&:before { content: ''; width: 302px; height: 302px; background: rgba(217, 236, 255, 0.44); display: block; border-radius: 50%; position: absolute; top: -10px; left: 0; }
+
+	blockquote { margin-bottom: 20px; margin-top: 20px; }
+	h5 { font-size: 34px; font-weight: 400; text-align: left; line-height: 1; }
+
+	.ico-link { margin-left: 24%; margin-top: 18px; }
+
+	a:hover {
+		color: #0d6cb0; text-decoration: none;
+
+		.ico-link { background-image: url(images/icons/ico-link-hover.svg);  }
+	}
+
+	&-inner { position: relative;  }
+
+	.list-inline {
+		font-size: 16px; color: rgba(27, 31, 35, 0.58); 
+
+		li { margin: 0 8px; }
+
+		.fa-twitter { font-size: 20px; margin-top: 4px; }
+	}
+
+	/*  Primary  */
+
+	&-primary {
+		max-width: 235px; position: relative; padding: 37px 15px; 
+
+		&:after,
+		&:before { content: ''; background: #333; display: block; width: 100%; height: 1px; position: absolute; left: 0; }
+
+		&:before { top: 0; }
+		&:after { bottom: 0; }
+
+		blockquote { font-size: 18px; font-weight: 700; line-height: 1.65; color: #333; text-align: center; font-style: italic; }
+
+		.bottom,
+		.top { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 50px; text-align: center; font-size: 31px; color: #333; background: @body-bg; display: block; }
+
+		.bottom { bottom: -25px; z-index: 1; top: auto; }
+	}
+}

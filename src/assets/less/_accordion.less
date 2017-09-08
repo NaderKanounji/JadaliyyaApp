@@ -1,0 +1,72 @@
+/* ------------------------------------------------------------ *\
+	Accordion
+\* ------------------------------------------------------------ */
+
+.accordion {
+	max-width: 1207px; margin: auto; 
+
+	&-body { display: none; }
+	&-head {
+		background: @blue2; padding: 24px 25px 22px; position: relative; 
+
+		&:hover {
+			background: #0e82cf; 
+
+			label { text-decoration: underline; }
+		}
+
+		a { font-size: 17px; color: #fff; font-weight: 700; padding-left: 0px; margin-right: 40px; }
+	}
+	&-section {
+		& ~ & { border-top: 1px solid  #fff; }
+	}
+
+	.expand {
+		display: inline-block; vertical-align: middle; position: absolute; top: 50%; transform: translateY(-50%); right: 16px; width: 44px; height: 44px; border-radius: 50%; margin-top: 3px; margin-right: 0; 
+
+		&:after { content: '\f067'; font-family: 'FontAwesome'; position: absolute; top: 50%; transform: translate(-50%, -50%); left: 50%; color: #fff; font-size: 22px; margin-top: 1px; }
+		&:hover { background: #fff; }
+		&:hover:after { color: @blue; }
+	}
+	
+	.checkbox {
+		input {
+			display: none;
+
+			&:checked + label:after { opacity: 1; }
+		}
+		label {
+			font-size: 17px; color: #fff; font-weight: 700; position: relative; padding-left: 25px; margin-right: 0px; display: inline-block; font-family: @font-open-sans; top: -6px; 
+
+			&:before { content: ''; width: 13px; height: 13px; background: #fff; border: 1px solid  #000; display: inline-block; vertical-align: middle;  margin-right: 15px; position: absolute; top: 50%; transform: translateY(-50%); left: 0; }
+			&:after { content: '\f00c'; font-family: 'FontAwesome'; font-size: 15px; color: #262626; position: absolute; top: 50%; transform: translateY(-50%); left: 0; opacity: 0; }
+		}
+	}
+
+	/*  Expanded  */
+	&-expanded {
+		.accordion-head {
+			&:after { transform: translateY(-50%) rotate(45deg); }
+		}
+		.accordion-body { display: block; }
+	}
+
+	/*  Active  */
+
+	&.active {
+		.accordion-section.accordion-expanded { display: block; }
+	}
+
+	@media @mobile {
+		&-head {
+			padding: 0px 15px; 
+
+			&:before { width: 25px; height: 25px; right: 9px; margin-top: -1px; }
+			&:after { font-size: 17px; margin-top: 0; right: 15px; }
+		}
+
+		.checkbox {
+			label { line-height: 1.2; min-height: 67px; display: flex; align-items: center; padding-top: 5px; padding-bottom: 5px; }
+		}
+	}
+}

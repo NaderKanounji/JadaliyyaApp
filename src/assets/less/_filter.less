@@ -1,0 +1,13 @@
+/* ------------------------------------------------------------ *\
+	Filter
+\* ------------------------------------------------------------ */
+
+.filter {
+	position: absolute; top: 100%; left: 0; width: 100%; background: #1b1f23; padding: 29px 0 19px; z-index: 20; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; 
+
+	&.active { opacity: 1; visibility: visible; }
+
+	@media @mobile{
+		padding-left: 13px; padding-right: 13px; 
+	}
+}

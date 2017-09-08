@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Adobe Fireworks 10, Export SVG Extension by Aaron Beall (http://fireworks.abeall.com) . Version: 0.6.1  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg id="Untitled-Page%201" viewBox="0 0 98 91" style="background-color:#ffffff00" version="1.1"
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+	x="0px" y="0px" width="98px" height="91px"
+>
+	<defs>
+		<filter id="filter1" x="-100%" y="-100%" width="300%" height="300%">
+			<!-- Drop Shadow -->
+			<feOffset result="out" in="SourceGraphic" dx="10.0708" dy="9.7252"/>
+			<feColorMatrix result="out" in="out" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.1882 0"/>
+			<feGaussianBlur result="out" in="out" stdDeviation="8"/>
+			<feBlend in="SourceGraphic" in2="out" mode="normal" result="Drop_Shadow1"/>
+		</filter>
+	</defs>
+	<g filter="url(#filter1)">
+		<path d="M 41.8617 1 C 19.3306 1.1113 1 20.1631 1 42.96 C 1 49.7764 2.6653 56.4453 5.8009 62.3164 L 5.8284 51.6279 C 5.8336 49.6436 6.5316 47.8018 7.7552 46.2188 C 7.6584 45.1387 7.6105 44.0518 7.6144 42.96 C 7.6818 23.9541 22.9917 8.1338 41.7112 8.042 C 60.4594 8.1338 75.0925 23.9541 74.3467 42.96 C 74.2992 44.1689 74.1853 45.3721 74.016 46.5645 C 75.0156 48.0674 75.5438 49.7891 75.4703 51.6279 L 75.0205 62.8555 C 78.6013 56.8564 80.6606 49.9834 80.9612 42.96 C 81.9368 20.1631 64.4214 1.1113 41.8617 1 L 41.8617 1 ZM 41.8617 1 L 41.8617 1 Z" fill="#fff"/>
+		<path d="M 8.2872 49.8916 C 8.1174 50.4531 8.0254 51.0332 8.0228 51.6279 L 7.9662 66.6875 C 7.9489 71.2881 13.3503 75 20.0333 75 L 25.1271 75 L 25.5459 43.1064 L 20.3635 43.1064 C 14.4276 43.1064 9.4629 46.0234 8.2872 49.8916 L 8.2872 49.8916 ZM 8.2872 49.8916 L 8.2872 49.8916 Z" fill="#fff"/>
+		<path d="M 72.6904 66.6875 L 73.2755 51.6279 C 73.2899 51.2617 73.2651 50.9023 73.2145 50.5488 C 72.6099 46.3584 67.5657 43.1064 61.2983 43.1064 L 56.116 43.1064 L 55.1753 75 L 60.269 75 C 66.9498 75 72.5116 71.2881 72.6904 66.6875 L 72.6904 66.6875 ZM 72.6904 66.6875 L 72.6904 66.6875 Z" fill="#fff"/>
+	</g>
+</svg>

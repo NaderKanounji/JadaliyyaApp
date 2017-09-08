@@ -1,0 +1,43 @@
+/* ------------------------------------------------------------ *\
+	Bar
+\* ------------------------------------------------------------ */
+
+.bar {
+	background: #3b3f45; border-bottom: 2px solid  #282d33; color: #ededed; position: fixed; top: 0; left: 0; width: 100%; z-index: 100; padding: 0px 30px; font-family: @font-open-sans; font-size: 16px; height: 42px; display: flex; 
+
+	&:after { .clearfix; }
+
+	a { text-decoration: none; 
+        &.arabic{font-family: 'GE Flow', sans-serif;font-size:18px;}
+	}
+
+	.logo { width: 170px; height: 24px; position: absolute; top: -100%; transform: translate(-50%, -50%); left: 50%; transition: top .5s; }
+	.nav-primary { transition: top .5s; }
+
+	&.fixed {
+		.logo { top: 50%; }
+		.nav-primary { top: -100%; }
+	}
+
+	/*  Secondary  */
+
+	&-secondary { background: #474b50; }
+
+	@media(max-width: 1600px){
+		padding: 0px 30px 0px 15px;
+	}
+
+	@media @md-screens{
+		padding: 0px 15px 0px 30px; 
+	}
+
+	@media @tablet{
+		border-bottom: 2px solid  #282d33; height: 50px; 
+	}
+
+	@media @mobile {
+		height: 42px; padding: 0px 15px; 
+		
+		.logo { display: none; }
+	}
+}

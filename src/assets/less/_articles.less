@@ -1,0 +1,139 @@
+/* ------------------------------------------------------------ *\
+	Article Details
+\* ------------------------------------------------------------ */
+
+.article-details {
+	overflow: hidden; 
+
+	p { margin-bottom: 23px; line-height: 1.65; }
+	p:last-child { margin-bottom: 0; }
+	.article-image { position: relative; }
+	.article-title { color: #212121; font-size: 40px; font-weight: 400; line-height: 1.1; margin-bottom: 20px; margin-top: -5px; max-width: 950px; }
+	.article-head { border-bottom: 1px solid  #ddd; padding-bottom: 30px; margin-bottom: 42px; overflow: hidden; }
+	.article-meta {
+		margin-bottom: 35px; 
+
+		h5 {
+			position: relative; font-size: 12px; font-family: @font-open-sans; text-transform: uppercase; letter-spacing: 0.08em; color: #f7f7f7; font-weight: 400; background: @blue; line-height: 1.6; display: inline-block; vertical-align: middle; padding: 4px 0px 3px 14px; margin-right: 20px; 
+
+			&:before { content: ''; width: 20px; left: 100%; top: 0px; border-width: 13px 6px; border-style: solid; border-color: @blue transparent @blue @blue; position: absolute; height: 0; } 
+		}
+	}
+	.article-body {
+		.alignleft { margin-right: 44px; }
+
+		.article-image { max-width: 50%; }
+	}
+	.article-foot {
+		padding-top: 11px; 
+
+		.posts { margin: 0 -15px; }
+		.post { width: 33.33%; padding: 0 15px; }
+		.post-inner { background: none; }
+		.widget-head { margin-bottom: 27px; }
+		.widget-primary { margin-bottom: 0; }
+		.widget-title a { margin-right: 0; }
+	}
+	.article-comments { margin-top: -5px; }
+	.article-comments img { width: 100%; }
+	.article-group ~ .article-group { margin-top: 58px; }
+
+	.link-gallery { display: inline-block; height: 32px; background: @blue; color: #dddddd; text-align: center; padding: 6px 15px 6px; font-size: 13px; position: absolute; top: 19px; right: 14px; text-decoration: none; }
+	.link-gallery:hover { background: @dark; }
+
+	.alignleft { margin-right: 32px; margin-bottom: 20px; }
+	.alignright { margin-left: 32px; margin-bottom: 20px; }
+	
+	.quote-primary { margin-top: 23px; margin-right: 45px; }
+
+	/*  Secondary  */
+
+	&-secondary {
+		.article-title { margin-bottom: 15px; }
+	}
+
+	/*  RTL  */
+
+	.rtl {
+		font-family: @font-tahoma; font-size: 16px; line-height: 1.8; 
+
+		.article-title { font-family: @font-geflow; font-size: 44px; line-height: 1.2; max-width: 475px; }
+
+		.quote-primary {
+			padding: 30px 0; margin-top: 5px; 
+
+			blockquote { font-family: @font-geflow; font-size: 20px; line-height: 1.6; position: relative; z-index: 1; }
+		}
+		.link-gallery { padding-top: 4px; }
+	}
+	.article-meta.rtl { direction: ltr; font-family: @font-open-sans; margin-top: 50px; }
+
+	@media @lg-screens{
+		.post-image { float: none; }
+	}
+
+	@media @tablet {
+		font-size: 16px; 
+		
+		.article-title { font-size: 34px; }
+
+		.alignleft { margin-right: 15px; margin-bottom: 15px; max-width: 50%; }
+		.alignright {margin-left: 15px; margin-bottom: 15px; max-width: 50%; }			
+
+		.quote-primary { margin-right: 0; max-width: 235px; }
+
+		.post-title { font-size: 18px; }
+	}
+
+	@media @mobile {
+		overflow: visible; 
+
+		.article-title { font-size: 27px; }
+		.article-image img { width: 100%; }
+		.article-meta:after { .clearfix; }
+		.article-meta h5 { float: left; margin-right: 30px; }
+		.article-comments { margin-left: -13px; margin-right: -13px; }
+		.article-foot {
+			.widget-primary .widget-body { display: block; }
+			.widget-title a { margin-top: 0; }
+			.post { width: 100%; }
+			.post:nth-child(n+2) { display: none; }
+		}
+		.article-body {
+			.alignleft,
+			.alignright { width: 100%; float: none; max-width: 100%; margin: 0 0 15px; }
+
+			.quote-primary { margin: 40px auto; max-width: 90%; }
+		}
+
+		.alignleft,
+		.alignright { width: 100%; float: none; max-width: 100%; margin: 0 0 15px; }
+
+		.article-group ~ .article-group { margin-top: 20px; }
+
+		.post-head { height: auto; padding: 10px 0 20px; }
+		.post-image { float: left; }
+
+		/*  Secondary  */
+
+		&-secondary {
+			.article-head { border: 0; margin-bottom: 0; padding-bottom: 20px; }
+		}
+
+		/*  RTL  */
+
+		.rtl {
+			font-family: @font-geflow; font-size: 16px; line-height: 1.8; 
+
+			.article-title { font-size: 26px; }
+
+			.quote-primary {
+				padding: 30px 0; margin-top: 5px; 
+
+				blockquote { font-family: @font-geflow; font-size: 20px; line-height: 1.6; position: relative; z-index: 1; }
+			}
+
+		}
+		.article-meta.rtl { direction: ltr; font-family: @font-open-sans; margin-top: 50px; }
+	}
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Adobe Fireworks 10, Export SVG Extension by Aaron Beall (http://fireworks.abeall.com) . Version: 0.6.1  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg id="Untitled-Page%201" viewBox="0 0 259 259" style="background-color:#ffffff00" version="1.1"
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+	x="0px" y="0px" width="259px" height="259px"
+>
+	<defs>
+		<filter id="filter1" x="-100%" y="-100%" width="300%" height="300%">
+			<!-- Drop Shadow -->
+			<feOffset result="out" in="SourceGraphic" dx="5.6569" dy="5.6569"/>
+			<feColorMatrix result="out" in="out" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.0196 0"/>
+			<feGaussianBlur result="out" in="out" stdDeviation="4"/>
+			<feBlend in="SourceGraphic" in2="out" mode="normal" result="Drop_Shadow1"/>
+		</filter>
+	</defs>
+	<path id="Ellipse" d="M 0 129.5 C 0 57.9781 57.9783 0 129.5 0 C 201.0217 0 259 57.9781 259 129.5 C 259 201.0219 201.0217 259 129.5 259 C 57.9783 259 0 201.0219 0 129.5 Z" fill="#0c6cad"/>
+	<g filter="url(#filter1)">
+		<path d="M 163.6541 236.712 C 120.5536 250.2697 76.5238 238.074 46.5101 204.2648 C 16.4963 170.4559 9.5637 125.2441 28.0651 83.9771 C 46.5663 42.7097 84.9141 17.8502 130.0914 17.8373 L 130.0891 10 C 81.7509 10.014 40.7201 36.6128 20.9243 80.7676 C 1.1285 124.9221 8.5461 173.2969 40.6599 209.4716 C 72.7736 245.6461 119.884 258.6954 166 244.189 L 163.6541 236.712 Z" fill="#f8f8f8"/>
+	</g>
+</svg>

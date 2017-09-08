@@ -1,0 +1,40 @@
+/* ------------------------------------------------------------ *\
+	Search
+\* ------------------------------------------------------------ */
+
+.search {
+	position: fixed; top: 0; bottom: 0; left: -140%; text-align: center; display: flex; align-items: center; justify-content: center; background: rgba(242, 242, 242, 0.98); transform: skew(-20deg); width: 120%; transition: left 1s; z-index: 50; 
+
+	&.active {
+		left: -10%;
+
+		.search-inner { opacity: 1; }
+	}
+
+	&-inner { transform: skew(20deg); backface-visibility: hidden; opacity: 0; transition: opacity 1s .8s; }
+
+	&-field { background: none; border: 0; border-left: 1px solid  #1b1f23; color: #2f353c; font-size: 70px; font-weight: 300; font-family: @font-open-sans; height: 200px; padding: 0 40px; border-radius: 0; }
+	&-btn { width: 86px; height: 86px; border-radius: 50%; text-align: center; display: inline-block; vertical-align: middle; background: #2f353c; font-size: 25px; color: #f7f7f7; border: 0; box-shadow: 4px 4px 7px rgba(0,0,0,0.3); margin-top: -30px; }
+	&-btn:hover { background: @blue; }
+
+	input::placeholder { color: #bbb; opacity: 1; }
+
+	@media @lg-screens{
+		transform: skew(-15deg);
+
+		&-inner { transform: skew(15deg); }
+	}
+
+	@media @md-screens{
+		width: 150%; left: -300%; 
+
+		&.active { left: -25%; }
+
+		&-field { height: 100px; font-size: 50px; }
+	}
+
+	@media @mobile {
+		&-field { height: 50px; font-size: 23px; padding-left: 12px; padding-right: 10px; width: ~"calc(100% - 60px)"; }
+		&-btn { width: 28px; height: 28px; font-size: 18px; margin-top: -10px; font-size: 12px; }
+	}
+}

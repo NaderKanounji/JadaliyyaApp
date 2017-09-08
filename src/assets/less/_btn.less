@@ -1,0 +1,52 @@
+/* ------------------------------------------------------------ *\
+	Button
+\* ------------------------------------------------------------ */
+
+.btn { display: inline-block; vertical-align: middle; text-align: center; cursor: pointer; font-family: @font-open-sans; text-decoration: none; transition: all .3s; 
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	 		appearance: none;
+}
+.btn:hover { text-decoration: none; }
+
+/*  Button Block  */
+.btn-block { display: block; padding-left: 0; padding-right: 0; }
+
+/*  Btn Primary  */
+
+.btn-primary { text-transform: uppercase; font-size: 13px; letter-spacing: 0.08em; padding: 15px 50px; }
+
+/*  Btn Secondary  */
+
+.btn-secondary { font-size: 21px; text-transform: uppercase; font-weight: 700; font-family: @font-open-sans; padding: 15px; border: 1px solid transparent; }
+
+/*  Btn Tertiary  */
+
+.btn-tertiary { font-size: 19px; font-weight: 700; font-family: @font-open-sans; padding: 8px 35px; border: 1px solid transparent; }
+
+/*  Btn Blue  */
+
+.btn-blue { background: @blue; color: #fff; }
+.btn-blue:hover { color: @blue; background: #fff; }
+
+.btn-blue2 { background: #0c6cad; color: #fff; }
+.btn-blue2:hover { background: #fff; color: #0c6cad; }
+
+/*  Btn Transparent  */
+
+.btn-transparent { border: 1px solid  #1b1f23; }
+.btn-transparent:hover { background: #1b1f23; color: #fff; }
+
+/*  Btn Transparent White  */
+
+.btn-transparent-white { border-color: #fff; color: #fff; }
+.btn-transparent-white:hover { color: @dark; background: #fff; }
+
+/*  Btn Dark  */
+
+.btn-dark { background: #25282c; color: #fff; }
+.btn-dark:hover { background: @blue; }
+
+@media @mobile {
+	.btn-secondary { font-size: 19px; }
+}

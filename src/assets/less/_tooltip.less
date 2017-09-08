@@ -1,0 +1,60 @@
+/* Core (do not change) */
+[data-tooltip] { position: relative; }
+ 
+[data-tooltip]:after,
+[data-tooltip]:before { display: none; position: absolute; top: 100%; left: 50%; z-index: 9999;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+         -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+}
+[data-tooltip]:before { content: ''; border-width: 0 .8em .8em; border-style: none outset solid; border-color: transparent transparent #000; margin-top: 7px; }
+[data-tooltip]:after { content: attr(data-tooltip); background: #000; color: #fff; min-width: 120px; max-width: 300px; padding: 5px 15px; margin-top: 14px; }
+ 
+[data-tooltip]:hover:after,
+[data-tooltip]:hover:before { display: block; }
+ 
+/* Hide on tooltip hover */
+[data-tooltip-hide-on-hover]:after,
+[data-tooltip-hide-on-hover]:before { pointer-events: none; }
+/* End of core (change from here) */
+ 
+ 
+/* Animations */
+[data-tooltip]:after,
+[data-tooltip]:before { display: block; opacity: 0; visibility: hidden;
+    -webkit-transition: 300ms;
+         -o-transition: 300ms;
+            transition: 300ms;
+}
+ 
+[data-tooltip]:hover:after,
+[data-tooltip]:hover:before { opacity: 1; visibility: visible; }
+ 
+ 
+/* Delays */
+/* Show delay */
+[data-tooltip]:hover:after,
+[data-tooltip]:hover:before {
+    -webkit-transition-delay: 200ms;
+         -o-transition-delay: 200ms;
+            transition-delay: 200ms;
+}
+ 
+/* Hide delay */
+[data-tooltip]:after,
+[data-tooltip]:before {
+    -webkit-transition-delay: 500ms;
+         -o-transition-delay: 500ms;
+            transition-delay: 500ms;
+}
+ 
+ 
+/* Theme Style */
+[data-tooltip]:before { border-bottom-color: @blue2; border-width: 0 7px 7px; }
+[data-tooltip]:after { background: @blue2; font-family: @font-open-sans; font-size: 13px; color: #ebebeb; text-align: center; text-transform: lowercase; }
+[data-tooltip]:after { color: #fff; padding: .5em; }
+
+@media @mobile {
+    [data-tooltip]:after { left: 0; transform: none;  }
+}
