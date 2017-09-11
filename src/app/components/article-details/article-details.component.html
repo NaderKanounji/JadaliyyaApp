@@ -18,20 +18,19 @@
 								<a href="#" class="link-close-share"></a>
 
 								<span class="widget-meta">
-									Jan 8, 2016
-
+									{{articleModel.date | date}}
 									<strong>Lebanon</strong>
 								</span>
 
 								<div class="widget-image">
-									<a href="Writers-inner.html">
+									<a routerLink="/Writer/{{articleModel.writer.id}}">
 										<img src="{{RESIZED_CONTENT_PATH}}48x52xo/{{articleModel.writer.image}}" alt="{{articleModel.writer.name}}">
 									</a>
 
 									<span class="author">
 										By :<br />
 
-										<a href="Writers-inner.html">{{articleModel.writer.name}}</a>
+										<a routerLink="/Writer/{{articleModel.writer.id}}">{{articleModel.writer.name}}</a>
 									</span><!-- /.author -->
 								</div><!-- /.widget-image -->
 
@@ -108,223 +107,130 @@
 						</div><!-- /.widget -->
 
 						<article class="article article-details">
-							<div class="article-image article-image-gallery alignleft">
-								<img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.mainImage}}" alt="">
+              <div class="{{articleModel.isArabic ? 'rtl' : ''}}">
+                <div class="article-image article-image-gallery alignleft">
+                  <img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.mainImage}}" alt="">
 
-								<a href="#" class="link-gallery">
-									<i class="fa fa-camera" aria-hidden="true"></i>
-								
-									+15
-								</a>
-							</div><!-- /.article-image -->
+                  <a href="#" class="link-gallery" *ngIf="articleModel.ArticleImages != null && articleModel.ArticleImages.length - 1 > 0">
+                    <i class="fa fa-camera" aria-hidden="true"></i>
+                  
+                    +{{articleModel.ArticleImages.length - 1}}
+                  </a>
+                </div><!-- /.article-image -->
 
-							<header class="article-head">
-								<h1 class="article-title">{{articleModel.title}}</h1><!-- /.article-title -->
+                <header class="article-head">
+                  <h1 class="article-title">{{articleModel.title}}</h1><!-- /.article-title -->
 
-								<a href="#" class="link-listen">
-									<img src="../../assets/images/temp/play-button.png" alt="">
-								</a>
-							</header><!-- /.article-head -->
+                  <a href="#" class="link-listen">
+                    <img src="../../assets/images/temp/play-button.png" alt="">
+                  </a>
+                </header><!-- /.article-head -->
 
-							<div class="article-body">
-								<div class="article-group">
-									<p>I attended Armenian grade school in the suburbs of Philadelphia until I was thirteen years old. As we grew older, the extent of Armenian language classes within the curricula decreased, and by seventh and eighth grade it had been relegated to the realm of the “cultural.” We still had Armenian language and history lessons, and bible class was often </p>
-									
-									<p>taught in Armenian, Tahir Elçi, the president of the bar association in southeastern Diyarbakır province and a determined Kurdish human rights lawyer, was shot dead on Saturday, 28 November, during a press statement he had delivered in Diyarbakır. Photos of Elçi’s dead body lying on the ground quickly overwhelmed social media accounts, symbolizing the deadly difficulty of talking about and fighting for peace at this critical juncture that Turkey, and the region at large, are going through. Despite the fact that Turkey is known for its long history of unsolved political crimes and political violence, Elçi’s assassination is an alarming turning point in the final phase, after the electoral victory of the AKP (Justice and Development Party) in the 1 ritarian and sectarian police state.</p>
-									
-									<div class="quote-primary alignright">
-										<span class="top">
-											<i class="fa fa-quote-left" aria-hidden="true"></i>
-										</span>
-									
-										<blockquote> Although these events are independent of one another and thus there is no seemingly causal relationship among them</blockquote>
-									
-										<span class="bottom">
-											<i class="fa fa-quote-right" aria-hidden="true"></i>
-										</span>
-									</div><!-- /.quote-primary -->
-									
-									<p>In this essay, I argue that theTurkey” the AKP government is forcefully imposing on its citizens goes beyond a mere ideological transformation. It includes a full reorganization of the state’s security apparatus to consolidate an authoritarian and sectarian police state, thoroughly controllKP government under the leadership of President Recep Tayyip Erdoğan. The institutionalization of this police state is made possible through a physical war against Kurds that is legitimized by a war of discourse, the complete suppression of dissidence, and the manipulation of regional dynamics. In the rest of the essay, I will elaborate this argument by focusing on three disparate events that happened last week: the assassination of Tahir Elçi. Reorganization of the state’s security apparatus to consolidate an authoritarian.</p>
-								</div><!-- /.article-group -->
+                <div class="article-body">
+                  <div class="article-group">
+                    <span [innerHTML]="articleModel.descriptionArr[0]"></span>
+                    <div class="quote-primary alignright" *ngIf="articleModel.middleQuote != null && articleModel.middleQuote != '' && articleModel.descriptionArr.length > 1">
+                      <span class="top">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                      </span>
+                    
+                      <blockquote> {{articleModel.middleQuote}}</blockquote>
+                    
+                      <span class="bottom">
+                        <i class="fa fa-quote-right" aria-hidden="true"></i>
+                      </span>
+                    </div><!-- /.quote-primary -->
+                    <span *ngIf="articleModel.middleQuote != null && articleModel.middleQuote != '' && articleModel.descriptionArr.length > 1" [innerHTML]="articleModel.descriptionArr[1]"></span>
+                  </div><!-- /.article-group -->
 
-								<div class="article-group">
-									<div class="article-image alignleft">
-										<img src="../../assets/images/temp/article-details2.jpg" alt="">
-									
-										<a href="#" class="link-gallery">
-											<i class="fa fa-camera" aria-hidden="true"></i>
-										
-											+15
-										</a>
-									</div><!-- /.article-image -->
-									
-									<p>In this essay, I argue that theTurkey” the AKP government is forcefully imposing on its citizens goes beyond a mere ideological transformation. It includes a full reorganization of the state’s security apparatus to consolidate an authoritarian and sectarian police state, thoroughly controllKP government under the leadership of President Recep Tayyip Erdoğan. The institutionalization of this police state is made possible through a physical war against Kurds that is legitimized by a war of </p>
-									
-									<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province and a determined Kurdish human rights lawyer, was shot dead on Saturday, 28 November, during a press statement he had delivered in Diyarbakır. Photos of Elçi’s dead body lying on the ground quickly overwhelmed social media accounts, symbolizing the deadly difficulty of talking about and fighting for peace at this critical juncture that Turkey, and the region at large, are going through. Despite the fact that Turkey is known for its long history of unsolved political crimes and political violence, Elçi’s assassination is an alarming turning point in the final phase, after the electoral victory of the AKP (Justice and Development Party) in the 1 November elections, of consolidating an authoritarian and sectarian police state.</p>
-									
-									<p>In this essay, I argue that the “new Turkey” the AKP government is forcefully imposing on its citizens goes beyond a mere ideological transformation. It includes a full reorganization of the state’s security apparatus to consolidate an authoritarian and sectarian police state, thoroughly controlled by the AKP government under the leadership of President Recep Tayyip Erdoğan. The institutionalization of this police state is made possible through a physical war against Kurds that is legitimized by a war of discourse, the complete suppression of dissidence, and the manipulation of regional dynamics. In the rest of the essay, I will elaborate this argument by focusing on three disparate events t Elçi; the arrest of Can Dündar and Erdem Gül, two journalists at Cumhuriyet daily; and Turkey’s shooting down of a Rusme together as pieces of a rather discomforting, and even alarming, puzzle, indicating the deeper transformation toward building the “new Turkey.”</p>
-								</div><!-- /.article-group -->
-							</div><!-- /.article-body -->
+                  <div class="article-group" *ngIf="(articleModel.descriptionArr.length > 1 && (articleModel.middleQuote == null || articleModel.middleQuote == '')) || (articleModel.descriptionArr.length > 2)">
+                    <div class="article-image alignleft" *ngIf="articleModel.ArticleImages != null && articleModel.ArticleImages.length > 0">
+                      <img src="{{RESIZED_CONTENT_PATH}}486x324xi/{{articleModel.ArticleImages[0].image}}" alt="{{articleModel.title}}">
+                    
+                      <a href="#" class="link-gallery" *ngIf="articleModel.ArticleImages != null && articleModel.ArticleImages.length - 1 > 0">
+                        <i class="fa fa-camera" aria-hidden="true"></i>
+                      
+                        +{{articleModel.ArticleImages.length - 1}}
+                      </a>
+                    </div><!-- /.article-image -->
+                    <span [innerHTML]="articleModel.middleQuote == null || articleModel.middleQuote == '' ? articleModel.descriptionArr[1] : articleModel.descriptionArr[2]"></span>
+                  
+                  </div><!-- /.article-group -->
+                </div><!-- /.article-body -->
 
-							<div class="article-foot">
-								<div class="article-meta">
-									<h5>Tags</h5>
+                <div class="article-foot">
+                  <div class="article-meta {{articleModel.isArabic ? 'rtl' : ''}}" *ngIf="articleModel.tags != null && articleModel.tags.length">
+                    <h5>Tags</h5>
 
-									<ul class="list-tags">
-										<li>
-											<a href="#">SYRIA</a>
-										</li>
-										
-										<li>
-											<a href="#">ISIS</a>
-										</li>
-										
-										<li>
-											<a href="#">CIVIL WAR</a>
-										</li>
-										
-										<li>
-											<a href="#">MIDDLE EAST</a>
-										</li>
-										
-										<li>
-											<a href="#">2016</a>
-										</li>
-									</ul><!-- /.list-tags -->
-								</div><!-- /.article-meta -->
+                    <ul class="list-tags">
+                      <li *ngFor="let tag of articleModel.tags">
+                        <a >{{tag.title}}</a>
+                      </li>
+                    </ul><!-- /.list-tags -->
+                  </div><!-- /.article-meta -->
 
-								<ul class="widgets">
-									<li class="widget-primary">
-										<div class="widget-head">
-											<h3 class="widget-title">
-												<span>ALSO BY THIS AUTHOR</span>
+                  <ul class="widgets" *ngIf="articleModel.alsoByAuthor != null && articleModel.alsoByAuthor.length">
+                    <li class="widget-primary">
+                      <div class="widget-head">
+                        <h3 class="widget-title">
+                          <span>ALSO BY THIS AUTHOR</span>
 
-												<a href="#">
-													<i class="fa fa-plus-circle" aria-hidden="true"></i>
-												</a>
-											</h3><!-- /.widget-title -->
-										</div><!-- /.widget-head -->
-										
-										<div class="widget-body">
-											<ul class="posts">
-												<li class="post">
-													<div class="post-inner">
-														<header class="post-head">
-															<h2 class="post-title">
-																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-															</h2><!-- /.post-title -->
-														</header><!-- /.post-head -->
-													
-														<div class="post-body">
-															<div class="post-image">
-																<a href="#">
-																	<img src="../../assets/images/temp/article2.jpg" alt="">
-																</a>
-															</div><!-- /.post-image -->
-															
-															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-														</div><!-- /.post-body -->
-													
-														<footer class="post-foot">
-															<ul class="list-meta">
-																<li>
-																	<a href="#">
-																		<i class="ico-logo"></i>
-													
-																		By Jadaliyya Egypt Editors
-																	</a>
-																</li>
-																
-																<li>
-																	<a href="#">Jan 8</a>
-																</li>
-															</ul><!-- /.list-meta -->
-														</footer><!-- /.post-foot -->
-													</div><!-- /.post-inner -->
-												</li><!-- /.post -->
+                          <a href="#">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                          </a>
+                        </h3><!-- /.widget-title -->
+                      </div><!-- /.widget-head -->
+                      
+                      <div class="widget-body">
+                        <ul class="posts">
+                          <li class="post {{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of articleModel.alsoByAuthor">
+                            <div class="post-inner">
+                              <header class="post-head">
+                                <h2 class="post-title">
+                                  <a routerLink="/Details/{{item.id}}">{{item.title}}</a>
+                                </h2><!-- /.post-title -->
+                              </header><!-- /.post-head -->
+                            
+                              <div class="post-body">
+                                <div class="post-image">
+                                  <a routerLink="/Details/{{item.id}}">
+                                    <img src="{{RESIZED_CONTENT_PATH}}135x94xo/{{item.mainImage}}" alt="{{item.title}}">
+                                  </a>
+                                </div><!-- /.post-image -->
+                                <span [innerHTML]="item.smallDescription"></span>
+                              </div><!-- /.post-body -->
+                            
+                              <footer class="post-foot">
+                                <ul class="list-meta">
+                                  <li *ngIf="articleModel.writer">
+                                    <a routerLink="/Writer/{{articleModel.writer.id}}">
+                                      <i class="ico-logo"></i>
+                            
+                                      By {{articleModel.writer.name}}
+                                    </a>
+                                  </li>
+                                  
+                                  <li>
+                                    <a routerLink="/Details/{{item.id}}">{{item.date | date:'MMM d'}}</a>
+                                  </li>
+                                </ul><!-- /.list-meta -->
+                              </footer><!-- /.post-foot -->
+                            </div><!-- /.post-inner -->
+                          </li><!-- /.post -->
 
-												<li class="post">
-													<div class="post-inner">
-														<header class="post-head">
-															<h2 class="post-title">
-																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-															</h2><!-- /.post-title -->
-														</header><!-- /.post-head -->
-													
-														<div class="post-body">
-															<div class="post-image">
-																<a href="#">
-																	<img src="../../assets/images/temp/article3.jpg" alt="">
-																</a>
-															</div><!-- /.post-image -->
-															
-															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-														</div><!-- /.post-body -->
-													
-														<footer class="post-foot">
-															<ul class="list-meta">
-																<li>
-																	<a href="#">
-																		<i class="ico-logo"></i>
-													
-																		By Jadaliyya Egypt Editors
-																	</a>
-																</li>
-																
-																<li>
-																	<a href="#">Jan 8</a>
-																</li>
-															</ul><!-- /.list-meta -->
-														</footer><!-- /.post-foot -->
-													</div><!-- /.post-inner -->
-												</li><!-- /.post -->
+                          
+                        </ul><!-- /.posts -->
+                      </div><!-- /.widget-body -->
+                    </li><!-- /.widget -->
+                  </ul><!-- /.widgets -->
+                </div><!-- /.article-foot -->
 
-												<li class="post">
-													<div class="post-inner">
-														<header class="post-head">
-															<h2 class="post-title">
-																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-															</h2><!-- /.post-title -->
-														</header><!-- /.post-head -->
-													
-														<div class="post-body">
-															<div class="post-image">
-																<a href="#">
-																	<img src="../../assets/images/temp/article7.jpg" alt="">
-																</a>
-															</div><!-- /.post-image -->
-															
-															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-														</div><!-- /.post-body -->
-													
-														<footer class="post-foot">
-															<ul class="list-meta">
-																<li>
-																	<a href="#">
-																		<i class="ico-logo"></i>
-													
-																		By Jadaliyya Egypt Editors
-																	</a>
-																</li>
-																
-																<li>
-																	<a href="#">Jan 8</a>
-																</li>
-															</ul><!-- /.list-meta -->
-														</footer><!-- /.post-foot -->
-													</div><!-- /.post-inner -->
-												</li><!-- /.post -->
-											</ul><!-- /.posts -->
-										</div><!-- /.widget-body -->
-									</li><!-- /.widget -->
-								</ul><!-- /.widgets -->
-							</div><!-- /.article-foot -->
+                <div class="article-comments">
+                  <img src="../../assets/images/temp/comments.jpg" alt="" class="hidden-xs">
 
-							<div class="article-comments">
-								<img src="../../assets/images/temp/comments.jpg" alt="" class="hidden-xs">
-
-								<img src="../../assets/images/temp/comments-mobile.jpg" alt="" class="visible-xs-block">
-							</div><!-- /.article-comments -->
+                  <img src="../../assets/images/temp/comments-mobile.jpg" alt="" class="visible-xs-block">
+                </div><!-- /.article-comments -->
+              </div>
 						</article><!-- /.article article-details -->
 					</div><!-- /.content -->
 
@@ -360,115 +266,33 @@
 										<div class="tabs-body">
 											<div class="tab current" id="tab11">
 												<ul class="list-news list-news-round">
-													<li>
+													<li *ngFor="let item of articleModel.relatedStories" class="{{item.isArabic ? 'rtl' : ''}}">
 														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news11.jpg" alt="">
+															<a routerLink="/Details/{{item.id}}">
+																<img src="{{RESIZED_CONTENT_PATH}}63x63xo/{{item.mainImage}}" alt="{{item.title}}">
 															</a>
 														</span>
 							
 														<h4>
-															<a href="#">The Supreme Court fight is about democracy</a>
+															<a routerLink="/Details/{{item.id}}">{{item.title}}</a>
 														</h4>
 													</li>
 													
-													<li>
-														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news12.jpg" alt="">
-															</a>
-														</span>
-							
-														<h4>
-															<a href="#">DARS Media Roundup (January 2016)</a>
-														</h4>
-													</li>
-													
-													<li>
-														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news13.jpg" alt="">
-															</a>
-														</span>
-							
-														<h4>
-															<a href="#">Romney argues to vote for an open convention</a>
-														</h4>
-													</li>
-													
-													<li>
-														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news14.jpg" alt="">
-															</a>
-														</span>
-							
-														<h4>
-															<a href="#">Part of River Road in Bethesda is closed</a>
-														</h4>
-													</li>
-													
-													<li>
-														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news15.jpg" alt="">
-															</a>
-														</span>
-							
-														<h4>
-															<a href="#">Securing Tomorrow With David Ignatius</a>
-														</h4>
-													</li>
+												
 												</ul><!-- /.list-news -->
 											</div><!-- /.tab -->
 							
 											<div class="tab" id="tab12">
 												<ul class="list-news list-news-round">
-													<li>
+													<li *ngFor="let item of articleModel.recentStories" class="{{item.isArabic ? 'rtl' : ''}}">
 														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news12.jpg" alt="">
+															<a routerLink="/Details/{{item.id}}">
+																<img src="{{RESIZED_CONTENT_PATH}}63x63xo/{{item.mainImage}}" alt="{{item.title}}">
 															</a>
 														</span>
 							
 														<h4>
-															<a href="#">DARS Media Roundup (January 2016)</a>
-														</h4>
-													</li>
-													
-													<li>
-														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news13.jpg" alt="">
-															</a>
-														</span>
-							
-														<h4>
-															<a href="#">Romney argues to vote for an open convention</a>
-														</h4>
-													</li>
-													
-													<li>
-														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news14.jpg" alt="">
-															</a>
-														</span>
-							
-														<h4>
-															<a href="#">Part of River Road in Bethesda is closed</a>
-														</h4>
-													</li>
-													
-													<li>
-														<span>
-															<a href="#">
-																<img src="../../assets/images/temp/news15.jpg" alt="">
-															</a>
-														</span>
-							
-														<h4>
-															<a href="#">Securing Tomorrow With David Ignatius</a>
+															<a routerLink="/Details/{{item.id}}">{{item.title}}</a>
 														</h4>
 													</li>
 												</ul><!-- /.list-news -->
@@ -543,8 +367,8 @@
 			</div><!-- /.shell -->
 		</section><!-- /.section section-details -->
 
-		<section class="section section-details section-next animations" data-animation="slideInUp">
-			<a href="#" class="link-next">
+		<section class="section section-details section-next animations" data-animation="slideInUp" *ngIf="articleModel.nextArticle">
+			<a routerLink="/Details/{{articleModel.nextArticle.id}}" class="link-next">
 				<span>
 					<i class="ico-next"></i>
 				
@@ -860,7 +684,7 @@
 
 							<div class="article-comments">
 								<img src="../../assets/images/temp/comments.jpg" alt="">
-							</div><!-- /.article-comments -->
+              </div><!-- /.article-comments -->
 						</article><!-- /.article article-details -->
 					</div><!-- /.content -->
 

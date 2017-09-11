@@ -9,8 +9,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ArticleDetailsComponent } from './Components/article-details/article-details.component';
+import { WriterComponent } from './Components/writer/writer.component';
 
 var routes = [
+  { path: 'Writer/:id', component: WriterComponent  },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
   { path: '', component: HomeComponent  },
   { path: '**', component: HomeComponent  }
@@ -22,7 +24,8 @@ var routes = [
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    ArticleDetailsComponent
+    ArticleDetailsComponent,
+    WriterComponent
   ],
   imports: [
     BrowserModule,

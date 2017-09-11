@@ -16,6 +16,6 @@ export const _globals = Object.freeze({
     CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
     RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
     
-    testvar : "test"
+   // testvar : "test"
 
 });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { _globals } from '../../includes/globals';
 // import * as _globals from '../../includes/globals'; 
@@ -18,7 +19,8 @@ export class ArticleDetailsComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(_globals.testvar);
+    //console.log(_globals.testvar);
+    document.body.classList.add('wrapper-secondary');
     this.route.params.subscribe(params => {
       this.CONTENT_PATH = _globals.CONTENT_PATH;
       this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
@@ -26,9 +28,6 @@ export class ArticleDetailsComponent implements OnInit {
       
       this.http.get(_globals.API_URL + "Data/GetDetailsById?id=" + params['id']).subscribe((data:any) =>{
         this.articleModel = data;
-        this.articleModel = data;
-        //console.log(this.articleModel);
-        //console.log(this.slideshow);
       });
    });
   }
@@ -40,20 +39,44 @@ interface ArticleModel{
   title:string;
   description:string;
   mainImage:string;
+  isArabic:boolean;
+  middleQuote:string;
+  descriptionArr:string[];
+  date:Date;
   writer:{
     id:number;
     name:string;
     image:string;
   },
+  alsoByAuthor:{
+    id:number;
+    title:string;
+    smallDescription:string;
+    mainImage:string;
+    date:Date;
+    customUrlTitle:string;
+    isArabic:boolean;
+  },
+  relatedStories:{
+    id:number;
+    title:string;
+    mainImage:string;
+    customUrlTitle:string;
+    isArabic:boolean;
+  },
+  recentStories:{
+    id:number;
+    title:string;
+    mainImage:string;
+    customUrlTitle:string;
+    isArabic:boolean;
+  },
   tags:{
     id:number;
     title:string;
   },
-  relatedArticles:{
+  nextArticle:{
     id:number;
     title:string;
-    thumbnail:string;
-    smallDescription:string;
-    date:string ;
   }
 }

@@ -20,8 +20,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() : void {
     this.CONTENT_PATH = _globals.CONTENT_PATH;
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
-    console.log(_globals.testvar);
-   // _globals.setTestVar("value changed!");
     this.http.get(_globals.API_URL + "Data/GetHomeSlideshow").subscribe((data:any) =>{
       this.slideshow = data;
       //console.log(this.slideshow);
