@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     this.http.get(_globals.API_URL + "Data/GetHomeSlideshow").subscribe((data:any) =>{
       this.slideshow = data;
       //console.log(this.slideshow);
+      //console.log(this.slideshow);
     });
   }
 
