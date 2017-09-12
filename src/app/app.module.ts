@@ -11,6 +11,9 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { ArticleDetailsComponent } from './Components/article-details/article-details.component';
 import { WriterComponent } from './Components/writer/writer.component';
 
+// Services
+import { SharedService } from './services/shared.service';
+
 var routes = [
   { path: 'Writer/:id', component: WriterComponent  },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
@@ -32,7 +35,7 @@ var routes = [
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
