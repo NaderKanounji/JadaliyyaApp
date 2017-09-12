@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { SharedService } from './services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public headerStructure:string = "";
-  //title = 'test';
+
+  headerStructure:string;
+
+  constructor(private sharedService:SharedService){}
+
+
+  ngOnInit(){
+      this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
+      //console.log(this.headerStructure);
+  }
+
+  
 }

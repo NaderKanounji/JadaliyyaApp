@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { SharedService } from '../../services/shared.service';
@@ -10,20 +10,22 @@ import { _globals } from '../../includes/globals';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  outputs:['headerStructure']
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
 
-  headerStructure = new EventEmitter<string>();
+  headerStructure:string;
 
   slideshow: HomeSlideShowModel[];
   constructor(private http: HttpClient, private sharedService:SharedService) { }
 
-  ngOnInit() : void {
-    this.headerStructure.emit('home-emmitted');
+  ngOnInit() {
+    this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
+    this.sharedService.changeHeaderStructure("home");
+    //console.log(this.headerStructure);
+
     this.sharedService.alter_wrapper_classes('');
     
     this.CONTENT_PATH = _globals.CONTENT_PATH;

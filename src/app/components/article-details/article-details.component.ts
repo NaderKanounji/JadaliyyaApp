@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -11,21 +11,22 @@ import { _globals } from '../../includes/globals';
 @Component({
   selector: 'app-article-details',
   templateUrl: './article-details.component.html',
-  styleUrls: ['./article-details.component.css'],
-  outputs:['headerStructure']
+  styleUrls: ['./article-details.component.css']
 })
 export class ArticleDetailsComponent implements OnInit {
   CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
 
-  headerStructure = new EventEmitter<string>();
+  headerStructure:string;
 
   articleModel: ArticleModel;
   constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService) { }
 
   ngOnInit() {
     //console.log(_globals.testvar);
-    this.headerStructure.emit('article-details-emitted');
+    this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
+    this.sharedService.changeHeaderStructure("details");
+    //console.log(this.headerStructure);
     this.sharedService.alter_wrapper_classes('wrapper-secondary');
     this.route.params.subscribe(params => {
       this.CONTENT_PATH = _globals.CONTENT_PATH;

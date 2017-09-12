@@ -1,4 +1,4 @@
-<input id="input-output" value="{{headerStructure}}">
+
 <div class="popup popup-thank-you mfp-hide" id="popup-thank-you">
 		<div class="popup-inner">
 			<i class="ico-logo-square"></i>
@@ -372,7 +372,7 @@
 		</div><!-- /.search-inner -->
 	</div><!-- /.search -->
 
-<header class="header">
+<header class="header" *ngIf="currentRoute == 'home'">
 		<div class="shell">
 			<a routerLink="/" class="logo">Jadaliyya</a>
 
@@ -558,4 +558,194 @@
 				</ul>
 			</nav><!-- /.nav -->
 		</div><!-- /.shell -->
+	</header><!-- /.header -->
+
+	<header class="header-secondary" *ngIf="currentRoute == 'details'">
+		<div class="header-inner hidden-xs">
+			<div class="shell">
+				<a routerLink="/" class="logo-small">Jadaliyya</a>
+				
+				<nav class="nav">
+					<ul>
+						<li>
+							<a>Cities</a>
+						</li>
+				
+						<li>
+							<a href="Culture.html">Culture</a>
+				
+							<div class="dropdown">
+								<div class="shell">
+									<ul class="widgets">
+										<li class="widget-dropdown">
+											<div class="widget-image">
+												<a href="Details.html">
+													<img src="css/images/temp/dropdown1.jpg" alt="">
+												</a>
+											</div><!-- /.widget-image -->
+				
+											<div class="widget-head">
+												<h3 class="widget-title">
+													<a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h3><!-- /.widget-title -->
+											</div><!-- /.widget-head -->
+				
+											<div class="widget-body">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+				
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+				
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</div><!-- /.widget-body -->
+										</li><!-- /.widget -->
+				
+										<li class="widget-dropdown">
+											<div class="widget-image">
+												<a href="Details.html">
+													<img src="css/images/temp/dropdown2.jpg" alt="">
+												</a>
+											</div><!-- /.widget-image -->
+				
+											<div class="widget-head">
+												<h3 class="widget-title">
+													<a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h3><!-- /.widget-title -->
+											</div><!-- /.widget-head -->
+				
+											<div class="widget-body">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+				
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+				
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</div><!-- /.widget-body -->
+										</li><!-- /.widget -->
+				
+										<li class="widget-dropdown">
+											<div class="widget-image">
+												<a href="Details.html">
+													<img src="css/images/temp/dropdown3.jpg" alt="">
+												</a>
+											</div><!-- /.widget-image -->
+				
+											<div class="widget-head">
+												<h3 class="widget-title">
+													<a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h3><!-- /.widget-title -->
+											</div><!-- /.widget-head -->
+				
+											<div class="widget-body">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+				
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+				
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</div><!-- /.widget-body -->
+										</li><!-- /.widget -->
+				
+										<li class="widget-dropdown">
+											<div class="widget-image">
+												<a href="Details.html">
+													<img src="css/images/temp/dropdown4.jpg" alt="">
+												</a>
+											</div><!-- /.widget-image -->
+				
+											<div class="widget-head">
+												<h3 class="widget-title">
+													<a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h3><!-- /.widget-title -->
+											</div><!-- /.widget-head -->
+				
+											<div class="widget-body">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+				
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+				
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</div><!-- /.widget-body -->
+										</li><!-- /.widget -->
+									</ul><!-- /.widgets -->
+				
+									<a href="Culture.html" class="link-more-pages">View More from Culture Page</a>
+								</div><!-- /.shell -->
+							</div><!-- /.dropdown -->
+						</li>
+				
+						<li>
+							<a href="Interviews.html">Interviews</a>
+						</li>
+				
+						<li>
+							<a>Law and Conflict</a>
+						</li>
+				
+						<li>
+							<a href="Media.html">Media</a>
+						</li>
+				
+						<li>
+							<a>Political Economy</a>
+						</li>
+				
+						<li>
+							<a>Pedagogy</a>
+						</li>
+				
+						<li>
+							<a href="Reports.html">Reports</a>
+						</li>
+						<li>
+							<a>Reviews</a>
+						</li>
+				
+						<li>
+							<a href="Roundups.html">Roundups</a>
+						</li>
+				
+						<!--<li>
+							<a href="Arab-sections.html" class="rtl">القسم العربي</a>
+						</li>-->
+				
+						<li>
+							<a href="#" class="link-search">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</a>
+						</li>
+					</ul>
+				</nav><!-- /.nav -->
+				
+			</div><!-- /.shell -->
+		</div><!-- /.header-inner -->
 	</header><!-- /.header -->

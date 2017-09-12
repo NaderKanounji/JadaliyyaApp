@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SharedService } from '../../services/shared.service';
+
 @Component({
   selector: 'header-component',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
-  inputs:['headerStructure']
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public headerStructure:string;
-  constructor() { }
+
+  currentRoute:string;
+  
+  constructor(private sharedService:SharedService) { }
 
   ngOnInit() {
-    console.log(this.headerStructure);
+    this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.currentRoute = sharedHeaderStructure);
+    console.log(this.currentRoute);
   }
 
 }
