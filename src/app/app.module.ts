@@ -13,6 +13,7 @@ import { WriterComponent } from './Components/writer/writer.component';
 
 // Services
 import { SharedService } from './services/shared.service';
+import { FunctionsService } from './services/functions.service';
 
 var routes = [
   { path: 'Writer/:id', component: WriterComponent  },
@@ -35,7 +36,7 @@ var routes = [
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [SharedService],
+  providers: [SharedService, FunctionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

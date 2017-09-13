@@ -281,7 +281,6 @@
 		interestsToggle();
 
 		function tabsInit() {
-			console.log("tabsInit calleddddddd");
 			// Tabs
 			(function(){
 				// This class will be added to active tab link
@@ -595,7 +594,6 @@
 		// Lock scroll
 		function scrlLck() {
 			$('.search, .nav-sidebar').scrollLock();
-			console.log("scrlLck function called");
 		};
 		scrlLck();
 
@@ -1295,24 +1293,6 @@
 		$path.attr('stroke-dasharray', $path.data('to') + ' 729');
 	}
 
-	// Added by Nader
-	// function sticky_sidebar_binding(){
-	// 	$win.on('load resize', function() {
-	// 		if( $win.width() < 768 ) {
-	// 			$('.sticky-sidebar').trigger("sticky_kit:detach");
-	// 		} else {
-	// 			$('.sticky-sidebar').stick_in_parent({
-	// 				offset_top: 70,
-	// 				inner_scrolling: true,
-	// 				recalc_every: 10
-	// 			});
-	// 		}
-	
-	// 		stickyFooter();
-	// 		datepick();
-	// 	});
-	// }
-
 })(jQuery, window, document);
 
 
@@ -1337,17 +1317,3 @@ function closeSubMenu() {
     $('.subMenu').removeClass('open');
     $('.otherLink').removeClass('selected');
 }
-
-
-
-
-
-
-module.exports.myFunctions = {
-
-	sticky_sidebar_binding: function(){
-		//sticky_sidebar_binding();
-		tabsInit();
-		scrlLck();
-	}
-};

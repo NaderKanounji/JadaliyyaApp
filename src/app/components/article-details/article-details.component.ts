@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 import { SharedService } from '../../services/shared.service';
+import { FunctionsService } from '../../services/functions.service';
 
 import { _globals } from '../../includes/globals';
 // import * as _globals from '../../includes/globals'; 
@@ -20,7 +21,7 @@ export class ArticleDetailsComponent implements OnInit {
   headerStructure:string;
 
   articleModel: ArticleModel;
-  constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService) { }
 
   ngOnInit() {
     //console.log(_globals.testvar);
@@ -35,6 +36,7 @@ export class ArticleDetailsComponent implements OnInit {
       
       this.http.get(_globals.API_URL + "Data/GetDetailsById?id=" + params['id']).subscribe((data:any) =>{
         this.articleModel = data;
+        this.myFunctions.sticky_sidebar_binding();
       });
    });
   }
