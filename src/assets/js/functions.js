@@ -1,3 +1,9 @@
+var tabsInit;
+var scrlLck;
+var sliderMain;
+var add_has_dropdown_class_;
+var nav_overlay_on_hover;
+
 ;(function($, window, document, undefined) {
 	var $win = $(window);
 	var $doc = $(document);
@@ -6,26 +12,32 @@
 
 	$doc.ready(function() {
 		// Add class if has dropdown
-		$('.nav li, .nav-access li').each(function() {
-			var $this = $(this);
-			if ( $this.find('ul').length ) {
-				$this.addClass('has-dropdown');
-			};
-		});
+		add_has_dropdown_class_ = function(){
+			$('.nav li, .nav-access li').each(function() {
+				var $this = $(this);
+				console.log('each');
+				if ( $this.find('.dropdown').length ) {
+					$this.addClass('has-dropdown');
+					console.log($this.hasClass('has-dropdown'));
+				};
+			});
+		}
 
 		// Nav hover overlay
 
-		$('.nav .has-dropdown').mouseenter(
-			function() {
-				$('.container').addClass('overlay');
-			}
-		);
-
-		$('.nav .dropdown, .nav .has-dropdown > a').mouseleave(
-			function() {
-				$('.container').removeClass('overlay');
-			}
-		);
+		nav_overlay_on_hover = function(){
+			$('.nav .has-dropdown').mouseenter(
+				function() {
+					$('.container').addClass('overlay');
+				}
+			);
+	
+			$('.nav .dropdown, .nav .has-dropdown > a').mouseleave(
+				function() {
+					$('.container').removeClass('overlay');
+				}
+			);
+		}
 
 		// Close nav on ESC key press
 		$doc.keyup(function(e) {
@@ -280,8 +292,7 @@
 
 		interestsToggle();
 
-		function tabsInit() {
-			console.log("tabsInit calleddddddd");
+		tabsInit = function () {
 			// Tabs
 			(function(){
 				// This class will be added to active tab link
@@ -593,9 +604,8 @@
 		};
 
 		// Lock scroll
-		function scrlLck() {
+		scrlLck = function() {
 			$('.search, .nav-sidebar').scrollLock();
-			console.log("scrlLck function called");
 		};
 		scrlLck();
 
@@ -892,7 +902,7 @@
 			window.print();
 		});
 
-		function sliderMain() {
+		sliderMain = function() {
 			// // Slider Primary
 
 			var sync1 = $('.slider-primary .slides.owl-carousel'),
@@ -1349,5 +1359,13 @@ module.exports.myFunctions = {
 		//sticky_sidebar_binding();
 		tabsInit();
 		scrlLck();
+	},
+	nav_bindings: function(){
+		console.log('..');
+		nav_overlay_on_hover();
+		add_has_dropdown_class_();
+	},
+	load_home_main_slider:function(){
+		sliderMain();
 	}
 };

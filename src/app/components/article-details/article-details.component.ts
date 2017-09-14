@@ -24,19 +24,21 @@ export class ArticleDetailsComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService) { }
 
   ngOnInit() {
-    //console.log(_globals.testvar);
+    this.CONTENT_PATH = _globals.CONTENT_PATH;
+    this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
+    
     this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
     this.sharedService.changeHeaderStructure("details");
-    //console.log(this.headerStructure);
+
     this.sharedService.alter_wrapper_classes('wrapper-secondary');
+    
+
     this.route.params.subscribe(params => {
-      this.CONTENT_PATH = _globals.CONTENT_PATH;
-      this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
       //console.log(params['id']);
       
       this.http.get(_globals.API_URL + "Data/GetDetailsById?id=" + params['id']).subscribe((data:any) =>{
         this.articleModel = data;
-        this.myFunctions.sticky_sidebar_binding();
+        this.myFunctions.load_details_page();
       });
    });
   }

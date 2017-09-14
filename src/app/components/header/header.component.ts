@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { SharedService } from '../../services/shared.service';
+
+
+import { _globals } from '../../includes/globals';
 
 @Component({
   selector: 'header-component',
@@ -8,14 +12,59 @@ import { SharedService } from '../../services/shared.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  CONTENT_PATH:string;
+  RESIZED_CONTENT_PATH:string;
 
   currentRoute:string;
+  headerCategories:HeaderCategoriesModel[];
   
-  constructor(private sharedService:SharedService) { }
+  headerCategoryArticles:[HeaderCategoriesArticles[]] = [[]];
+  constructor(private sharedService:SharedService, private http:HttpClient) { }
 
   ngOnInit() {
+    
+    this.CONTENT_PATH = _globals.CONTENT_PATH;
+    this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
+    
     this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.currentRoute = sharedHeaderStructure);
-    console.log(this.currentRoute);
+    //console.log(this.currentRoute);
+    this.http.get(_globals.API_URL + "Data/GetHeader").subscribe((data:any) =>{
+      this.headerCategories = data;
+
+    });
   }
 
+  load_cat_articles(catId:number){
+    if(!(this.headerCategoryArticles != undefined && this.headerCategoryArticles[catId] != undefined && this.headerCategoryArticles[catId].length)){
+      this.http.get(_globals.API_URL + "Data/GetHeaderCategoryArticles?catId=" + catId).subscribe((data:any) =>{
+          this.headerCategoryArticles[catId] = data;
+  
+        
+      });
+    }
+  }
+
+}
+
+
+interface HeaderCategoriesModel{
+  id:number,
+  title:string
+}
+
+interface HeaderCategoriesArticles{
+  id:number;
+  title:string;
+  mainImage:string;
+  customUrlTitle:string;
+  isArabic:boolean;
+  date:Date;
+  writer:{
+    id:number;
+    name:string;
+  };
+}
+
+interface HeaderCategoryArr{
+  articles: HeaderCategoriesArticles[];
 }

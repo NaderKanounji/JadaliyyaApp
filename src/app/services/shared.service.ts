@@ -6,6 +6,7 @@ export class SharedService {
 
   private messageSource = new BehaviorSubject<string>("");
   serviceHeaderStructure = this.messageSource.asObservable();
+
   constructor() { }
 
   changeHeaderStructure(newStructure:string){

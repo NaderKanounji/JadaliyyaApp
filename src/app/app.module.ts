@@ -10,12 +10,14 @@ import { HomeComponent } from './Components/home/home.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ArticleDetailsComponent } from './Components/article-details/article-details.component';
 import { WriterComponent } from './Components/writer/writer.component';
+import { CategoryComponent } from './Components/category/category.component';
 
 // Services
 import { SharedService } from './services/shared.service';
 import { FunctionsService } from './services/functions.service';
 
 var routes = [
+  { path: 'Category/:id', component: CategoryComponent  },
   { path: 'Writer/:id', component: WriterComponent  },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
   { path: '', component: HomeComponent  },
@@ -29,7 +31,8 @@ var routes = [
     HomeComponent,
     FooterComponent,
     ArticleDetailsComponent,
-    WriterComponent
+    WriterComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
