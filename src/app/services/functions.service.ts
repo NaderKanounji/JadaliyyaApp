@@ -23,7 +23,7 @@ export class FunctionsService {
  load_home_main_slider(){
     myFunctions.load_home_main_slider();
   }
-  secondary_header_bindings(){
+  header_bindings(){
     myFunctions.nav_bindings();
   }
   sticky_sidebar_binding(){

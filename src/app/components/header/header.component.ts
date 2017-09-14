@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { SharedService } from '../../services/shared.service';
+import { FunctionsService } from '../../services/functions.service';
 
 
 import { _globals } from '../../includes/globals';
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   headerCategories:HeaderCategoriesModel[];
   
   headerCategoryArticles:[HeaderCategoriesArticles[]] = [[]];
-  constructor(private sharedService:SharedService, private http:HttpClient) { }
+  constructor(private sharedService:SharedService, private http:HttpClient, private myFunction:FunctionsService) { }
 
   ngOnInit() {
     
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
     //console.log(this.currentRoute);
     this.http.get(_globals.API_URL + "Data/GetHeader").subscribe((data:any) =>{
       this.headerCategories = data;
-
+      this.myFunction.header_bindings();
     });
   }
 

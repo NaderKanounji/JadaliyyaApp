@@ -13,14 +13,17 @@ var nav_overlay_on_hover;
 	$doc.ready(function() {
 		// Add class if has dropdown
 		add_has_dropdown_class_ = function(){
-			$('.nav li, .nav-access li').each(function() {
-				var $this = $(this);
-				console.log('each');
-				if ( $this.find('.dropdown').length ) {
-					$this.addClass('has-dropdown');
-					console.log($this.hasClass('has-dropdown'));
-				};
-			});
+			setTimeout(function(){
+				$('.nav li, .nav-access li').each(function() {
+					var $this = $(this);
+					console.log('each');
+					if ( $this.find('.dropdown').length ) {
+						$this.addClass('has-dropdown');
+						console.log($this.hasClass('has-dropdown'));
+					};
+				});
+			},500);
+			
 		}
 
 		// Nav hover overlay
