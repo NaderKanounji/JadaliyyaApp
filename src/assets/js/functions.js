@@ -16,10 +16,10 @@ var nav_overlay_on_hover;
 			setTimeout(function(){
 				$('.nav li, .nav-access li').each(function() {
 					var $this = $(this);
-					console.log('each');
+					//console.log('each');
 					if ( $this.find('.dropdown').length ) {
 						$this.addClass('has-dropdown');
-						console.log($this.hasClass('has-dropdown'));
+						//console.log($this.hasClass('has-dropdown'));
 					};
 				});
 			},500);
@@ -975,7 +975,7 @@ var nav_overlay_on_hover;
 
 			$('.slider-primary .slider-nav .owl-item:first-child').addClass('clicked');
 		};
-		sliderMain();
+		//sliderMain();
 
 		$('.slider-primary .slider-nav a').on('click', function(event) {
 			event.preventDefault();
@@ -1034,7 +1034,7 @@ var nav_overlay_on_hover;
 				progressText();
 			})
 			.on('load', function() {
-				sliderMain();
+				//sliderMain();
 
 				verticalScroll();
 				horizontalScroll();
@@ -1364,7 +1364,7 @@ module.exports.myFunctions = {
 		scrlLck();
 	},
 	nav_bindings: function(){
-		console.log('..');
+		//console.log('..');
 		nav_overlay_on_hover();
 		add_has_dropdown_class_();
 	},

@@ -38,6 +38,7 @@ export class ArticleDetailsComponent implements OnInit {
       
       this.http.get(_globals.API_URL + "Data/GetDetailsById?id=" + params['id']).subscribe((data:any) =>{
         this.articleModel = data;
+        console.log(this.articleModel);
         this.myFunctions.load_details_page();
       });
    });

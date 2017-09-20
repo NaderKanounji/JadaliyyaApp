@@ -13,7 +13,7 @@
 									<strong>Lebanon</strong>
 								</span>
 
-								<div class="widget-image">
+								<div class="widget-image" *ngIf="articleModel.writer?.length > 0">
 									<a routerLink="/Writer/{{articleModel.writer.id}}">
 										<img src="{{RESIZED_CONTENT_PATH}}48x52xo/{{articleModel.writer.image}}" alt="{{articleModel.writer.name}}">
 									</a>

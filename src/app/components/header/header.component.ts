@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
     if(!(this.headerCategoryArticles != undefined && this.headerCategoryArticles[catId] != undefined && this.headerCategoryArticles[catId].length)){
       this.http.get(_globals.API_URL + "Data/GetHeaderCategoryArticles?catId=" + catId).subscribe((data:any) =>{
           this.headerCategoryArticles[catId] = data;
-  
+          //console.log(this.headerCategoryArticles[catId]);
         
       });
     }

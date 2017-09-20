@@ -398,8 +398,10 @@
 									<div class="sk-circle12 sk-circle"></div>
 								</div>
 								<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[cat.id] != undefined && headerCategoryArticles[cat.id].length">
+									
 									<ul class="widgets">
 										<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[cat.id]">
+											
 											<div class="widget-image">
 												<a title="{{item.title}}" routerLink="/Details/{{item.id}}">
 													<img src="{{RESIZED_CONTENT_PATH}}322x209xi/{{item.mainImage}}" alt="{{item.title}}">
@@ -430,7 +432,7 @@
 										</li><!-- /.widget -->
 									</ul><!-- /.widgets -->
 				
-									<a title="{{cat.title}}" routerLink="/Details/{{cat.id}}" class="link-more-pages">View More from Culture Page</a>
+									<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}" class="link-more-pages">View More from {{cat.title}} Page</a>
 								</div><!-- /.shell -->
 						</div><!-- /.dropdown -->
 					</li>
@@ -477,6 +479,7 @@
 										<div class="sk-circle12 sk-circle"></div>
 								    </div>
 								<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[cat.id] != undefined && headerCategoryArticles[cat.id].length">
+									
 									<ul class="widgets">
 										<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[cat.id]">
 											<div class="widget-image">
@@ -509,7 +512,7 @@
 										</li><!-- /.widget -->
 									</ul><!-- /.widgets -->
 				
-									<a title="{{cat.title}}" routerLink="/Details/{{cat.id}}" class="link-more-pages">View More from Culture Page</a>
+									<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}" class="link-more-pages">View More from {{cat.title}} Page</a>
 								</div><!-- /.shell -->
 							</div><!-- /.dropdown -->
 						</li>
