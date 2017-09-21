@@ -11318,3 +11318,20 @@ ul.items:after {
 .ui-widget-header .ui-state-highlight {
   background: #ffff00;
 }
+.article-details .article-image {
+  max-width: 450px;
+}
+.article-details .article-meta {
+  display: flex;
+}
+.article-details .article-meta h5 {
+  height: 26px;
+}
+.list-tags {
+  margin-top: 1px;
+}
+@media (max-width: 767px) {
+  .article-details .article-image {
+    max-width: 100%;
+  }
+}

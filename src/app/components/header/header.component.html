@@ -378,12 +378,11 @@
 
 			<nav class="nav" *ngIf="headerCategories != undefined && headerCategories.length">
 				<ul>
-					<li *ngFor="let cat of headerCategories" (mouseover)='load_cat_articles(cat.id)'>
+					<li *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
 						<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}">{{cat.title}}</a>
 
 						<div class="dropdown">
-
-								<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[cat.id] != undefined && headerCategoryArticles[cat.id].length)">
+								<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0)">
 									<div class="sk-circle1 sk-circle"></div>
 									<div class="sk-circle2 sk-circle"></div>
 									<div class="sk-circle3 sk-circle"></div>
@@ -397,10 +396,10 @@
 									<div class="sk-circle11 sk-circle"></div>
 									<div class="sk-circle12 sk-circle"></div>
 								</div>
-								<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[cat.id] != undefined && headerCategoryArticles[cat.id].length">
+								<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0 ">
 									
 									<ul class="widgets">
-										<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[cat.id]">
+										<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[catIndex]">
 											
 											<div class="widget-image">
 												<a title="{{item.title}}" routerLink="/Details/{{item.id}}">
@@ -414,7 +413,7 @@
 												</h3><!-- /.widget-title -->
 											</div><!-- /.widget-head -->
 				
-											<div class="widget-body">
+											<div class="widget-body" *ngIf="">
 												<ul class="list-meta">
 													<li>
 														<a title="{{item.writer.name}}" routerLink="/Writer/{{item.writer.id}}">
@@ -460,11 +459,11 @@
 				<nav class="nav" *ngIf="headerCategories != undefined && headerCategories.length">
 					<ul>
 				
-						<li *ngFor="let cat of headerCategories" (mouseover)='load_cat_articles(cat.id)'>
+						<li *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
 							<a title="{{cat.title}}" href="/Category/{{cat.id}}">{{cat.title}}</a>
 				
 							<div class="dropdown">
-									<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[cat.id] != undefined && headerCategoryArticles[cat.id].length)">
+									<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0)">
 										<div class="sk-circle1 sk-circle"></div>
 										<div class="sk-circle2 sk-circle"></div>
 										<div class="sk-circle3 sk-circle"></div>
@@ -478,10 +477,10 @@
 										<div class="sk-circle11 sk-circle"></div>
 										<div class="sk-circle12 sk-circle"></div>
 								    </div>
-								<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[cat.id] != undefined && headerCategoryArticles[cat.id].length">
+								<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0">
 									
 									<ul class="widgets">
-										<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[cat.id]">
+										<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[catIndex]">
 											<div class="widget-image">
 												<a title="{{item.title}}" routerLink="/Details/{{item.id}}">
 													<img src="{{RESIZED_CONTENT_PATH}}322x209xi/{{item.mainImage}}" alt="{{item.title}}">
@@ -494,7 +493,7 @@
 												</h3><!-- /.widget-title -->
 											</div><!-- /.widget-head -->
 				
-											<div class="widget-body">
+											<div class="widget-body" *ngIf="item.writer">
 												<ul class="list-meta">
 													<li>
 														<a title="{{item.writer.name}}" routerLink="/Writer/{{item.writer.id}}">

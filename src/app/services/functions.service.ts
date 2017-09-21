@@ -9,17 +9,16 @@ export class FunctionsService {
   }
 //Main Block calls
   load_home_page(){ //HOME
-    myFunctions.nav_bindings();
-    myFunctions.load_home_main_slider();
-    //myFunctions.sticky_sidebar_binding();
+    myFunctions.load_home_page();
   }
   load_details_page(){ //DETAILS
-    myFunctions.nav_bindings();
-    myFunctions.sticky_sidebar_binding();
+    myFunctions.load_details_page();
   }
 //end Main Block calls
 
-
+load_fb_comments(){
+  myFunctions.load_fb_comments();
+}
  load_home_main_slider(){
     myFunctions.load_home_main_slider();
   }

@@ -35,10 +35,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  load_cat_articles(catId:number){
-    if(!(this.headerCategoryArticles != undefined && this.headerCategoryArticles[catId] != undefined && this.headerCategoryArticles[catId].length)){
+  load_cat_articles(catId:number, catNumber:number){
+    if(!(this.headerCategoryArticles != undefined && this.headerCategoryArticles[catNumber] != undefined && this.headerCategoryArticles[catNumber].length)){
       this.http.get(_globals.API_URL + "Data/GetHeaderCategoryArticles?catId=" + catId).subscribe((data:any) =>{
-          this.headerCategoryArticles[catId] = data;
+          this.headerCategoryArticles[catNumber] = data;
+          //console.log(this.headerCategoryArticles);
           //console.log(this.headerCategoryArticles[catId]);
         
       });

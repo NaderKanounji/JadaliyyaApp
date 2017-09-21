@@ -32,8 +32,9 @@
 
 									<ul>
 										<li>
-											<a href="#">
+											<a >
 												<i class="fa fa-facebook" aria-hidden="true"></i>
+												<iframe src="https://www.facebook.com/plugins/share_button.php?href=http://localhost:4200/Details/{{articleModel.id}}&layout=button&size=small&mobile_iframe=true&appId=1742183246107369&width=59&height=20" width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 											</a>
 										</li>
 										
@@ -216,10 +217,11 @@
                   </ul><!-- /.widgets -->
                 </div><!-- /.article-foot -->
 
-                <div class="article-comments">
-                  <img src="../../assets/images/temp/comments.jpg" alt="" class="hidden-xs">
+                <div class="article-comments" id="fb-comments-container">
+                  <!-- <img src="../../assets/images/temp/comments.jpg" alt="" class="hidden-xs">
 
-                  <img src="../../assets/images/temp/comments-mobile.jpg" alt="" class="visible-xs-block">
+				  <img src="../../assets/images/temp/comments-mobile.jpg" alt="" class="visible-xs-block"> -->
+				  <div class="fb-comments" attr.data-href="http://localhost:4200/Details/{{articleModel.id}}" data-numposts="5" width="100%"></div>
                 </div><!-- /.article-comments -->
               </div>
 						</article><!-- /.article article-details -->
@@ -675,7 +677,7 @@
 
 							<div class="article-comments">
 								<img src="../../assets/images/temp/comments.jpg" alt="">
-              </div><!-- /.article-comments -->
+              				</div><!-- /.article-comments -->
 						</article><!-- /.article article-details -->
 					</div><!-- /.content -->
 
