@@ -1306,9 +1306,9 @@ var link_text_large_function;
 		var $articleTitle        = $('.article-details .article-head h1');
 		var $articleBody         = $('.article-details .article-body');
 		var $articleQuote        = $('.quote-primary blockquote');
-		var articleTitleBaseSize = getElementFontSize($articleTitle);
-		var articleBodyBaseSize  = getElementFontSize($articleBody);
-		var articleQuoteSize     = getElementFontSize($articleQuote);
+		var articleTitleBaseSize = $articleTitle.length ? getElementFontSize($articleTitle) : 0;
+		var articleBodyBaseSize  = $articleBody.length ? getElementFontSize($articleBody) : 0;
+		var articleQuoteSize     = $articleQuote.length ? getElementFontSize($articleQuote) : 0;
 
 		scale = parseInt( scale, 10 );
 
@@ -1321,10 +1321,15 @@ var link_text_large_function;
 			articleBodyBaseSize  -= scale;
 			articleQuoteSize     -= scale;
 		}
-
-		$articleTitle.css('font-size', articleTitleBaseSize);
-		$articleBody.css('font-size', articleBodyBaseSize);
-		$articleQuote.css('font-size', articleQuoteSize);
+		if($articleTitle.length){
+			$articleTitle.css('font-size', articleTitleBaseSize);
+		}
+		if($articleBody.length){
+			$articleBody.css('font-size', articleBodyBaseSize);
+		}
+		if($articleQuote.length){
+			$articleQuote.css('font-size', articleQuoteSize);
+		}
 
 	};
 
@@ -1362,7 +1367,12 @@ var link_text_large_function;
 
 
 
-
+function scoll_to_comments_binding(){
+	$('.list-actions .comment-action').click(function(){
+		let commentsPosition = parseInt($('.article-details .article-comments').offset().top) - 100;
+		$("html, body").animate({ scrollTop: commentsPosition }, 1000);
+	});
+}
 
 function openSubMenu() {
     if ($('.subMenu').hasClass('open')) {
@@ -1401,6 +1411,7 @@ module.exports.myFunctions = {
 		widget_share_function();
 		link_text_large_function();
 		link_text_small_function();
+		scoll_to_comments_binding();
 	},
 	sticky_sidebar_binding: function(){
 		sticky_sidebar_function();
@@ -1418,7 +1429,7 @@ module.exports.myFunctions = {
 	load_fb_comments:function(){
 		setTimeout(function(){
 			FB.XFBML.parse(document.getElementById("fb-comments-container"));
-		},100);
+		},1000);
 	},
 	toggle_share_function:function(){
 		toggle_share_function();
@@ -1434,5 +1445,8 @@ module.exports.myFunctions = {
 	},
 	link_text_small_function:function(){
 		link_text_small_function();
+	},
+	scoll_to_comments_binding:function(){
+		scoll_to_comments_binding();
 	}
 };

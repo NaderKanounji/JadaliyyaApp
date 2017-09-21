@@ -15,6 +15,7 @@ import { _globals } from '../../includes/globals';
 export class HeaderComponent implements OnInit {
   CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
+  ARABIC_SECTION_ID:number;
 
   currentRoute:string;
   headerCategories:HeaderCategoriesModel[];
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
     
     this.CONTENT_PATH = _globals.CONTENT_PATH;
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
+    this.ARABIC_SECTION_ID = _globals.ARABIC_SECTION_ID;
     
     this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.currentRoute = sharedHeaderStructure);
     //console.log(this.currentRoute);
