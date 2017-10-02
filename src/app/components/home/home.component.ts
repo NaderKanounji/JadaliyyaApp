@@ -17,14 +17,14 @@ export class HomeComponent implements OnInit {
   CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
 
-  headerStructure:string;
+  //headerStructure:string;
 
   slideshow: HomeSlideShowModel[];
   constructor(private http: HttpClient, private sharedService:SharedService, private myFunctions:FunctionsService) { }
 
   ngOnInit() {
-    this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
-    this.sharedService.changeHeaderStructure("home");
+    //this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
+    this.sharedService.set_shared_model({"currentRoute": "home", "categoryTitle":""});
     //console.log(this.headerStructure);
 
     this.sharedService.alter_wrapper_classes('');

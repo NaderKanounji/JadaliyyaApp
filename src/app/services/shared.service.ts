@@ -4,13 +4,13 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class SharedService {
 
-  private messageSource = new BehaviorSubject<string>("");
-  serviceHeaderStructure = this.messageSource.asObservable();
+  private messageSource = new BehaviorSubject<SharedModel>(null);
+  sharedModel = this.messageSource.asObservable();
 
   constructor() { }
 
-  changeHeaderStructure(newStructure:string){
-    this.messageSource.next(newStructure);
+  set_shared_model(sharedModel:SharedModel){
+    this.messageSource.next(sharedModel);
   }
 
   alter_wrapper_classes(className:string) {
@@ -22,4 +22,9 @@ export class SharedService {
       }
     }
   }
+}
+
+interface SharedModel{
+  currentRoute:string;
+  categoryTitle:string;
 }

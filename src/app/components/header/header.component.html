@@ -372,7 +372,7 @@
 		</div><!-- /.search-inner -->
 	</div><!-- /.search -->
 
-<header class="header" *ngIf="currentRoute == 'home'">
+<header class="header" *ngIf="sharedModel.currentRoute == 'home'">
 		<div class="shell">
 			<a routerLink="/" class="logo">Jadaliyya</a>
 
@@ -451,7 +451,7 @@
 		</div><!-- /.shell -->
 	</header><!-- /.header -->
 
-	<header class="header-secondary" *ngIf="currentRoute == 'details' || currentRoute == 'category'">
+	<header class="header-secondary" *ngIf="sharedModel.currentRoute == 'details' || sharedModel.currentRoute == 'category'">
 		<div class="header-inner hidden-xs">
 			<div class="shell">
 				<a routerLink="/" class="logo-small">Jadaliyya</a>
@@ -533,9 +533,9 @@
 		</div><!-- /.header-inner -->
 
 		
-		<div class="header-outer" *ngIf="currentRoute == 'category'">
+		<div class="header-outer" *ngIf="sharedModel.currentRoute == 'category'">
 			<div class="shell">
-				<h1>Reports</h1>
+				<h1>{{sharedModel.categoryTitle}}</h1>
 				
 				<a href="#" class="link-filter">
 					Filter By

@@ -18,7 +18,6 @@ export class ArticleDetailsComponent implements OnInit {
   CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
 
-  headerStructure:string;
 
   articleModel: ArticleModel;
   constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService) { }
@@ -27,8 +26,8 @@ export class ArticleDetailsComponent implements OnInit {
     this.CONTENT_PATH = _globals.CONTENT_PATH;
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
     
-    this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
-    this.sharedService.changeHeaderStructure("details");
+    //this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
+    this.sharedService.set_shared_model({"currentRoute": "details", "categoryTitle":""});
 
     this.sharedService.alter_wrapper_classes('wrapper-secondary');
     

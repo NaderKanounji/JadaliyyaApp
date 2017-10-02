@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
   RESIZED_CONTENT_PATH:string;
   ARABIC_SECTION_ID:number;
 
-  currentRoute:string;
+  sharedModel:SharedModel;
+
   headerCategories:HeaderCategoriesModel[];
   
   headerCategoryArticles:[HeaderCategoriesArticles[]] = [[]];
@@ -29,7 +30,9 @@ export class HeaderComponent implements OnInit {
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
     this.ARABIC_SECTION_ID = _globals.ARABIC_SECTION_ID;
     
-    this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.currentRoute = sharedHeaderStructure);
+    this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);
+    
+    //this.sharedService.categoryTitle.subscribe(categoryTitle => this.categoryTitle = categoryTitle);
     //console.log(this.currentRoute);
     this.http.get(_globals.API_URL + "Data/GetHeader").subscribe((data:any) =>{
       this.headerCategories = data.categories.filter(d => d.isOnMenu == true);
@@ -49,7 +52,10 @@ export class HeaderComponent implements OnInit {
   }
 
 }
-
+interface SharedModel{
+  headerStructure:string;
+  categoryTitle:string;
+}
 
 interface HeaderCategoriesModel{
   id:number,
