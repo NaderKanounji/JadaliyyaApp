@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.currentRoute = sharedHeaderStructure);
     //console.log(this.currentRoute);
     this.http.get(_globals.API_URL + "Data/GetHeader").subscribe((data:any) =>{
-      this.headerCategories = data;
+      this.headerCategories = data.categories.filter(d => d.isOnMenu == true);
       this.myFunction.header_bindings();
     });
   }

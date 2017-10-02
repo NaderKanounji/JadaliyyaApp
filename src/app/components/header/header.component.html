@@ -451,7 +451,7 @@
 		</div><!-- /.shell -->
 	</header><!-- /.header -->
 
-	<header class="header-secondary" *ngIf="currentRoute == 'details'">
+	<header class="header-secondary" *ngIf="currentRoute == 'details' || currentRoute == 'category'">
 		<div class="header-inner hidden-xs">
 			<div class="shell">
 				<a routerLink="/" class="logo-small">Jadaliyya</a>
@@ -531,4 +531,91 @@
 				
 			</div><!-- /.shell -->
 		</div><!-- /.header-inner -->
+
+		
+		<div class="header-outer" *ngIf="currentRoute == 'category'">
+			<div class="shell">
+				<h1>Reports</h1>
+				
+				<a href="#" class="link-filter">
+					Filter By
+
+					<i class="fa fa-sort-desc" aria-hidden="true"></i>
+				</a>
+			</div><!-- /.shell -->
+
+			<div class="filter">
+				<div class="shell">
+					<div class="form-filter">
+						<form action="?" method="post">
+							<div class="form-body">
+								<div class="cols">
+									<div class="col col-size1">
+										<div class="form-row">
+											<div class="form-controls form-controls-select">
+												<select name="field-country" id="field-country" class="select-native">
+													<option value="">Country</option>
+													<option value="">Country1</option>
+													<option value="">Country2</option>
+												</select>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-size1 -->
+									
+									<div class="col col-size1">
+										<div class="form-row">
+											<div class="form-controls form-controls-select">
+												<select name="field-category" id="field-category" class="select-native">
+													<option value="">Category</option>
+													<option value="">Category1</option>
+													<option value="">Category2</option>
+												</select>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-size1 -->
+								
+									<div class="col col-size1">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-writer" id="field-writer" value="" placeholder="Writer">
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-size1 -->
+								
+									<div class="col col-size1">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
+			
+												<i class="fa fa-calendar-o" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-size1 -->
+									
+									<div class="col col-size2">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-keyword" id="field-keyword" value="" placeholder="Keyword">
+			
+												<i class="fa fa-search" aria-hidden="true"></i>
+			
+												<a href="#">
+													<img src="css/images/temp/filter-link.jpg" alt="">
+												</a>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-size2 -->
+			
+									<div class="col col-size1">
+										<div class="form-actions">
+											<input type="submit" value="Filter" class="form-btn btn btn-primary btn-blue">
+										</div><!-- /.form-actions -->
+									</div><!-- /.col col-size1 -->
+								</div><!-- /.cols -->
+							</div><!-- /.form-body -->
+						</form>
+					</div><!-- /.form-filter -->
+				</div><!-- /.shell -->
+			</div><!-- /.filter -->
+		</div><!-- /.header-outer -->
 	</header><!-- /.header -->
