@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     //this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
-    this.sharedService.set_shared_model({"currentRoute": "home", "categoryTitle":""});
+    this.sharedService.set_currentRoute("home");
     //console.log(this.headerStructure);
 
     this.sharedService.alter_wrapper_classes('');

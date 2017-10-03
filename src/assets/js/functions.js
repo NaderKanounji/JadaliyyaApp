@@ -1401,17 +1401,19 @@ module.exports.myFunctions = {
 		sliderMain();
 	},
 	load_details_page:function(){
-		nav_overlay_on_hover();
-		add_has_dropdown_class_();
-		sticky_sidebar_function();
-		tabsInit();
-		scrlLck();
-		toggle_share_function();
-		socials_tertiary_function();
-		widget_share_function();
-		link_text_large_function();
-		link_text_small_function();
-		scoll_to_comments_binding();
+		setTimeout(function(){
+			nav_overlay_on_hover();
+			add_has_dropdown_class_();
+			sticky_sidebar_function();
+			tabsInit();
+			scrlLck();
+			toggle_share_function();
+			socials_tertiary_function();
+			widget_share_function();
+			link_text_large_function();
+			link_text_small_function();
+			scoll_to_comments_binding();
+		},200);
 	},
 	sticky_sidebar_binding: function(){
 		sticky_sidebar_function();

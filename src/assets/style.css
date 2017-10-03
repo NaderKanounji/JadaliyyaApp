@@ -11330,6 +11330,17 @@ ul.items:after {
 .list-tags {
   margin-top: 1px;
 }
+.widget-dropdown .widget-image a {
+  width: 100%;
+  max-height: 209px;
+  overflow: hidden;
+  display: block;
+}
+.socials-tertiary .fb-iframe {
+  transform: scaleY(3);
+  transform-origin: 0 0;
+  opacity: 0;
+}
 @media (max-width: 767px) {
   .article-details .article-image {
     max-width: 100%;

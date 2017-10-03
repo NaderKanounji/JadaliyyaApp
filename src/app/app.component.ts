@@ -16,7 +16,7 @@ export class AppComponent {
 
 
   ngOnInit(){
-      this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
+      //this.sharedService.set_shared_model.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
       //console.log(this.headerStructure);
   }
 

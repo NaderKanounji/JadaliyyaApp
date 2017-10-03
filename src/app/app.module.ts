@@ -15,10 +15,12 @@ import { CategoryComponent } from './Components/category/category.component';
 // Services
 import { SharedService } from './services/shared.service';
 import { FunctionsService } from './services/functions.service';
+import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
 
 var routes = [
   { path: 'Category/:id', component: CategoryComponent  },
   { path: 'Writer/:id', component: WriterComponent  },
+  { path: 'Details/:id/*', component: ArticleDetailsComponent  },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
   { path: '', component: HomeComponent  },
   { path: '**', component: HomeComponent  }
@@ -32,7 +34,8 @@ var routes = [
     FooterComponent,
     ArticleDetailsComponent,
     WriterComponent,
-    CategoryComponent
+    CategoryComponent,
+    SafeUrlPipePipe
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,9 @@ export const _globals = Object.freeze({
     API_URL: 'https://shift2s.koein.com/jadaliyaapi/api/',
     CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
     RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
+    BASE_URL: 'http://localhost:4200/',
+
+    TwitterUsername:'Jadaliyya',
     
    // testvar : "test"
 

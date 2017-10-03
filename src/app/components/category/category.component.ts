@@ -26,14 +26,15 @@ export class CategoryComponent implements OnInit {
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
 
     //this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
-    this.sharedService.set_shared_model({"currentRoute" : "category", "categoryTitle" : ""});
+    this.sharedService.set_currentRoute("category");
+    this.sharedService.set_categoryTitle("");
 
     this.sharedService.alter_wrapper_classes('wrapper-secondary');
     
     this.route.params.subscribe(params => {
-      this.http.get(_globals.API_URL + "Data/GetCategoryDetailsInit?catId=" + params['id']).subscribe((data:any) =>{
+      this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id']).subscribe((data:any) =>{
         this.categoryModel = data["category"];
-        this.sharedService.set_shared_model({"currentRoute" : "category", "categoryTitle" : this.categoryModel.title});
+        this.sharedService.set_categoryTitle(this.categoryModel.title);
         //this.sharedService.set_category_title(this.categoryModel.title);
       });
     });
