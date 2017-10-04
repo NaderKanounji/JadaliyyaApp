@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"currentRoute": "home", "categoryTitle":"", "isGoogleApiLoaded" : false}
+    {"currentRoute": "home", "categoryTitle":"", "isGoogleApiLoaded" : false, "socialMedia" : []}
   );
   sharedModel = this.messageSource.asObservable();
 
@@ -17,17 +17,22 @@ export class SharedService {
   //----- Setters
   set_currentRoute(myCurrentRoute:string){
     let tempModel = this.messageSource.getValue();
-    tempModel.currentRoute = myCurrentRoute
+    tempModel.currentRoute = myCurrentRoute;
     this.messageSource.next(tempModel);
   }
   set_categoryTitle(myCategoryTitle:string){
     let tempModel = this.messageSource.getValue();
-    tempModel.categoryTitle = myCategoryTitle
+    tempModel.categoryTitle = myCategoryTitle;
     this.messageSource.next(tempModel);
   }
   set_isGoogleApiLoaded(myIsGoogleApiLoaded:boolean){
     let tempModel = this.messageSource.getValue();
-    tempModel.isGoogleApiLoaded = myIsGoogleApiLoaded
+    tempModel.isGoogleApiLoaded = myIsGoogleApiLoaded;
+    this.messageSource.next(tempModel);
+  }
+  set_socialMedia(mySocialMedia:SocialMedia[]){
+    let tempModel = this.messageSource.getValue();
+    tempModel.socialMedia = mySocialMedia;
     this.messageSource.next(tempModel);
   }
   //----- \Setters
@@ -47,4 +52,9 @@ interface SharedModel{
   currentRoute:string;
   categoryTitle:string;
   isGoogleApiLoaded:boolean;
+  socialMedia:SocialMedia[];
+}
+interface SocialMedia{
+  title:string;
+  link:string;
 }

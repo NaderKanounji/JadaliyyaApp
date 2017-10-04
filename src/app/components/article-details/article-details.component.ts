@@ -50,6 +50,7 @@ export class ArticleDetailsComponent implements OnInit {
         this.articleModel.fbShareSrc = 'https://www.facebook.com/plugins/share_button.php?href=' + this.shareLink + '&layout=button&size=small&mobile_iframe=true&appId=1742183246107369&width=59&height=20';
         //console.log(this.articleModel);
         this.myFunctions.load_details_page();
+        this.myFunctions.back_to_top(0);
       });
    });
   }

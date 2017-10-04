@@ -1,3 +1,2059 @@
-<p>
-  category works!
-</p>
+<div class="container">
+		<div class="main">
+			<div class="shell">
+				<div class="content">
+					<div class="content-inner">
+						<div class="content-inner-flex">
+							<div class="slider slider-primary" *ngIf="categoryModel?.slideshow?.length > 0">
+								<div class="slider-loader">
+									<i class="ico-loader"></i>
+								</div><!-- /.slider-loader -->
+								
+								<div class="slider-outer">
+									<span class="slider-meta">
+										<span class="index"></span><small>//</small><br />
+									
+										<span class="all"></span>
+									</span>
+									
+									<div class="slides owl-carousel">
+										<div class="slide" *ngFor="let slide of categoryModel?.slideshow">
+											<div class="slide-image {{slide.youtubeLink ? 'slide-video' : ''}}">
+												<a title="{{slide.title}}" routerLink="Details/{{slide.id}}/{{slide.customUrlTitle ? '/' + slide.customUrlTitle : ''}}">
+													<img src="{{RESIZED_CONTENT_PATH}}857x456xo/{{slide.image}}" alt="{{slide.title}}" class="fullsize-bg">
+												</a>
+											</div><!-- /.slide-image -->
+									
+											<div class="slide-content" *ngIf="slide.smallDescription">
+												<a title="{{slide.title}}" routerLink="Details/{{slide.id}}/{{slide.customUrlTitle ? '/' + slide.customUrlTitle : ''}}" class="slide-title" [innerHTML]="slide.smallDescription | truncate:200"></a>
+											</div><!-- /.slide-content -->
+										</div><!-- /.slide -->
+									
+									</div><!-- /.slides -->
+								</div><!-- /.slider-outer -->
+
+								<div class="slider-nav">
+									<ul class="owl-carousel" >
+										<li *ngFor="let slide of categoryModel?.slideshow" class="slide.isArabic ? 'rtl' : ''">
+											<a [innerHTML]="slide.title"></a>
+										</li>
+									</ul>
+								</div><!-- /.slider-nav -->
+							</div><!-- /.slider -->
+						
+							<div class="content-aside" *ngIf="categoryModel?.mostRecent?.length > 0">
+								<h3 class="content-title">
+									<i class="ico-title"></i>
+						
+									Most Recent
+								</h3><!-- /.content-title -->
+						
+								<ul class="posts">
+									<li class="post" *ngFor="let item of categoryModel?.mostRecent">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a routerLink="Details/{{item.id}}/{{item.customUrlTitle ? '/' + item.customUrlTitle : ''}}">{{item.title}}</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body" *ngIf="item.smallDescription">
+												<p [innerHTML]="item.smallDescription | truncate:200"></p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li *ngIf="item.writer">
+														<a routerLink="Writer/{{item.writer?.id}}">
+															<i class="ico-logo"></i>
+										
+															By {{item.writer?.name}}
+														</a>
+													</li>
+													
+													<li>
+														<a>{{item.date | date:'MMM d'}}</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+						
+								
+								</ul><!-- /.posts -->
+							</div><!-- /.content-aside -->
+						</div><!-- /.content-inner-flex -->
+						
+						<div class="tabs tabs-secondary">
+							<div class="tabs-head">
+								<nav class="tabs-nav">
+									<ul>
+										<li class="current">
+											<a href="#tab1">RECENT STORIES</a>
+										</li>
+										
+										<li>
+											<a href="#tab2">EDITOR’S PICKS</a>
+										</li>
+									</ul>
+								</nav><!-- /.tabs-nav -->
+							</div><!-- /.tabs-head -->
+							
+							<div class="tabs-body">
+								<div class="tab current" id="tab1">
+									<section class="section section-articles section-articles-primary">
+										<div class="section-content">
+											<ul class="posts">
+												<li class="post post-large">
+													<div class="post-inner">
+														<div class="post-image">
+															<a href="#">
+																<img src="../../assets/images/temp/article-large2.jpg" alt="">
+															</a>
+														</div><!-- /.post-image -->
+													
+														<div class="post-content">
+															<header class="post-head">
+																<h2 class="post-title">
+																	<a href="#">Hope without Illusion: Ten Signs of Change in Egypt</a>
+																</h2><!-- /.post-title -->
+															</header><!-- /.post-head -->
+															
+															<div class="post-body">
+																<p>Egyptians occupying streets, blocking traffic, and chanting patriotic slogans: Contrary to conventional wisdom, these images became part of Egypt’s contemporary political arena well before the January 2011 Revolution. We saw them on multiple occasions in 2006, 2008, and in 2010, team won the Africa Cup of Nations. </p>
+															</div><!-- /.post-body -->
+															
+															<footer class="post-foot">
+																<ul class="list-meta">
+																	<li>
+																		<a href="#">
+																			<i class="ico-logo"></i>
+															
+																			By Jadaliyya Egypt Editors
+																		</a>
+																	</li>
+																	
+																	<li>
+																		<a href="#">Jan 8</a>
+																	</li>
+																</ul><!-- /.list-meta -->
+															</footer><!-- /.post-foot -->
+														</div><!-- /.post-content -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">التعليم العالي في الجزائر: قراءة في ثنايا نظام الأل أم </a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article21.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+															
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article22.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article4.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+															
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article2.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article3.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article23.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article6.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article8.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article7.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article3.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article9.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+											</ul><!-- /.posts -->
+										</div><!-- /.section-content -->
+									</section><!-- /.section section-articles -->
+								</div><!-- /.tab -->
+
+								<div class="tab" id="tab2">
+									<section class="section section-articles section-articles-primary">
+										<div class="section-content">
+											<ul class="posts">
+												<li class="post post-large">
+													<div class="post-inner">
+														<div class="post-image">
+															<a href="#">
+																<img src="../../assets/images/temp/article-large2.jpg" alt="">
+															</a>
+														</div><!-- /.post-image -->
+													
+														<div class="post-content">
+															<header class="post-head">
+																<h2 class="post-title">
+																	<a href="#">Hope without Illusion: Ten Signs of Change in Egypt</a>
+																</h2><!-- /.post-title -->
+															</header><!-- /.post-head -->
+															
+															<div class="post-body">
+																<p>Egyptians occupying streets, blocking traffic, and chanting patriotic slogans: Contrary to conventional wisdom, these images became part of Egypt’s contemporary political arena well before the January 2011 Revolution. We saw them on multiple occasions in 2006, 2008, and in 2010, team won the Africa Cup of Nations. </p>
+															</div><!-- /.post-body -->
+															
+															<footer class="post-foot">
+																<ul class="list-meta">
+																	<li>
+																		<a href="#">
+																			<i class="ico-logo"></i>
+															
+																			By Jadaliyya Egypt Editors
+																		</a>
+																	</li>
+																	
+																	<li>
+																		<a href="#">Jan 8</a>
+																	</li>
+																</ul><!-- /.list-meta -->
+															</footer><!-- /.post-foot -->
+														</div><!-- /.post-content -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">التعليم العالي في الجزائر: قراءة في ثنايا نظام الأل أم </a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article21.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+															
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article22.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article4.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+															
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article2.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article3.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article23.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article6.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article8.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article7.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article3.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+						
+												<li class="post rtl">
+													<div class="post-inner">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
+													
+														<div class="post-body">
+															<div class="post-image">
+																<a href="#">
+																	<img src="../../assets/images/temp/article9.jpg" alt="">
+																</a>
+															</div><!-- /.post-image -->
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+						
+															<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+														</div><!-- /.post-body -->
+													
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li>
+																	<a href="#">
+																		<i class="ico-logo"></i>
+													
+																		By Jadaliyya Egypt Editors
+																	</a>
+																</li>
+																
+																<li>
+																	<a href="#">Jan 8</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+												</li><!-- /.post -->
+											</ul><!-- /.posts -->
+										</div><!-- /.section-content -->
+									</section><!-- /.section section-articles -->
+								</div><!-- /.tab -->
+							</div><!-- /.tabs-body -->
+						</div><!-- /.tabs -->
+					
+						<div class="section section-hot ltr">
+                <div class="section-image">
+                  <img src="../../assets/images/temp/section-bg.jpg" alt="" class="fullsize-bg">
+                </div><!-- /.section-image -->
+              
+                <div class="section-content">
+                  <header class="section-head">
+                    <nav class="tabs-nav">
+                      <i class="ico-logo-yellow"></i>
+                  
+                      <ul>
+                        <li class="current">
+                          <a href="#tab-hot1111">HOT ON FACEBOOK</a>
+                        </li>
+                        
+                        <li>
+                          <a href="#tab-hot222">MOST READ</a>
+                        </li>
+                      </ul>
+                    </nav><!-- /.tabs-nav -->
+                  
+                    <a href="#">
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    </a>
+                  </header><!-- /.section-head -->
+                  
+                  <div class="section-body">
+                    <div class="tabs-body scrollable-horizontal">
+                      <div class="tab current" id="tab-hot1111">
+                        <div class="slider slider-feed">
+                          <div class="slides owl-carousel">
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed1.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed2.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed3.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed4.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed1.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed1.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+                          </div><!-- /.slides -->
+                        </div><!-- /.slider -->
+                      </div><!-- /#tab-hot1111.tab current -->
+              
+                      <div class="tab" id="tab-hot222">
+                        <div class="slider slider-feed">
+                          <div class="slides owl-carousel">
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed2.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed3.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed4.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed1.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+              
+                            <div class="slide">
+                              <ul class="list-news list-news-dark list-feed">
+                                <li>
+                                  <span>
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/feed1.jpg" alt="">
+                                    </a>
+                                  </span>
+              
+                                  <div>
+                                    <p>Top 100 on Jadaliyya in 2015</p>
+                                    
+                                    <a href="#">
+                                      <img src="../../assets/images/temp/share.png" alt="">
+                                    </a>
+                                  </div>
+                                </li>
+                              </ul><!-- /.list-news list-news-dark -->
+                            </div><!-- /.slide -->
+                          </div><!-- /.slides -->
+                        </div><!-- /.slider -->
+                      </div><!-- /#tab-hot1111.tab current -->
+                    </div><!-- /.tabs-body -->
+                  </div><!-- /.section-body -->
+                </div><!-- /.section-content -->
+              </div><!-- /.section section-hot -->
+					
+						<section class="section section-articles">
+							<div class="section-content">
+								<ul class="posts">
+									<li class="post">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article22.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post rtl">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article4.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+												
+												<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+										
+												<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article2.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article3.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post rtl">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article23.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+										
+												<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article6.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post rtl">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article8.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+										
+												<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article7.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">Federal judge rules for Apple in New York case involving a locked iPhone</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article3.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+										
+									<li class="post rtl">
+										<div class="post-inner">
+											<header class="post-head">
+												<h2 class="post-title">
+													<a href="#">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
+												</h2><!-- /.post-title -->
+											</header><!-- /.post-head -->
+										
+											<div class="post-body">
+												<div class="post-image">
+													<a href="#">
+														<img src="../../assets/images/temp/article9.jpg" alt="">
+													</a>
+												</div><!-- /.post-image -->
+										
+												<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.</p>
+										
+												<p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
+											</div><!-- /.post-body -->
+										
+											<footer class="post-foot">
+												<ul class="list-meta">
+													<li>
+														<a href="#">
+															<i class="ico-logo"></i>
+										
+															By Jadaliyya Egypt Editors
+														</a>
+													</li>
+													
+													<li>
+														<a href="#">Jan 8</a>
+													</li>
+												</ul><!-- /.list-meta -->
+											</footer><!-- /.post-foot -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+								</ul><!-- /.posts -->
+							</div><!-- /.section-content -->
+						</section><!-- /.section section-articles -->
+					</div><!-- /.content-inner -->
+					
+					<div class="content-actions">
+						<a href="#" class="link-load">
+							<span>Load More</span>
+						</a>
+					</div><!-- /.content-actions -->
+				</div><!-- /.content -->
+					
+				<div class="sidebar">
+					<ul class="widgets">
+						<li class="widget-subscribe">
+							<div class="widget-content">
+								<div class="subscribe">
+									<i class="ico-newsletter"></i>
+					
+									<form action="?" method="post">
+										<label for="mail">
+											<span>
+												<i class="fa fa-envelope" aria-hidden="true"></i>
+											</span>
+					
+											<strong>
+												JOIN OUR <br />
+												
+												NEWSLETTER
+											</strong>
+										</label>
+										
+										<input type="email" id="mail" name="mail" value="" placeholder="Enter E-mail Address" class="subscribe-field">
+										
+										<input type="submit" value="Join" class="subscribe-btn btn">
+									</form>
+								</div><!-- /.subscribe -->
+					
+								<div class="socials" *ngIf="socialMedia?.length > 0">
+									<ul>
+										<li *ngFor="let item of socialMedia">
+											<a href="{{item.link}}" class="link-{{item.title | social:true}}" target="_blank">
+												<i class="fa fa-{{item.title | social}}" aria-hidden="true"></i>
+											</a>
+										</li>
+										
+									</ul>
+								</div><!-- /.socials -->
+							</div><!-- /.widget-content -->
+						</li><!-- /.widget -->
+					
+						<li class="widget-jad">
+							<div class="widget-image">
+								<a href="#">
+									<img src="../../assets/images/temp/jadmag1.jpg" alt="">
+								</a>
+							</div><!-- /.widget-image -->
+						</li><!-- /.widget -->
+					
+						<li class="widget-primary widget-bdb">
+							<header class="widget-head">
+								<h3 class="widget-title">
+									<span>
+										<i class="ico-title"></i>
+					
+										MORE STORIES
+									</span>
+						
+									<a href="#">
+										<i class="fa fa-plus-circle" aria-hidden="true"></i>
+									</a>
+								</h3><!-- /.widget-title -->
+							</header><!-- /.widget-head -->
+						
+							<div class="widget-body">
+								<div class="tabs">
+									<div class="tabs-head">
+										<nav class="tabs-nav">
+											<ul>
+												<li class="current">
+													<a href="#tab11">FEATURED</a>
+												</li>
+												
+												<li>
+													<a href="#tab12">RECENT</a>
+												</li>
+											</ul>
+										</nav><!-- /.tabs-nav -->
+									</div><!-- /.tabs-head -->
+									
+									<div class="tabs-body">
+										<div class="tab current" id="tab11">
+											<ul class="list-news list-news-round">
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news11.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">The Supreme Court fight is about democracy</a>
+													</h4>
+												</li>
+												
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news12.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">DARS Media Roundup (January 2016)</a>
+													</h4>
+												</li>
+												
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news13.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">Romney argues to vote for an open convention</a>
+													</h4>
+												</li>
+												
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news14.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">Part of River Road in Bethesda is closed</a>
+													</h4>
+												</li>
+												
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news15.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">Securing Tomorrow With David Ignatius</a>
+													</h4>
+												</li>
+											</ul><!-- /.list-news -->
+										</div><!-- /.tab -->
+						
+										<div class="tab" id="tab12">
+											<ul class="list-news list-news-round">
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news12.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">DARS Media Roundup (January 2016)</a>
+													</h4>
+												</li>
+												
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news13.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">Romney argues to vote for an open convention</a>
+													</h4>
+												</li>
+												
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news14.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">Part of River Road in Bethesda is closed</a>
+													</h4>
+												</li>
+												
+												<li>
+													<span>
+														<a href="#">
+															<img src="../../assets/images/temp/news15.jpg" alt="">
+														</a>
+													</span>
+						
+													<h4>
+														<a href="#">Securing Tomorrow With David Ignatius</a>
+													</h4>
+												</li>
+											</ul><!-- /.list-news -->
+										</div><!-- /.tab -->
+									</div><!-- /.tabs-body -->
+								</div><!-- /.tabs -->
+							</div><!-- /.widget-body -->
+						</li><!-- /.widget-primary -->
+					
+						<li class="widget-primary">
+							<div class="quote">
+								<div class="quote-inner">
+									<blockquote>I wondered why they did not appreciate that I was fighting against my mother...That was a turning point in my life. I realized that I was simultaneously discriminated against in my life and in my family...</blockquote>
+													
+									<ul class="list-inline">
+										<li>
+											<a href="#">
+												<i class="fa fa-envelope" aria-hidden="true"></i>
+											</a>
+										</li>
+										
+										<li>
+											<a href="#">
+												<i class="fa fa-twitter" aria-hidden="true"></i>
+											</a>
+										</li>
+									</ul><!-- /.list-inline -->
+								</div><!-- /.quote-inner -->
+							</div><!-- /.quote -->
+						</li><!-- /.widget-primary -->
+					</ul><!-- /.widgets -->
+				</div><!-- /.sidebar -->
+			</div><!-- /.shell -->
+		</div><!-- /.main -->
+	</div><!-- /.container -->

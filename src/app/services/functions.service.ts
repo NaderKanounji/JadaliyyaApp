@@ -16,10 +16,15 @@ export class FunctionsService {
     myFunctions.load_details_page();
     myFunctions.load_fb_comments();
   }
+  load_category_page(){ //Category
+    myFunctions.load_category_page();
+  }
 //end Main Block calls
 
+  openSubMenu(){
+    myFunctions.openSubMenu();
+  }
   load_fb_comments(){
-    //console.log("load_fb_comments");
     myFunctions.load_fb_comments();
   }
  load_home_main_slider(){
@@ -38,5 +43,11 @@ export class FunctionsService {
         po.src = 'https://apis.google.com/js/platform.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
       })();
+    }
+    back_to_top(speed:number){
+        myFunctions.back_to_top(speed);
+    }
+    animate_to_element(id:string, offset:number, speed:number){
+        myFunctions.animate_to_element(id, offset, speed);
     }
 }

@@ -134,31 +134,11 @@
 		
 			<nav class="nav-primary">
 				<ul>
-					<li>
-						<a href="#">Arabian Peninsula</a>
-					</li>
-					
-					<li>
-						<a href="#">Egypt</a>
-					</li>
-					
-					<li>
-						<a href="#">Maghreb</a>
-					</li>
-					
-					<li>
-						<a href="#">Palestine</a>
-					</li>
-					
-					<li>
-						<a href="#">Syria</a>
-					</li>
-					
-					<li>
-						<a href="#">Turkey</a>
+					<li *ngFor="let item of headerCountries">
+						<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
 					</li>
 					<li>
-					<a routerLink="Category/{{ARABIC_SECTION_ID}}" class="rtl arabic">القسم العربي</a>
+					<a routerLink="Category/{{ARABIC_SECTION_ID}}/القسم-العربي" class="rtl arabic">القسم العربي</a>
 					</li>
 					
 				</ul>
@@ -202,71 +182,19 @@
 							<a routerLink="Category/{{ARABIC_SECTION_ID}}" class="rtl">القسم العربي</a>
 						</li>
 			
-						<li>
-							<a href="Syria.html">ARABIAN PENINSULA</a>
-						</li>
+						<li *ngFor="let item of headerCountries">
+								<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
+							</li>
 			
 						<li>
-							<a href="Syria.html">EGYPT</a>
-						</li>
-			
-						<li>
-							<a href="Syria.html">MAGHREB</a>
-						</li>
-			
-						<li>
-							<a href="Syria.html">PALESTINE</a>
-						</li>
-			
-						<li>
-							<a href="Syria.html">SYRIA</a>
-						</li>
-			
-						<li>
-							<a href="Syria.html">TURKEY</a>
-						</li>
-			
-						<li>
-							<a class="otherLink" onclick="openSubMenu()">OTHER COUNTRIES</a>
+							<a class="otherLink" (click)="openSubMenu()">OTHER COUNTRIES</a>
 						</li>
 					</ul>
 			
 					<ul>
-						<li>
-							<a >Critical Currents in Islam</a>
+						<li *ngFor="let item of submenuCategories">
+							<a title="{{item?.title}}" routerLink="Category/{{item?.id}}">{{item?.title}}</a>
 						</li>
-			
-						<li>
-							<a href="Newton.html">Newton</a>
-						</li>
-			
-						<li>
-							<a href="Vox-Populi.html" >Vox Populi</a>
-						</li>
-			
-						<li>
-							<a >DARS (Resistance/Subversion)</a>
-						</li>
-			
-						<li>
-							<a >Pedagogy</a>
-						</li>
-			
-						<li>
-							<a href="#">Quick Thoughts</a>
-						</li>
-			
-						<li>
-							<a href="Photography.html">Photography</a>
-						</li>
-			
-						<li>
-							<a >Jadeo (Video)</a>
-						</li>
-						<li>
-							<a href="Jad-navigation.html">Jad Navigation</a>
-						</li>
-						
 				
 						<li>
 							<a href="About-us.html">About</a>
@@ -337,14 +265,11 @@
 			
 			
 			
-			<div class="subMenu">
+			<div class="subMenu" *ngIf="submenuCountries">
 				<div class="mobTitle" onclick="closeSubMenu()">OTHER COUNTRIES</div>
 				<div class="wrap scrollable-vertical">
 				<ul>
-				   <li><a href="#">Lebanon</a></li> 
-				   <li><a href="#">Lebanon</a></li> 
-					<li><a href="#">Lebanon</a></li> 
-					<li><a href="#">Lebanon</a></li> 
+				   <li *ngFor="let item of submenuCountries"><a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a></li>
 				</ul>
 				</div>
 			</div>
@@ -600,7 +525,7 @@
 												<i class="fa fa-search" aria-hidden="true"></i>
 			
 												<a href="#">
-													<img src="css/images/temp/filter-link.jpg" alt="">
+													<img src="../../assets/images/temp/filter-link.jpg" alt="">
 												</a>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->

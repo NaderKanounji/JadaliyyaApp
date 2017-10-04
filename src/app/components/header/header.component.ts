@@ -20,6 +20,9 @@ export class HeaderComponent implements OnInit {
   sharedModel:SharedModel;
 
   headerCategories:HeaderCategoriesModel[];
+  submenuCategories:HeaderCategoriesModel[];
+  headerCountries:HeaderCategoriesModel[];
+  submenuCountries:HeaderCategoriesModel[];
   
   headerCategoryArticles:[HeaderCategoriesArticles[]] = [[]];
   constructor(private sharedService:SharedService, private http:HttpClient, private myFunction:FunctionsService) { }
@@ -35,7 +38,13 @@ export class HeaderComponent implements OnInit {
     //this.sharedService.categoryTitle.subscribe(categoryTitle => this.categoryTitle = categoryTitle);
     //console.log(this.currentRoute);
     this.http.get(_globals.API_URL + "Data/GetHeader").subscribe((data:any) =>{
-      this.headerCategories = data.categories.filter(d => d.isOnMenu == true);
+      this.headerCategories = data.categories.filter(d => d.isOnMenu == true && d.id != _globals.ARABIC_SECTION_ID).slice(0, 10);
+      this.submenuCategories = data.categories.filter(d => d.isOnMenu == true && d.id != _globals.ARABIC_SECTION_ID).slice(10);
+    
+      this.submenuCategories = this.submenuCategories.concat(data.categories.filter(d => !d.isOnMenu == true && d.id != _globals.ARABIC_SECTION_ID));
+      //console.log(this.submenuCategories);
+      this.headerCountries = data.countries.slice(0, 6);
+      this.submenuCountries = data.countries.slice(6);
       this.myFunction.header_bindings();
     });
   }
@@ -50,16 +59,26 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
+  openSubMenu(){
+    this.myFunction.openSubMenu();
+  }
 
 }
 interface SharedModel{
   headerStructure:string;
   categoryTitle:string;
+  isGoogleApiLoaded:boolean;
+  socialMedia:SocialMedia[];
 }
 
 interface HeaderCategoriesModel{
   id:number,
   title:string
+}
+interface HeaderCountryModel{
+  id:number;
+  title:string;
+  customUrlTitle:string;
 }
 
 interface HeaderCategoriesArticles{
@@ -77,4 +96,8 @@ interface HeaderCategoriesArticles{
 
 interface HeaderCategoryArr{
   articles: HeaderCategoriesArticles[];
+}
+interface SocialMedia{
+  title:string;
+  link:string;
 }

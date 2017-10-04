@@ -8,6 +8,7 @@ var socials_tertiary_function;
 var widget_share_function;
 var sticky_sidebar_function;
 var link_text_large_function;
+var print_click;
 
 ;(function($, window, document, undefined) {
 	var $win = $(window);
@@ -912,11 +913,13 @@ var link_text_large_function;
 		});
 
 		// Print Page
-		$('.link-print').on('click', function(event) {
-			event.preventDefault();
-
-			window.print();
-		});
+		print_click = function(){
+			$('.link-print').on('click', function(event) {
+				event.preventDefault();
+	
+				window.print();
+			});
+		}
 
 		sliderMain = function() {
 			// // Slider Primary
@@ -987,12 +990,14 @@ var link_text_large_function;
 				});
 
 			$('.slider-primary .slider-nav .owl-item:first-child').addClass('clicked');
+			
+			$('.slider-primary .slider-nav a').on('click', function(event) {
+				event.preventDefault();
+			});
 		};
 		//sliderMain();
 
-		$('.slider-primary .slider-nav a').on('click', function(event) {
-			event.preventDefault();
-		});
+		
 
 		// Datepicker
 		function datepick() {
@@ -1396,9 +1401,11 @@ function closeSubMenu() {
 
 module.exports.myFunctions = {
 	load_home_page:function(){
-		nav_overlay_on_hover();
-		add_has_dropdown_class_();
-		sliderMain();
+		setTimeout(function(){
+			nav_overlay_on_hover();
+			add_has_dropdown_class_();
+			sliderMain();
+		},200);
 	},
 	load_details_page:function(){
 		setTimeout(function(){
@@ -1413,6 +1420,12 @@ module.exports.myFunctions = {
 			link_text_large_function();
 			link_text_small_function();
 			scoll_to_comments_binding();
+			print_click();
+		},200);
+	},
+	load_category_page:function(){
+		setTimeout(function(){
+			sliderMain();
 		},200);
 	},
 	sticky_sidebar_binding: function(){
@@ -1424,6 +1437,9 @@ module.exports.myFunctions = {
 		//console.log('..');
 		nav_overlay_on_hover();
 		add_has_dropdown_class_();
+	},
+	openSubMenu:function(){
+		openSubMenu();	
 	},
 	load_home_main_slider:function(){
 		sliderMain();
@@ -1450,5 +1466,14 @@ module.exports.myFunctions = {
 	},
 	scoll_to_comments_binding:function(){
 		scoll_to_comments_binding();
+	},
+	animate_to_element:function(id, offset, speed){
+		var toPosition = $(id).offset().top + offset;
+		$('html,body').animate({ scrollTop: toPosition }, speed);
+	},
+	back_to_top:function(speed){
+		speed = speed || $(document).height() / 7;
+		$('html,body').animate({ scrollTop: 0 }, speed);
 	}
+	
 };

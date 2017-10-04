@@ -16,13 +16,16 @@ import { CategoryComponent } from './Components/category/category.component';
 import { SharedService } from './services/shared.service';
 import { FunctionsService } from './services/functions.service';
 import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { SocialIconPipe } from './pipes/social-icon.pipe';
 
 var routes = [
-  { path: 'Category/:id', component: CategoryComponent  },
-  { path: 'Writer/:id', component: WriterComponent  },
-  { path: 'Details/:id/*', component: ArticleDetailsComponent  },
+  { path: '', component: HomeComponent, pathMatch: 'full'  },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
-  { path: '', component: HomeComponent  },
+  { path: 'Details/:id/:title', component: ArticleDetailsComponent  },
+  { path: 'Writer/:id', component: WriterComponent  },
+  { path: 'Category/:id', component: CategoryComponent  },
+  { path: 'Category/:id/:title', component: CategoryComponent  },
   { path: '**', component: HomeComponent  }
 ];
 
@@ -35,7 +38,9 @@ var routes = [
     ArticleDetailsComponent,
     WriterComponent,
     CategoryComponent,
-    SafeUrlPipePipe
+    SafeUrlPipePipe,
+    TruncatePipe,
+    SocialIconPipe
   ],
   imports: [
     BrowserModule,
