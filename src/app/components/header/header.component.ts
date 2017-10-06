@@ -34,7 +34,9 @@ export class HeaderComponent implements OnInit {
     this.ARABIC_SECTION_ID = _globals.ARABIC_SECTION_ID;
     
     this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);
-    
+    // setTimeout(function(){
+    //   console.log(this.sharedModel);
+    // },5000);
     //this.sharedService.categoryTitle.subscribe(categoryTitle => this.categoryTitle = categoryTitle);
     //console.log(this.currentRoute);
     this.http.get(_globals.API_URL + "Data/GetHeader").subscribe((data:any) =>{

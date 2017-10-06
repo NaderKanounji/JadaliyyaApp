@@ -385,7 +385,7 @@
 					<ul>
 				
 						<li *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
-							<a title="{{cat.title}}" href="/Category/{{cat.id}}">{{cat.title}}</a>
+							<a title="{{cat.title}}" href="Category/{{cat.id}}">{{cat.title}}</a>
 				
 							<div class="dropdown">
 									<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0)">
@@ -525,7 +525,7 @@
 												<i class="fa fa-search" aria-hidden="true"></i>
 			
 												<a href="#">
-													<img src="../../assets/images/temp/filter-link.jpg" alt="">
+													<img src="css/images/temp/filter-link.jpg" alt="">
 												</a>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->

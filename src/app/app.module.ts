@@ -18,6 +18,8 @@ import { FunctionsService } from './services/functions.service';
 import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { SocialIconPipe } from './pipes/social-icon.pipe';
+import { FilterListingPipe } from './pipes/filter-listing.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -26,7 +28,7 @@ var routes = [
   { path: 'Writer/:id', component: WriterComponent  },
   { path: 'Category/:id', component: CategoryComponent  },
   { path: 'Category/:id/:title', component: CategoryComponent  },
-  { path: '**', component: HomeComponent  }
+  { path: '**', redirectTo:''  }
 ];
 
 @NgModule({
@@ -40,14 +42,16 @@ var routes = [
     CategoryComponent,
     SafeUrlPipePipe,
     TruncatePipe,
-    SocialIconPipe
+    SocialIconPipe,
+    FilterListingPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [SharedService, FunctionsService],
+  providers: [SharedService, FunctionsService, SortPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

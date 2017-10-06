@@ -21,6 +21,7 @@ export class SharedService {
     this.messageSource.next(tempModel);
   }
   set_categoryTitle(myCategoryTitle:string){
+    //console.log(myCategoryTitle);
     let tempModel = this.messageSource.getValue();
     tempModel.categoryTitle = myCategoryTitle;
     this.messageSource.next(tempModel);
