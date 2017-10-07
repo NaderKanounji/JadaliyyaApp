@@ -109,7 +109,7 @@
 													<div class="post-inner">
 														<div class="post-image" *ngIf="listingModel?.mainArticle?.image">
 															<a routerLink="Details/{{listingModel?.mainArticle?.id}}/{{listingModel?.mainArticle?.customUrlTitle ? '/' + listingModel?.mainArticle.customUrlTitle : ''}}">
-																<img src="{{RESIZED_CONTENT_PATH}}348x301xi/{{listingModel?.mainArticles?.image}}" alt="">
+																<img src="{{RESIZED_CONTENT_PATH}}348x301xi/{{listingModel?.mainArticle?.image}}" alt="">
 															</a>
 														</div><!-- /.post-image -->
 													
@@ -181,7 +181,8 @@
 			
 											</ul><!-- /.posts -->
 										</div><!-- /.section-content -->
-									</section><!-- /.section section-articles -->
+                  </section><!-- /.section section-articles -->
+                  
 								</div><!-- /.tab -->
 
 							</div><!-- /.tabs-body -->
