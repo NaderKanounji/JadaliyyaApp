@@ -8,6 +8,9 @@ export class FunctionsService {
     
   }
 //Main Block calls
+  load_all_pages(){ //HOME
+    myFunctions.load_all_pages();
+  }
   load_home_page(){ //HOME
     myFunctions.load_home_page();
   }
@@ -16,8 +19,13 @@ export class FunctionsService {
     myFunctions.load_details_page();
     myFunctions.load_fb_comments();
   }
-  load_category_page(){ //Category
-    myFunctions.load_category_page();
+  load_init_category_page(){ //Category
+    myFunctions.load_init_category_page();
+  }
+  //-----------
+  
+  load_category_hot_section(){ //Category
+    myFunctions.load_category_hot_section();
   }
 //end Main Block calls
 

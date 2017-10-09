@@ -19,16 +19,19 @@ export class CategoryComponent implements OnInit {
   RESIZED_CONTENT_PATH:string;
 
   categoryId:any;
+  categoryModel:CategoryModel;
   sharedModel:SharedModel;
   //pageListing:ArticleModel[];
   socialMedia:SocialMedia[];
    listingModel:ListingModel;
 
+   isEditorPick:boolean = false;
+   pageNumber:number = 0;
    //--Flags
-   isHotAndMostRecentLoaded:boolean = false;
    startScrollLoading:boolean = false;
+   isHotAndMostRecentLoaded:boolean = false;
+   isLoadingMore:boolean = false;
 
-  categoryModel:CategoryModel;
   constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
 
   ngOnInit() {
@@ -38,30 +41,31 @@ export class CategoryComponent implements OnInit {
     this.sharedService.sharedModel.subscribe(sharedModel => this.socialMedia = sharedModel.socialMedia);
     this.sharedService.set_currentRoute("category");
     this.sharedService.set_categoryTitle("");
-    this.sharedService.alter_wrapper_classes('wrapper-secondary');
+    this.sharedService.alter_wrapper_classes('');
 
     this.listingModel = {
       mainArticle:null,
       primaryList:null,
       hotOnFacebook:null,
-      mostRead:null
+      mostRead:null,
+      loadMoreArticles:null
     };
     
     this.route.params.subscribe(params => {
       this.categoryId = params['id'];
       this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id']).subscribe((data:any) =>{
         this.categoryModel = data;
+        
 
         this.sharedService.set_categoryTitle(data['title']);
-        this.myFunctions.load_category_page();
         //console.log(data['recentStories']);
         this.fetch_listing_data(data['recentStories'].sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
             return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
           }).slice(1));
-          setTimeout(function(){
+          setTimeout(() => {
+            this.pageNumber++;
+            this.myFunctions.load_init_category_page();
             this.startScrollLoading = true;
-            console.log(this.startScrollLoading);
-            
           },200);
       });
     });
@@ -71,19 +75,41 @@ export class CategoryComponent implements OnInit {
     this.listingModel.mainArticle = all[0];
     this.listingModel.primaryList = this.sort.transform(all, 2, 1, true);
   }
+
   @HostListener("window:scroll", [])
   onWindowScroll() {
-    console.log(this.startScrollLoading);
+    //console.log(this.startScrollLoading);
     
     //Hot Section
     if(this.startScrollLoading){
       if(this.myFunctions.is_dom_in_view('#hot-most-read', 500)){
-        console.log(this.isHotAndMostRecentLoaded);
           if(!this.isHotAndMostRecentLoaded){
+            this.isHotAndMostRecentLoaded = true;
             this.http.get(_globals.API_URL + 'Data/GetCategoryHotStories?catId=' + this.categoryId).subscribe((data:any) =>{
               this.listingModel.hotOnFacebook = data['hotOnFacebook'];
-              this.listingModel.mostRead = data['mostRead'];
-              this.isHotAndMostRecentLoaded = true;
+              this.listingModel.mostRead = data['mostRead'];   
+              this.categoryModel.articleIds = data['articleIds'];        
+              this.myFunctions.load_category_hot_section();
+            });
+          }
+        
+      }
+      if(this.myFunctions.is_dom_in_view('#load-more-container', 300)){
+          if(!this.isLoadingMore){
+            this.isLoadingMore = true;
+            this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + '&idsToRemove=' + this.categoryModel.articleIds).subscribe((data:any) =>{
+              if(this.pageNumber > 1){
+                this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(this.sort.transform(data['entries'], 2, 1, false));    
+              }else{
+                this.listingModel.loadMoreArticles = this.sort.transform(data['entries'], 2, 1, false); 
+              }
+              console.log(data['entries']);
+              console.log(this.listingModel.loadMoreArticles);
+              
+              this.categoryModel.articleIds = data['articleIds'];
+              this.pageNumber++;
+              
+              this.isLoadingMore = false;
             });
           }
         
@@ -98,6 +124,7 @@ interface ListingModel{
   primaryList:ArticleModel[];
   hotOnFacebook:ArticleModel[];
   mostRead:ArticleModel[];
+  loadMoreArticles:ArticleModel[];
 }
 
 interface SharedModel{
@@ -116,6 +143,8 @@ interface CategoryModel{
   youtubeLink:string;
   slideshow:ArticleModel[];
   mostRecent:ArticleModel[];
+  moreFeatured:ArticleModel[];
+  moreRecent:ArticleModel[];
 }
 
 interface ArticleModel{

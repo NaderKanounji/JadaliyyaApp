@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import { SharedService } from './services/shared.service';
+import { FunctionsService } from './services/functions.service';
 
 
 import {_globals} from './includes/globals';
@@ -16,7 +17,7 @@ export class AppComponent {
 
   headerStructure:string;
 
-  constructor(private sharedService:SharedService, private http:HttpClient){}
+  constructor(private myFunctions:FunctionsService, private sharedService:SharedService, private http:HttpClient){}
 
 
   ngOnInit(){
@@ -26,6 +27,9 @@ export class AppComponent {
         this.sharedService.set_socialMedia(data['socialMedia']);
         //console.log(data['socialMedia']);
       });
+      
+      this.myFunctions.load_all_pages();
+
   }
 
   
