@@ -21,6 +21,9 @@ export class FunctionsService {
   }
 //end Main Block calls
 
+  is_dom_in_view(el:string, offset:number): boolean{
+    return myFunctions.is_dom_in_view(el, offset);
+  }
   openSubMenu(){
     myFunctions.openSubMenu();
   }

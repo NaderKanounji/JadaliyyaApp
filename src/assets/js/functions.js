@@ -1364,6 +1364,33 @@ var print_click;
 	// 	});
 	// }
 
+	// $(window).scroll(function() {
+    //     var e = $(document).scrollTop() + $(window).height();
+    //     $("body").hasClass("open-left-nav") || $("body").hasClass("open-right-search") || fix_header(FIX_HEADER_CONS),
+    //     show_hide_bar(),
+    //     fix_internal_header(),
+    //     $(".video-chat").length && handle_video_chat_box(),
+    //     !loadingProperties && $(".properties-results-section").hasClass("open") && $(".properties-results-section").offset().top + $(".properties-results-section").height() - 50 < e && load_more_properties(localisation)
+	// })
+	
+	// function isVisible(el){
+	// 	windowHeight = $(window).height();
+	// 	distanceFromTop = $(document).scrollTop();
+	// 	minVisibleArea = distanceFromTop;
+	// 	maxVisibleArea = distanceFromTop + windowHeight;
+		
+	// 	elementTopPosition = $(el).offset().top;
+	// 	elementBottomPosition = elementTopPosition + el.height();
+		
+	// 	if((elementTopPosition > minVisibleArea && elementTopPosition < maxVisibleArea) || (elementBottomPosition > minVisibleArea && elementBottomPosition < maxVisibleArea) || (elementTopPosition < minVisibleArea && elementBottomPosition > maxVisibleArea)){
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }
+	// $win.scroll(function(){
+    //     var e = $(document).scrollTop() + $(window).height();
+	// });
+
 })(jQuery, window, document);
 
 
@@ -1474,6 +1501,21 @@ module.exports.myFunctions = {
 	back_to_top:function(speed){
 		speed = speed || $(document).height() / 7;
 		$('html,body').animate({ scrollTop: 0 }, speed);
+	},
+	is_dom_in_view:function(id, offset){
+		let el = $(id);
+		windowHeight = $(window).height();
+		distanceFromTop = $(document).scrollTop();
+		minVisibleArea = distanceFromTop - offset;
+		maxVisibleArea = distanceFromTop + windowHeight + offset;
+		
+		elementTopPosition = $(el).offset().top;
+		elementBottomPosition = elementTopPosition + el.height();
+		
+		if((elementTopPosition > minVisibleArea && elementTopPosition < maxVisibleArea) || (elementBottomPosition > minVisibleArea && elementBottomPosition < maxVisibleArea) || (elementTopPosition < minVisibleArea && elementBottomPosition > maxVisibleArea)){
+			return true;
+		}
+		return false;
 	}
 	
 };
