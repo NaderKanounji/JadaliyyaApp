@@ -22,6 +22,9 @@ export const _globals = Object.freeze({
    // testvar : "test"
 
    //KMS IDs
+   MEDIA_CATEGORY_TEMPLATE: 4,
+   VOX_POPULI_CATEGORY_TEMPLATE: 5,
+
    ARABIC_SECTION_ID: 124
    //.KMS IDs
 

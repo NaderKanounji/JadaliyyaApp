@@ -355,7 +355,45 @@
 								</a>
 							</div><!-- /.widget-image -->
 						</li><!-- /.widget -->
-					
+						<li class="widget-primary" *ngIf="categoryModel?.filmReviews">
+							<header class="widget-head">
+								<h3 class="widget-title">
+									<span>
+										<i class="ico-title"></i>
+						
+										FILM REVIEWS
+									</span>
+						
+									<a href="#">
+										<i class="fa fa-plus-circle" aria-hidden="true"></i>
+									</a>
+								</h3><!-- /.widget-title -->
+							</header><!-- /.widget-head -->
+						
+							<div class="widget-body" >
+								<div class="tabs">
+									<div class="tabs-body">
+										<div class="tab current">
+											<ul class="list-news list-news-round">
+												<li *ngFor="let item of categoryModel?.filmReviews">
+													<span *ngIf="item?.image">
+														<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+															<img src="{{RESIZED_CONTENT_PATH}}63x63xo/{{item.image}}" alt="{{item.title}}">
+														</a>
+													</span>
+						
+													<h4>
+														<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
+													</h4>
+												</li>
+												
+											</ul><!-- /.list-news -->
+										</div><!-- /.tab -->
+									</div><!-- /.tabs-body -->
+								</div><!-- /.tabs -->
+							</div><!-- /.widget-body -->
+						</li><!-- /.widget-primary -->
+
 						<li class="widget-primary widget-bdb" *ngIf="categoryModel?.moreFeatured || categoryModel?.moreRecent">
 							<header class="widget-head">
 								<h3 class="widget-title">

@@ -190,6 +190,7 @@ interface CategoryModel{
   mostRecent:ArticleModel[];
   moreFeatured:ArticleModel[];
   moreRecent:ArticleModel[];
+  filmReviews:ArticleModel[];
 }
 
 interface ArticleModel{
