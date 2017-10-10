@@ -88,11 +88,11 @@
 							<div class="tabs-head">
 								<nav class="tabs-nav">
 									<ul>
-										<li class="current">
+										<li class="current" (click)="fetch_new_listing(false)">
 											<a>RECENT STORIES</a>
 										</li>
 										
-										<li>
+										<li (click)="fetch_new_listing(true)">
 											<a >EDITOR’S PICKS</a>
 										</li>
 									</ul>
@@ -318,7 +318,7 @@
 						</section><!-- /.section section-articles -->
 					</div><!-- /.content-inner -->
 					
-					<div class="content-actions" id="load-more-container">
+					<div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">
 						<a href="#" class="link-load">
 							<ul class="load-more-loader">
 								<li></li>
@@ -333,27 +333,7 @@
 					<ul class="widgets">
 						<li class="widget-subscribe">
 							<div class="widget-content">
-								<div class="subscribe">
-									<i class="ico-newsletter"></i>
-					
-									<form action="?" method="post">
-										<label for="mail">
-											<span>
-												<i class="fa fa-envelope" aria-hidden="true"></i>
-											</span>
-					
-											<strong>
-												JOIN OUR <br />
-												
-												NEWSLETTER
-											</strong>
-										</label>
-										
-										<input type="email" id="mail" name="mail" value="" placeholder="Enter E-mail Address" class="subscribe-field">
-										
-										<input type="submit" value="Join" class="subscribe-btn btn">
-									</form>
-								</div><!-- /.subscribe -->
+								<app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
 					
 								<div class="socials" *ngIf="socialMedia?.length > 0">
 									<ul>

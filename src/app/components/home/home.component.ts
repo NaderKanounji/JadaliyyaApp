@@ -46,5 +46,5 @@ interface HomeSlideShowModel {
     id:number,
     title: string,
     smallDescription: string,
-    mainImage: string
+    image: string
 }

@@ -99,8 +99,8 @@
 
 						<article class="article article-details">
 							<div class="{{articleModel?.isArabic ? 'rtl' : ''}}" *ngIf="articleModel">
-								<div class="article-image article-image-gallery alignleft" *ngIf="articleModel.mainImage">
-								<img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.mainImage}}" alt="">
+								<div class="article-image article-image-gallery alignleft" *ngIf="articleModel.image">
+								<img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.image}}" alt="">
 
 								<a href="#" class="link-gallery" *ngIf="articleModel?.ArticleImages != null && articleModel?.ArticleImages.length - 1 > 0">
 									<i class="fa fa-camera" aria-hidden="true"></i>
@@ -188,7 +188,7 @@
 											<div class="post-body">
 												<div class="post-image">
 												<a routerLink="/Details/{{item.id}}">
-													<img src="{{RESIZED_CONTENT_PATH}}135x94xo/{{item.mainImage}}" alt="{{item.title}}">
+													<img src="{{RESIZED_CONTENT_PATH}}135x94xo/{{item.image}}" alt="{{item.title}}">
 												</a>
 												</div><!-- /.post-image -->
 												<span [innerHTML]="item.smallDescription"></span>
@@ -262,9 +262,9 @@
 											<div class="tab current" id="tab11">
 												<ul class="list-news list-news-round">
 													<li *ngFor="let item of articleModel?.relatedStories" class="{{item.isArabic ? 'rtl' : ''}}">
-														<span *ngIf="item.mainImage">
+														<span *ngIf="item.image">
 															<a routerLink="/Details/{{item.id}}">
-																<img src="{{RESIZED_CONTENT_PATH}}63x63xo/{{item.mainImage}}" alt="{{item.title}}">
+																<img src="{{RESIZED_CONTENT_PATH}}63x63xo/{{item.image}}" alt="{{item.title}}">
 															</a>
 														</span>
 							
@@ -280,9 +280,9 @@
 											<div class="tab" id="tab12">
 												<ul class="list-news list-news-round">
 													<li *ngFor="let item of articleModel?.recentStories" class="{{item.isArabic ? 'rtl' : ''}}">
-														<span *ngIf="item.mainImage">
+														<span *ngIf="item.image">
 															<a routerLink="/Details/{{item.id}}">
-																<img src="{{RESIZED_CONTENT_PATH}}63x63xo/{{item.mainImage}}" alt="{{item.title}}">
+																<img src="{{RESIZED_CONTENT_PATH}}63x63xo/{{item.image}}" alt="{{item.title}}">
 															</a>
 														</span>
 							
@@ -471,8 +471,8 @@
 
 						<article class="article article-details">
 							<div class="{{articleModel?.nextArticle.isArabic ? 'rtl' : ''}}" *ngIf="articleModel.nextArticle">
-									<div class="article-image article-image-gallery alignleft" *ngIf="articleModel.nextArticle.mainImage">
-										<img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.nextArticle.mainImage}}" alt="">
+									<div class="article-image article-image-gallery alignleft" *ngIf="articleModel.nextArticle.image">
+										<img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.nextArticle.image}}" alt="">
 					
 										<a href="#" class="link-gallery" *ngIf="articleModel?.nextArticle.ArticleImages != null && articleModel?.nextArticle.ArticleImages.length - 1 > 0">
 										<i class="fa fa-camera" aria-hidden="true"></i>

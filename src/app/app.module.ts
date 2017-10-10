@@ -20,6 +20,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { SocialIconPipe } from './pipes/social-icon.pipe';
 import { FilterListingPipe } from './pipes/filter-listing.pipe';
 import { SortPipe } from './pipes/sort.pipe';
+import { JoinNewsletterComponent } from './components/join-newsletter/join-newsletter.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -44,7 +45,8 @@ var routes = [
     TruncatePipe,
     SocialIconPipe,
     FilterListingPipe,
-    SortPipe
+    SortPipe,
+    JoinNewsletterComponent
   ],
   imports: [
     BrowserModule,

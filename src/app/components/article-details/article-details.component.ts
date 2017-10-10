@@ -76,7 +76,7 @@ interface ArticleModel{
   customUrlTitle:string;
   title:string;
   description:string;
-  mainImage:string;
+  image:string;
   isArabic:boolean;
   middleQuote:string;
   descriptionArr:string[];
@@ -91,7 +91,7 @@ interface ArticleModel{
     id:number;
     title:string;
     smallDescription:string;
-    mainImage:string;
+    image:string;
     date:Date;
     customUrlTitle:string;
     isArabic:boolean;
@@ -99,14 +99,14 @@ interface ArticleModel{
   relatedStories:{
     id:number;
     title:string;
-    mainImage:string;
+    image:string;
     customUrlTitle:string;
     isArabic:boolean;
   },
   recentStories:{
     id:number;
     title:string;
-    mainImage:string;
+    image:string;
     customUrlTitle:string;
     isArabic:boolean;
   },
