@@ -9,6 +9,8 @@ import {HttpClient} from '@angular/common/http';
 export class JoinNewsletterComponent {
 
   submitted:boolean = false;
+
+  
   constructor(private http:HttpClient) { }
 
   model = new newsletter('nkanounji@koein.com');

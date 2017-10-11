@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 import { SharedService } from '../../services/shared.service';
 import { FunctionsService } from '../../services/functions.service';
@@ -16,6 +17,13 @@ export class HeaderComponent implements OnInit {
   CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
   ARABIC_SECTION_ID:number;
+  ROUNDUPS_CATEGORY_ID:number;
+  ROUNDUPS_MEDIA_URL_TITLE:string;
+  ROUNDUPS_MONTHLY_URL_TITLE:string;
+
+
+  routeId:number;
+  roundupsLink:string;
 
   sharedModel:SharedModel;
 
@@ -25,13 +33,16 @@ export class HeaderComponent implements OnInit {
   submenuCountries:HeaderCategoriesModel[];
   
   headerCategoryArticles:[HeaderCategoriesArticles[]] = [[]];
-  constructor(private sharedService:SharedService, private http:HttpClient, private myFunction:FunctionsService) { }
+  constructor(private route: ActivatedRoute, private sharedService:SharedService, private http:HttpClient, private myFunction:FunctionsService) { }
 
   ngOnInit() {
     
     this.CONTENT_PATH = _globals.CONTENT_PATH;
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
     this.ARABIC_SECTION_ID = _globals.ARABIC_SECTION_ID;
+    this.ROUNDUPS_CATEGORY_ID = _globals.ROUNDUPS_CATEGORY_ID;
+    this.ROUNDUPS_MEDIA_URL_TITLE = _globals.ROUNDUPS_MEDIA_URL_TITLE;
+    this.ROUNDUPS_MONTHLY_URL_TITLE = _globals.ROUNDUPS_MONTHLY_URL_TITLE;
     
     this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);
     // setTimeout(function(){
@@ -86,7 +97,7 @@ interface HeaderCountryModel{
 interface HeaderCategoriesArticles{
   id:number;
   title:string;
-  mainImage:string;
+  image:string;
   customUrlTitle:string;
   isArabic:boolean;
   date:Date;

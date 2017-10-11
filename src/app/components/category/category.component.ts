@@ -17,6 +17,8 @@ import { _globals } from '../../includes/globals';
 export class CategoryComponent implements OnInit {
   CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
+  VOX_POPULI_CATEGORY_TEMPLATE:number;
+  PHOTOGRAPHY_CATEGORY_TEMPLATE:number;
 
   categoryId:any;
   categoryModel:CategoryModel;
@@ -25,6 +27,7 @@ export class CategoryComponent implements OnInit {
   socialMedia:SocialMedia[];
    listingModel:ListingModel;
 
+   isDefaultTemplate:boolean = true;
    isEditorPick:boolean = false;
    pageNumber:number = 0;
    //--Flags
@@ -38,11 +41,14 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     this.CONTENT_PATH = _globals.CONTENT_PATH;
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
+    this.VOX_POPULI_CATEGORY_TEMPLATE = _globals.VOX_POPULI_CATEGORY_TEMPLATE;
+    this.PHOTOGRAPHY_CATEGORY_TEMPLATE = _globals.PHOTOGRAPHY_CATEGORY_TEMPLATE;
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.socialMedia = sharedModel.socialMedia);
     this.sharedService.set_currentRoute("category");
     this.sharedService.set_categoryTitle("");
     this.sharedService.alter_wrapper_classes('');
+    this.sharedService.set_categoryId(null);
 
     this.listingModel = {
       mainArticle:null,
@@ -54,13 +60,18 @@ export class CategoryComponent implements OnInit {
     
     this.route.params.subscribe(params => {
       this.categoryId = params['id'];
+      this.sharedService.set_categoryId(this.categoryId);
       this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id']).subscribe((data:any) =>{
         this.categoryModel = data;
         
 
         this.sharedService.set_categoryTitle(data['title']);
         //console.log(data['recentStories']);
-        this.fetch_listing_data(data['recentStories']);
+        this.isDefaultTemplate = data['templateId'] != this.VOX_POPULI_CATEGORY_TEMPLATE && data['templateId'] != this.PHOTOGRAPHY_CATEGORY_TEMPLATE;
+        // console.log(data['templateId']);
+        // console.log(this.isDefaultTemplate);
+
+         this.fetch_listing_data(data['recentStories'], data['templateId']);
           setTimeout(() => {
             this.pageNumber++;
             this.myFunctions.load_init_category_page();
@@ -70,12 +81,26 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  fetch_listing_data(all:ArticleModel[]){
-    all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
-      return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
-    })
-    this.listingModel.mainArticle = all[0];
-    this.listingModel.primaryList = this.sort.transform(all.slice(1), 2, 1, true);
+  fetch_listing_data(all:ArticleModel[], templateId:number = 0){
+    
+    switch(templateId){
+      case this.PHOTOGRAPHY_CATEGORY_TEMPLATE:
+        this.listingModel.primaryList = this.sort.transform(all, 1, 1, false);
+        break;
+      case this.VOX_POPULI_CATEGORY_TEMPLATE:
+        all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
+          return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
+        });
+        this.listingModel.primaryList = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true));
+        break;
+      default:
+        all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
+          return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
+        });
+        this.listingModel.mainArticle = all[0];
+        this.listingModel.primaryList = this.sort.transform(all.slice(1), 2, 1, true);
+        break;
+    }
   }
 
   @HostListener("window:scroll", [])
@@ -101,10 +126,26 @@ export class CategoryComponent implements OnInit {
             this.isLoadingMore = true;
             this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + '&idsToRemove=' + this.categoryModel.articleIds).subscribe((data:any) =>{
               if(data['entries'] != null && data['entries'].length){
-                if(this.pageNumber > 1){
-                  this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(this.sort.transform(data['entries'], 2, 1, false));    
-                }else{
-                  this.listingModel.loadMoreArticles = this.sort.transform(data['entries'], 2, 1, false); 
+                if(this.categoryModel.templateId == this.VOX_POPULI_CATEGORY_TEMPLATE){
+                  let all = data['entries'].sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
+                    return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
+                  });
+                  if(this.pageNumber > 1){
+                    this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true)));
+                  }else{
+                    this.listingModel.loadMoreArticles = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true)); 
+                  }
+                }else{                  
+                  let enTake = 2, arTake = 1;
+                  if(this.categoryModel.templateId == this.PHOTOGRAPHY_CATEGORY_TEMPLATE){
+                    enTake = 1;
+                    arTake = 1;
+                  }
+                  if(this.pageNumber > 1){
+                    this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(this.sort.transform(data['entries'], enTake, arTake, false));    
+                  }else{
+                    this.listingModel.loadMoreArticles = this.sort.transform(data['entries'], enTake, arTake, false); 
+                  }
                 }
               }else{
                 this.hasMoreToLoad = false;
@@ -152,7 +193,7 @@ export class CategoryComponent implements OnInit {
         if(data['entries'] == null || !data['entries'].length){
           this.hasMoreToLoad = false;
         }
-        this.fetch_listing_data(data['entries']);        
+        this.fetch_listing_data(data['entries'],this.categoryModel.templateId);        
         this.listingModel.loadMoreArticles = [];
         this.categoryModel.articleIds = data['articleIds'];
         this.pageNumber = 1;
@@ -201,6 +242,8 @@ interface ArticleModel{
   smallDescription:string;
   date:Date;
   isArabic:boolean;
+  youtubeLink:string;
+  galleryCount:number;
   writer:{
     id:number;
     name:string;

@@ -193,7 +193,7 @@
 			
 					<ul>
 						<li *ngFor="let item of submenuCategories">
-							<a title="{{item?.title}}" routerLink="/Category/{{item?.id}}">{{item?.title}}</a>
+							<a title="{{item?.title}}" routerLink="/Category/{{item?.id + (item?.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{item?.title}}</a>
 						</li>
 				
 						<li>
@@ -385,7 +385,7 @@
 					<ul>
 				
 						<li *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
-							<a title="{{cat.title}}" href="Category/{{cat.id}}">{{cat.title}}</a>
+							<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{cat.title}}</a>
 				
 							<div class="dropdown">
 									<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0)">
@@ -436,7 +436,7 @@
 										</li><!-- /.widget -->
 									</ul><!-- /.widgets -->
 				
-									<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}" class="link-more-pages">View More from {{cat.title}} Page</a>
+									<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}" class="link-more-pages">View More from {{cat.title}} Page</a>
 								</div><!-- /.shell -->
 							</div><!-- /.dropdown -->
 						</li>
@@ -464,6 +464,16 @@
 				
 				<a href="#" class="link-filter">
 					Filter By
+
+					<ul class="list-navs list-navs-secondary" *ngIf="sharedModel.currentRoute == 'category' && sharedModel.categoryId == ROUNDUPS_CATEGORY_ID">
+							<li class="current">
+								<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MEDIA_URL_TITLE}}">MEDIA ROUNDUPS</a>
+							</li>
+							
+							<li>
+								<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MONTHLY_URL_TITLE}}">MONTHLY EDITIONS</a>
+							</li>
+						</ul><!-- /.list-navs -->
 
 					<i class="fa fa-sort-desc" aria-hidden="true"></i>
 				</a>

@@ -11373,6 +11373,24 @@ ul.items:after {
   animation-delay: 0.3s;
   -webkit-animation-delay: 0.3s;
 }
+.item .item-image {
+  overflow: hidden;
+}
+.item .item-image img {
+  min-width: 100%;
+  min-height: 100%;
+}
+.post-media .post-image {
+  overflow: hidden;
+}
+.post-media .post-image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: 100%;
+}
 @-webkit-keyframes load-more-animation {
   0% {
     -webkit-transform: translateY(0);

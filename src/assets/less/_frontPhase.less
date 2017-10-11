@@ -61,6 +61,28 @@
         }
     }
 }
+.item {
+    .item-image{
+        overflow: hidden;
+        img{
+            min-width: 100%;
+            min-height: 100%;
+        }
+    }
+}
+.post-media{
+    .post-image{
+        overflow: hidden;
+        img{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform:translateX(-50%) translateY(-50%);
+            min-width: 100%;
+            min-height: 100%;
+        }
+    }
+}
 @-webkit-keyframes load-more-animation {
     0% {-webkit-transform: translateY(0);}
     35% {-webkit-transform: translateY(-20px);}
