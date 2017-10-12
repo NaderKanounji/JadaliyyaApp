@@ -384,7 +384,7 @@
 				<nav class="nav" *ngIf="headerCategories != undefined && headerCategories.length">
 					<ul>
 				
-						<li *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
+						<li class="{{sharedModel?.categoryId == cat?.id ? 'current' : ''}}" *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
 							<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{cat.title}}</a>
 				
 							<div class="dropdown">
@@ -461,19 +461,19 @@
 		<div class="header-outer" *ngIf="sharedModel.currentRoute == 'category'">
 			<div class="shell">
 				<h1>{{sharedModel.categoryTitle}}</h1>
-				
+				<ul class="list-navs list-navs-secondary" *ngIf="sharedModel.currentRoute == 'category' && sharedModel.categoryId == ROUNDUPS_CATEGORY_ID">
+						<li class="{{sharedModel?.customUrlTitle == ROUNDUPS_MEDIA_URL_TITLE ? 'current' : ''}}">
+							<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MEDIA_URL_TITLE}}">MEDIA ROUNDUPS</a>
+						</li>
+						
+						<li class="{{sharedModel?.customUrlTitle == ROUNDUPS_MONTHLY_URL_TITLE ? 'current' : ''}}">
+							<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MONTHLY_URL_TITLE}}">MONTHLY EDITIONS</a>
+						</li>
+					</ul><!-- /.list-navs -->
 				<a href="#" class="link-filter">
 					Filter By
 
-					<ul class="list-navs list-navs-secondary" *ngIf="sharedModel.currentRoute == 'category' && sharedModel.categoryId == ROUNDUPS_CATEGORY_ID">
-							<li class="current">
-								<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MEDIA_URL_TITLE}}">MEDIA ROUNDUPS</a>
-							</li>
-							
-							<li>
-								<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MONTHLY_URL_TITLE}}">MONTHLY EDITIONS</a>
-							</li>
-						</ul><!-- /.list-navs -->
+					
 
 					<i class="fa fa-sort-desc" aria-hidden="true"></i>
 				</a>

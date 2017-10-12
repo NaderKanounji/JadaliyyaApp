@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit {
 
 
   routeId:number;
-  roundupsLink:string;
+  customUrlTitle:string;
+
 
   sharedModel:SharedModel;
 
@@ -45,6 +46,11 @@ export class HeaderComponent implements OnInit {
     this.ROUNDUPS_MONTHLY_URL_TITLE = _globals.ROUNDUPS_MONTHLY_URL_TITLE;
     
     this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);
+    // this.route.params.subscribe(params => {
+    //   if(params['customUrlTitle']){
+    //     this.customUrlTitle = params['customUrlTitle'];
+    //   }
+    // });
     // setTimeout(function(){
     //   console.log(this.sharedModel);
     // },5000);
@@ -80,7 +86,9 @@ export class HeaderComponent implements OnInit {
 interface SharedModel{
   headerStructure:string;
   categoryTitle:string;
+  categoryId:number;
   isGoogleApiLoaded:boolean;
+  customUrlTitle:string;
   socialMedia:SocialMedia[];
 }
 

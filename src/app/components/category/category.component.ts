@@ -36,6 +36,8 @@ export class CategoryComponent implements OnInit {
    isLoadingMore:boolean = false;
    hasMoreToLoad:boolean = true;
 
+   typeId:string = "";
+
   constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
 
   ngOnInit() {
@@ -49,6 +51,7 @@ export class CategoryComponent implements OnInit {
     this.sharedService.set_categoryTitle("");
     this.sharedService.alter_wrapper_classes('');
     this.sharedService.set_categoryId(null);
+    this.sharedService.set_customUrlTitle('');
 
     this.listingModel = {
       mainArticle:null,
@@ -60,8 +63,18 @@ export class CategoryComponent implements OnInit {
     
     this.route.params.subscribe(params => {
       this.categoryId = params['id'];
+      if(this.categoryId == _globals.ROUNDUPS_CATEGORY_ID){
+        this.sharedService.set_customUrlTitle(params['customUrlTitle']);
+        if(params['customUrlTitle'] == _globals.ROUNDUPS_MEDIA_URL_TITLE){
+          this.typeId = _globals.ROUNDUPS_MEDIA_DISPLAY_ID.toString();
+        }
+        if(params['customUrlTitle'] == _globals.ROUNDUPS_MONTHLY_URL_TITLE){
+          this.typeId = _globals.ROUNDUPS_MONTHLY_DISPLAY_ID.toString();
+        }
+      }
+      console.log("typeId: " + this.typeId);
       this.sharedService.set_categoryId(this.categoryId);
-      this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id']).subscribe((data:any) =>{
+      this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id'] + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) =>{
         this.categoryModel = data;
         
 
@@ -112,7 +125,7 @@ export class CategoryComponent implements OnInit {
       if(this.myFunctions.is_dom_in_view('#hot-most-read', 500)){
           if(!this.isHotAndMostRecentLoaded){
             this.isHotAndMostRecentLoaded = true;
-            this.http.get(_globals.API_URL + 'Data/GetCategoryHotStories?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick).subscribe((data:any) =>{
+            this.http.get(_globals.API_URL + 'Data/GetCategoryHotStories?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) =>{
               this.listingModel.hotOnFacebook = data['hotOnFacebook'];
               this.listingModel.mostRead = data['mostRead'];   
               this.categoryModel.articleIds = data['articleIds'];        
@@ -124,7 +137,7 @@ export class CategoryComponent implements OnInit {
       if(this.hasMoreToLoad && this.myFunctions.is_dom_in_view('#load-more-container', 300)){
           if(!this.isLoadingMore){
             this.isLoadingMore = true;
-            this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + '&idsToRemove=' + this.categoryModel.articleIds).subscribe((data:any) =>{
+            this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + '&idsToRemove=' + this.categoryModel.articleIds + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) =>{
               if(data['entries'] != null && data['entries'].length){
                 if(this.categoryModel.templateId == this.VOX_POPULI_CATEGORY_TEMPLATE){
                   let all = data['entries'].sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
@@ -188,7 +201,7 @@ export class CategoryComponent implements OnInit {
       
       this.categoryModel.articleIds = ids.join(',');
       this.hasMoreToLoad = true;
-      this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=0&idsToRemove=' + this.categoryModel.articleIds).subscribe((data:any) => {
+      this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=0&idsToRemove=' + this.categoryModel.articleIds + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) => {
         
         if(data['entries'] == null || !data['entries'].length){
           this.hasMoreToLoad = false;
@@ -216,6 +229,8 @@ interface ListingModel{
 interface SharedModel{
     currentRoute:string;
     categoryTitle:string;
+    categoryId:number;
+    customUrlTitle:string;
     isGoogleApiLoaded:boolean;
     socialMedia:SocialMedia[];
 }
