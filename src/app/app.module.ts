@@ -29,6 +29,7 @@ var routes = [
   { path: 'Writer/:id', component: WriterComponent  },
   { path: 'Category/:id', component: CategoryComponent  },
   { path: 'Category/:id/:customUrlTitle', component: CategoryComponent  },
+  { path: 'Category/:id/:subId/:customUrlTitle', component: CategoryComponent  },
   { path: 'Country/:id', component: CategoryComponent  },
   { path: 'Country/:id/:customUrlTitle', component: CategoryComponent  },
   { path: '**', redirectTo:''  }

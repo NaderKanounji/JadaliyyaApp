@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   sharedModel:SharedModel;
 
   headerCategories:HeaderCategoriesModel[];
+  headerSubCategories:HeaderCategoriesModel[];
   submenuCategories:HeaderCategoriesModel[];
   headerCountries:HeaderCategoriesModel[];
   submenuCountries:HeaderCategoriesModel[];
@@ -61,6 +62,7 @@ export class HeaderComponent implements OnInit {
       this.submenuCategories = data.categories.filter(d => d.isOnMenu == true && d.id != _globals.ARABIC_SECTION_ID).slice(10);
     
       this.submenuCategories = this.submenuCategories.concat(data.categories.filter(d => !d.isOnMenu == true && d.id != _globals.ARABIC_SECTION_ID));
+      this.headerSubCategories = data.subcategories;
       //console.log(this.submenuCategories);
       this.headerCountries = data.countries.slice(0, 6);
       this.submenuCountries = data.countries.slice(6);
@@ -94,7 +96,9 @@ interface SharedModel{
 
 interface HeaderCategoriesModel{
   id:number,
-  title:string
+  title:string,
+  isOnMenu:boolean,
+  customUrlTitle:string
 }
 interface HeaderCountryModel{
   id:number;

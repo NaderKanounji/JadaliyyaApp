@@ -19,6 +19,7 @@ export class CategoryComponent implements OnInit {
   RESIZED_CONTENT_PATH:string;
   VOX_POPULI_CATEGORY_TEMPLATE:number;
   PHOTOGRAPHY_CATEGORY_TEMPLATE:number;
+  ARABIC_SECTION_ID:number;
 
   categoryId:any;
   categoryModel:CategoryModel;
@@ -29,6 +30,7 @@ export class CategoryComponent implements OnInit {
 
    isDefaultTemplate:boolean = true;
    isEditorPick:boolean = false;
+   isArabicSection:boolean = false;
    pageNumber:number = 0;
    //--Flags
    startScrollLoading:boolean = false;
@@ -45,6 +47,7 @@ export class CategoryComponent implements OnInit {
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
     this.VOX_POPULI_CATEGORY_TEMPLATE = _globals.VOX_POPULI_CATEGORY_TEMPLATE;
     this.PHOTOGRAPHY_CATEGORY_TEMPLATE = _globals.PHOTOGRAPHY_CATEGORY_TEMPLATE;
+    this.ARABIC_SECTION_ID = _globals.ARABIC_SECTION_ID;
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.socialMedia = sharedModel.socialMedia);
     this.sharedService.set_currentRoute("category");
@@ -76,9 +79,9 @@ export class CategoryComponent implements OnInit {
       this.sharedService.set_categoryId(this.categoryId);
       this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id'] + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) =>{
         this.categoryModel = data;
-        
+        this.isArabicSection = data['id'] == this.ARABIC_SECTION_ID;
 
-        this.sharedService.set_categoryTitle(data['title']);
+        this.sharedService.set_categoryTitle(this.isArabicSection ? 'القسم العربي' : data['title']);
         //console.log(data['recentStories']);
         this.isDefaultTemplate = data['templateId'] != this.VOX_POPULI_CATEGORY_TEMPLATE && data['templateId'] != this.PHOTOGRAPHY_CATEGORY_TEMPLATE;
         // console.log(data['templateId']);

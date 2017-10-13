@@ -134,10 +134,10 @@
 		
 			<nav class="nav-primary">
 				<ul>
-					<li *ngFor="let item of headerCountries">
+					<li class="{{item.id == sharedModel?.categoryId ? 'current' : ''}}" *ngFor="let item of headerCountries">
 						<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
 					</li>
-					<li>
+					<li class="{{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'current' : ''}}">
 					<a routerLink="/Category/{{ARABIC_SECTION_ID}}/القسم-العربي" class="rtl arabic">القسم العربي</a>
 					</li>
 					
@@ -458,9 +458,17 @@
 		</div><!-- /.header-inner -->
 
 		
-		<div class="header-outer" *ngIf="sharedModel.currentRoute == 'category'">
+		<div class="header-outer {{sharedModel.categoryId == ARABIC_SECTION_ID? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category'">
 			<div class="shell">
 				<h1>{{sharedModel.categoryTitle}}</h1>
+
+				<ul class="list-navs rtl" *ngIf="sharedModel.categoryId == ARABIC_SECTION_ID && headerSubCategories?.length">
+					<li *ngFor="let item of headerSubCategories">
+						<a title="{{item.title}}" routerLink="/Category/{{ARABIC_SECTION_ID}}/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
+					</li>
+
+				
+				</ul>
 				<ul class="list-navs list-navs-secondary" *ngIf="sharedModel.currentRoute == 'category' && sharedModel.categoryId == ROUNDUPS_CATEGORY_ID">
 						<li class="{{sharedModel?.customUrlTitle == ROUNDUPS_MEDIA_URL_TITLE ? 'current' : ''}}">
 							<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MEDIA_URL_TITLE}}">MEDIA ROUNDUPS</a>
