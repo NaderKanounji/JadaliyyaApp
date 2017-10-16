@@ -81,11 +81,7 @@
   
                   <div class="slide" *ngFor="let slide of homeModel?.slideshow">
                     <div class="slide-image" > <!-- hide image if field is empty -->
-<<<<<<< HEAD
                       <a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
-=======
-                      <a routerLink="/Details/{{slide.id}}">
->>>>>>> b4358d3ee6ad794794e27f3e79fa95daecb92902
                         <img src="{{RESIZED_CONTENT_PATH}}874x456xo/{{slide.image}}" alt="{{slide.title}}" class="fullsize-bg">
                       </a>
                     </div><!-- /.slide-image -->
@@ -154,7 +150,7 @@
                 </div><!-- /.widget-content -->
               </li><!-- /.widget -->
   
-              <li class="widget-announcements" *ngIf="homeModel?.latestAnnouncements?.length">
+              <li class="widget-announcements" *ngIf="homeModel?.latestAnnouncements1?.length">
                 <aside class="widget-aside">
                   <h4>
                     LATEST
@@ -175,10 +171,10 @@
                 <div class="widget-content">
                   <div class="slider slider-announcements">
                     <div class="slides owl-carousel">
-                      <div class="slide" *ngFor="let item of homeModel?.latestAnnouncements">
+                      <div class="slide" *ngFor="let item of homeModel?.latestAnnouncements1">
                         <div class="slide-image" *ngIf="item.image">
                           <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
-                            <img src="{{RESIZED_CONTENT_PATH}}57x57xo/{{item.image}}" alt="{{item.title}}">
+                            <img src="{{RESIZED_CONTENT_PATH}}57x56xo/{{item.image}}" alt="{{item.title}}">
                           </a>
                         </div><!-- /.slide-image -->
   
@@ -343,41 +339,7 @@
                               </li><!-- /.post -->
       
                               <li class="post {{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of homeModel?.listing?.slice(1, 8)">
-                                <div class="post-inner">
-                                  <header class="post-head">
-                                    <h2 class="post-title">
-                                      <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title | truncate:80}}</a>
-                                    </h2><!-- /.post-title -->
-                                  </header><!-- /.post-head -->
-      
-                                  <div class="post-body">
-                                    <div class="post-image" *ngIf="item.image">
-                                      <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
-                                        <img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
-                                      </a>
-                                    </div><!-- /.post-image -->
-      
-                                    <p [innerHTML]="item.smallDescription | truncate:300"></p>
-      
-                                    <a href="#"></a>
-                                  </div><!-- /.post-body -->
-      
-                                  <footer class="post-foot">
-                                    <ul class="list-meta">
-                                      <li *ngIf="item?.writer">
-                                        <a title="{{item.writer?.name}}" routerLink="/Writer/{{item.writer?.id}}">
-                                          <i class="ico-logo"></i>
-      
-                                          By {{item.writer?.name}}
-                                        </a>
-                                      </li>
-      
-                                      <li>
-                                        {{item.date | date:'MMM d'}}
-                                      </li>
-                                    </ul><!-- /.list-meta -->
-                                  </footer><!-- /.post-foot -->
-                                </div><!-- /.post-inner -->
+                                  <post [post]="item"></post>
                               </li><!-- /.post -->
       
                             </ul><!-- /.posts -->
@@ -388,9 +350,9 @@
                       </div><!-- /.tab -->
                     </div><!-- /.tabs-body -->
                   </div><!-- /.tabs -->
-                  <div id="roundups-container" *ngIf="homeModel?.roundups?.length">
-
-                      <div class="section section-roundups">
+                  
+                  <div id="roundups-container" >
+                      <div class="section section-roundups" *ngIf="homeModel?.roundups?.media?.length || homeModel?.roundups?.monthly?.length">
                           <aside class="section-aside">
                             <div class="section-aside-inner">
                               <i class="ico-newspapper"></i>
@@ -413,183 +375,48 @@
             
                           <div class="section-content">
                             <div class="tabs-body scrollable-horizontal">
-                              <div class="tab current" id="tab-round1">
+                              <div class="tab current" id="tab-round1" *ngIf="homeModel?.roundups?.media?.length">
                                 <div class="slider slider-roundups">
                                   <div class="slides owl-carousel">
-                                    <div class="slide">
-                                      <ul class="list-news list-news-dark">
-                                        <li>
+                                    <div class="slide" *ngFor="let parentItem of homeModel?.roundups?.media; let i = index">
+                                      <ul class="list-news list-news-dark" *ngIf="i % 2 == 0">
+                                        <li *ngFor="let item of homeModel?.roundups?.media.slice(i, i + 2)">
                                           <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news1.jpg" alt="">
+                                            <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+                                              <img src="{{RESIZED_CONTENT_PATH}}60x58xo/{{item.image}}" alt="{{item.title}}">
                                             </a>
                                           </span>
             
                                           <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
+                                            <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title | truncate:60}}</a>
                                           </h4>
                                         </li>
             
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news4.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-                                      </ul><!-- /.list-news list-news-dark -->
-                                    </div><!-- /.slide -->
-            
-                                    <div class="slide">
-                                      <ul class="list-news list-news-dark">
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news2.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-            
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news5.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-                                      </ul><!-- /.list-news list-news-dark -->
-                                    </div><!-- /.slide -->
-            
-                                    <div class="slide">
-                                      <ul class="list-news list-news-dark">
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news3.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-            
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news6.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-                                      </ul><!-- /.list-news list-news-dark -->
-                                    </div><!-- /.slide -->
-            
-                                    <div class="slide">
-                                      <ul class="list-news list-news-dark">
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news1.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-            
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news1.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-                                      </ul><!-- /.list-news list-news-dark -->
-                                    </div><!-- /.slide -->
-            
-                                    <div class="slide">
-                                      <ul class="list-news list-news-dark">
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news1.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-            
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news1.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
+                                       
                                       </ul><!-- /.list-news list-news-dark -->
                                     </div><!-- /.slide -->
                                   </div><!-- /.slides -->
                                 </div><!-- /.slider -->
                               </div><!-- /.tab -->
             
-                              <div class="tab" id="tab-round2">
+                              <div class="tab" id="tab-round2" *ngIf="homeModel?.roundups?.monthly?.length">
                                 <div class="slider slider-roundups">
                                   <div class="slides owl-carousel">
-                                    <div class="slide">
-                                      <ul class="list-news list-news-dark">
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news2.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-            
-                                        <li>
-                                          <span>
-                                            <a href="#">
-                                              <img src="../../assets/images/temp/news5.jpg" alt="">
-                                            </a>
-                                          </span>
-            
-                                          <h4>
-                                            <a href="#">Why is the GOP front-runner the ‘hope’ of white supremacists?</a>
-                                          </h4>
-                                        </li>
-                                      </ul><!-- /.list-news list-news-dark -->
-                                    </div><!-- /.slide -->
-            
+                                      <div class="slide" *ngFor="let parentItem of homeModel?.roundups?.monthly; let i = index">
+                                        <ul class="list-news list-news-dark" *ngIf="i % 2 == 0">
+                                          <li *ngFor="let item of homeModel?.roundups?.monthly.slice(i, i + 2)">
+                                            <span>
+                                              <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+                                                <img src="{{RESIZED_CONTENT_PATH}}60x58xo/{{item.image}}" alt="{{item.title}}">
+                                              </a>
+                                            </span>
+              
+                                            <h4>
+                                              <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title | truncate:60}}</a>
+                                            </h4>
+                                          </li>
+                                        </ul><!-- /.list-news list-news-dark -->
+                                      </div><!-- /.slide -->
                                     
                                   </div><!-- /.slides -->
                                 </div><!-- /.slider -->
@@ -603,41 +430,7 @@
                     <div class="section-content" >
                       <ul class="posts">
                         <li class="post" *ngFor="let item of homeModel?.listing?.slice(8, 12)">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">{{item.title | truncate : 80}}</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image" *ngIf="item.image">
-                                <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">
-                                  <img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p [innerHTML]="item.smallDescription | truncate:300"></p>
-      
-                              <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                                <ul class="list-meta">
-                                  <li *ngIf="item?.writer">
-                                    <a title="{{item.writer?.name}}" routerLink="/Writer/{{item.writer?.id}}">
-                                      <i class="ico-logo"></i>
-  
-                                      By {{item.writer?.name}}
-                                    </a>
-                                  </li>
-  
-                                  <li>
-                                    {{item.date | date:'MMM d'}}
-                                  </li>
-                                </ul><!-- /.list-meta -->
-                              </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                          <post [post]="item"></post>
                         </li><!-- /.post -->
       
                       </ul><!-- /.posts -->
@@ -653,88 +446,106 @@
                       <div class="section-aside-body" *ngIf="homeModel?.listing?.length > 12">
                         <ul class="posts rtl">
                           <li class="post" *ngFor="let item of homeModel?.listing?.slice(12, 14)">
-                            <div class="post-inner">
-                                <header class="post-head">
-                                  <h2 class="post-title">
-                                    <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">{{item.title | truncate : 80}}</a>
-                                  </h2><!-- /.post-title -->
-                                </header><!-- /.post-head -->
-          
-                                <div class="post-body">
-                                  <div class="post-image" *ngIf="item.image">
-                                    <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">
-                                      <img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
-                                    </a>
-                                  </div><!-- /.post-image -->
-          
-                                  <p [innerHTML]="item.smallDescription | truncate:300"></p>
-          
-                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}"></a>
-                                </div><!-- /.post-body -->
-      
-                                <footer class="post-foot">
-                                  <ul class="list-meta">
-                                    <li *ngIf="item?.writer">
-                                      <a title="{{item.writer?.name}}" routerLink="/Writer/{{item.writer?.id}}">
-                                        <i class="ico-logo"></i>
-    
-                                        By {{item.writer?.name}}
-                                      </a>
-                                    </li>
-    
-                                    <li>
-                                      {{item.date | date:'MMM d'}}
-                                    </li>
-                                  </ul><!-- /.list-meta -->
-                                </footer><!-- /.post-foot -->
-                            </div><!-- /.post-inner -->
+                              <post [post]="item"></post>
                           </li><!-- /.post -->
                         </ul><!-- /.posts -->
                       </div><!-- /.section-aside-body -->
                     </aside><!-- /.section-aside -->
                   </section><!-- /.section section-articles -->
       
-                  <!--#include file="ssi/section-hot.shtml" -->
+                  <div id="hot-most-read">
+                      <div class="section section-hot ltr" *ngIf="homeModel?.hotOnFacebook || homeModel?.mostRead">
+                          <div class="section-image">
+                            <img src="../../assets/images/temp/section-bg.jpg" alt="" class="fullsize-bg">
+                          </div><!-- /.section-image -->
+                        
+                          <div class="section-content">
+                            <header class="section-head">
+                              <nav class="tabs-nav">
+                                <i class="ico-logo-yellow"></i>
+                            
+                                <ul>
+                                  <li class="{{homeModel?.hotOnFacebook ? 'current' : ''}}" *ngIf="homeModel?.hotOnFacebook">
+                                    <a href="#tab-hot1111">HOT ON FACEBOOK</a>
+                                  </li>
+                                  
+                                  <li class="{{!(homeModel?.hotOnFacebook) ? 'current' : ''}}" *ngIf="homeModel?.mostRead">
+                                    <a href="#tab-hot222">MOST READ</a>
+                                  </li>
+                                </ul>
+                              </nav><!-- /.tabs-nav -->
+                            
+                              <a href="#">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                              </a>
+                            </header><!-- /.section-head -->
+                            
+                            <div class="section-body">
+                              <div class="tabs-body scrollable-horizontal">
+                                <div class="tab {{homeModel?.hotOnFacebook ? 'current' : ''}}" id="tab-hot1111" *ngIf="homeModel?.hotOnFacebook">
+                                  <div class="slider slider-feed">
+                                    <div class="slides owl-carousel">
+                                      <div class="slide" *ngFor="let slide of homeModel?.hotOnFacebook">
+                                        <ul class="list-news list-news-dark list-feed">
+                                          <li>
+                                            <span *ngIf="slide?.image">
+                                              <a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
+                                                <img src="{{RESIZED_CONTENT_PATH}}100x73xo/{{slide.image}}" alt="{{slide.title}}">
+                                              </a>
+                                            </span>
+                        
+                                            <div>
+                                              <p [innerHTML]="slide?.title"></p>
+                                              
+                                              <a>
+                                                <img src="../../assets/images/temp/share.png" alt="">
+                                              </a>
+                                            </div>
+                                          </li>
+                                        </ul><!-- /.list-news list-news-dark -->
+                                      </div><!-- /.slide -->
+        
+                                    </div><!-- /.slides -->
+                                  </div><!-- /.slider -->
+                                </div><!-- /#tab-hot1111.tab current -->
+                        
+                                <div class="tab {{!(homeModel?.hotOnFacebook) ? 'current' : ''}}" id="tab-hot222" *ngIf="homeModel?.mostRead">
+                                  <div class="slider slider-feed">
+                                    <div class="slides owl-carousel">
+                                      <div class="slide" *ngFor="let slide of homeModel?.mostRead">
+                                        <ul class="list-news list-news-dark list-feed">
+                                          <li>
+                                            <span *ngIf="slide?.image">
+                                              <a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
+                                                <img src="{{RESIZED_CONTENT_PATH}}100x73xo/{{slide.image}}" alt="{{slide.title}}">
+                                              </a>
+                                            </span>
+                        
+                                            <div>
+                                              <p [innerHTML]="slide?.title"></p>
+                                              
+                                              <a href="#">
+                                                <img src="../../assets/images/temp/share.png" alt="share">
+                                              </a>
+                                            </div>
+                                          </li>
+                                        </ul><!-- /.list-news list-news-dark -->
+                                      </div><!-- /.slide -->
+                        
+                                    </div><!-- /.slides -->
+                                  </div><!-- /.slider -->
+                                </div><!-- /#tab-hot1111.tab current -->
+                              </div><!-- /.tabs-body -->
+                            </div><!-- /.section-body -->
+                          </div><!-- /.section-content -->
+                        </div><!-- /.section section-hot -->
+                  </div>
       
-                  <section class="section section-articles" *ngIf="homeModel?.listing?.length > 12">
+                  <section class="section section-articles" *ngIf="homeModel?.listing?.length > 14">
                     <div class="section-content">
                       <ul class="posts">
-                        <li class="post" *ngFor="let item of homeModel?.listing?.slice(12,16)">
-                            <div class="post-inner">
-                              <header class="post-head">
-                                <h2 class="post-title">
-                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">{{item.title | truncate : 80}}</a>
-                                </h2><!-- /.post-title -->
-                              </header><!-- /.post-head -->
-        
-                              <div class="post-body">
-                                <div class="post-image" *ngIf="item.image">
-                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">
-                                    <img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
-                                  </a>
-                                </div><!-- /.post-image -->
-        
-                                <p [innerHTML]="item.smallDescription | truncate:300"></p>
-        
-                                <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}"></a>
-                              </div><!-- /.post-body -->
-        
-                              <footer class="post-foot">
-                                  <ul class="list-meta">
-                                    <li *ngIf="item?.writer">
-                                      <a title="{{item.writer?.name}}" routerLink="/Writer/{{item.writer?.id}}">
-                                        <i class="ico-logo"></i>
-    
-                                        By {{item.writer?.name}}
-                                      </a>
-                                    </li>
-    
-                                    <li>
-                                      {{item.date | date:'MMM d'}}
-                                    </li>
-                                  </ul><!-- /.list-meta -->
-                                </footer><!-- /.post-foot -->
-                            </div><!-- /.post-inner -->
+                        <li class="post" *ngFor="let item of homeModel?.listing?.slice(14,17)">
+                            <post [post]="item"></post>
                           </li><!-- /.post -->
       
                        
@@ -754,87 +565,79 @@
                           </div><!-- /.post-inner -->
                         </li><!-- /.post -->
       
-                        <li class="post" *ngFor="let item of homeModel?.listing?.slice(16,19)">
-                            <div class="post-inner">
-                              <header class="post-head">
-                                <h2 class="post-title">
-                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">{{item.title | truncate : 80}}</a>
-                                </h2><!-- /.post-title -->
-                              </header><!-- /.post-head -->
-        
-                              <div class="post-body">
-                                <div class="post-image" *ngIf="item.image">
-                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">
-                                    <img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
-                                  </a>
-                                </div><!-- /.post-image -->
-        
-                                <p [innerHTML]="item.smallDescription | truncate:300"></p>
-        
-                                <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}"></a>
-                              </div><!-- /.post-body -->
-        
-                              <footer class="post-foot">
-                                  <ul class="list-meta">
-                                    <li *ngIf="item?.writer">
-                                      <a title="{{item.writer?.name}}" routerLink="/Writer/{{item.writer?.id}}">
-                                        <i class="ico-logo"></i>
-    
-                                        By {{item.writer?.name}}
-                                      </a>
-                                    </li>
-    
-                                    <li>
-                                      {{item.date | date:'MMM d'}}
-                                    </li>
-                                  </ul><!-- /.list-meta -->
-                                </footer><!-- /.post-foot -->
-                            </div><!-- /.post-inner -->
+                        <li class="post" *ngFor="let item of homeModel?.listing?.slice(17,19)">
+                            <post [post]="item"></post>
                           </li><!-- /.post -->
                       </ul><!-- /.posts -->
                     </div><!-- /.section-content -->
+                    
+                    <aside class="section-aside section-aside-secondary" *ngIf="homeModel?.listing?.length > 19">
+                        <ul class="posts rtl">
+                            <li class="post" *ngFor="let item of homeModel?.listing?.slice(19,22)">
+                                <post [post]="item"></post>
+                              </li><!-- /.post -->
+                        </ul><!-- /.posts -->
+                      </aside><!-- /.section-aside -->
                   </section><!-- /.section section-articles -->
       
-                  <!--#include file="ssi/section-announcements.shtml" -->
+                  <div id="latest-announcements-container">
+                      
+                    <div class="section section-announcements ltr" *ngIf="homeModel?.latestAnnouncements2?.length">
+                      <a href="#" class="link-scroll-next">
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                      </a>
+                      
+                      <aside class="section-aside">
+                        <h2 class="section-title">
+                          <small>
+                            Latest
+                    
+                            <i class="ico-announcement-large"></i>
+                          </small>
+                    
+                          ANNOUN-<br />
+                          CEMENTS
+                        </h2><!-- /.section-title -->
+                    
+                        <a href="ajax/popup-announcement.html" class="btn btn-primary btn-transparent link-popup">
+                          SUBMIT AN ANNOUCEMENT
+                        </a>
+                      </aside><!-- /.section-aside -->
+                    
+                      <div class="section-content scrollable-horizontal">
+                        <div class="slider slider-roundups-secondary">
+                          <div class="slides">
+                            <div class="slide"  *ngFor="let parentItem of homeModel?.latestAnnouncements2; let i = index">
+                              <ul class="list-news list-news-secondary" *ngIf="i % 2 == 0">
+                                <li *ngFor="let item of homeModel?.latestAnnouncements2.slice(i, i + 2)">
+                                  <span *ngIf="item.image">
+                                    <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+                                      <img src="{{RESIZED_CONTENT_PATH}}60x58xo/{{item.image}}" alt="">
+                                    </a>
+                                  </span>
+                                  
+                                  <h4>
+                                    <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
+                                  </h4>
+                                </li>
+                              </ul><!-- /.list-news list-news-secondary -->
+                            </div><!-- /.slide -->
+                          </div><!-- /.slides -->
+                        </div><!-- /.slider -->
+                      </div><!-- /.section-content -->
+                    </div><!-- /.section section-announcements -->
       
-                  <section class="section section-articles" *ngIf="homeModel?.listing?.length > 19">
+                  </div>
+
+                  <section class="section section-articles" *ngIf="homeModel?.listing?.length > 22">
                     <div class="section-content">
                       <ul class="posts">
-                        <li class="post {{item.isArabic ? 'rtl' : ''}} {{i < 3 ? 'post-taller' : (i == 3 ? post-media : '')}}" *ngFor="let item of homeModel?.listing?.length; let i = index">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                        <li class="post  post-taller" *ngFor="let item of homeModel?.listing?.slice(22, 24)">
+                            <post [post]="item"></post>
                         </li><!-- /.post -->
       
-                     
                         <li class="post post-media">
-                          <div class="post-inner">
+                          <div class="post-inner" *ngIf="homeModel?.photography">
                             <div class="post-content">
                               <span class="post-subtitle">
                                 <i class="ico-logo-large"></i>
@@ -844,225 +647,51 @@
       
                               <div class="post-content-inner">
                                 <h2 class="post-title">
-                                  <a href="Details.html">Federal judge<br /> rules for Apple in New York case involving a locked iPhone</a>
+                                  <a title="{{homeModel?.photography?.title}}" routerLink="/Details/{{homeModel?.photography?.id + (homeModel?.photography?.customUrlTitle ? '/' + homeModel?.photography?.customUrlTitle : '')}}">{{homeModel?.photography?.title | truncate:74}}</a>
                                 </h2><!-- /.post-title -->
       
                                 <ul class="list-meta">
-                                  <li>
-                                    <a href="#">By Jadaliyya Egypt Editors</a>
+                                  <li *ngIf="homeModel?.photography?.writer">
+                                    <a title="homeModel?.photography?.writer?.name" routerLink="/Writer/{{homeModel?.photography?.writer?.id}}">By {{homeModel?.photography?.writer?.name}}</a>
                                   </li>
       
                                   <li>
-                                    Jan 8
+                                    {{homeModel?.photography?.date | date:'MMM d'}}
                                   </li>
                                 </ul><!-- /.list-meta -->
                               </div><!-- /.post-content-inner -->
                             </div><!-- /.post-content -->
       
-                            <div class="post-image">
-                              <img src="../../assets/images/temp/article-photography.jpg" alt="" class="fullsize-bg">
+                            <div class="post-image" *ngIf="homeModel?.photography?.image">
+                              <img src="{{RESIZED_CONTENT_PATH}}503x346xo/{{homeModel?.photography?.image}}" alt="homeModel?.photography?.title" class="fullsize-bg">
       
-                              <a href="#" class="link-gallery">
+                              <a title="{{homeModel?.photography?.title}}" routerLink="/Details/{{homeModel?.photography?.id + (homeModel?.photography?.customUrlTitle ? '/' + homeModel?.photography?.customUrlTitle : '')}}" class="link-gallery" *ngIf="homeModel?.photography?.galleryCount > 1">
                                 <i class="fa fa-camera" aria-hidden="true"></i>
       
-                                +15
+                                +{{homeModel?.photography?.galleryCount - 1}}
                               </a>
                             </div><!-- /.post-image -->
                           </div><!-- /.post-inner -->
                         </li><!-- /.post post-media -->
       
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                        <li class="post" *ngFor="let item of homeModel?.listing?.slice(24, 26)">
+                            <post [post]="item"></post>
                         </li><!-- /.post -->
       
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article1.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
                       </ul><!-- /.posts -->
                     </div><!-- /.section-content -->
       
-                    <aside class="section-aside">
+                    <aside class="section-aside" *ngIf="homeModel?.listing?.length > 26">
                       <ul class="posts rtl">
-                        <li class="post post-taller">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article11.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                        <li class="post {{i == 0 ? 'post-taller' : ''}}" *ngFor="let item of homeModel?.listing?.slice(26, 29)">
+                            <post [post]="item"></post>
                         </li><!-- /.post -->
       
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article4.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article12.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
                       </ul><!-- /.posts -->
                     </aside><!-- /.section-aside -->
                   </section><!-- /.section section-articles -->
       
-                  <section class="section section-hot section-hot-secondary">
+                  <section class="section section-hot section-hot-secondary" *ngIf="homeModel?.listing?.length > 29">
                     <div class="section-image">
                       <img src="../../assets/images/temp/section-hot-bg.png" alt="" class="fullsize-bg">
                     </div><!-- /.section-image -->
@@ -1332,45 +961,11 @@
                     </div><!-- /.section-body -->
                   </section><!-- /.section section-hot -->
       
-                  <section class="section section-articles">
+                  <section class="section section-articles no-sidebar" *ngIf="homeModel?.listing?.length > 29">
                     <div class="section-content">
                       <ul class="posts">
-                        <li class="post post-bd-top">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article1.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union </p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                        <li class="post post-bd-top" *ngFor="let item of homeModel?.listing?.slice(29, 30)">
+                            <post [post]="item"></post>
                         </li><!-- /.post -->
       
                         <li class="post post-media post-media-top">
@@ -1384,24 +979,24 @@
       
                               <div class="post-content-inner">
                                 <h2 class="post-title">
-                                  <a href="Details.html">Federal judge<br /> rules for Apple in New York case involving a locked iPhone</a>
+                                  <a title="{{homeModel?.video?.title}}" routerLink="/Details/{{homeModel?.video?.id + (homeModel?.video?.customUrlTitle ? '/' + homeModel?.video?.customUrlTitle : '')}}"></a>
                                 </h2><!-- /.post-title -->
       
                                 <ul class="list-meta">
-                                  <li>
-                                    <a href="#">By Jadaliyya Egypt Editors</a>
+                                  <li *ngIf="homeModel?.video?.writer">
+                                    <a title="{{homeModel?.video?.writer?.name}}" routerLink="/Writer/{{homeModel?.video?.writer?.id}}">By {{homeModel?.video?.writer?.name}}</a>
                                   </li>
       
                                   <li>
-                                    Jan 8
+                                    {{homeModel?.video?.date | date:'MMM d'}}
                                   </li>
                                 </ul><!-- /.list-meta -->
                               </div><!-- /.post-content-inner -->
                             </div><!-- /.post-content -->
       
-                            <div class="post-image post-video">
-                              <a href="#">
-                                <img src="../../assets/images/temp/video.jpg" alt="" class="fullsize-bg">
+                            <div class="post-image post-video" *ngIf="homeModel?.video?.image">
+                              <a title="{{homeModel?.video?.title}}" routerLink="/Details/{{homeModel?.video?.id + (homeModel?.video?.customUrlTitle ? '/' + homeModel?.video?.customUrlTitle : '')}}">
+                                <img src="{{RESIZED_CONTENT_PATH}}500x358xo/{{homeModel?.video?.image}}" alt="{{homeModel?.video?.title}}" class="fullsize-bg">
                               </a>
                             </div><!-- /.post-image -->
                           </div><!-- /.post-inner -->
@@ -1410,86 +1005,14 @@
                     </div><!-- /.section-content -->
                   </section><!-- /.section section-articles -->
       
-                  <section class="section section-articles">
+                  <section class="section section-articles" *ngIf="homeModel?.listing?.length > 30">
                     <div class="section-content">
                       <ul class="posts">
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article7.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                        <li class="post" *ngFor="let item of homeModel?.listing?.slice(30, 32)">
+                            <post [post]="item"></post>
                         </li><!-- /.post -->
       
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article3.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post post-jadalicous">
+                        <li class="post post-jadalicous" *ngIf="homeModel?.jadalicious?.length">
                           <div class="post-inner">
                             <ul class="widgets">
                               <li class="widget-jadalicous">
@@ -1502,72 +1025,24 @@
                                 </div><!-- /.widget-head -->
       
                                 <div class="widget-image">
-                                  <img src="../../assets/images/temp/dolphin.jpg" alt="" class="fullsize-bg">
+                                  <img src="{{RESIZED_CONTENT_PATH}}344x239xo/{{homeModel?.jadalicious[0]?.image}}" alt="{{homeModel?.jadalicious[0]?.title}}" class="fullsize-bg">
       
-                                  <span class="widget-caption">New life for ‘Tree Man’?</span>
+                                  <span class="widget-caption">{{homeModel?.jadalicious[0]?.title | truncate:100}}</span>
       
-                                  <a href="#"></a>
+                                  <a title="homeModel?.jadalicious[0]?.title" routerLink="/Details/{{homeModel?.jadalicious[0]?.id + (homeModel?.jadalicious[0]?.customUrlTitle ? '/' + homeModel?.jadalicious[0]?.customUrlTitle : '')}}"></a>
                                 </div><!-- /.widget-image -->
       
                                 <div class="widget-body">
                                   <ul class="list-news list-news-round">
-                                    <li>
-                                      <span>
-                                        <a href="#">
-                                          <img src="../../assets/images/temp/news21.jpg" alt="">
+                                    <li *ngFor="let item of homeModel?.jadalicious?.slice(1)">
+                                      <span *ngIf="item.iamge">
+                                        <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+                                          <img src="{{RESIZED_CONTENT_PATH}}57x56xo/{{item.image}}" alt="">
                                         </a>
                                       </span>
       
                                       <h4>
-                                        <a href="#">DARS Media Roundup (January 2016)</a>
-                                      </h4>
-                                    </li>
-      
-                                    <li>
-                                      <span>
-                                        <a href="#">
-                                          <img src="../../assets/images/temp/news22.jpg" alt="">
-                                        </a>
-                                      </span>
-      
-                                      <h4>
-                                        <a href="#">DARS Media Roundup (January 2016)</a>
-                                      </h4>
-                                    </li>
-      
-                                    <li>
-                                      <span>
-                                        <a href="#">
-                                          <img src="../../assets/images/temp/news23.jpg" alt="">
-                                        </a>
-                                      </span>
-      
-                                      <h4>
-                                        <a href="#">DARS Media Roundup (January 2016)</a>
-                                      </h4>
-                                    </li>
-      
-                                    <li>
-                                      <span>
-                                        <a href="#">
-                                          <img src="../../assets/images/temp/news24.jpg" alt="">
-                                        </a>
-                                      </span>
-      
-                                      <h4>
-                                        <a href="#">DARS Media Roundup (January 2016)</a>
-                                      </h4>
-                                    </li>
-      
-                                    <li>
-                                      <span>
-                                        <a href="#">
-                                          <img src="../../assets/images/temp/news25.jpg" alt="">
-                                        </a>
-                                      </span>
-      
-                                      <h4>
-                                        <a href="#">DARS Media Roundup (January 2016)</a>
+                                        <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title | truncate:40}}</a>
                                       </h4>
                                     </li>
                                   </ul><!-- /.list-news -->
@@ -1577,318 +1052,57 @@
                           </div><!-- /.post-inner -->
                         </li><!-- /.post -->
       
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article2.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article3.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article9.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article1.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                        <li class="post" *ngFor="let item of homeModel?.listing?.slice(32, 36)">
+                            <post [post]="item"></post>
                         </li><!-- /.post -->
                       </ul><!-- /.posts -->
                     </div><!-- /.section-content -->
       
-                    <aside class="section-aside">
+                    <aside class="section-aside" *ngIf="homeModel?.listing?.length > 36">
                       <ul class="posts rtl">
-                        <li class="post">
+                        <li class="post" *ngFor="let item of homeModel?.listing?.slice(36, 40)">
                           <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article9.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
+                              <header class="post-head">
+                                <h2 class="post-title">
+                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">{{item.title | truncate : 80}}</a>
+                                </h2><!-- /.post-title -->
+                              </header><!-- /.post-head -->
+        
+                              <div class="post-body">
+                                <div class="post-image" *ngIf="item.image">
+                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">
+                                    <img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
                                   </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                                </div><!-- /.post-image -->
+        
+                                <p [innerHTML]="item.smallDescription | truncate:300"></p>
+        
+                                <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}"></a>
+                              </div><!-- /.post-body -->
+        
+                              <footer class="post-foot">
+                                  <ul class="list-meta">
+                                    <li *ngIf="item?.writer">
+                                      <a title="{{item.writer?.name}}" routerLink="/Writer/{{item.writer?.id}}">
+                                        <i class="ico-logo"></i>
+    
+                                        By {{item.writer?.name}}
+                                      </a>
+                                    </li>
+    
+                                    <li>
+                                      {{item.date | date:'MMM d'}}
+                                    </li>
+                                  </ul><!-- /.list-meta -->
+                                </footer><!-- /.post-foot -->
+                            </div><!-- /.post-inner -->
                         </li><!-- /.post -->
       
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article4.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article5.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article4.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
                       </ul><!-- /.posts -->
                     </aside><!-- /.section-aside -->
                   </section><!-- /.section section-articles -->
       
-                  <section class="section section-widgets hidden-xs">
+                  <section class="section section-widgets hidden-xs" *ngIf="false">
                     <header class="section-head">
                       <h2 class="section-title section-title-logo">
                         <small>From</small>
@@ -2154,243 +1368,27 @@
                     </div><!-- /.section-body -->
                   </section><!-- /.section section-widgets -->
       
-                  <section class="section section-articles">
+                  <section class="section section-articles no-sidebar" *ngIf="homeModel?.listing?.length > 40">
                     <div class="section-content">
                       <ul class="posts">
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article1.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
+                        <li class="post {{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of homeModel?.listing?.slice(40)">
+                            <post [post]="item"></post>
                         </li><!-- /.post -->
       
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent studentsWe saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article13.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">Federal judge rules for Apple in New York case involving a locked iPhone</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article3.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>Tahir Elçi, the president of the bar association in southeastern Diyarbakır province aPhotos of Elçi’s dead body lying on We saw them on multiple occasions in 2006, 2008, and even in 2010, when Egypt’s national football team won the Africa Cup of Nations. the independent students’ union</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
                       </ul><!-- /.posts -->
                     </div><!-- /.section-content -->
       
-                    <aside class="section-aside">
-                      <ul class="posts rtl">
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article4.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-      
-                        <li class="post">
-                          <div class="post-inner">
-                            <header class="post-head">
-                              <h2 class="post-title">
-                                <a href="Details.html">لآثار الشعرية الكاملة للشاعر الإيطالي: دينو كامبانا في اللغة العربية</a>
-                              </h2><!-- /.post-title -->
-                            </header><!-- /.post-head -->
-      
-                            <div class="post-body">
-                              <div class="post-image">
-                                <a href="Details.html">
-                                  <img src="../../assets/images/temp/article5.jpg" alt="">
-                                </a>
-                              </div><!-- /.post-image -->
-      
-                              <p>لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة. لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في المجتمع الإنساني في طليعة ما يدفع بعجلة ، الناقد والمبدع مفتاح نجاح هذه الأنشطة.لا يزال اكتشاف المعارف الجديدة و نشرها وتفعيلها في ...</p>
-      
-                              <a href="#"></a>
-                            </div><!-- /.post-body -->
-      
-                            <footer class="post-foot">
-                              <ul class="list-meta">
-                                <li>
-                                  <a href="#">
-                                    <i class="ico-logo"></i>
-      
-                                    By Jadaliyya Egypt Editors
-                                  </a>
-                                </li>
-      
-                                <li>
-                                  Jan 8
-                                </li>
-                              </ul><!-- /.list-meta -->
-                            </footer><!-- /.post-foot -->
-                          </div><!-- /.post-inner -->
-                        </li><!-- /.post -->
-                      </ul><!-- /.posts -->
-                    </aside><!-- /.section-aside -->
                   </section><!-- /.section section-articles -->
                 </div><!-- /.content-inner -->
       
-                <div class="content-actions hidden-xs">
-                  <a href="#" class="link-load">
-                    <span>Load More</span>
-                  </a>
+                <div class="content-actions hidden-xs" id="load-more-container" *ngIf="hasMoreToLoad">
+                    <a href="#" class="link-load">
+                        <ul class="load-more-loader">
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                      </a>
                 </div><!-- /.content-actions -->
               </div><!-- /.content -->
 

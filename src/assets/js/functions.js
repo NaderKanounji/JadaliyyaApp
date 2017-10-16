@@ -12,6 +12,8 @@ var print_click;
 var slide_feed_function;
 var stickyFooter;
 var moreInterests;
+var roundups_carousel_init;
+var announcements_carousel_init;
 
 ;(function($, window, document, undefined) {
 	var $win = $(window);
@@ -76,21 +78,22 @@ var moreInterests;
 			$(this).parent().addClass('container-fullsize').css('background-image', 'url('+ $img.attr('src') +')');
 		});
 
-		// Slider Announcements
-		$('.slider-announcements .owl-carousel').owlCarousel({
-			loop: false,
-			items : 2,
-			margin:10,
-			autoWidth:true,
-			nav:true,
-			navText: [
-				'<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>',
-				'<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>'
-			]
-		});
+		announcements_carousel_init = function(){
+			// Slider Announcements
+			$('.slider-announcements .owl-carousel').owlCarousel({
+				loop: false,
+				items : 2,
+				margin:10,
+				autoWidth:true,
+				nav:true,
+				navText: [
+					'<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>',
+					'<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>'
+				]
+			});
 
-		sliderWheelScroll($('.slider-announcements .owl-carousel'));
-		sliderWheelScroll($('.slider-roundups .owl-carousel'));
+			sliderWheelScroll($('.slider-announcements .owl-carousel'));
+		}
 		sliderWheelScroll($('.slider-roundups-secondary .owl-carousel'));
 
 		// Slider Player
@@ -108,15 +111,18 @@ var moreInterests;
 			dotsContainer: '.slider-player .slider-nav'
 		});
 
-		// Slider Roundups
-		$('.slider-roundups .owl-carousel').owlCarousel({
-			loop: false,
-			items: 3,
-			margin:13,
-			nav:false,
-			autoWidth:true,
-			mouseDrag:false
-		});
+		roundups_carousel_init = function(){
+			// Slider Roundups
+			$('.slider-roundups .owl-carousel').owlCarousel({
+				loop: false,
+				items: 3,
+				margin:13,
+				nav:false,
+				autoWidth:true,
+				mouseDrag:false
+			});
+			sliderWheelScroll($('.slider-roundups .owl-carousel'));
+		}
 
 		// Slider feed
 		slide_feed_function = function(){
@@ -1454,6 +1460,7 @@ module.exports.myFunctions = {
 			add_has_dropdown_class_();
 			sliderMain();
 			moreInterests();
+			announcements_carousel_init();
 		},200);
 	},
 	load_details_page:function(){
@@ -1483,6 +1490,12 @@ module.exports.myFunctions = {
 		setTimeout(function(){
 			slide_feed_function();
 			tabsInit();
+		},200);
+	},
+	load_home_roundups_section:function(){
+		setTimeout(function(){
+			tabsInit();
+			roundups_carousel_init();
 		},200);
 	},
 	sticky_sidebar_binding: function(){

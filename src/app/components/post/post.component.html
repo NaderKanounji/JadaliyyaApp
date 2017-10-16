@@ -1,0 +1,35 @@
+<div class="post-inner">
+    <header class="post-head">
+      <h2 class="post-title">
+        <a title="post.title" routerLink="/Details/{{post.id + (post.customUrlTitle ? '/' +  post.customUrlTitle : '')}}">{{post.title | truncate : 80}}</a>
+      </h2><!-- /.post-title -->
+    </header><!-- /.post-head -->
+
+    <div class="post-body">
+      <div class="post-image" *ngIf="post.image">
+        <a title="post.title" routerLink="/Details/{{post.id + (post.customUrlTitle ? '/' +  post.customUrlTitle : '')}}">
+          <img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{post.image}}" alt="{{post.title}}">
+        </a>
+      </div><!-- /.post-image -->
+
+      <p [innerHTML]="post.smallDescription | truncate:300"></p>
+
+      <a title="post.title" routerLink="/Details/{{post.id + (post.customUrlTitle ? '/' +  post.customUrlTitle : '')}}"></a>
+    </div><!-- /.post-body -->
+
+    <footer class="post-foot">
+        <ul class="list-meta">
+          <li *ngIf="item?.writer">
+            <a title="{{post.writer?.name}}" routerLink="/Writer/{{post.writer?.id}}">
+              <i class="ico-logo"></i>
+
+              By {{post.writer?.name}}
+            </a>
+          </li>
+
+          <li>
+            {{post.date | date:'MMM d'}}
+          </li>
+        </ul><!-- /.list-meta -->
+      </footer><!-- /.post-foot -->
+  </div><!-- /.post-inner -->

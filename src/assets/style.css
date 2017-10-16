@@ -11391,6 +11391,10 @@ ul.items:after {
   min-width: 100%;
   min-height: 100%;
 }
+.slider-announcements .slide-image {
+  height: 56px;
+  overflow: hidden;
+}
 @-webkit-keyframes load-more-animation {
   0% {
     -webkit-transform: translateY(0);

@@ -24,6 +24,9 @@ export class FunctionsService {
   }
   //-----------
   
+  load_home_roundups_section(){ //Category
+    myFunctions.load_home_roundups_section();
+  }
   load_category_hot_section(){ //Category
     myFunctions.load_category_hot_section();
   }

@@ -21,6 +21,7 @@ import { SocialIconPipe } from './pipes/social-icon.pipe';
 import { FilterListingPipe } from './pipes/filter-listing.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { JoinNewsletterComponent } from './components/join-newsletter/join-newsletter.component';
+import { PostComponent } from './Components/post/post.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -49,7 +50,8 @@ var routes = [
     SocialIconPipe,
     FilterListingPipe,
     SortPipe,
-    JoinNewsletterComponent
+    JoinNewsletterComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

@@ -101,20 +101,20 @@ export class CategoryComponent implements OnInit {
     
     switch(templateId){
       case this.PHOTOGRAPHY_CATEGORY_TEMPLATE:
-        this.listingModel.primaryList = this.sort.transform(all, 1, 1, false);
+        this.listingModel.primaryList = this.sort.transform(all, 1, 1, false, 0, 0);
         break;
       case this.VOX_POPULI_CATEGORY_TEMPLATE:
         all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
           return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
         });
-        this.listingModel.primaryList = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true));
+        this.listingModel.primaryList = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true, 0, 0));
         break;
       default:
         all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
           return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
         });
         this.listingModel.mainArticle = all[0];
-        this.listingModel.primaryList = this.sort.transform(all.slice(1), 2, 1, true);
+        this.listingModel.primaryList = this.sort.transform(all.slice(1), 2, 1, true, 0, 0);
         break;
     }
   }
@@ -147,9 +147,9 @@ export class CategoryComponent implements OnInit {
                     return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
                   });
                   if(this.pageNumber > 1){
-                    this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true)));
+                    this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true, 0, 0)));
                   }else{
-                    this.listingModel.loadMoreArticles = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true)); 
+                    this.listingModel.loadMoreArticles = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true, 0, 0)); 
                   }
                 }else{                  
                   let enTake = 2, arTake = 1;
@@ -158,9 +158,9 @@ export class CategoryComponent implements OnInit {
                     arTake = 1;
                   }
                   if(this.pageNumber > 1){
-                    this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(this.sort.transform(data['entries'], enTake, arTake, false));    
+                    this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(this.sort.transform(data['entries'], enTake, arTake, false, 0, 0));    
                   }else{
-                    this.listingModel.loadMoreArticles = this.sort.transform(data['entries'], enTake, arTake, false); 
+                    this.listingModel.loadMoreArticles = this.sort.transform(data['entries'], enTake, arTake, false, 0, 0); 
                   }
                 }
               }else{

@@ -5,15 +5,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(value: ArticleModel[], enCount:number, arCount:number, isArabicFirst:boolean): any {
+  transform(value: ArticleModel[], enCount:number, arCount:number, isArabicFirst:boolean, enSkip:number, arSkip:number): any {
     enCount = enCount || 1;
     arCount = arCount || 1;
     isArabicFirst = isArabicFirst || false;
-
+    enSkip = enSkip || 0;
+    arSkip = arSkip || 0;
     let returnedList:ArticleModel[] = [];
     let arList = value.filter(d => d.isArabic);
     let enList = value.filter(d => !d.isArabic);
-    let listArCount = 0, listEnCount = 0;
+    let listArCount = arSkip, listEnCount = enSkip;
     let isArListing = isArabicFirst;
 
     for(let i = 0; i < value.length; i++ ){
