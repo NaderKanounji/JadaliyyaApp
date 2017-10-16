@@ -81,7 +81,11 @@
   
                   <div class="slide" *ngFor="let slide of homeModel?.slideshow">
                     <div class="slide-image" > <!-- hide image if field is empty -->
+<<<<<<< HEAD
                       <a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
+=======
+                      <a routerLink="/Details/{{slide.id}}">
+>>>>>>> b4358d3ee6ad794794e27f3e79fa95daecb92902
                         <img src="{{RESIZED_CONTENT_PATH}}874x456xo/{{slide.image}}" alt="{{slide.title}}" class="fullsize-bg">
                       </a>
                     </div><!-- /.slide-image -->

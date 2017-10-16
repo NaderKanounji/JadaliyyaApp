@@ -18,15 +18,28 @@ export class SortPipe implements PipeTransform {
 
     for(let i = 0; i < value.length; i++ ){
       if(i > 0 && !isArListing && listEnCount % enCount == 0 && arList.length > listArCount && i == returnedList.length){
+        // console.log("isArListing:" + isArListing);
+        // console.log("listEnCount:" + listEnCount);
+        // console.log("enCount:" + enCount);
+        // console.log("arList.length:" + arList.length);
+        // console.log("listArCount:" + listArCount);
+        // console.log("i:" + i);
+        // console.log("returnedList.length:" + returnedList.length);
         isArListing = true;
       }else{
         if(i > 0 && isArListing && listArCount % arCount == 0 && enList.length > listEnCount && i == returnedList.length){
+          // console.log("isArListing:" + isArListing);
+          // console.log("listArCount:" + listArCount);
+          // console.log("arCount:" + arCount);
+          // console.log("enList.length:" + enList.length);
+          // console.log("listEnCount:" + listEnCount);
+          // console.log("i:" + i);
+          // console.log("returnedList.length:" + returnedList.length);
           isArListing = false;
         }
       }
       if(isArListing){
         if(arList.length - 1 < listArCount){
-
           returnedList.push(enList[listEnCount]);
           listEnCount++;
           continue;
@@ -36,7 +49,6 @@ export class SortPipe implements PipeTransform {
       }
       if(!isArListing){
         if(enList.length - 1 < listEnCount){
-
           returnedList.push(arList[listArCount]);
           listArCount++;
           continue;
@@ -44,6 +56,7 @@ export class SortPipe implements PipeTransform {
         returnedList.push(enList[listEnCount]);
         listEnCount++;
       }
+      //console.log(returnedList);
     }
     return returnedList;
   }

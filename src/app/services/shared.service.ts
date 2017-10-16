@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"currentRoute": "home", "categoryTitle":"", "isGoogleApiLoaded" : false, "socialMedia" : []}
+    {"currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : []}
   );
   sharedModel = this.messageSource.asObservable();
 
@@ -21,9 +21,18 @@ export class SharedService {
     this.messageSource.next(tempModel);
   }
   set_categoryTitle(myCategoryTitle:string){
-    //console.log(myCategoryTitle);
     let tempModel = this.messageSource.getValue();
     tempModel.categoryTitle = myCategoryTitle;
+    this.messageSource.next(tempModel);
+  }
+  set_categoryId(myCategoryId:number){
+    let tempModel = this.messageSource.getValue();
+    tempModel.categoryId = myCategoryId;
+    this.messageSource.next(tempModel);
+  }
+  set_customUrlTitle(myCustomUrlTitle:string){
+    let tempModel = this.messageSource.getValue();
+    tempModel.customUrlTitle = myCustomUrlTitle;
     this.messageSource.next(tempModel);
   }
   set_isGoogleApiLoaded(myIsGoogleApiLoaded:boolean){
@@ -54,7 +63,9 @@ export class SharedService {
 interface SharedModel{
   currentRoute:string;
   categoryTitle:string;
+  categoryId:number;
   isGoogleApiLoaded:boolean;
+  customUrlTitle:string;
   socialMedia:SocialMedia[];
 }
 interface SocialMedia{
