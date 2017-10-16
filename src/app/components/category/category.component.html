@@ -157,7 +157,7 @@
 																	<img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{post.image}}" alt="{{post.title}}">
 																</a>
 															</div><!-- /.post-image -->
-															<p [innerHTML]="post.smallDescription"></p>
+															<p [innerHTML]="post.smallDescription | truncate:200"></p>
 														</div><!-- /.post-body -->
 													
 														<footer class="post-foot">

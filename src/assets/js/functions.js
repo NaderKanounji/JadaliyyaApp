@@ -11,6 +11,7 @@ var link_text_large_function;
 var print_click;
 var slide_feed_function;
 var stickyFooter;
+var moreInterests;
 
 ;(function($, window, document, undefined) {
 	var $win = $(window);
@@ -271,24 +272,25 @@ var stickyFooter;
 			$('.link-collapse').addClass('hidden');
 		};
 
-		function moreInterests() {
+		moreInterests = function () {
 			// More Interests
 			$('.link-more').on('click', function(event) {
 				event.preventDefault();
 
 				$(this).closest('.list-interests').addClass('visible');
 			});
+			// All Interests
+			$('.link-all').on('click', function(event) {
+				event.preventDefault();
+	
+				$('.section-interested').addClass('fixed');
+				$('.wrapper').addClass('active');
+			});
+	
 		};
-		moreInterests();
+		//moreInterests();
 
-		// All Interests
-		$('.link-all').on('click', function(event) {
-			event.preventDefault();
-
-			$('.section-interested').addClass('fixed');
-			$('.wrapper').addClass('active');
-		});
-
+		
 		function interestsToggle() {
 			$('.list-interests a:not(.link-more):not(.link-all)').on('click', function(event) {
 				event.preventDefault();
@@ -1451,6 +1453,7 @@ module.exports.myFunctions = {
 			nav_overlay_on_hover();
 			add_has_dropdown_class_();
 			sliderMain();
+			moreInterests();
 		},200);
 	},
 	load_details_page:function(){
