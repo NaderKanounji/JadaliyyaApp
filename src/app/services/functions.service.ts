@@ -8,7 +8,7 @@ export class FunctionsService {
     
   }
 //Main Block calls
-  load_all_pages(){ //HOME
+  load_all_pages(){ //All
     myFunctions.load_all_pages();
   }
   load_home_page(){ //HOME
@@ -27,8 +27,14 @@ export class FunctionsService {
   load_home_roundups_section(){ //Category
     myFunctions.load_home_roundups_section();
   }
+  homeSidebar(){
+    myFunctions.homeSidebar();
+  }
   load_category_hot_section(){ //Category
     myFunctions.load_category_hot_section();
+  }
+  new_content_formatting(){
+    myFunctions.new_content_formatting();
   }
 //end Main Block calls
 

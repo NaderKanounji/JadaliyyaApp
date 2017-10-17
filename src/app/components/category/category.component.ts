@@ -9,6 +9,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { _globals } from '../../includes/globals';
+import { ArticleModel, SocialMedia, SharedModel } from '../../includes/Models';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -229,14 +230,7 @@ interface ListingModel{
   loadMoreArticles:ArticleModel[];
 }
 
-interface SharedModel{
-    currentRoute:string;
-    categoryTitle:string;
-    categoryId:number;
-    customUrlTitle:string;
-    isGoogleApiLoaded:boolean;
-    socialMedia:SocialMedia[];
-}
+
 
 interface CategoryModel{
   id:number;
@@ -252,23 +246,3 @@ interface CategoryModel{
   filmReviews:ArticleModel[];
 }
 
-interface ArticleModel{
-  id:number;
-  customUrlTitle:string;
-  title:string;
-  image:string;
-  smallDescription:string;
-  date:Date;
-  isArabic:boolean;
-  youtubeLink:string;
-  galleryCount:number;
-  writer:{
-    id:number;
-    name:string;
-  }
-}
-
-interface SocialMedia{
-  title:string;
-  link:string;
-}

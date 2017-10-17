@@ -13,3 +13,16 @@ export interface ArticleModel{
     name:string;
   }
 }
+export interface SocialMedia{
+    title:string;
+    link:string;
+  }
+  
+ export interface SharedModel{
+    currentRoute:string;
+    categoryTitle:string;
+    categoryId:number;
+    customUrlTitle:string;
+    isGoogleApiLoaded:boolean;
+    socialMedia:SocialMedia[];
+}

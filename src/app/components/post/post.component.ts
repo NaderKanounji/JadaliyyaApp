@@ -9,7 +9,7 @@ import {_globals} from '../../includes/globals';
 })
 export class PostComponent implements OnInit {
   RESIZED_CONTENT_PATH:string;
-  @Input() post:ArticleModel[];
+  @Input() post:ArticleModel;
   constructor() { }
 
   ngOnInit() {

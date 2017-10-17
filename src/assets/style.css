@@ -11391,9 +11391,19 @@ ul.items:after {
   min-width: 100%;
   min-height: 100%;
 }
+.post-media .post-image.post-video a {
+  width: 430px;
+  height: 358px;
+}
 .slider-announcements .slide-image {
   height: 56px;
   overflow: hidden;
+}
+.widget-jadalicous .widget-image {
+  overflow: hidden;
+}
+.widget-profile-slider .widget-body {
+  min-height: 160px;
 }
 @-webkit-keyframes load-more-animation {
   0% {
@@ -11409,7 +11419,6 @@ ul.items:after {
     -webkit-transform: translateY(0);
   }
 }
-/* Standard syntax */
 @keyframes load-more-animation {
   0% {
     transform: translateY(0);

@@ -1,0 +1,10 @@
+
+  <span *ngIf="item.image">
+      <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+        <img src="{{RESIZED_CONTENT_PATH + imageSize + item.image}}" alt="">
+      </a>
+    </span>
+    
+    <h4>
+      <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title | truncate:truncate}}</a>
+    </h4>
