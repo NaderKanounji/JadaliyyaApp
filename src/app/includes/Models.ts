@@ -26,3 +26,8 @@ export interface SocialMedia{
     isGoogleApiLoaded:boolean;
     socialMedia:SocialMedia[];
 }
+
+export interface TagModel{
+  id:number;
+  title:string; 
+}

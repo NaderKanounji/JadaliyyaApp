@@ -15,41 +15,41 @@
 			</a>
 		</header><!-- /.popup-head -->
 
-		<div class="popup-body">
+		<div class="popup-body" *ngIf="homeModel?.newsletterArticle">
 			<ul class="posts">
 				<li class="post post-large">
 					<div class="post-inner">
-						<div class="post-image">
-							<a href="Details.html">
-								<img src="../../assets/images/temp/article-large.jpg" alt="">
+						<div class="post-image" *ngIf="homeModel?.newsletterArticle?.image">
+							<a title="{{homeModel?.newsletterArticle?.title}}" routerLink="/Details/{{homeModel?.newsletterArticle?.id + (homeModel?.newsletterArticle?.customUrlTitle ? '/' + homeModel?.newsletterArticle?.customUrlTitle : '')}}">
+								<img src="{{RESIZED_CONTENT_PATH}}387x301xo/{{homeModel?.newsletterArticle?.image}}" alt="{{homeModel?.newsletterArticle?.title}}">
 							</a>
 						</div><!-- /.post-image -->
 
 						<div class="post-content">
 							<header class="post-head">
 								<h2 class="post-title">
-									<a href="Details.html">Hope without Illusion: Ten Signs of Change in Egypt</a>
+									<a title="{{homeModel?.newsletterArticle?.title}}" routerLink="/Details/{{homeModel?.newsletterArticle?.id + (homeModel?.newsletterArticle?.customUrlTitle ? '/' + homeModel?.newsletterArticle?.customUrlTitle : '')}}">{{homeModel?.newsletterArticle?.title | truncate : 60}}</a>
 								</h2><!-- /.post-title -->
 							</header><!-- /.post-head -->
 
 							<div class="post-body">
-								<p>Egyptians occupying streets, blocking traffic, and chanting patriotic slogans: Contrary to conventional wisdom, these images became part of Egypt’s contemporary political arena well before the January 2011 Revolution. We saw them on multiple occasions in 2006, 2008, and in 2010, team won the Africa Cup of Nations. </p>
+								<p [innerHTML]="homeModel?.newsletterArticle?.smallDescription | truncate: 320"></p>
 
-								<a href="#"></a>
+								<a title="{{homeModel?.newsletterArticle?.title}}" routerLink="/Details/{{homeModel?.newsletterArticle?.id + (homeModel?.newsletterArticle?.customUrlTitle ? '/' + homeModel?.newsletterArticle?.customUrlTitle : '')}}"></a>
 							</div><!-- /.post-body -->
 
 							<footer class="post-foot">
 								<ul class="list-meta">
-									<li>
-										<a href="#">
+									<li *ngIf="homeModel?.newsletterArticle?.writer">
+										<a title="{{homeModel?.newsletterArticle?.writer?.name}}" routerLink="/Writer/{{homeModel?.newsletterArticle?.writer?.id}}">
 											<i class="ico-logo"></i>
 
-											By Jadaliyya Egypt Editors
+											By {{homeModel?.newsletterArticle?.writer?.name}}
 										</a>
 									</li>
 
 									<li>
-										Jan 8
+										{{homeModel?.newsletterArticle?.date | date:'MMM d'}}
 									</li>
 								</ul><!-- /.list-meta -->
 							</footer><!-- /.post-foot -->
@@ -251,20 +251,20 @@
   
           <div class="section-body">
             <div class="list-interests" *ngIf="homeModel?.tags?.length">
-              <a *ngFor="let item of homeModel?.tags.slice(0, 7)">{{item.title}}</a>
+              <a class="{{initialTags.indexOf(item.id) > -1 ? 'clicked' : ''}}" *ngFor="let item of homeModel?.tags.slice(0, 7)" attr.data-tag-id="{{item.id}}">{{item.title}}</a>
   
               <a href="#" class="link-more">More</a>
   
-              <a class="more" *ngFor="let item of homeModel?.tags.slice(8, 29)">{{item.title}}</a>
+              <a class="more {{initialTags.indexOf(item.id) > -1 ? 'clicked' : ''}}" attr.data-tag-id="{{item.id}}" *ngFor="let item of homeModel?.tags.slice(8, 29)">{{item.title}}</a>
   
-              <a href="#" class="link-all more">View All</a>
+              <a href="#" class="link-all more" *ngIf="homeModel?.tags?.length > 30">View All</a>
   
-              <a class="even-more" *ngFor="let item of homeModel?.tags.slice(30)">{{item.title}}</a>
+              <a class="even-more {{initialTags.indexOf(item.id) > -1 ? 'clicked' : ''}}" attr.data-tag-id="{{item.id}}" *ngFor="let item of homeModel?.tags.slice(30)">{{item.title}}</a>
   
             </div><!-- /.list-interests -->
   
             <div class="section-actions">
-              <a href="#" class="btn btn-primary btn-blue">SUBMIT MY INTEREST</a>
+              <a  class="btn btn-primary btn-blue" (click)="submit_interest()">SUBMIT MY INTEREST</a>
             </div><!-- /.section-actions -->
           </div><!-- /.section-body -->
         </div><!-- /.shell -->
@@ -290,6 +290,17 @@
                             <a >MY INTERESTS</a>
                           </li>
                         </ul>
+                        <select class="" (change)="fetch_new_listing($event.target.value)">
+                          <option value="1">
+                            <a>RECENT STORIES</a>
+                          </option>
+                          <option value="2">
+                            <a>EDITOR’S PICKS</a>
+                          </option>
+                          <option  value="3">
+                            <a>MY INTERESTS</a>
+                          </option>
+                      </select>
                       </nav><!-- /.tabs-nav -->
                     </div><!-- /.tabs-head -->
       
@@ -1181,7 +1192,7 @@
                   </section><!-- /.section section-articles -->
                 </div><!-- /.content-inner -->
       
-                <div class="content-actions hidden-xs" id="load-more-container" *ngIf="hasMoreToLoad">
+                <div class="content-actions contact-load-more" id="load-more-container" *ngIf="hasMoreToLoad">
                     <a href="#" class="link-load">
                         <ul class="load-more-loader">
                           <li></li>

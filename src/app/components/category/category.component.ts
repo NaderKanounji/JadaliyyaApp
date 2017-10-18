@@ -76,17 +76,24 @@ export class CategoryComponent implements OnInit {
           this.typeId = _globals.ROUNDUPS_MONTHLY_DISPLAY_ID.toString();
         }
       }
-      console.log("typeId: " + this.typeId);
       this.sharedService.set_categoryId(this.categoryId);
-      this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id'] + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) =>{
+      if(params['id'] == this.ARABIC_SECTION_ID){
+        this.isArabicSection = true;
+        if(params['subid']){
+          //get sub category
+        }else{
+          // get first subcategory
+        }
+      }else{
+        
+      }
+      this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id'] + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '' + (this.isArabicSection && params['subid'] ? '&subId=' + params['subId'] : ''))).subscribe((data:any) =>{
         this.categoryModel = data;
-        this.isArabicSection = data['id'] == this.ARABIC_SECTION_ID;
 
         this.sharedService.set_categoryTitle(this.isArabicSection ? 'القسم العربي' : data['title']);
-        //console.log(data['recentStories']);
+
         this.isDefaultTemplate = data['templateId'] != this.VOX_POPULI_CATEGORY_TEMPLATE && data['templateId'] != this.PHOTOGRAPHY_CATEGORY_TEMPLATE;
-        // console.log(data['templateId']);
-        // console.log(this.isDefaultTemplate);
+
 
          this.fetch_listing_data(data['recentStories'], data['templateId']);
           setTimeout(() => {
@@ -233,6 +240,7 @@ interface ListingModel{
 
 
 interface CategoryModel{
+  isArabicSection:boolean;
   id:number;
   templateId:number;
   title:string;

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { RouterModule }   from '@angular/router';
 import { HttpClientModule }   from '@angular/common/http';
+import { Ng2Webstorage } from 'ng2-webstorage';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -58,7 +59,8 @@ var routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    Ng2Webstorage
   ],
   providers: [SharedService, FunctionsService, SortPipe],
   bootstrap: [AppComponent]

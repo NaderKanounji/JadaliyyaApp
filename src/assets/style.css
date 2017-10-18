@@ -11437,4 +11437,8 @@ ul.items:after {
   .article-details .article-image {
     max-width: 100%;
   }
+  .content-actions.contact-load-more {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 }

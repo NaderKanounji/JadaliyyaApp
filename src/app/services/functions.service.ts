@@ -44,6 +44,9 @@ export class FunctionsService {
   openSubMenu(){
     myFunctions.openSubMenu();
   }
+  closeInterested(){
+    myFunctions.closeInterested();
+  }
   load_fb_comments(){
     myFunctions.load_fb_comments();
   }

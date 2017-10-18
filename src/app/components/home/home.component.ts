@@ -1,13 +1,15 @@
 import { Component, OnInit, EventEmitter, Output, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { LocalStorageService } from 'ng2-webstorage';
+
 import { SharedService } from '../../services/shared.service';
 import { FunctionsService } from '../../services/functions.service';
 
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia } from '../../includes/Models';
+import { ArticleModel, SocialMedia, TagModel } from '../../includes/Models';
 
 // import * as _globals from '../../includes/globals'; 
 
@@ -23,6 +25,7 @@ export class HomeComponent implements OnInit {
   
   isEditorPick:boolean = false;
   pageNumber:number = 0;
+  listType:number = 1;
 
   //--Flags
   startScrollLoading:boolean = false;
@@ -37,18 +40,17 @@ export class HomeComponent implements OnInit {
   //headerStructure:string;
 
   homeModel: HomeModel;
+  initialTags:number[] = [];
   socialMedia:SocialMedia[];
-  constructor(private http: HttpClient, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
+  constructor(private localstore:LocalStorageService, private http: HttpClient, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
 
   ngOnInit() {
-    //this.sharedService.serviceHeaderStructure.subscribe(sharedHeaderStructure => this.headerStructure = sharedHeaderStructure);
-    
-    this.sharedService.sharedModel.subscribe(sharedModel => this.socialMedia = sharedModel.socialMedia);
-    this.sharedService.set_currentRoute("home");
-    this.sharedService.alter_wrapper_classes('');
+    this.CONTENT_PATH = _globals.CONTENT_PATH;
+    this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
     
     //Initializing model
     this.homeModel = {
+      newsletterArticle:null,
       slideshow:null,
       rightBox:null,
       latestAnnouncements1:null,
@@ -79,16 +81,25 @@ export class HomeComponent implements OnInit {
         popularTags:null
       }
     };
-    this.CONTENT_PATH = _globals.CONTENT_PATH;
-    this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
+
+    this.sharedService.sharedModel.subscribe(sharedModel => this.socialMedia = sharedModel.socialMedia);
+    this.sharedService.set_currentRoute("home");
+    this.sharedService.alter_wrapper_classes('');
+
+    //Checking local storage for interest
+    if(this.localstore.retrieve('_jad_interest') && this.localstore.retrieve('_jad_interest') != ""){
+      let tagsStr = this.localstore.retrieve('_jad_interest').split(',');      
+      tagsStr.forEach(element => {
+
+        this.initialTags.push(parseInt(element));
+      });
+      
+    }
+    
+    //Get Initial home call
     this.http.get(_globals.API_URL + "Data/GetHomeInit").subscribe((data:any) =>{
       this.homeModel = data;
       this.fetch_listing_data(data['recentStories']['articles'], 0);
-      //console.log(this.homeModel);
-      
-      // this.pageNumber++;
-      // this.startScrollLoading = true;
-      // this.myFunctions.load_home_page();
       setTimeout(() => {
         this.pageNumber++;
         this.startScrollLoading = true;
@@ -96,6 +107,7 @@ export class HomeComponent implements OnInit {
       },200);
     });
   }
+
   fetch_listing_data(all:ArticleModel[], page:number){
     switch(page){
       case 0:
@@ -121,15 +133,10 @@ export class HomeComponent implements OnInit {
         break;
     }
     this.myFunctions.new_content_formatting();
-    // all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
-    //   return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
-    // })
-    // this.homeModel.listing = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true));
-    //this.listingModel.primaryList = this.sort.transform(all.slice(1), 2, 1, true);
   }
   
   fetch_new_listing(listType:number){
-    if(listType == 1 || listType == 2 || (listType == 3 && true)){
+    if(listType == 1 || listType == 2 || (listType == 3 && (this.localstore.retrieve('_jad_interest') || this.localstore.retrieve('_jad_interest') != ""))){
       this.pageNumber = 0;
       this.startScrollLoading = false;
       this.isRoundupsLoaded = false;
@@ -138,23 +145,25 @@ export class HomeComponent implements OnInit {
       this.isArabStudiesLoaded = false;
       this.hasMoreToLoad = true;
 
+      let tabs = document.querySelectorAll('.tabs-secondary .tabs-nav li');
+      if(!tabs[listType - 1].classList.contains('current')){
+        document.querySelector('.tabs-secondary .tabs-nav li.current').classList.remove('current');
+        tabs[listType - 1].classList.add('current');
+      }
+      
+      this.listType = listType;
       if(listType != 2){
         this.isEditorPick = false;
-        if(listType == 1){
-          this.get_articles(true);
-        }
-        if(listType == 3){
-          this.get_articles(true);
-        }
       }else{
         this.isEditorPick = true;
-        this.get_articles(true);
       }
+      this.get_articles(true);
     }
-  }
+  } 
+
   get_articles(isListingChanged:boolean){
       isListingChanged = isListingChanged || false;
-      this.http.get(_globals.API_URL + 'Data/GetHomeListing?isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber ).subscribe((data:any) =>{
+      this.http.get(_globals.API_URL + 'Data/GetHomeListing?isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + (this.listType == 3 && this.localstore.retrieve('_jad_interest') ? '&interests=' + this.localstore.retrieve('_jad_interest') : '') ).subscribe((data:any) =>{
         switch(this.pageNumber){
           case 3:
             this.homeModel.photography = data['inlineDisplayIn'];
@@ -213,6 +222,29 @@ export class HomeComponent implements OnInit {
         this.isLoadingMore = false;
       });
   }
+
+  submit_interest(){
+    if(document.querySelectorAll('.list-interests .clicked').length){
+      this.localstore.store('_jad_interest', this.get_interest_string());
+      this.fetch_new_listing(3);
+      this.myFunctions.closeInterested();
+      setTimeout(() => {
+        this.myFunctions.animate_to_element('.tabs.tabs-secondary', -200, 800);
+      }, 200);
+
+    }else{
+      this.localstore.clear('_jad_interest');
+    }
+  }
+  get_interest_string():string{
+    let selectedTags = document.querySelectorAll('.list-interests .clicked');
+    let interest = "";
+    for(let i = 0; i < selectedTags.length; i++){
+      interest += (i > 0 ? ',' : '') + selectedTags[i].getAttribute('data-tag-id');
+    }
+    return interest;
+  }
+
   @HostListener("window:scroll", [])
   onWindowScroll() {
     //console.log(this.startScrollLoading);
@@ -234,7 +266,7 @@ export class HomeComponent implements OnInit {
       }
       //Roundups Section
       if(this.myFunctions.is_dom_in_view('#roundups-container', 500)){
-          if(!this.isRoundupsLoaded && this.homeModel.listing.length){
+          if(!this.isRoundupsLoaded && this.homeModel.listing && this.homeModel.listing.length){
              this.isRoundupsLoaded = true;
 
             // this.isLoadingMore = true;
@@ -304,6 +336,7 @@ export class HomeComponent implements OnInit {
 }
 
 interface HomeModel{
+  newsletterArticle:ArticleModel;
   slideshow:ArticleModel[];
   rightBox:ArticleModel;
   latestAnnouncements1:ArticleModel[];
@@ -347,8 +380,5 @@ interface featuredRecentModel{
   featured:ArticleModel[];
   recent:ArticleModel[];
 }
-interface TagModel{
-  id:number;
-  title:string; 
-}
+
 
