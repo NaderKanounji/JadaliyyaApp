@@ -1,9 +1,9 @@
 <div class="container">
-		<div class="main">
+		<div class="main {{isArabicSection ? 'rtl' : ''}}">
 			<div class="shell">
 				<div class="content">
 					<div class="content-inner">
-						<div class="content-inner-flex">
+						<div class="content-inner-flex" *ngIf="!isArabicSection || categoryId == ARABIC_SECTION_ID">
 							<div class="slider slider-primary" *ngIf="categoryModel?.slideshow?.length > 0">
 								<div class="slider-loader">
 									<i class="ico-loader"></i>
@@ -44,8 +44,8 @@
 							<div class="content-aside" *ngIf="categoryModel?.mostRecent?.length > 0">
 								<h3 class="content-title">
 									<i class="ico-title"></i>
-						
-									Most Recent
+									{{isArabicSection ? 'الأحدث' : 'Most Recent'}}
+									
 								</h3><!-- /.content-title -->
 						
 								<ul class="posts">
@@ -84,16 +84,16 @@
 							</div><!-- /.content-aside -->
 						</div><!-- /.content-inner-flex -->
 						
-						<div class="tabs tabs-secondary">
+						<div class="tabs tabs-secondary" >
 							<div class="tabs-head">
 								<nav class="tabs-nav">
 									<ul>
 										<li class="current" (click)="fetch_new_listing(false)">
-											<a>RECENT STORIES</a>
+											<a>{{isArabicSection ? 'أحدث المقالات' : 'RECENT STORIES'}}</a>
 										</li>
 										
 										<li (click)="fetch_new_listing(true)">
-											<a >EDITOR’S PICKS</a>
+											<a >{{isArabicSection ? 'اختيارات المحررين' : 'EDITOR’S PICKS'}}</a>
 										</li>
 									</ul>
 								</nav><!-- /.tabs-nav -->
@@ -103,7 +103,7 @@
 								<div class="tab current" id="primary-category-listing" >
 									<section class="section section-articles section-articles-primary no-sidebar" *ngIf="isDefaultTemplate && listingModel">
 										<div class="section-content">
-											<ul class="posts">
+											<ul class="posts" >
 												<li class="post post-large" *ngIf="listingModel?.mainArticle">
                          
 													<div class="post-inner">
@@ -143,39 +143,8 @@
 													</div><!-- /.post-inner -->
 												</li><!-- /.post -->
 						
-												<li class="post {{post.isArabic ? 'rtl' : ''}}" *ngFor="let post of listingModel?.primaryList">
-													<div class="post-inner">
-														<header class="post-head">
-															<h2 class="post-title">
-																<a title="{{post.title}}" routerLink="/Details/{{post.id + (post.customUrlTitle ? '/' + post.customUrlTitle : '')}}">{{post.title | truncate:80}}</a>
-															</h2><!-- /.post-title -->
-														</header><!-- /.post-head -->
-													
-														<div class="post-body">
-															<div class="post-image" *ngIf="post.image">
-																<a title="{{post.title}}" routerLink="/Details/{{post.id + (post.customUrlTitle ? '/' + post.customUrlTitle : '')}}">
-																	<img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{post.image}}" alt="{{post.title}}">
-																</a>
-															</div><!-- /.post-image -->
-															<p [innerHTML]="post.smallDescription | truncate:200"></p>
-														</div><!-- /.post-body -->
-													
-														<footer class="post-foot">
-															<ul class="list-meta">
-																<li *ngIf="post.writer">
-																	<a title="{{post.writer?.name}}" routerLink="/Writer/{{post.writer?.id}}">
-																		<i class="ico-logo"></i>
-													
-																		By {{post.writer?.id}}
-																	</a>
-																</li>
-																
-																<li>
-																	<a title="{{post.title}}" routerLink="/Details/{{post.id + (post.customUrlTitle ? '/' + post.customUrlTitle : '')}}">{{post.date | date:'MMM d'}}</a>
-																</li>
-															</ul><!-- /.list-meta -->
-														</footer><!-- /.post-foot -->
-													</div><!-- /.post-inner -->
+												<li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of listingModel?.primaryList">
+														<post [post]="post"></post>
 												</li><!-- /.post -->
 						
 			
@@ -374,49 +343,170 @@
 									</div><!-- /.section-content -->
 								</div><!-- /.section section-hot -->
 						</div>
-						<section class="section section-articles no-sidebar" *ngIf="isDefaultTemplate && listingModel?.loadMoreArticles">
+						<section class="section section-articles no-sidebar" *ngIf="isDefaultTemplate && listingModel?.loadMoreArticles &&!(categoryId == ARABIC_SECTION_ID)">
 							<div class="section-content">
-								<ul class="posts">
-									<li class="post {{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of listingModel?.loadMoreArticles">
-										<div class="post-inner">
-											<header class="post-head">
-												<h2 class="post-title">
-													<a title="{{item.title}}" routerLink="/Details/{{item.id +(item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title | truncate:80}}</a>
-												</h2><!-- /.post-title -->
-											</header><!-- /.post-head -->
-										
-											<div class="post-body">
-												<div class="post-image" *ngIf="item.image">
-													<a title="{{item.title}}" routerLink="/Details/{{item.id +(item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
-														<img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
-													</a>
-												</div><!-- /.post-image -->
-										
-												<p [innerHTML]="item.smallDescription | truncate:300"></p>
-											</div><!-- /.post-body -->
-										
-											<footer class="post-foot">
-												<ul class="list-meta">
-													<li *ngIf="item.writer">
-														<a title="{{item.writer?.title}}" routerLink="/Writer/{{item.writer?.id}}">
-															<i class="ico-logo"></i>
-										
-															By {{item.writer?.title}}
-														</a>
-													</li>
-													
-													<li>
-														<a title="{{item.title}}" routerLink="/Details/{{id +(item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.date | date: 'MMM d'}}</a>
-													</li>
-												</ul><!-- /.list-meta -->
-											</footer><!-- /.post-foot -->
-										</div><!-- /.post-inner -->
+								<ul class="posts" >
+									<li class="post {{isArabicSection || item.isArabic ? 'rtl' : ''}}" *ngFor="let item of listingModel?.loadMoreArticles">
+											<post [post]="item"></post>
 									</li><!-- /.post -->
 										
 								</ul><!-- /.posts -->
+
 							</div><!-- /.section-content -->
 						</section><!-- /.section section-articles -->
-						<section class="section" *ngIf="categoryModel?.templateId == VOX_POPULI_CATEGORY_TEMPLATE && listingModel?.loadMoreArticles">
+						
+						<section class="section section-articles no-sidebar" *ngIf="categoryId == ARABIC_SECTION_ID && listingModel?.loadMoreArticles?.length">
+							<div class="section-content">
+								<ul class="posts">
+								<li class="post rtl" *ngFor="let item of listingModel?.loadMoreArticles?.slice(0, 6)">
+									<post [post]="item"></post>
+								</li><!-- /.post -->
+				
+								<li class="post post-media rtl" *ngIf="listingModel?.photography">
+									<div class="post-inner" *ngIf="listingModel?.photography">
+									<div class="post-content">
+										<span class="post-subtitle">
+										<i class="ico-logo-large"></i>
+				
+										PHOTOGRAPHY
+										</span>
+				
+										<div class="post-content-inner">
+										<h2 class="post-title">
+											<a title="{{listingModel?.photography?.title}}" routerLink="/Details/{{listingModel?.photography?.id + (listingModel?.photography?.customUrlTitle ? '/' + listingModel?.photography?.customUrlTitle : '')}}">{{listingModel?.photography?.title | truncate:74}}</a>
+										</h2><!-- /.post-title -->
+				
+										<ul class="list-meta">
+											<li *ngIf="listingModel?.photography?.writer">
+											<a title="listingModel?.photography?.writer?.name" routerLink="/Writer/{{listingModel?.photography?.writer?.id}}">By {{listingModel?.photography?.writer?.name}}</a>
+											</li>
+				
+											<li>
+											{{listingModel?.photography?.date | date:'MMM d'}}
+											</li>
+										</ul><!-- /.list-meta -->
+										</div><!-- /.post-content-inner -->
+									</div><!-- /.post-content -->
+				
+									<div class="post-image" *ngIf="listingModel?.photography?.image">
+										<img src="{{RESIZED_CONTENT_PATH}}503x346xo/{{listingModel?.photography?.image}}" alt="listingModel?.photography?.title" class="fullsize-bg">
+				
+										<a title="{{listingModel?.photography?.title}}" routerLink="/Details/{{listingModel?.photography?.id + (listingModel?.photography?.customUrlTitle ? '/' + listingModel?.photography?.customUrlTitle : '')}}" class="link-gallery" *ngIf="listingModel?.photography?.galleryCount > 1">
+										<i class="fa fa-camera" aria-hidden="true"></i>
+				
+										+{{listingModel?.photography?.galleryCount - 1}}
+										</a>
+									</div><!-- /.post-image -->
+									</div><!-- /.post-inner -->
+								</li><!-- /.post post-media --> 
+				
+								<li class="post rtl" *ngFor="let item of listingModel?.leadMoreArticles?.slice(6, 10)">
+									<post [post]="item"></post>
+								</li><!-- /.post -->
+				
+								</ul><!-- /.posts -->
+							</div><!-- /.section-content -->
+				
+						</section><!-- /.section section-articles -->
+				  
+						<div id="latest-announcements-container" *ngIf="categoryId == ARABIC_SECTION_ID">
+								
+							<div class="section section-announcements ltr" *ngIf="listingModel?.latestAnnouncements?.length">
+							<a href="#" class="link-scroll-next">
+								<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+							</a>
+							
+							<aside class="section-aside">
+								<h2 class="section-title">
+								<small>
+									Latest
+							
+									<i class="ico-announcement-large"></i>
+								</small>
+							
+								ANNOUN-<br />
+								CEMENTS
+								</h2><!-- /.section-title -->
+							
+								<a href="ajax/popup-announcement.html" class="btn btn-primary btn-transparent link-popup">
+								SUBMIT AN ANNOUCEMENT
+								</a>
+							</aside><!-- /.section-aside -->
+							
+							<div class="section-content scrollable-horizontal">
+								<div class="slider slider-roundups-secondary">
+								<div class="slides">
+									<div class="slide"  *ngFor="let parentItem of listingModel?.latestAnnouncements; let i = index">
+									<ul class="list-news list-news-secondary" *ngIf="i % 2 == 0">
+										<li *ngFor="let item of listingModel?.latestAnnouncements.slice(i, i + 2)">
+										<span *ngIf="item.image">
+											<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+											<img src="{{RESIZED_CONTENT_PATH}}60x58xo/{{item.image}}" alt="">
+											</a>
+										</span>
+										
+										<h4>
+											<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
+										</h4>
+										</li>
+									</ul><!-- /.list-news list-news-secondary -->
+									</div><!-- /.slide -->
+								</div><!-- /.slides -->
+								</div><!-- /.slider -->
+							</div><!-- /.section-content -->
+							</div><!-- /.section section-announcements -->
+			
+						</div>
+				  
+						<section class="section section-articles no-sidebar " *ngIf="categoryId == ARABIC_SECTION_ID && listingModel?.loadMoreArticles?.length > 10">
+							<div class="section-content">
+								<ul class="posts">
+								<li class="post post-bd-top rtl" *ngFor="let item of listingModel?.listing?.slice(10, 11)">
+									<post [post]="item"></post>
+								</li><!-- /.post -->
+				
+								<li class="post post-media post-media-top" *ngIf="listingModel?.video">
+									<div class="post-inner">
+									<div class="post-content">
+										<span class="post-subtitle">
+										<i class="ico-logo-large"></i>
+				
+										Videos
+										</span>
+				
+										<div class="post-content-inner">
+										<h2 class="post-title">
+											<a title="{{listingModel?.video?.title}}" routerLink="/Details/{{listingModel?.video?.id + (listingModel?.video?.customUrlTitle ? '/' + listingModel?.video?.customUrlTitle : '')}}"></a>
+										</h2><!-- /.post-title -->
+				
+										<ul class="list-meta">
+											<li *ngIf="listingModel?.video?.writer">
+											<a title="{{listingModel?.video?.writer?.name}}" routerLink="/Writer/{{listingModel?.video?.writer?.id}}">By {{listingModel?.video?.writer?.name}}</a>
+											</li>
+				
+											<li>
+											{{listingModel?.video?.date | date:'MMM d'}}
+											</li>
+										</ul><!-- /.list-meta -->
+										</div><!-- /.post-content-inner -->
+									</div><!-- /.post-content -->
+				
+									<div class="post-image post-video" *ngIf="homeModlistingModelel?.video?.image">
+										<a title="{{listingModel?.video?.title}}" routerLink="/Details/{{listingModel?.video?.id + (listingModel?.video?.customUrlTitle ? '/' + listingModel?.video?.customUrlTitle : '')}}">
+										<img src="{{RESIZED_CONTENT_PATH}}500x358xo/{{listingModel?.video?.image}}" alt="{{listingModel?.video?.title}}" class="fullsize-bg">
+										</a>
+									</div><!-- /.post-image -->
+									</div><!-- /.post-inner -->
+								</li><!-- /.post post-media -->
+								
+								<li class="post rtl" *ngFor="let item of listingModel?.loadMoreArticles?.slice(11)">
+										<post [post]="item"></post>
+									</li><!-- /.post -->
+								</ul><!-- /.posts -->
+							</div><!-- /.section-content -->
+						</section><!-- /.section section-articles -->
+						
+						<section class="section" *ngIf="categoryModel?.templateId == VOX_POPULI_CATEGORY_TEMPLATE && listingModel?.loadMoreArticles && !(categoryId == ARABIC_SECTION_ID)">
 							<ul class="items">
 								<li class="item {{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of listingModel?.loadMoreArticles">
 									<div class="item-inner">
@@ -449,77 +539,78 @@
 							</ul><!-- /.items -->
 						</section><!-- /.section -->
 						
-						<section class="section section-articles section-photography no-sidebar" *ngIf="categoryModel?.templateId == PHOTOGRAPHY_CATEGORY_TEMPLATE  && listingModel?.loadMoreArticles">
-								<div class="section-content">
-									<ul class="posts">
-											<li class="post {{i % 2 == 0 ? 'post-media' : 'post-bd-top'}} {{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of listingModel?.loadMoreArticles; let i = index">
-													<div class="post-inner" *ngIf="i % 2 == 0">
-														<div class="post-content">
-															<div class="post-content-inner">
-																<h2 class="post-title">
-																	<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
-																</h2><!-- /.post-title -->
-																									
-																<ul class="list-meta">
-																	<li *ngIf="item?.writer">
-																		<a title="{{item.writer?.name}}" routerLink="/Writer/{{item?.writer?.id}}">By {{item.writer?.name}}</a>
-																	</li>
-																	
-																	<li *ngIf="item.date">
-																		<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">{{item.date | date:'MMM d'}}</a>
-																	</li>
-																</ul><!-- /.list-meta -->
-															</div><!-- /.post-content-inner -->
-														</div><!-- /.post-content -->
+		  
+						<section class="section section-articles section-photography no-sidebar" *ngIf="categoryModel?.templateId == PHOTOGRAPHY_CATEGORY_TEMPLATE  && listingModel?.loadMoreArticles && categoryId == ARABIC_SECTION_ID">
+							<div class="section-content">
+								<ul class="posts">
+										<li class="post {{i % 2 == 0 ? 'post-media' : 'post-bd-top'}} {{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of listingModel?.loadMoreArticles; let i = index">
+												<div class="post-inner" *ngIf="i % 2 == 0">
+													<div class="post-content">
+														<div class="post-content-inner">
+															<h2 class="post-title">
+																<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
+															</h2><!-- /.post-title -->
+																								
+															<ul class="list-meta">
+																<li *ngIf="item?.writer">
+																	<a title="{{item.writer?.name}}" routerLink="/Writer/{{item?.writer?.id}}">By {{item.writer?.name}}</a>
+																</li>
+																
+																<li *ngIf="item.date">
+																	<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">{{item.date | date:'MMM d'}}</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</div><!-- /.post-content-inner -->
+													</div><!-- /.post-content -->
+												
+													<div class="post-image" *ngIf="item.image">
+														<img src="{{RESIZED_CONTENT_PATH}}500x355xo/{{item.image}}" alt="{{item.title}}" class="fullsize-bg">
+												
+														<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}" class="link-gallery" *ngIf="item.galleryCount > 1">
+															<i class="fa fa-camera" aria-hidden="true"></i>
+												
+															+{{item.galleryCount - 1}}
+														</a>
+													</div><!-- /.post-image -->
+												</div><!-- /.post-inner -->
+												
+												<div class="post-inner" *ngIf="i % 2 == 1">
+														<header class="post-head">
+															<h2 class="post-title">
+																<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">{{item.title}} </a>
+															</h2><!-- /.post-title -->
+														</header><!-- /.post-head -->
 													
-														<div class="post-image" *ngIf="item.image">
-															<img src="{{RESIZED_CONTENT_PATH}}500x355xo/{{item.image}}" alt="{{item.title}}" class="fullsize-bg">
+														<div class="post-body">
+															<div class="post-image" *ngIf="item.image">
+																<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">
+																	<img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
+																</a>
+															</div><!-- /.post-image -->
+															<p [innerHTML]="item.smallDescription | truncate : 300"></p>
+														</div><!-- /.post-body -->
 													
-															<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}" class="link-gallery" *ngIf="item.galleryCount > 1">
-																<i class="fa fa-camera" aria-hidden="true"></i>
+														<footer class="post-foot">
+															<ul class="list-meta">
+																<li *ngIf="item?.writer">
+																	<a title="{{item.writer?.name}}" routerLink="/Writer/{{item?.writer?.id}}">
+																		<i class="ico-logo"></i>
 													
-																+{{item.galleryCount - 1}}
-															</a>
-														</div><!-- /.post-image -->
-													</div><!-- /.post-inner -->
-													
-													<div class="post-inner" *ngIf="i % 2 == 1">
-															<header class="post-head">
-																<h2 class="post-title">
-																	<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">{{item.title}} </a>
-																</h2><!-- /.post-title -->
-															</header><!-- /.post-head -->
-														
-															<div class="post-body">
-																<div class="post-image" *ngIf="item.image">
-																	<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">
-																		<img src="{{RESIZED_CONTENT_PATH}}135x95xi/{{item.image}}" alt="{{item.title}}">
+																		By {{item?.writer?.name}}
 																	</a>
-																</div><!-- /.post-image -->
-																<p [innerHTML]="item.smallDescription | truncate : 300"></p>
-															</div><!-- /.post-body -->
-														
-															<footer class="post-foot">
-																<ul class="list-meta">
-																	<li *ngIf="item?.writer">
-																		<a title="{{item.writer?.name}}" routerLink="/Writer/{{item?.writer?.id}}">
-																			<i class="ico-logo"></i>
-														
-																			By {{item?.writer?.name}}
-																		</a>
-																	</li>
-																	
-																	<li *ngIf="item.date">
-																		<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">{{item.date | date:'MMM d'}}</a>
-																	</li>
-																</ul><!-- /.list-meta -->
-															</footer><!-- /.post-foot -->
-														</div><!-- /.post-inner -->
-												</li><!-- /.post post-media -->
+																</li>
+																
+																<li *ngIf="item.date">
+																	<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle? '/' + item.customUrlTitle : '')}}">{{item.date | date:'MMM d'}}</a>
+																</li>
+															</ul><!-- /.list-meta -->
+														</footer><!-- /.post-foot -->
+													</div><!-- /.post-inner -->
+											</li><!-- /.post post-media -->
 
-									</ul><!-- /.posts -->
-								</div><!-- /.section-content -->
-							</section><!-- /.section section-articles -->
+								</ul><!-- /.posts -->
+							</div><!-- /.section-content -->
+						</section><!-- /.section section-articles -->
 					</div><!-- /.content-inner -->
 					
 					<div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">

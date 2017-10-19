@@ -24,6 +24,7 @@ import { SortPipe } from './pipes/sort.pipe';
 import { JoinNewsletterComponent } from './components/join-newsletter/join-newsletter.component';
 import { PostComponent } from './Components/post/post.component';
 import { TinyPostComponent } from './Components/tiny-post/tiny-post.component';
+import { CountryComponent } from './Components/country/country.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -54,7 +55,8 @@ var routes = [
     SortPipe,
     JoinNewsletterComponent,
     PostComponent,
-    TinyPostComponent
+    TinyPostComponent,
+    CountryComponent
   ],
   imports: [
     BrowserModule,

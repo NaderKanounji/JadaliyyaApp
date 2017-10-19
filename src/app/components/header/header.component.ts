@@ -7,6 +7,7 @@ import { FunctionsService } from '../../services/functions.service';
 
 
 import { _globals } from '../../includes/globals';
+import { SharedModel } from '../../includes/Models';
 
 @Component({
   selector: 'header-component',
@@ -47,6 +48,7 @@ export class HeaderComponent implements OnInit {
     this.ROUNDUPS_MONTHLY_URL_TITLE = _globals.ROUNDUPS_MONTHLY_URL_TITLE;
     
     this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);
+    console.log(this.sharedModel);
     // this.route.params.subscribe(params => {
     //   if(params['customUrlTitle']){
     //     this.customUrlTitle = params['customUrlTitle'];
@@ -84,14 +86,6 @@ export class HeaderComponent implements OnInit {
     this.myFunction.openSubMenu();
   }
 
-}
-interface SharedModel{
-  headerStructure:string;
-  categoryTitle:string;
-  categoryId:number;
-  isGoogleApiLoaded:boolean;
-  customUrlTitle:string;
-  socialMedia:SocialMedia[];
 }
 
 interface HeaderCategoriesModel{

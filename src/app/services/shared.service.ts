@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { SharedModel } from '../includes/Models';
 
 @Injectable()
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : []}
+    {"currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : []}
   );
   sharedModel = this.messageSource.asObservable();
 
@@ -45,6 +46,11 @@ export class SharedService {
     tempModel.socialMedia = mySocialMedia;
     this.messageSource.next(tempModel);
   }
+  set_isArabicSection(isArabic:boolean){
+    let tempModel = this.messageSource.getValue();
+    tempModel.isArabicSection = isArabic;
+    this.messageSource.next(tempModel);
+  }
   //----- \Setters
 
   alter_wrapper_classes(className:string) {
@@ -60,14 +66,6 @@ export class SharedService {
 
 }
 
-interface SharedModel{
-  currentRoute:string;
-  categoryTitle:string;
-  categoryId:number;
-  isGoogleApiLoaded:boolean;
-  customUrlTitle:string;
-  socialMedia:SocialMedia[];
-}
 interface SocialMedia{
   title:string;
   link:string;

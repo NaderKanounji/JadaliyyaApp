@@ -283,15 +283,11 @@ export class HomeComponent implements OnInit {
       if(this.myFunctions.is_dom_in_view('#latest-announcements-container', 500)){
           if(!this.isAnnouncementsLoaded && this.pageNumber > 2){
              this.isAnnouncementsLoaded = true;
-            // this.isLoadingMore = true; 
             this.http.get(_globals.API_URL + 'Data/GetHomeLatestAnnouncements').subscribe((data:any) =>{
               this.homeModel.latestAnnouncements2 = data['entries'];
-              //this.homeModel.articleIds = data['articleIds'];   
-           //   this.isLoadingMore = false; 
-              //this.myFunctions.load_home_roundups_section();
+              //this.homeModel.articleIds = data['articleIds'];  
             });
-          }
-        
+          }        
       }
       //Hot Section
       if(this.myFunctions.is_dom_in_view('#hot-most-read', 500)){

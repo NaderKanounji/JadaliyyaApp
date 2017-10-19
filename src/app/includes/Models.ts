@@ -22,6 +22,7 @@ export interface SocialMedia{
     currentRoute:string;
     categoryTitle:string;
     categoryId:number;
+    isArabicSection:boolean;
     customUrlTitle:string;
     isGoogleApiLoaded:boolean;
     socialMedia:SocialMedia[];

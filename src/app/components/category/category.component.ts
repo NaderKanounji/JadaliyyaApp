@@ -31,13 +31,15 @@ export class CategoryComponent implements OnInit {
 
    isDefaultTemplate:boolean = true;
    isEditorPick:boolean = false;
-   isArabicSection:boolean = false;
    pageNumber:number = 0;
+   isArabicSection:boolean = false;
+   isSubCategory:boolean = false;
    //--Flags
    startScrollLoading:boolean = false;
    isHotAndMostRecentLoaded:boolean = false;
    isLoadingMore:boolean = false;
    hasMoreToLoad:boolean = true;
+   isAnnouncementsLoaded:boolean = false;
 
    typeId:string = "";
 
@@ -62,11 +64,29 @@ export class CategoryComponent implements OnInit {
       primaryList:null,
       hotOnFacebook:null,
       mostRead:null,
-      loadMoreArticles:null
+      loadMoreArticles:null,
+      video:null,
+      photography:null,
+      latestAnnouncements:null,
+      jadalicious:null
     };
     
     this.route.params.subscribe(params => {
       this.categoryId = params['id'];
+      //Check if arabic section page
+      if(this.categoryId == this.ARABIC_SECTION_ID){
+        this.isArabicSection = true;
+        this.isSubCategory = true;
+        if(params['subId']){
+          //get sub category
+          this.categoryId = params['subId']
+        }
+      }
+      this.sharedService.set_categoryId(this.categoryId);
+      this.sharedService.set_isArabicSection(this.isArabicSection);
+     
+
+      //Check if roundups
       if(this.categoryId == _globals.ROUNDUPS_CATEGORY_ID){
         this.sharedService.set_customUrlTitle(params['customUrlTitle']);
         if(params['customUrlTitle'] == _globals.ROUNDUPS_MEDIA_URL_TITLE){
@@ -76,24 +96,14 @@ export class CategoryComponent implements OnInit {
           this.typeId = _globals.ROUNDUPS_MONTHLY_DISPLAY_ID.toString();
         }
       }
-      this.sharedService.set_categoryId(this.categoryId);
-      if(params['id'] == this.ARABIC_SECTION_ID){
-        this.isArabicSection = true;
-        if(params['subid']){
-          //get sub category
-        }else{
-          // get first subcategory
-        }
-      }else{
-        
-      }
-      this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + params['id'] + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '' + (this.isArabicSection && params['subid'] ? '&subId=' + params['subId'] : ''))).subscribe((data:any) =>{
+
+      //Initial category call
+      this.http.get(_globals.API_URL + "Data/GetCategoryInit?catId=" + this.categoryId + '&isSubCategory=' + this.isSubCategory  + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '') ).subscribe((data:any) =>{
         this.categoryModel = data;
 
         this.sharedService.set_categoryTitle(this.isArabicSection ? 'القسم العربي' : data['title']);
 
         this.isDefaultTemplate = data['templateId'] != this.VOX_POPULI_CATEGORY_TEMPLATE && data['templateId'] != this.PHOTOGRAPHY_CATEGORY_TEMPLATE;
-
 
          this.fetch_listing_data(data['recentStories'], data['templateId']);
           setTimeout(() => {
@@ -118,11 +128,20 @@ export class CategoryComponent implements OnInit {
         this.listingModel.primaryList = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true, 0, 0));
         break;
       default:
-        all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
-          return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
-        });
-        this.listingModel.mainArticle = all[0];
-        this.listingModel.primaryList = this.sort.transform(all.slice(1), 2, 1, true, 0, 0);
+        if(this.isArabicSection && this.isSubCategory){
+          this.listingModel.primaryList = all;
+        }else{
+          if(this.isArabicSection){
+            this.listingModel.mainArticle = all[0];
+            this.listingModel.primaryList = all.slice(1);
+          }else{
+            all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
+              return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
+            });
+            this.listingModel.mainArticle = all[0];
+            this.listingModel.primaryList = this.sort.transform(all.slice(1), 2, 1, true, 0, 0);
+          }
+        }
         break;
     }
   }
@@ -131,8 +150,9 @@ export class CategoryComponent implements OnInit {
   onWindowScroll() {
     //console.log(this.startScrollLoading);
     
-    //Hot Section
+    
     if(this.startScrollLoading){
+      //Hot Section
       if(this.myFunctions.is_dom_in_view('#hot-most-read', 500)){
           if(!this.isHotAndMostRecentLoaded){
             this.isHotAndMostRecentLoaded = true;
@@ -145,10 +165,22 @@ export class CategoryComponent implements OnInit {
           }
         
       }
+      //Latest Announcements
+      if(this.myFunctions.is_dom_in_view('#latest-announcements-container', 500)){
+        if(!this.isAnnouncementsLoaded && this.pageNumber > 2){
+          this.isAnnouncementsLoaded = true;
+          this.http.get(_globals.API_URL + 'Data/GetCategoryLatestAnnouncements?catId=' + this.categoryId).subscribe((data:any) =>{
+            this.listingModel.latestAnnouncements = data['entries'];
+            //this.homeModel.articleIds = data['articleIds'];  
+          });
+        }
+
+      }
+      //Load more
       if(this.hasMoreToLoad && this.myFunctions.is_dom_in_view('#load-more-container', 300)){
           if(!this.isLoadingMore){
             this.isLoadingMore = true;
-            this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + '&idsToRemove=' + this.categoryModel.articleIds + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) =>{
+            this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + '&idsToRemove=' + this.categoryModel.articleIds +'&isSubCategory=' + this.isSubCategory + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) =>{
               if(data['entries'] != null && data['entries'].length){
                 if(this.categoryModel.templateId == this.VOX_POPULI_CATEGORY_TEMPLATE){
                   let all = data['entries'].sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
@@ -159,21 +191,32 @@ export class CategoryComponent implements OnInit {
                   }else{
                     this.listingModel.loadMoreArticles = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true, 0, 0)); 
                   }
-                }else{                  
-                  let enTake = 2, arTake = 1;
-                  if(this.categoryModel.templateId == this.PHOTOGRAPHY_CATEGORY_TEMPLATE){
-                    enTake = 1;
-                    arTake = 1;
-                  }
-                  if(this.pageNumber > 1){
-                    this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(this.sort.transform(data['entries'], enTake, arTake, false, 0, 0));    
+                }else{     
+                  if(this.isArabicSection && this.isSubCategory){
+                    if(this.pageNumber > 1){
+                      this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(data['entries']);    
+                    }else{
+                      this.listingModel.loadMoreArticles = data['entries']; 
+                    }
                   }else{
-                    this.listingModel.loadMoreArticles = this.sort.transform(data['entries'], enTake, arTake, false, 0, 0); 
-                  }
+                    let enTake = 2, arTake = 1;
+                    if(this.categoryModel.templateId == this.PHOTOGRAPHY_CATEGORY_TEMPLATE){
+                      enTake = 1;
+                      arTake = 1;
+                    }
+                    if(this.pageNumber > 1){
+                      this.listingModel.loadMoreArticles = this.listingModel.loadMoreArticles.concat(this.sort.transform(data['entries'], enTake, arTake, false, 0, 0));    
+                    }else{
+                      this.listingModel.loadMoreArticles = this.sort.transform(data['entries'], enTake, arTake, false, 0, 0); 
+                    }
+                  }           
+                  
                 }
               }else{
                 this.hasMoreToLoad = false;
               }
+              console.log(this.listingModel);
+              
               // console.log(data['entries']);
               // console.log(this.listingModel.loadMoreArticles);
               
@@ -212,8 +255,9 @@ export class CategoryComponent implements OnInit {
       
       this.categoryModel.articleIds = ids.join(',');
       this.hasMoreToLoad = true;
-      this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=0&idsToRemove=' + this.categoryModel.articleIds + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) => {
+      this.http.get(_globals.API_URL + 'Data/GetCategoryListing?catId=' + this.categoryId + '&isEditorPick=' + this.isEditorPick + '&page=0&idsToRemove=' + this.categoryModel.articleIds + '&isSubCategory=' + this.isSubCategory + (this.typeId && this.typeId != "" ? '&typeId=' + this.typeId : '')).subscribe((data:any) => {
         
+      this.isAnnouncementsLoaded = false;
         if(data['entries'] == null || !data['entries'].length){
           this.hasMoreToLoad = false;
         }
@@ -235,6 +279,10 @@ interface ListingModel{
   hotOnFacebook:ArticleModel[];
   mostRead:ArticleModel[];
   loadMoreArticles:ArticleModel[];
+  photography:ArticleModel;
+  video:ArticleModel;
+  jadalicious:ArticleModel[];
+  latestAnnouncements:ArticleModel[];
 }
 
 
@@ -252,5 +300,6 @@ interface CategoryModel{
   moreFeatured:ArticleModel[];
   moreRecent:ArticleModel[];
   filmReviews:ArticleModel[];
+  
 }
 
