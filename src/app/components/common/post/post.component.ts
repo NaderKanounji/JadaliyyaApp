@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {ArticleModel} from '../../includes/Models';
-import {_globals} from '../../includes/globals';
+import {ArticleModel} from '../../../includes/Models';
+import {_globals} from '../../../includes/globals';
 @Component({
   selector: 'post',
   templateUrl: './post.component.html',

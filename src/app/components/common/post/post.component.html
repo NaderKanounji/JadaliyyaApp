@@ -12,7 +12,7 @@
         </a>
       </div><!-- /.post-image -->
 
-      <p [innerHTML]="post.smallDescription | truncate:300"></p>
+      <p [innerHTML]="post.smallDescription | truncate:(post.isArabic? 450 : 300)"></p>
 
       <a title="post.title" routerLink="/Details/{{post.id + (post.customUrlTitle ? '/' +  post.customUrlTitle : '')}}"></a>
     </div><!-- /.post-body -->

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {ArticleModel} from '../../includes/Models';
-import {_globals} from '../../includes/globals';
+import {ArticleModel} from '../../../includes/Models';
+import {_globals} from '../../../includes/globals';
 @Component({
   selector: '[tiny-post]',
   templateUrl: './tiny-post.component.html',

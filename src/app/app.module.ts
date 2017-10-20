@@ -21,10 +21,13 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { SocialIconPipe } from './pipes/social-icon.pipe';
 import { FilterListingPipe } from './pipes/filter-listing.pipe';
 import { SortPipe } from './pipes/sort.pipe';
-import { JoinNewsletterComponent } from './components/join-newsletter/join-newsletter.component';
-import { PostComponent } from './Components/post/post.component';
-import { TinyPostComponent } from './Components/tiny-post/tiny-post.component';
+import { JoinNewsletterComponent } from './components/common/join-newsletter/join-newsletter.component';
+import { PostComponent } from './Components/common/post/post.component';
+import { TinyPostComponent } from './Components/common/tiny-post/tiny-post.component';
 import { CountryComponent } from './Components/country/country.component';
+import { HotOnFacebookComponent } from './Components/common/hot-on-facebook/hot-on-facebook.component';
+import { LatestAnnouncementsComponent } from './Components/common/latest-announcements/latest-announcements.component';
+import { JadWidgetComponent } from './components/common/jad-widget/jad-widget.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -56,7 +59,10 @@ var routes = [
     JoinNewsletterComponent,
     PostComponent,
     TinyPostComponent,
-    CountryComponent
+    CountryComponent,
+    HotOnFacebookComponent,
+    LatestAnnouncementsComponent,
+    JadWidgetComponent
   ],
   imports: [
     BrowserModule,

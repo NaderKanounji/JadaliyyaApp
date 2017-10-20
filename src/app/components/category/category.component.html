@@ -256,93 +256,10 @@
 
 							</div><!-- /.tabs-body -->
 						</div><!-- /.tabs -->
-						<div id="hot-most-read">
-							<div class="section section-hot ltr" *ngIf="listingModel?.hotOnFacebook || listingModel?.mostRead">
-									<div class="section-image">
-										<img src="../../assets/images/temp/section-bg.jpg" alt="" class="fullsize-bg">
-									</div><!-- /.section-image -->
-								
-									<div class="section-content">
-										<header class="section-head">
-											<nav class="tabs-nav">
-												<i class="ico-logo-yellow"></i>
-										
-												<ul>
-													<li class="{{listingModel?.hotOnFacebook ? 'current' : ''}}" *ngIf="listingModel?.hotOnFacebook">
-														<a href="#tab-hot1111">HOT ON FACEBOOK</a>
-													</li>
-													
-													<li class="{{!(listingModel?.hotOnFacebook) ? 'current' : ''}}" *ngIf="listingModel?.mostRead">
-														<a href="#tab-hot222">MOST READ</a>
-													</li>
-												</ul>
-											</nav><!-- /.tabs-nav -->
-										
-											<a href="#">
-												<i class="fa fa-plus-circle" aria-hidden="true"></i>
-											</a>
-										</header><!-- /.section-head -->
-										
-										<div class="section-body">
-											<div class="tabs-body scrollable-horizontal">
-												<div class="tab {{listingModel?.hotOnFacebook ? 'current' : ''}}" id="tab-hot1111" *ngIf="listingModel?.hotOnFacebook">
-													<div class="slider slider-feed">
-														<div class="slides owl-carousel">
-															<div class="slide" *ngFor="let slide of listingModel?.hotOnFacebook">
-																<ul class="list-news list-news-dark list-feed">
-																	<li>
-																		<span *ngIf="slide?.image">
-																			<a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
-																				<img src="{{RESIZED_CONTENT_PATH}}100x73xo/{{slide.image}}" alt="{{slide.title}}">
-																			</a>
-																		</span>
-								
-																		<div>
-																			<p [innerHTML]="slide?.title"></p>
-																			
-																			<a>
-																				<img src="../../assets/images/temp/share.png" alt="">
-																			</a>
-																		</div>
-																	</li>
-																</ul><!-- /.list-news list-news-dark -->
-															</div><!-- /.slide -->
-
-														</div><!-- /.slides -->
-													</div><!-- /.slider -->
-												</div><!-- /#tab-hot1111.tab current -->
-								
-												<div class="tab {{!(listingModel?.hotOnFacebook) ? 'current' : ''}}" id="tab-hot222" *ngIf="listingModel?.mostRead">
-													<div class="slider slider-feed">
-														<div class="slides owl-carousel">
-															<div class="slide" *ngFor="let slide of listingModel?.mostRead">
-																<ul class="list-news list-news-dark list-feed">
-																	<li>
-																		<span *ngIf="slide?.image">
-																			<a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
-																				<img src="{{RESIZED_CONTENT_PATH}}100x73xo/{{slide.image}}" alt="{{slide.title}}">
-																			</a>
-																		</span>
-								
-																		<div>
-																			<p [innerHTML]="slide?.title"></p>
-																			
-																			<a href="#">
-																				<img src="../../assets/images/temp/share.png" alt="share">
-																			</a>
-																		</div>
-																	</li>
-																</ul><!-- /.list-news list-news-dark -->
-															</div><!-- /.slide -->
-								
-														</div><!-- /.slides -->
-													</div><!-- /.slider -->
-												</div><!-- /#tab-hot1111.tab current -->
-											</div><!-- /.tabs-body -->
-										</div><!-- /.section-body -->
-									</div><!-- /.section-content -->
-								</div><!-- /.section section-hot -->
+						<div id="hot-most-read" hot-on-facebook [model]="homeModel">
+							
 						</div>
+						
 						<section class="section section-articles no-sidebar" *ngIf="isDefaultTemplate && listingModel?.loadMoreArticles &&!(categoryId == ARABIC_SECTION_ID)">
 							<div class="section-content">
 								<ul class="posts" >
