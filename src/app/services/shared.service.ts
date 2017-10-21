@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { SharedModel } from '../includes/Models';
+import { SharedModel, SocialMedia,SharedCountryModel } from '../includes/Models';
 
 @Injectable()
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : []}
+    {"currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null}
   );
   sharedModel = this.messageSource.asObservable();
 
@@ -51,6 +51,11 @@ export class SharedService {
     tempModel.isArabicSection = isArabic;
     this.messageSource.next(tempModel);
   }
+  set_country(myCountry:SharedCountryModel){
+    let tempModel = this.messageSource.getValue();
+    tempModel.country = myCountry;
+    this.messageSource.next(tempModel);
+  }
   //----- \Setters
 
   alter_wrapper_classes(className:string) {
@@ -64,9 +69,4 @@ export class SharedService {
   }
 
 
-}
-
-interface SocialMedia{
-  title:string;
-  link:string;
 }

@@ -50,7 +50,7 @@ export class FunctionsService {
   load_fb_comments(){
     myFunctions.load_fb_comments();
   }
- load_home_main_slider(){
+  load_home_main_slider(){
     myFunctions.load_home_main_slider();
   }
   header_bindings(){
@@ -59,18 +59,20 @@ export class FunctionsService {
   sticky_sidebar_binding(){
     myFunctions.sticky_sidebar_binding();
   }
-
-    load_google_api(){
-      (function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/platform.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-    }
-    back_to_top(speed:number){
-        myFunctions.back_to_top(speed);
-    }
-    animate_to_element(id:string, offset:number, speed:number){
-        myFunctions.animate_to_element(id, offset, speed);
-    }
+  svg_map_init(){
+    myFunctions.svg_map_init();
+  }
+  load_google_api(){
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/platform.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  }
+  back_to_top(speed:number){
+      myFunctions.back_to_top(speed);
+  }
+  animate_to_element(id:string, offset:number, speed:number){
+      myFunctions.animate_to_element(id, offset, speed);
+  }
 }

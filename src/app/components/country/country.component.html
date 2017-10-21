@@ -1,3 +1,366 @@
-<p>
-  country works!
-</p>
+<div class="container">
+		<div class="main">
+			<div class="shell">
+				<div class="content">
+					<div class="content-inner">
+						<div class="tabs tabs-secondary">
+							<div class="tabs-head">
+								<nav class="tabs-nav">
+									<ul>
+										<li class="current" (click)="fetch_new_listing(false)">
+											<a href="#tab1">RECENT STORIES</a>
+										</li>
+										
+										<li (click)="fetch_new_listing(true)">
+											<a href="#tab2">EDITOR’S PICKS</a>
+										</li>
+									</ul>
+								</nav><!-- /.tabs-nav -->
+							</div><!-- /.tabs-head -->
+							
+							<div class="tabs-body">
+								<div class="tab current" id="tab1">
+									<section class="section section-articles section-articles-primary">
+										<div class="section-content">
+											<ul class="posts">
+                        <li class="post post-large" *ngFor="let item of countryModel?.listing?.slice(0,1)">
+                          
+                          <div class="post-inner">
+                            <div class="post-image" *ngIf="item?.image">
+                              <a routerLink="/Details/{{item?.id}}/{{item?.customUrlTitle ? '/' + item.customUrlTitle : ''}}">
+                                <img src="{{RESIZED_CONTENT_PATH}}348x301xi/{{item?.image}}" alt="">
+                              </a>
+                            </div><!-- /.post-image -->
+                          
+                            <div class="post-content">
+                              <header class="post-head">
+                                <h2 class="post-title">
+                                  <a routerLink="/Details/{{item?.id}}/{{item?.customUrlTitle ? '/' + item.customUrlTitle : ''}}">{{item?.title | truncate: 52}}</a>
+                                </h2><!-- /.post-title -->
+                              </header><!-- /.post-head -->
+                              
+                              <div class="post-body">
+                                <p [innerHTML]="item?.smallDescription | truncate: 315"></p>
+                              </div><!-- /.post-body -->
+                              
+                              <footer class="post-foot">
+                                <ul class="list-meta">
+                                  <li *ngIf="item?.writer">
+                                    <a routerLink="/Writer/{{item?.writer?.id}}">
+                                      <i class="ico-logo"></i>
+                              
+                                      By {{item?.writer?.name}}
+                                    </a>
+                                  </li>
+                                  
+                                  <li>
+                                    <a href="#">Jan 8</a>
+                                  </li>
+                                </ul><!-- /.list-meta -->
+                              </footer><!-- /.post-foot -->
+                            </div><!-- /.post-content -->
+                          </div><!-- /.post-inner -->
+                        </li><!-- /.post -->
+						
+												<li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(1, 14)">
+														<post [post]="post"></post>
+												</li><!-- /.post -->
+											</ul><!-- /.posts -->
+										</div><!-- /.section-content -->
+									</section><!-- /.section section-articles -->
+								</div><!-- /.tab -->
+							</div><!-- /.tabs-body -->
+						</div><!-- /.tabs -->
+            <div id="hot-most-read" hot-on-facebook [model]="countryModel">
+                
+              </div>
+					
+						<section class="section section-articles" *ngIf="countryModel?.listing?.length > 14">
+							<div class="section-content">
+								<ul class="posts">
+                  <li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(14, 18)">
+                      <post [post]="post"></post>
+                  </li><!-- /.post -->
+                  
+									<li class="post post-report">
+										<div class="post-inner">
+											<div class="quote">
+												<div class="quote-inner">
+													<h5>
+														<a href="#">
+															Check out our  <strong>REPORTS PAGE</strong> and catch up on news &amp; events
+																												
+															<i class="ico-link"></i>
+														</a>
+													</h5>
+												</div><!-- /.quote-inner -->
+											</div><!-- /.quote -->
+										</div><!-- /.post-inner -->
+                  </li><!-- /.post -->
+                  
+                  <li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(18, 22)">
+                      <post [post]="post"></post>
+                  </li><!-- /.post -->
+									
+									<li class="post post-media" *ngIf="countryModel?.photography">
+										<div class="post-inner">
+											<div class="post-content">
+												<span class="post-subtitle">
+													<i class="ico-logo-large"></i>
+										
+													PHOTOGRAPHY
+												</span>
+										
+												<div class="post-content-inner">
+													<h2 class="post-title">
+														<a href="#">Federal judge<br /> rules for Apple in New York case involving a locked iPhone</a>
+													</h2><!-- /.post-title -->
+																						
+													<ul class="list-meta">
+														<li>
+															<a href="#">By Jadaliyya Egypt Editors</a>
+														</li>
+														
+														<li>
+															<a href="#">Jan 8</a>
+														</li>
+													</ul><!-- /.list-meta -->
+												</div><!-- /.post-content-inner -->
+											</div><!-- /.post-content -->
+										
+											<div class="post-image">
+												<img src="../../assets/images/temp/article-photography.jpg" alt="" class="fullsize-bg">
+										
+												<a href="#" class="link-gallery">
+													<i class="fa fa-camera" aria-hidden="true"></i>
+										
+													+15
+												</a>
+											</div><!-- /.post-image -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post post-media -->
+
+                  <li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(22, 26)">
+                      <post [post]="post"></post>
+                  </li><!-- /.post -->
+
+								</ul><!-- /.posts -->
+							</div><!-- /.section-content -->
+						</section><!-- /.section section-articles -->
+
+						<!--#include file="ssi/section-announcements.shtml" -->
+
+						<section class="section section-articles" *ngIf="countryModel?.listing?.length > 26">
+							<div class="section-content">
+								<ul class="posts">
+                  <li class="post post-bd-top {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(26, 27)">
+                      <post [post]="post"></post>
+                  </li><!-- /.post -->
+														
+									<li class="post post-media post-media-top" *ngIf="countryModel?.video">
+										<div class="post-inner">
+											<div class="post-content">
+												<span class="post-subtitle">
+													<i class="ico-logo-large"></i>
+										
+													Video
+												</span>
+										
+												<div class="post-content-inner">
+													<h2 class="post-title">
+														<a href="#">Federal judge<br /> rules for Apple in New York case involving a locked iPhone</a>
+													</h2><!-- /.post-title -->
+																						
+													<ul class="list-meta">
+														<li>
+															<a href="#">By Jadaliyya Egypt Editors</a>
+														</li>
+														
+														<li>
+															<a href="#">Jan 8</a>
+														</li>
+													</ul><!-- /.list-meta -->
+												</div><!-- /.post-content-inner -->
+											</div><!-- /.post-content -->
+										
+											<div class="post-image post-video">
+												<a href="#">
+													<img src="../../assets/images/temp/video.jpg" alt="" class="fullsize-bg">
+												</a>
+											</div><!-- /.post-image -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post post-media -->
+								
+                  <li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(27, 30)">
+                      <post [post]="post"></post>
+                  </li><!-- /.post -->
+
+									<li class="post post-jadalicous" *ngIf="countryModel?.jadalicious">
+										<div class="post-inner">
+											<ul class="widgets">
+												<li class="widget-jadalicous">
+													<div class="widget-head">
+														<h3 class="widget-title">
+															JAD<strong>ALICOUS</strong>
+																	
+															<i class="ico-leaf"></i>
+														</h3><!-- /.widget-title -->
+													</div><!-- /.widget-head -->
+																	
+													<div class="widget-image">
+														<img src="../../assets/images/temp/dolphin.jpg" alt="" class="fullsize-bg">
+																	
+														<span class="widget-caption">New life for ‘Tree Man’?</span>
+																									
+														<a href="#"></a>
+													</div><!-- /.widget-image -->
+													
+													<div class="widget-body">
+														<ul class="list-news list-news-round">
+															<li>
+																<span>
+																	<a href="#">
+																		<img src="../../assets/images/temp/news21.jpg" alt="">
+																	</a>
+																</span>
+														
+																<h4>
+																	<a href="#">DARS Media Roundup (January 2016)</a>
+																</h4>
+															</li>
+															
+															<li>
+																<span>
+																	<a href="#">
+																		<img src="../../assets/images/temp/news22.jpg" alt="">
+																	</a>
+																</span>
+														
+																<h4>
+																	<a href="#">DARS Media Roundup (January 2016)</a>
+																</h4>
+															</li>
+															
+															<li>
+																<span>
+																	<a href="#">
+																		<img src="../../assets/images/temp/news23.jpg" alt="">
+																	</a>
+																</span>
+														
+																<h4>
+																	<a href="#">DARS Media Roundup (January 2016)</a>
+																</h4>
+															</li>
+															
+															<li>
+																<span>
+																	<a href="#">
+																		<img src="../../assets/images/temp/news24.jpg" alt="">
+																	</a>
+																</span>
+														
+																<h4>
+																	<a href="#">DARS Media Roundup (January 2016)</a>
+																</h4>
+															</li>
+															
+															<li>
+																<span>
+																	<a href="#">
+																		<img src="../../assets/images/temp/news25.jpg" alt="">
+																	</a>
+																</span>
+														
+																<h4>
+																	<a href="#">DARS Media Roundup (January 2016)</a>
+																</h4>
+															</li>
+														</ul><!-- /.list-news -->
+													</div><!-- /.widget-body -->
+												</li><!-- /.widget -->
+											</ul><!-- /.widgets -->
+										</div><!-- /.post-inner -->
+									</li><!-- /.post -->
+														
+                  <li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(30)">
+                      <post [post]="post"></post>
+                  </li><!-- /.post -->
+
+								</ul><!-- /.posts -->
+							</div><!-- /.section-content -->
+						</section><!-- /.section section-articles -->
+					</div><!-- /.content-inner -->
+					
+					<div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">
+              <a href="#" class="link-load">
+                <ul class="load-more-loader">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </a>
+            </div><!-- /.content-actions -->
+				</div><!-- /.content -->
+					
+				<div class="sidebar sidebar-up">
+					<ul class="widgets">
+						<li class="widget-subscribe widget-subscribe-smaller">
+							<div class="widget-content">
+                  <app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
+					
+                  <div class="socials" *ngIf="sharedModel?.socialMedia?.length > 0">
+                      <ul>
+                        <li *ngFor="let item of sharedModel?.socialMedia">
+                          <a href="{{item.link}}" class="link-{{item.title | social:true}}" target="_blank">
+                            <i class="fa fa-{{item.title | social}}" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        
+                      </ul>
+                    </div><!-- /.socials -->
+							</div><!-- /.widget-content -->
+						</li><!-- /.widget -->
+					
+						<li class="widget-jad widget-jad-smaller">
+							<div class="widget-image">
+								<a href="#">
+									<img src="../../assets/images/temp/jadmag1.jpg" alt="">
+								</a>
+							</div><!-- /.widget-image -->
+						</li><!-- /.widget -->
+					
+						<li class="widget-primary " more-stories-widget [featured]="countryModel?.moreFeatured" [recent]="countryModel?.moreRecent" *ngIf="countryModel?.moreFeatured || countryModel?.moreRecent">
+                
+            </li><!-- /.widget-primary -->
+
+						<li class="widget-primary widget-jad-nav hidden-sm hidden-xs hidden-md" jad-nav-widget [countries]="countryModel?.jadNavigation" *ngIf="countryModel?.jadNavigation?.length">
+                
+               </li><!-- /.widget-primary -->
+					
+						<li class="widget-primary" *ngIf="countryModel?.page?.smallDescription">
+							<div class="quote">
+								<div class="quote-inner">
+									<blockquote [innerHTML]="countryModel?.page?.smallDescription | truncate : 205"></blockquote>
+													
+									<ul class="list-inline">
+										<li *ngIf="countryModel?.page?.email">
+											<a title="mail" href="mailTo:countryModel?.page?.email">
+												<i class="fa fa-envelope" aria-hidden="true"></i>
+											</a>
+										</li>
+										
+										<li *ngIf="countryModel?.page?.twitter">
+											<a title="twitter" href="{{countryModel?.page?.twitter}}">
+												<i class="fa fa-twitter" aria-hidden="true"></i>
+											</a>
+										</li>
+									</ul><!-- /.list-inline -->
+								</div><!-- /.quote-inner -->
+							</div><!-- /.quote -->
+						</li><!-- /.widget-primary -->
+					</ul><!-- /.widgets -->
+				</div><!-- /.sidebar -->
+			</div><!-- /.shell -->
+		</div><!-- /.main -->
+	</div><!-- /.container -->

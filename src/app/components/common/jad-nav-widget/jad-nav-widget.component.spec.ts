@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JadWidgetComponent } from './jad-widget.component';
+import { JadNavWidgetComponent } from './jad-nav-widget.component';
 
-describe('JadWidgetComponent', () => {
-  let component: JadWidgetComponent;
-  let fixture: ComponentFixture<JadWidgetComponent>;
+describe('JadNavWidgetComponent', () => {
+  let component: JadNavWidgetComponent;
+  let fixture: ComponentFixture<JadNavWidgetComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JadWidgetComponent ]
+      declarations: [ JadNavWidgetComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JadWidgetComponent);
+    fixture = TestBed.createComponent(JadNavWidgetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

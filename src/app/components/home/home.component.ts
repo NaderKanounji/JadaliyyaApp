@@ -9,7 +9,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, TagModel } from '../../includes/Models';
+import { ArticleModel, SocialMedia, TagModel, FeaturedRecentModel, Profile } from '../../includes/Models';
 
 // import * as _globals from '../../includes/globals'; 
 
@@ -99,6 +99,7 @@ export class HomeComponent implements OnInit {
     //Get Initial home call
     this.http.get(_globals.API_URL + "Data/GetHomeInit").subscribe((data:any) =>{
       this.homeModel = data;
+      
       this.fetch_listing_data(data['recentStories']['articles'], 0);
       setTimeout(() => {
         this.pageNumber++;
@@ -355,9 +356,9 @@ interface HomeModel{
     list3:ArticleModel;
   }
   sidebar:{
-    newton:featuredRecentModel;
-    pedagogy:featuredRecentModel;
-    quickThoughts:featuredRecentModel;
+    newton:FeaturedRecentModel;
+    pedagogy:FeaturedRecentModel;
+    quickThoughts:FeaturedRecentModel;
     jadNavigation:[{
       id:number;
       title:string;
@@ -366,15 +367,6 @@ interface HomeModel{
     popularTags:TagModel[];
   }
 }
-interface Profile{
-  id:number;
-  name:string;
-  image:string;
-}
 
-interface featuredRecentModel{
-  featured:ArticleModel[];
-  recent:ArticleModel[];
-}
 
 

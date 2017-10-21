@@ -27,7 +27,8 @@ import { TinyPostComponent } from './Components/common/tiny-post/tiny-post.compo
 import { CountryComponent } from './Components/country/country.component';
 import { HotOnFacebookComponent } from './Components/common/hot-on-facebook/hot-on-facebook.component';
 import { LatestAnnouncementsComponent } from './Components/common/latest-announcements/latest-announcements.component';
-import { JadWidgetComponent } from './components/common/jad-widget/jad-widget.component';
+import { MoreStoriesComponent } from './Components/common/more-stories/more-stories.component';
+import { JadNavWidgetComponent } from './Components/common/jad-nav-widget/jad-nav-widget.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -37,8 +38,8 @@ var routes = [
   { path: 'Category/:id', component: CategoryComponent  },
   { path: 'Category/:id/:customUrlTitle', component: CategoryComponent  },
   { path: 'Category/:id/:subId/:customUrlTitle', component: CategoryComponent  },
-  { path: 'Country/:id', component: CategoryComponent  },
-  { path: 'Country/:id/:customUrlTitle', component: CategoryComponent  },
+  { path: 'Country/:id', component: CountryComponent  },
+  { path: 'Country/:id/:customUrlTitle', component: CountryComponent  },
   { path: '**', redirectTo:''  }
 ];
 
@@ -62,7 +63,8 @@ var routes = [
     CountryComponent,
     HotOnFacebookComponent,
     LatestAnnouncementsComponent,
-    JadWidgetComponent
+    MoreStoriesComponent,
+    JadNavWidgetComponent
   ],
   imports: [
     BrowserModule,

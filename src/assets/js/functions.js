@@ -1561,10 +1561,16 @@ module.exports.myFunctions = {
 	},
 	homeSidebar:function(){
 		setTimeout(function(){
-			svg_map_init();
+			//svg_map_init();
 			profiles_carousel_init();
 			tags_widget_init();
 		},200);
+	},
+	
+	svg_map_init:function(){
+		setTimeout(function(){
+			svg_map_init();
+		},100);
 	},
 	load_fb_comments:function(){
 		setTimeout(function(){

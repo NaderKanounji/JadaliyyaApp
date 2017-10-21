@@ -1,311 +1,389 @@
 
 <div class="popup popup-thank-you mfp-hide" id="popup-thank-you">
-		<div class="popup-inner">
-			<i class="ico-logo-square"></i>
-	
-			<h3 class="popup-title">
-				THANK YOU FOR YOUR INTEREST TO <br />
-	
-				JOIN OUR GROUP OF WRITERS.
-			</h3><!-- /.popup-title -->
-	
-			<p>Our team will review your request and confirm back to you by email once your account is activated.</p>
-	
-			<a href="#" class="link-close-popup">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</a>
-		</div><!-- /.popup-inner -->
-	</div><!-- /.popup -->
-	
-	<div class="popup popup-thank-you mfp-hide" id="popup-thank-you1">
-		<div class="popup-inner">
-			<i class="ico-logo-square"></i>
-	
-			<h3 class="popup-title">
-				THANK YOU!<br />
-	
-				WE WILL GET BACK TO YOU SOON.
-			</h3><!-- /.popup-title -->
-	
-			<a href="#" class="link-close-popup">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</a>
-		</div><!-- /.popup-inner -->
-	</div><!-- /.popup -->
-	
-	<div class="popup popup-thank-you mfp-hide" id="thank-you-advertice">
-		<div class="popup-inner">
-			<i class="ico-logo-square"></i>
-	
-			<h3 class="popup-title">
-				THANK YOU!<br />
-				
-				YOUR REQUEST HAS BEEN SUCCESSFULLY SENT.
-			</h3><!-- /.popup-title -->
-	
-			<a href="#" class="link-close-popup">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</a>
-		</div><!-- /.popup-inner -->
-	</div><!-- /.popup -->
-	
-	<div class="popup popup-thank-you mfp-hide" id="thank-you-share">
-		<div class="popup-inner">
-			<i class="ico-logo-square"></i>
-	
-			<h3 class="popup-title">
-				THANK YOU!<br />
-				
-				AN EMAIL HAS BEEN SENT TO YOUR FRIEND.
-			</h3><!-- /.popup-title -->
-	
-			<a href="#" class="link-close-popup">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</a>
-		</div><!-- /.popup-inner -->
-	</div><!-- /.popup -->
-	
-	<div class="popup popup-thank-you mfp-hide" id="forgot-pass">
-		<div class="popup-inner">
-			<i class="ico-logo-square"></i>
-	
-			<h3 class="popup-title">
-				AN EMAIL HAS BEEN SENT.
-			</h3><!-- /.popup-title -->
-	
-			<a href="#" class="link-close-popup">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</a>
-		</div><!-- /.popup-inner -->
-	</div><!-- /.popup -->
-	
-	<div class="popup popup-thank-you mfp-hide" id="logged-in">
-		<div class="popup-inner">
-			<i class="ico-logo-square"></i>
-	
-			<h3 class="popup-title">
-				You have been logged in.
-			</h3><!-- /.popup-title -->
-	
-			<a href="#" class="link-close-popup">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</a>
-		</div><!-- /.popup-inner -->
-	</div><!-- /.popup -->
-	
-	<div class="popup popup-thank-you mfp-hide" id="add-article">
-		<div class="popup-inner">
-			<i class="ico-logo-square"></i>
-	
-			<h3 class="popup-title">
-				Article added successfully.
-			</h3><!-- /.popup-title -->
-	
-			<a href="#" class="link-close-popup">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</a>
-		</div><!-- /.popup-inner -->
-	</div><!-- /.popup -->
-	
-	<div class="popup popup-thank-you mfp-hide" id="save-account">
-		<div class="popup-inner">
-			<i class="ico-logo-square"></i>
-	
-			<h3 class="popup-title">
-				My account saved.
-			</h3><!-- /.popup-title -->
-	
-			<a href="#" class="link-close-popup">
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</a>
-		</div><!-- /.popup-inner -->
-	</div><!-- /.popup -->
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
 
-	<div class="bar">
-			<a href="#" class="link-nav">
-				<i class="fa fa-bars" aria-hidden="true"></i>
-		
-				<span>{{sharedModel?.isArabicSection ? 'صفحات':'Pages'}}</span>
-				
-				<span class="visible-xs-inline">{{sharedModel?.isArabicSection ? 'صفحات':'Menu'}}</span>
-			</a>
-		
-			<a routerLink="/" class="logo">Jadaliyya</a>
-		
-			<nav class="nav-primary {{sharedModel?.isArabicSection ? 'rtl' : ''}}">
-				<ul>
-					<li class="{{item.id == sharedModel?.categoryId ? 'current' : ''}}" *ngFor="let item of headerCountries">
-						<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
-					</li>
-					<li class="{{sharedModel?.isArabicSection ? 'current rtl arabic' : ''}}">
-					<a routerLink="/Category/{{ARABIC_SECTION_ID}}/القسم-العربي" class="rtl arabic">القسم العربي</a>
-					</li>
-					
-				</ul>
-			</nav><!-- /.nav-primary -->
-		
-			<nav class="nav-access">
-				<ul>
-					<li>
-						<a href="ajax/popup-login.html" class="link-popup">
-							<span class="rtl">دخول</span> <i class="fa fa-user" aria-hidden="true"></i>
-		
-							<span class="hidden-xs">Login</span>
-						</a>
-					</li>
-		
-					<li class="visible-xs-inline-block">
-						<a href="#" class="link-search">
-							<i class="fa fa-search" aria-hidden="true"></i>
-						</a>
-					</li>
-				</ul>
-			</nav><!-- /.nav-access -->
-		</div><!-- /.bar -->
+		<h3 class="popup-title">
+			THANK YOU FOR YOUR INTEREST TO <br />
 
-		<nav class="nav-sidebar">
-				<a href="#" class="link-nav">
-					<i class="fa fa-bars" aria-hidden="true"></i>
+			JOIN OUR GROUP OF WRITERS.
+		</h3><!-- /.popup-title -->
+
+		<p>Our team will review your request and confirm back to you by email once your account is activated.</p>
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<div class="popup popup-thank-you mfp-hide" id="popup-thank-you1">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			THANK YOU!<br />
+
+			WE WILL GET BACK TO YOU SOON.
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<div class="popup popup-thank-you mfp-hide" id="thank-you-advertice">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			THANK YOU!<br />
 			
-					<span class="hidden-xs">{{sharedModel?.isArabicSection ? 'صفحات':'Pages'}}</span>
+			YOUR REQUEST HAS BEEN SUCCESSFULLY SENT.
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<div class="popup popup-thank-you mfp-hide" id="thank-you-share">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			THANK YOU!<br />
 			
-					<span class="visible-xs-inline-block">{{sharedModel?.isArabicSection ? 'صفحات':'Menu'}}</span>
+			AN EMAIL HAS BEEN SENT TO YOUR FRIEND.
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<div class="popup popup-thank-you mfp-hide" id="forgot-pass">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			AN EMAIL HAS BEEN SENT.
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<div class="popup popup-thank-you mfp-hide" id="logged-in">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			You have been logged in.
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<div class="popup popup-thank-you mfp-hide" id="add-article">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			Article added successfully.
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<div class="popup popup-thank-you mfp-hide" id="save-account">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			My account saved.
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<div class="bar">
+	<a href="#" class="link-nav">
+		<i class="fa fa-bars" aria-hidden="true"></i>
+
+		<span>{{sharedModel?.isArabicSection ? 'صفحات':'Pages'}}</span>
+		
+		<span class="visible-xs-inline">{{sharedModel?.isArabicSection ? 'صفحات':'Menu'}}</span>
+	</a>
+
+	<a routerLink="/" class="logo">Jadaliyya</a>
+
+	<nav class="nav-primary {{sharedModel?.isArabicSection ? 'rtl' : ''}}">
+		<ul>
+			<li class="{{item.id == sharedModel?.categoryId ? 'current' : ''}}" *ngFor="let item of headerCountries">
+				<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
+			</li>
+			<li class="{{sharedModel?.isArabicSection ? 'current rtl arabic' : ''}}">
+			<a routerLink="/Category/{{ARABIC_SECTION_ID}}/القسم-العربي" class="rtl arabic">القسم العربي</a>
+			</li>
+			
+		</ul>
+	</nav><!-- /.nav-primary -->
+
+	<nav class="nav-access">
+		<ul>
+			<li>
+				<a href="ajax/popup-login.html" class="link-popup">
+					<span class="rtl">دخول</span> <i class="fa fa-user" aria-hidden="true"></i>
+
+					<span class="hidden-xs">Login</span>
 				</a>
-			
-				<div class="nav-inner scrollable-vertical">
-					<ul>
-						<li>
-							<a routerLink="/">Home</a>
-						</li>
-			
-						<li>
-							<a routerLink="/Category/{{ARABIC_SECTION_ID}}" class="rtl">القسم العربي</a>
-						</li>
-			
-						<li *ngFor="let item of headerCountries">
-								<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
-							</li>
-			
-						<li>
-							<a class="otherLink" (click)="openSubMenu()">OTHER COUNTRIES</a>
-						</li>
-					</ul>
-			
-					<ul>
-						<li *ngFor="let item of submenuCategories">
-							<a title="{{item?.title}}" routerLink="/Category/{{item?.id + (item?.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{item?.title}}</a>
-						</li>
-				
-						<li>
-							<a href="About-us.html">About</a>
-						</li>
-			
-						<li>
-							<a href="About-us.html">The Team</a>
-						</li>
-			
-						<li>
-							<a href="Writers.html">Authors</a>
-						</li>
-			
-						<li>
-							<a >Donate</a>
-						</li>
-						<li>
-							<a >Advertise with us</a>
-						</li>
-						<li>
-							<a href="Contact-us.html">Contact</a>
-						</li>
-						  <li>
-							<a>Release Form</a>
-						</li>
-						  <li>
-							<a href="Privacy-policy.html">Privacy Policy</a>
-						</li>
-						  <li>
-							<a href="Privacy-policy.html">Terms Of Service</a>
-						</li>
-					</ul>
-			
-					<div class="socials visible-xs-block">
-						<ul>
-							<li>
-								<a href="#" class="link-twitter">
-									<i class="fa fa-twitter" aria-hidden="true"></i>
-								</a>
-							</li>
-			
-							<li>
-								<a href="#" class="link-facebook">
-									<i class="fa fa-facebook" aria-hidden="true"></i>
-								</a>
-							</li>
-			
-							<li>
-								<a href="#" class="link-youtube">
-									<i class="fa fa-youtube-play" aria-hidden="true"></i>
-								</a>
-							</li>
-			
-							<li>
-								<a href="#" class="link-vimeo">
-									<i class="fa fa-vimeo" aria-hidden="true"></i>
-								</a>
-							</li>
-			
-							<li>
-								<a href="#" class="link-soundcloud">
-									<i class="fa fa-soundcloud" aria-hidden="true"></i>
-								</a>
-							</li>
-						</ul>
-					</div><!-- /.socials -->
-				</div><!-- /.nav-inner scrollable-vertical -->
-			
-			
-			
-			<div class="subMenu" *ngIf="submenuCountries">
-				<div class="mobTitle" onclick="closeSubMenu()">OTHER COUNTRIES</div>
-				<div class="wrap scrollable-vertical">
-				<ul>
-				   <li *ngFor="let item of submenuCountries"><a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a></li>
-				</ul>
-				</div>
-			</div>
-			
-			
-			
-			</nav><!-- /.nav-sidebar -->
-			
-			
-			
+			</li>
 
+			<li class="visible-xs-inline-block">
+				<a href="#" class="link-search">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</a>
+			</li>
+		</ul>
+	</nav><!-- /.nav-access -->
+</div><!-- /.bar -->
+
+<nav class="nav-sidebar">
+	<a href="#" class="link-nav">
+		<i class="fa fa-bars" aria-hidden="true"></i>
+
+		<span class="hidden-xs">{{sharedModel?.isArabicSection ? 'صفحات':'Pages'}}</span>
+
+		<span class="visible-xs-inline-block">{{sharedModel?.isArabicSection ? 'صفحات':'Menu'}}</span>
+	</a>
+
+	<div class="nav-inner scrollable-vertical">
+		<ul>
+			<li>
+				<a routerLink="/">Home</a>
+			</li>
+
+			<li>
+				<a routerLink="/Category/{{ARABIC_SECTION_ID}}" class="rtl">القسم العربي</a>
+			</li>
+
+			<li *ngFor="let item of headerCountries">
+					<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
+				</li>
+
+			<li>
+				<a class="otherLink" (click)="openSubMenu()">OTHER COUNTRIES</a>
+			</li>
+		</ul>
+
+		<ul>
+			<li *ngFor="let item of submenuCategories">
+				<a title="{{item?.title}}" routerLink="/Category/{{item?.id + (item?.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{item?.title}}</a>
+			</li>
+	
+			<li>
+				<a href="About-us.html">About</a>
+			</li>
+
+			<li>
+				<a href="About-us.html">The Team</a>
+			</li>
+
+			<li>
+				<a href="Writers.html">Authors</a>
+			</li>
+
+			<li>
+				<a >Donate</a>
+			</li>
+			<li>
+				<a >Advertise with us</a>
+			</li>
+			<li>
+				<a href="Contact-us.html">Contact</a>
+			</li>
+				<li>
+				<a>Release Form</a>
+			</li>
+				<li>
+				<a href="Privacy-policy.html">Privacy Policy</a>
+			</li>
+				<li>
+				<a href="Privacy-policy.html">Terms Of Service</a>
+			</li>
+		</ul>
+
+		<div class="socials visible-xs-block">
+			<ul>
+				<li>
+					<a href="#" class="link-twitter">
+						<i class="fa fa-twitter" aria-hidden="true"></i>
+					</a>
+				</li>
+
+				<li>
+					<a href="#" class="link-facebook">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+					</a>
+				</li>
+
+				<li>
+					<a href="#" class="link-youtube">
+						<i class="fa fa-youtube-play" aria-hidden="true"></i>
+					</a>
+				</li>
+
+				<li>
+					<a href="#" class="link-vimeo">
+						<i class="fa fa-vimeo" aria-hidden="true"></i>
+					</a>
+				</li>
+
+				<li>
+					<a href="#" class="link-soundcloud">
+						<i class="fa fa-soundcloud" aria-hidden="true"></i>
+					</a>
+				</li>
+			</ul>
+		</div><!-- /.socials -->
+	</div><!-- /.nav-inner scrollable-vertical -->
+
+
+
+	<div class="subMenu" *ngIf="submenuCountries">
+		<div class="mobTitle" onclick="closeSubMenu()">OTHER COUNTRIES</div>
+		<div class="wrap scrollable-vertical">
+		<ul>
+		<li *ngFor="let item of submenuCountries"><a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a></li>
+		</ul>
+		</div>
+	</div>
+
+
+
+</nav><!-- /.nav-sidebar -->
+	
 <a href="#" class="link-search-close"></a>
 
 <div class="search">
-		<div class="search-inner">
-			<form action="Search-results.html" method="get">
-				<label for="q" class="hidden">Search</label>
-				
-				<input type="search" name="q" id="q" value="" placeholder="search by keyword ..." class="search-field">
-				
-				<button type="submit" class="search-btn">
-					<i class="fa fa-search" aria-hidden="true"></i>
-				</button>
-			</form>
-		</div><!-- /.search-inner -->
-	</div><!-- /.search -->
+	<div class="search-inner">
+		<form action="Search-results.html" method="get">
+			<label for="q" class="hidden">Search</label>
+			
+			<input type="search" name="q" id="q" value="" placeholder="search by keyword ..." class="search-field">
+			
+			<button type="submit" class="search-btn">
+				<i class="fa fa-search" aria-hidden="true"></i>
+			</button>
+		</form>
+	</div><!-- /.search-inner -->
+</div><!-- /.search -->
 
 <header class="header" *ngIf="sharedModel?.currentRoute == 'home' ">
-		<div class="shell">
-			<a routerLink="/" class="logo">Jadaliyya</a>
+	<div class="shell">
+		<a routerLink="/" class="logo">Jadaliyya</a>
 
+		<nav class="nav" *ngIf="headerCategories != undefined && headerCategories.length">
+			<ul>
+				<li *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
+					<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}">{{cat.title}}</a>
+
+					<div class="dropdown">
+							<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0)">
+								<div class="sk-circle1 sk-circle"></div>
+								<div class="sk-circle2 sk-circle"></div>
+								<div class="sk-circle3 sk-circle"></div>
+								<div class="sk-circle4 sk-circle"></div>
+								<div class="sk-circle5 sk-circle"></div>
+								<div class="sk-circle6 sk-circle"></div>
+								<div class="sk-circle7 sk-circle"></div>
+								<div class="sk-circle8 sk-circle"></div>
+								<div class="sk-circle9 sk-circle"></div>
+								<div class="sk-circle10 sk-circle"></div>
+								<div class="sk-circle11 sk-circle"></div>
+								<div class="sk-circle12 sk-circle"></div>
+							</div>
+							<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0 ">
+								
+								<ul class="widgets">
+									<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[catIndex]">
+										
+										<div class="widget-image">
+											<a title="{{item.title}}" routerLink="/Details/{{item.id}}">
+												<img src="{{RESIZED_CONTENT_PATH}}322x209xi/{{item.image}}" alt="{{item.title}}">
+											</a>
+										</div><!-- /.widget-image -->
+			
+										<div class="widget-head">
+											<h3 class="widget-title">
+												<a title="{{item.title}}" routerLink="/Details/{{item.id}}">{{item.title}}</a>
+											</h3><!-- /.widget-title -->
+										</div><!-- /.widget-head -->
+			
+										<div class="widget-body" *ngIf="">
+											<ul class="list-meta">
+												<li>
+													<a title="{{item.writer.name}}" routerLink="/Writer/{{item.writer.id}}">
+														<i class="ico-logo"></i>
+			
+														By {{item.writer.name}}
+													</a>
+												</li>
+			
+												<li>
+													<a title="{{item.title}}" routerLink="/Details/{{item.id}}">{{item.date | date:'MMM d'}}</a>
+												</li>
+											</ul><!-- /.list-meta -->
+										</div><!-- /.widget-body -->
+									</li><!-- /.widget -->
+								</ul><!-- /.widgets -->
+			
+								<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}" class="link-more-pages">View More from {{cat.title}} Page</a>
+							</div><!-- /.shell -->
+					</div><!-- /.dropdown -->
+				</li>
+
+			
+				<!--<li>
+					<a href="Arab-sections.html" class="rtl">القسم العربي</a>
+				</li>-->
+
+				<li>
+					<a href="#" class="link-search">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</a>
+				</li>
+			</ul>
+		</nav><!-- /.nav -->
+	</div><!-- /.shell -->
+</header><!-- /.header -->
+
+<header class=" header-secondary {{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'header header-arabic' : ''}} {{sharedModel?.country?.hasTemplate ? '' : 'header-default'}}" *ngIf="sharedModel.currentRoute == 'details' || sharedModel.currentRoute == 'category'|| sharedModel.currentRoute == 'country'">
+	<div class="header-inner {{sharedModel?.country ? '' : 'hidden-xs'}}" *ngIf="sharedModel?.categoryId != ARABIC_SECTION_ID">
+		<div class="shell">
+			<a routerLink="/" class="logo-small">Jadaliyya</a>
+			
 			<nav class="nav" *ngIf="headerCategories != undefined && headerCategories.length">
 				<ul>
-					<li *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
-						<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}">{{cat.title}}</a>
-
+			
+					<li class="{{sharedModel?.categoryId == cat?.id ? 'current' : ''}}" *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
+						<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{cat.title}}</a>
+			
 						<div class="dropdown">
 								<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0)">
 									<div class="sk-circle1 sk-circle"></div>
@@ -321,51 +399,50 @@
 									<div class="sk-circle11 sk-circle"></div>
 									<div class="sk-circle12 sk-circle"></div>
 								</div>
-								<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0 ">
-									
-									<ul class="widgets">
-										<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[catIndex]">
-											
-											<div class="widget-image">
-												<a title="{{item.title}}" routerLink="/Details/{{item.id}}">
-													<img src="{{RESIZED_CONTENT_PATH}}322x209xi/{{item.image}}" alt="{{item.title}}">
-												</a>
-											</div><!-- /.widget-image -->
-				
-											<div class="widget-head">
-												<h3 class="widget-title">
-													<a title="{{item.title}}" routerLink="/Details/{{item.id}}">{{item.title}}</a>
-												</h3><!-- /.widget-title -->
-											</div><!-- /.widget-head -->
-				
-											<div class="widget-body" *ngIf="">
-												<ul class="list-meta">
-													<li>
-														<a title="{{item.writer.name}}" routerLink="/Writer/{{item.writer.id}}">
-															<i class="ico-logo"></i>
-				
-															By {{item.writer.name}}
-														</a>
-													</li>
-				
-													<li>
-														<a title="{{item.title}}" routerLink="/Details/{{item.id}}">{{item.date | date:'MMM d'}}</a>
-													</li>
-												</ul><!-- /.list-meta -->
-											</div><!-- /.widget-body -->
-										</li><!-- /.widget -->
-									</ul><!-- /.widgets -->
-				
-									<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}" class="link-more-pages">View More from {{cat.title}} Page</a>
-								</div><!-- /.shell -->
+							<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0">
+								
+								<ul class="widgets">
+									<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[catIndex]">
+										<div class="widget-image">
+											<a title="{{item.title}}" routerLink="/Details/{{item.id}}">
+												<img src="{{RESIZED_CONTENT_PATH}}322x209xi/{{item.image}}" alt="{{item.title}}">
+											</a>
+										</div><!-- /.widget-image -->
+			
+										<div class="widget-head">
+											<h3 class="widget-title">
+												<a title="{{item.title}}" routerLink="/Details/{{item.id}}">{{item.title}}</a>
+											</h3><!-- /.widget-title -->
+										</div><!-- /.widget-head -->
+			
+										<div class="widget-body" *ngIf="item.writer">
+											<ul class="list-meta">
+												<li>
+													<a title="{{item.writer.name}}" routerLink="/Writer/{{item.writer.id}}">
+														<i class="ico-logo"></i>
+			
+														By {{item.writer.name}}
+													</a>
+												</li>
+			
+												<li>
+													<a title="{{item.title}}" routerLink="/Details/{{item.id}}">{{item.date | date:'MMM d'}}</a>
+												</li>
+											</ul><!-- /.list-meta -->
+										</div><!-- /.widget-body -->
+									</li><!-- /.widget -->
+								</ul><!-- /.widgets -->
+			
+								<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}" class="link-more-pages">View More from {{cat.title}} Page</a>
+							</div><!-- /.shell -->
 						</div><!-- /.dropdown -->
 					</li>
-
+			
 				
 					<!--<li>
 						<a href="Arab-sections.html" class="rtl">القسم العربي</a>
 					</li>-->
-
+			
 					<li>
 						<a href="#" class="link-search">
 							<i class="fa fa-search" aria-hidden="true"></i>
@@ -373,200 +450,121 @@
 					</li>
 				</ul>
 			</nav><!-- /.nav -->
+			
 		</div><!-- /.shell -->
-	</header><!-- /.header -->
-
-	<header class=" header-secondary {{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'header header-arabic' : ''}}" *ngIf="sharedModel.currentRoute == 'details' || sharedModel.currentRoute == 'category'">
-		<div class="header-inner hidden-xs" *ngIf="sharedModel?.categoryId != ARABIC_SECTION_ID">
+	</div><!-- /.header-inner -->
+	<div class="header-inner" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID"> 
 			<div class="shell">
-				<a routerLink="/" class="logo-small">Jadaliyya</a>
-				
-				<nav class="nav" *ngIf="headerCategories != undefined && headerCategories.length">
-					<ul>
-				
-						<li class="{{sharedModel?.categoryId == cat?.id ? 'current' : ''}}" *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
-							<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{cat.title}}</a>
-				
-							<div class="dropdown">
-									<div class="sk-fading-circle" *ngIf="!(headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0)">
-										<div class="sk-circle1 sk-circle"></div>
-										<div class="sk-circle2 sk-circle"></div>
-										<div class="sk-circle3 sk-circle"></div>
-										<div class="sk-circle4 sk-circle"></div>
-										<div class="sk-circle5 sk-circle"></div>
-										<div class="sk-circle6 sk-circle"></div>
-										<div class="sk-circle7 sk-circle"></div>
-										<div class="sk-circle8 sk-circle"></div>
-										<div class="sk-circle9 sk-circle"></div>
-										<div class="sk-circle10 sk-circle"></div>
-										<div class="sk-circle11 sk-circle"></div>
-										<div class="sk-circle12 sk-circle"></div>
-								    </div>
-								<div class="shell" *ngIf="headerCategoryArticles != undefined && headerCategoryArticles[catIndex]?.length > 0">
-									
-									<ul class="widgets">
-										<li class="widget-dropdown" *ngFor="let item of headerCategoryArticles[catIndex]">
-											<div class="widget-image">
-												<a title="{{item.title}}" routerLink="/Details/{{item.id}}">
-													<img src="{{RESIZED_CONTENT_PATH}}322x209xi/{{item.image}}" alt="{{item.title}}">
-												</a>
-											</div><!-- /.widget-image -->
-				
-											<div class="widget-head">
-												<h3 class="widget-title">
-													<a title="{{item.title}}" routerLink="/Details/{{item.id}}">{{item.title}}</a>
-												</h3><!-- /.widget-title -->
-											</div><!-- /.widget-head -->
-				
-											<div class="widget-body" *ngIf="item.writer">
-												<ul class="list-meta">
-													<li>
-														<a title="{{item.writer.name}}" routerLink="/Writer/{{item.writer.id}}">
-															<i class="ico-logo"></i>
-				
-															By {{item.writer.name}}
-														</a>
-													</li>
-				
-													<li>
-														<a title="{{item.title}}" routerLink="/Details/{{item.id}}">{{item.date | date:'MMM d'}}</a>
-													</li>
-												</ul><!-- /.list-meta -->
-											</div><!-- /.widget-body -->
-										</li><!-- /.widget -->
-									</ul><!-- /.widgets -->
-				
-									<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}" class="link-more-pages">View More from {{cat.title}} Page</a>
-								</div><!-- /.shell -->
-							</div><!-- /.dropdown -->
-						</li>
-				
-					
-						<!--<li>
-							<a href="Arab-sections.html" class="rtl">القسم العربي</a>
-						</li>-->
-				
-						<li>
-							<a href="#" class="link-search">
-								<i class="fa fa-search" aria-hidden="true"></i>
-							</a>
-						</li>
-					</ul>
-				</nav><!-- /.nav -->
-				
+				<a title="Jadaliyya" routerLink="/" class="logo">Jadaliyya</a>
 			</div><!-- /.shell -->
 		</div><!-- /.header-inner -->
-		<div class="header-inner" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID"> 
-				<div class="shell">
-					<a title="Jadaliyya" routerLink="/" class="logo">Jadaliyya</a>
-				</div><!-- /.shell -->
-			</div><!-- /.header-inner -->
-		
-		<div class="header-outer {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category'">
-			<div class="shell">
-				
-					<a href="#" class="link-search link-search-secondary" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID">
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</a>
-				<h1>{{sharedModel.categoryTitle}}</h1>
-
-				<ul class="list-navs rtl" *ngIf="sharedModel?.isArabicSection && headerSubCategories?.length">
-					<li class="{{sharedModel?.categoryId == item.id ? 'current' : ''}}" *ngFor="let item of headerSubCategories">
-						<a title="{{item.title}}" routerLink="/Category/{{ARABIC_SECTION_ID}}/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
-					</li>
-
-				
-				</ul>
-				<ul class="list-navs list-navs-secondary" *ngIf="sharedModel.currentRoute == 'category' && sharedModel.categoryId == ROUNDUPS_CATEGORY_ID">
-						<li class="{{sharedModel?.customUrlTitle == ROUNDUPS_MEDIA_URL_TITLE ? 'current' : ''}}">
-							<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MEDIA_URL_TITLE}}">MEDIA ROUNDUPS</a>
-						</li>
-						
-						<li class="{{sharedModel?.customUrlTitle == ROUNDUPS_MONTHLY_URL_TITLE ? 'current' : ''}}">
-							<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MONTHLY_URL_TITLE}}">MONTHLY EDITIONS</a>
-						</li>
-					</ul><!-- /.list-navs -->
-				<a href="#" class="link-filter">
-					Filter By
-
-					
-
-					<i class="fa fa-sort-desc" aria-hidden="true"></i>
+	
+	<div class="header-outer {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category' || sharedModel.currentRoute == 'country'">
+		<div class="shell">
+			
+				<a href="#" class="link-search link-search-secondary" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID">
+					<i class="fa fa-search" aria-hidden="true"></i>
 				</a>
-			</div><!-- /.shell -->
+			<h1>{{sharedModel?.country ? sharedModel?.country?.title : sharedModel?.categoryTitle}}
+				<span class="rtl" *ngIf="sharedModel?.country?.arTitle">{{sharedModel?.country?.arTitle}}</span></h1>
 
-			<div class="filter">
-				<div class="shell">
-					<div class="form-filter">
-						<form action="?" method="post">
-							<div class="form-body">
-								<div class="cols">
-									<div class="col col-size1">
-										<div class="form-row">
-											<div class="form-controls form-controls-select">
-												<select name="field-country" id="field-country" class="select-native">
-													<option value="">Country</option>
-													<option value="">Country1</option>
-													<option value="">Country2</option>
-												</select>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col col-size1 -->
-									
-									<div class="col col-size1">
-										<div class="form-row">
-											<div class="form-controls form-controls-select">
-												<select name="field-category" id="field-category" class="select-native">
-													<option value="">Category</option>
-													<option value="">Category1</option>
-													<option value="">Category2</option>
-												</select>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col col-size1 -->
+			<ul class="list-navs rtl" *ngIf="sharedModel?.isArabicSection && headerSubCategories?.length">
+				<li class="{{sharedModel?.categoryId == item.id ? 'current' : ''}}" *ngFor="let item of headerSubCategories">
+					<a title="{{item.title}}" routerLink="/Category/{{ARABIC_SECTION_ID}}/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
+				</li>
+
+			
+			</ul>
+			<ul class="list-navs list-navs-secondary" *ngIf="sharedModel.currentRoute == 'category' && sharedModel.categoryId == ROUNDUPS_CATEGORY_ID">
+					<li class="{{sharedModel?.customUrlTitle == ROUNDUPS_MEDIA_URL_TITLE ? 'current' : ''}}">
+						<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MEDIA_URL_TITLE}}">MEDIA ROUNDUPS</a>
+					</li>
+					
+					<li class="{{sharedModel?.customUrlTitle == ROUNDUPS_MONTHLY_URL_TITLE ? 'current' : ''}}">
+						<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MONTHLY_URL_TITLE}}">MONTHLY EDITIONS</a>
+					</li>
+				</ul><!-- /.list-navs -->
+			<a href="#" class="link-filter">
+				Filter By
+
+				
+
+				<i class="fa fa-sort-desc" aria-hidden="true"></i>
+			</a>
+		</div><!-- /.shell -->
+
+		<div class="filter">
+			<div class="shell">
+				<div class="form-filter">
+					<form action="?" method="post">
+						<div class="form-body">
+							<div class="cols">
+								<div class="col col-size1">
+									<div class="form-row">
+										<div class="form-controls form-controls-select">
+											<select name="field-country" id="field-country" class="select-native">
+												<option value="">Country</option>
+												<option value="">Country1</option>
+												<option value="">Country2</option>
+											</select>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+								</div><!-- /.col col-size1 -->
 								
-									<div class="col col-size1">
-										<div class="form-row">
-											<div class="form-controls">
-												<input type="text" class="field" name="field-writer" id="field-writer" value="" placeholder="Writer">
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col col-size1 -->
+								<div class="col col-size1">
+									<div class="form-row">
+										<div class="form-controls form-controls-select">
+											<select name="field-category" id="field-category" class="select-native">
+												<option value="">Category</option>
+												<option value="">Category1</option>
+												<option value="">Category2</option>
+											</select>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+								</div><!-- /.col col-size1 -->
+							
+								<div class="col col-size1">
+									<div class="form-row">
+										<div class="form-controls">
+											<input type="text" class="field" name="field-writer" id="field-writer" value="" placeholder="Writer">
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+								</div><!-- /.col col-size1 -->
+							
+								<div class="col col-size1">
+									<div class="form-row">
+										<div class="form-controls">
+											<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
+		
+											<i class="fa fa-calendar-o" aria-hidden="true"></i>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+								</div><!-- /.col col-size1 -->
 								
-									<div class="col col-size1">
-										<div class="form-row">
-											<div class="form-controls">
-												<input type="text" class="field field-date" name="field-date" id="field-date" value="" placeholder="Date">
-			
-												<i class="fa fa-calendar-o" aria-hidden="true"></i>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col col-size1 -->
-									
-									<div class="col col-size2">
-										<div class="form-row">
-											<div class="form-controls">
-												<input type="text" class="field" name="field-keyword" id="field-keyword" value="" placeholder="Keyword">
-			
-												<i class="fa fa-search" aria-hidden="true"></i>
-			
-												<a href="#">
-													<img src="css/images/temp/filter-link.jpg" alt="">
-												</a>
-											</div><!-- /.form-controls -->
-										</div><!-- /.form-row -->
-									</div><!-- /.col col-size2 -->
-			
-									<div class="col col-size1">
-										<div class="form-actions">
-											<input type="submit" value="Filter" class="form-btn btn btn-primary btn-blue">
-										</div><!-- /.form-actions -->
-									</div><!-- /.col col-size1 -->
-								</div><!-- /.cols -->
-							</div><!-- /.form-body -->
-						</form>
-					</div><!-- /.form-filter -->
-				</div><!-- /.shell -->
-			</div><!-- /.filter -->
-		</div><!-- /.header-outer -->
-	</header><!-- /.header -->
+								<div class="col col-size2">
+									<div class="form-row">
+										<div class="form-controls">
+											<input type="text" class="field" name="field-keyword" id="field-keyword" value="" placeholder="Keyword">
+		
+											<i class="fa fa-search" aria-hidden="true"></i>
+		
+											<a href="#">
+												<img src="css/images/temp/filter-link.jpg" alt="">
+											</a>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+								</div><!-- /.col col-size2 -->
+		
+								<div class="col col-size1">
+									<div class="form-actions">
+										<input type="submit" value="Filter" class="form-btn btn btn-primary btn-blue">
+									</div><!-- /.form-actions -->
+								</div><!-- /.col col-size1 -->
+							</div><!-- /.cols -->
+						</div><!-- /.form-body -->
+					</form>
+				</div><!-- /.form-filter -->
+			</div><!-- /.shell -->
+		</div><!-- /.filter -->
+	</div><!-- /.header-outer -->
+</header><!-- /.header -->
