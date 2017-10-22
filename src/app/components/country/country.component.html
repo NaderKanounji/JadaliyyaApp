@@ -3,6 +3,87 @@
 			<div class="shell">
 				<div class="content">
 					<div class="content-inner">
+							<div class="content-inner-flex">
+									<div class="slider slider-primary" *ngIf="countryModel?.slideshow?.length > 0">
+											<div class="slider-loader">
+												<i class="ico-loader"></i>
+											</div><!-- /.slider-loader -->
+											
+											<div class="slider-outer">
+												<span class="slider-meta">
+													<span class="index"></span><small>//</small><br />
+												
+													<span class="all"></span>
+												</span>
+												
+												<div class="slides owl-carousel">
+													<div class="slide" *ngFor="let slide of countryModel?.slideshow">
+														<div class="slide-image {{slide.youtubeLink ? 'slide-video' : ''}}">
+															<a title="{{slide.title}}" routerLink="/Details/{{slide.id}}/{{slide.customUrlTitle ? '/' + slide.customUrlTitle : ''}}">
+																<img src="{{RESIZED_CONTENT_PATH}}857x456xo/{{slide.image}}" alt="{{slide.title}}" class="fullsize-bg">
+															</a>
+														</div><!-- /.slide-image -->
+												
+														<div class="slide-content" *ngIf="slide.smallDescription">
+															<a title="{{slide.title}}" routerLink="/Details/{{slide.id}}/{{slide.customUrlTitle ? '/' + slide.customUrlTitle : ''}}" class="slide-title" [innerHTML]="slide.smallDescription | truncate:200"></a>
+														</div><!-- /.slide-content -->
+													</div><!-- /.slide -->
+												
+												</div><!-- /.slides -->
+											</div><!-- /.slider-outer -->
+			
+											<div class="slider-nav">
+												<ul class="owl-carousel" >
+													<li *ngFor="let slide of countryModel?.slideshow" class="slide.isArabic ? 'rtl' : ''">
+														<a [innerHTML]="slide.title"></a>
+													</li>
+												</ul>
+											</div><!-- /.slider-nav -->
+									</div><!-- /.slider -->
+									
+									<div class="content-aside" *ngIf="countryModel?.mostRecent?.length > 0">
+										<h3 class="content-title">
+											<i class="ico-title"></i>
+											{{isArabicSection ? 'الأحدث' : 'Most Recent'}}
+											
+										</h3><!-- /.content-title -->
+								
+										<ul class="posts">
+											<li class="post" *ngFor="let item of countryModel?.mostRecent">
+												<div class="post-inner">
+													<header class="post-head">
+														<h2 class="post-title">
+															<a routerLink="/Details/{{item.id}}/{{item.customUrlTitle ? '/' + item.customUrlTitle : ''}}">{{item.title}}</a>
+														</h2><!-- /.post-title -->
+													</header><!-- /.post-head -->
+												
+													<div class="post-body" *ngIf="item.smallDescription">
+														<p [innerHTML]="item.smallDescription | truncate:200"></p>
+													</div><!-- /.post-body -->
+												
+													<footer class="post-foot">
+														<ul class="list-meta">
+															<li *ngIf="item.writer">
+																<a routerLink="/Writer/{{item.writer?.id}}">
+																	<i class="ico-logo"></i>
+												
+																	By {{item.writer?.name}}
+																</a>
+															</li>
+															
+															<li>
+																<a>{{item.date | date:'MMM d'}}</a>
+															</li>
+														</ul><!-- /.list-meta -->
+													</footer><!-- /.post-foot -->
+												</div><!-- /.post-inner -->
+											</li><!-- /.post -->
+								
+										
+										</ul><!-- /.posts -->
+									</div><!-- /.content-aside -->
+								</div><!-- /.content-inner-flex -->
+								
 						<div class="tabs tabs-secondary">
 							<div class="tabs-head">
 								<nav class="tabs-nav">
@@ -23,7 +104,7 @@
 									<section class="section section-articles section-articles-primary">
 										<div class="section-content">
 											<ul class="posts">
-                        <li class="post post-large" *ngFor="let item of countryModel?.listing?.slice(0,1)">
+                        <li class="post post-large {{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of countryModel?.listing?.slice(0,1)">
                           
                           <div class="post-inner">
                             <div class="post-image" *ngIf="item?.image">
@@ -62,7 +143,7 @@
                           </div><!-- /.post-inner -->
                         </li><!-- /.post -->
 						
-												<li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(1, 14)">
+												<li class="post {{post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(1, 14)">
 														<post [post]="post"></post>
 												</li><!-- /.post -->
 											</ul><!-- /.posts -->
@@ -78,7 +159,7 @@
 						<section class="section section-articles" *ngIf="countryModel?.listing?.length > 14">
 							<div class="section-content">
 								<ul class="posts">
-                  <li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(14, 18)">
+                  <li class="post {{post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(14, 18)">
                       <post [post]="post"></post>
                   </li><!-- /.post -->
                   
@@ -148,7 +229,54 @@
 							</div><!-- /.section-content -->
 						</section><!-- /.section section-articles -->
 
-						<!--#include file="ssi/section-announcements.shtml" -->
+						<div id="latest-announcements-container">
+							
+						<div class="section section-announcements ltr" *ngIf="countryModel?.latestAnnouncements2?.length">
+							<a href="#" class="link-scroll-next">
+								<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+							</a>
+							
+							<aside class="section-aside">
+								<h2 class="section-title">
+									<small>
+										Latest
+						
+										<i class="ico-announcement-large"></i>
+									</small>
+						
+									ANNOUN-<br />
+									CEMENTS
+								</h2><!-- /.section-title -->
+						
+								<a href="ajax/popup-announcement.html" class="btn btn-primary btn-transparent link-popup">
+									SUBMIT AN ANNOUCEMENT
+								</a>
+							</aside><!-- /.section-aside -->
+						
+							<div class="section-content scrollable-horizontal">
+								<div class="slider slider-roundups-secondary">
+									<div class="slides">
+										<div class="slide"  *ngFor="let parentItem of countryModel?.latestAnnouncements2; let i = index">
+											<ul class="list-news list-news-secondary" *ngIf="i % 2 == 0">
+												<li *ngFor="let item of countryModel?.latestAnnouncements2.slice(i, i + 2)">
+													<span *ngIf="item.image">
+														<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+															<img src="{{RESIZED_CONTENT_PATH}}60x58xo/{{item.image}}" alt="">
+														</a>
+													</span>
+													
+													<h4>
+														<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
+													</h4>
+												</li>
+											</ul><!-- /.list-news list-news-secondary -->
+										</div><!-- /.slide -->
+									</div><!-- /.slides -->
+								</div><!-- /.slider -->
+							</div><!-- /.section-content -->
+						</div><!-- /.section section-announcements -->
+
+					</div>
 
 						<section class="section section-articles" *ngIf="countryModel?.listing?.length > 26">
 							<div class="section-content">
@@ -195,85 +323,37 @@
                       <post [post]="post"></post>
                   </li><!-- /.post -->
 
-									<li class="post post-jadalicous" *ngIf="countryModel?.jadalicious">
+									<li class="post post-jadalicous" *ngIf="countryModel?.jadalicious?.length">
 										<div class="post-inner">
 											<ul class="widgets">
 												<li class="widget-jadalicous">
 													<div class="widget-head">
 														<h3 class="widget-title">
 															JAD<strong>ALICOUS</strong>
-																	
+
 															<i class="ico-leaf"></i>
 														</h3><!-- /.widget-title -->
 													</div><!-- /.widget-head -->
-																	
+
 													<div class="widget-image">
-														<img src="../../assets/images/temp/dolphin.jpg" alt="" class="fullsize-bg">
-																	
-														<span class="widget-caption">New life for ‘Tree Man’?</span>
-																									
-														<a href="#"></a>
+														<img src="{{RESIZED_CONTENT_PATH}}344x239xo/{{countryModel?.jadalicious[0]?.image}}" alt="{{countryModel?.jadalicious[0]?.title}}" class="fullsize-bg">
+
+														<span class="widget-caption">{{countryModel?.jadalicious[0]?.title | truncate:100}}</span>
+
+														<a title="countryModel?.jadalicious[0]?.title" routerLink="/Details/{{countryModel?.jadalicious[0]?.id + (countryModel?.jadalicious[0]?.customUrlTitle ? '/' + countryModel?.jadalicious[0]?.customUrlTitle : '')}}"></a>
 													</div><!-- /.widget-image -->
-													
+
 													<div class="widget-body">
 														<ul class="list-news list-news-round">
-															<li>
-																<span>
-																	<a href="#">
-																		<img src="../../assets/images/temp/news21.jpg" alt="">
+															<li *ngFor="let item of countryModel?.jadalicious?.slice(1)">
+																<span *ngIf="item.iamge">
+																	<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+																		<img src="{{RESIZED_CONTENT_PATH}}57x56xo/{{item.image}}" alt="">
 																	</a>
 																</span>
-														
+
 																<h4>
-																	<a href="#">DARS Media Roundup (January 2016)</a>
-																</h4>
-															</li>
-															
-															<li>
-																<span>
-																	<a href="#">
-																		<img src="../../assets/images/temp/news22.jpg" alt="">
-																	</a>
-																</span>
-														
-																<h4>
-																	<a href="#">DARS Media Roundup (January 2016)</a>
-																</h4>
-															</li>
-															
-															<li>
-																<span>
-																	<a href="#">
-																		<img src="../../assets/images/temp/news23.jpg" alt="">
-																	</a>
-																</span>
-														
-																<h4>
-																	<a href="#">DARS Media Roundup (January 2016)</a>
-																</h4>
-															</li>
-															
-															<li>
-																<span>
-																	<a href="#">
-																		<img src="../../assets/images/temp/news24.jpg" alt="">
-																	</a>
-																</span>
-														
-																<h4>
-																	<a href="#">DARS Media Roundup (January 2016)</a>
-																</h4>
-															</li>
-															
-															<li>
-																<span>
-																	<a href="#">
-																		<img src="../../assets/images/temp/news25.jpg" alt="">
-																	</a>
-																</span>
-														
-																<h4>
-																	<a href="#">DARS Media Roundup (January 2016)</a>
+																	<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title | truncate:40}}</a>
 																</h4>
 															</li>
 														</ul><!-- /.list-news -->
@@ -282,7 +362,7 @@
 											</ul><!-- /.widgets -->
 										</div><!-- /.post-inner -->
 									</li><!-- /.post -->
-														
+					
                   <li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(30)">
                       <post [post]="post"></post>
                   </li><!-- /.post -->
@@ -303,8 +383,154 @@
             </div><!-- /.content-actions -->
 				</div><!-- /.content -->
 					
-				<div class="sidebar sidebar-up">
+				<div class="sidebar {{!(countryModel?.hasTemplate)}}">
 					<ul class="widgets">
+						<li class="widget-about" *ngIf="countryModel?.hasTemplate && countryModel?.about">
+								<header class="widget-head">
+									<div class="icon">
+										<span>
+											<i class="fa fa-pencil" aria-hidden="true"></i>
+										</span>
+									</div>
+	
+									<h3 class="widget-title">ABOUT THIS PAGE</h3><!-- /.widget-title -->
+								</header><!-- /.widget-head -->
+	
+								<div class="widget-body">
+									<p [innerHTML]="countryModel?.about"></p>
+								</div><!-- /.widget-body -->
+							</li><!-- /.widget-about -->
+							<li class="widget-about" *ngIf="countryModel?.hasTemplate && countryModel?.regression">
+								<header class="widget-head">
+									<div class="icon">
+										<span>
+											<i class="fa fa-pie-chart" aria-hidden="true"></i>
+										</span>
+									</div>
+	
+									<h3 class="widget-title">{{countryModel?.title}} POPULATION REGRESSION</h3><!-- /.widget-title -->
+								</header><!-- /.widget-head -->
+	
+								<div class="widget-body">
+									<div class="slider slider-population">
+										<div class="slides owl-carousel">
+											<div class="slide">
+												<div class="slide-inner">
+													<svg width="259px" height="259px" viewBox="0 0 259 259">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<path d="M0,129.5 C0,57.9781 57.9783,0 129.5,0 C201.0217,0 259,57.9781 259,129.5 C259,201.0219 201.0217,259 129.5,259 C57.9783,259 0,201.0219 0,129.5 Z" fill="#D9D900"></path>
+															<path class="progress-circle" d="M14,130 C14,65.934051 65.9342301,14 130,14 C194.06577,14 246,65.934051 246,130 C246,194.065949 194.06577,246 130,246 C65.9342301,246 14,194.065949 14,130 Z" id="line" stroke="#F8F8F8" stroke-width="8" stroke-dasharray="0 729" data-to="365"></path>
+														</g>
+													</svg>
+	
+													<small>POPULATION</small>
+												
+													<h4>
+															<strong>~ {{countryModel?.regression?.populationMillion}}</strong> Million
+													</h4>
+												</div><!-- /.slide-inner -->
+											</div><!-- /.slide -->
+	
+											<div class="slide">
+												<div class="slide-inner">
+													<svg width="259px" height="259px" viewBox="0 0 259 259">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<path d="M0,129.5 C0,57.9781 57.9783,0 129.5,0 C201.0217,0 259,57.9781 259,129.5 C259,201.0219 201.0217,259 129.5,259 C57.9783,259 0,201.0219 0,129.5 Z" fill="#D9D900"></path>
+															<path class="progress-circle" d="M14,130 C14,65.934051 65.9342301,14 130,14 C194.06577,14 246,65.934051 246,130 C246,194.065949 194.06577,246 130,246 C65.9342301,246 14,194.065949 14,130 Z" stroke="#F8F8F8" stroke-width="8" stroke-dasharray="0 729" data-to="600"></path>
+														</g>
+													</svg>
+	
+													<small>TITLE</small>
+												
+													<h4>
+															<strong>~ {{countryModel?.regression?.populationTitle}}</strong> Million
+													</h4>
+												</div><!-- /.slide-inner -->
+											</div><!-- /.slide -->
+	
+											<div class="slide">
+												<div class="slide-inner">
+													<svg width="259px" height="259px" viewBox="0 0 259 259">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<path d="M0,129.5 C0,57.9781 57.9783,0 129.5,0 C201.0217,0 259,57.9781 259,129.5 C259,201.0219 201.0217,259 129.5,259 C57.9783,259 0,201.0219 0,129.5 Z" fill="#D9D900"></path>
+															<path class="progress-circle" d="M14,130 C14,65.934051 65.9342301,14 130,14 C194.06577,14 246,65.934051 246,130 C246,194.065949 194.06577,246 130,246 C65.9342301,246 14,194.065949 14,130 Z" stroke="#F8F8F8" stroke-width="8" stroke-dasharray="0 729" data-to="200"></path>
+														</g>
+													</svg>
+	
+													<small>NUMBER</small>
+												
+													<h4>
+															<strong>~ {{countryModel?.regression?.populationNb}}</strong> Million
+													</h4>
+												</div><!-- /.slide-inner -->
+											</div><!-- /.slide -->
+										</div><!-- /.slides -->
+									</div><!-- /.slider -->
+								</div><!-- /.widget-body -->
+							</li><!-- /.widget-about -->
+
+							<li class="widget-primary" *ngIf="countryModel?.hasTemplate && countryModel?.marker">
+									<header class="widget-head">
+										<h3 class="widget-title">
+											<span>SYRIA MAP &amp; STATS</span>
+										</h3><!-- /.widget-title -->
+									</header><!-- /.widget-head -->
+								
+									<div class="widget-body">
+										<div class="gmap3" id="map" style="height: 354px"></div><!-- /.gmap3 -->
+		
+										<ul class="list-locations">
+											<li data-lat="37.8062171" data-lng="38.0693592"></li>
+												
+											<li data-lat="36.901569" data-lng="38.3662613"></li>	
+		
+											<li data-lat="37.2360357" data-lng="39.7570657"></li>
+		
+											<li data-lat="37.609973" data-lng="38.724334"></li>
+															
+											<li data-lat="38.06116" data-lng="39.4527363"></li>
+										</ul><!-- /.list-locations -->
+		
+										<ul class="list-population">
+											<li>
+												<span>
+													<strong>Population:</strong> 22,517,750
+												</span>
+											</li>
+											
+											<li>
+												<span>
+													<strong>GDP:</strong> $107.4 billion
+												</span>
+											</li>
+											
+											<li class="left">
+												<span>
+													<strong>Unemployment:</strong> 8.3%; Youth Employment (ages 15-24): 19.1%
+												</span>
+											</li>
+											
+											<li>
+												<span>
+													<strong>Internet Users:</strong> 4.469 million
+												</span>
+											</li>
+											
+											<li class="left">
+												<span>
+													<strong>Exchange Rate:</strong> ~ 98.00 Syrian pounds per US dollar
+												</span>
+											</li>
+											
+											<li>
+												<span>
+													<strong>Population Growth Rate:</strong> 0.913%
+												</span>
+											</li>
+										</ul><!-- /.list-population -->
+									</div><!-- /.widget-body -->
+								</li><!-- /.widget-primary -->
+		
 						<li class="widget-subscribe widget-subscribe-smaller">
 							<div class="widget-content">
                   <app-join-newsletter></app-join-newsletter><!-- /.subscribe -->

@@ -121,7 +121,7 @@
 	</div><!-- /.popup-inner -->
 </div><!-- /.popup -->
 
-<div class="bar">
+<div class="bar {{sharedModel?.country?.hasTemplate ? 'bar-secondary' : ''}}">
 	<a href="#" class="link-nav">
 		<i class="fa fa-bars" aria-hidden="true"></i>
 
@@ -373,8 +373,11 @@
 	</div><!-- /.shell -->
 </header><!-- /.header -->
 
-<header class=" header-secondary {{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'header header-arabic' : ''}} {{sharedModel?.country?.hasTemplate ? '' : 'header-default'}}" *ngIf="sharedModel.currentRoute == 'details' || sharedModel.currentRoute == 'category'|| sharedModel.currentRoute == 'country'">
-	<div class="header-inner {{sharedModel?.country ? '' : 'hidden-xs'}}" *ngIf="sharedModel?.categoryId != ARABIC_SECTION_ID">
+<header class=" header-secondary {{sharedModel?.country?.hasTemplte ? 'header-secondary-alt header-shadow' : ''}} {{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'header header-arabic' : ''}} {{sharedModel?.country?.hasTemplate ? '' : 'header-default'}}" *ngIf="sharedModel.currentRoute == 'details' || sharedModel.currentRoute == 'category'|| sharedModel.currentRoute == 'country'">
+	<div class="header-image" *ngIf="sharedModel?.country?.hasTemplate && sharedModel?.country?.image">
+		<img src="css/images/temp/syria-full.jpg" alt="" class="fullsize-bg">
+	</div><!-- /.header-image -->
+	<div class="header-inner {{sharedModel?.country && !sharedModel?.country?.hasTemplate ? '' : 'hidden-xs'}}" *ngIf="sharedModel?.categoryId != ARABIC_SECTION_ID">
 		<div class="shell">
 			<a routerLink="/" class="logo-small">Jadaliyya</a>
 			
@@ -459,7 +462,7 @@
 			</div><!-- /.shell -->
 		</div><!-- /.header-inner -->
 	
-	<div class="header-outer {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category' || sharedModel.currentRoute == 'country'">
+	<div class="header-outer {{sharedModel?.country?.hasTemplate ? 'header-outer-alt' : ''}} {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category' || sharedModel.currentRoute == 'country'">
 		<div class="shell">
 			
 				<a href="#" class="link-search link-search-secondary" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID">

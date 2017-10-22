@@ -21,6 +21,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { SocialIconPipe } from './pipes/social-icon.pipe';
 import { FilterListingPipe } from './pipes/filter-listing.pipe';
 import { SortPipe } from './pipes/sort.pipe';
+import { CustomSortPipe } from './pipes/custom-sort.pipe';
 import { JoinNewsletterComponent } from './components/common/join-newsletter/join-newsletter.component';
 import { PostComponent } from './Components/common/post/post.component';
 import { TinyPostComponent } from './Components/common/tiny-post/tiny-post.component';
@@ -57,6 +58,7 @@ var routes = [
     SocialIconPipe,
     FilterListingPipe,
     SortPipe,
+    CustomSortPipe,
     JoinNewsletterComponent,
     PostComponent,
     TinyPostComponent,
@@ -72,7 +74,7 @@ var routes = [
     HttpClientModule,
     Ng2Webstorage
   ],
-  providers: [SharedService, FunctionsService, SortPipe],
+  providers: [SharedService, FunctionsService, SortPipe, CustomSortPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
