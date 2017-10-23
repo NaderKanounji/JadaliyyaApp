@@ -23,11 +23,12 @@ export class JadNavigationComponent implements OnInit {
   sharedModel:SharedModel;
 
   pageNumber:number = 0;
-
+  listingType:number = 0;
   startScrollLoading:boolean = false;
   isSidebarLoaded:boolean = false;
   isLoadingMore:boolean = false;
   hasMoreToLoad:boolean = true;
+  isHotAndMostRecentLoaded:boolean = false;
 
   constructor(private sort:SortPipe,private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService) { }
 
@@ -40,6 +41,8 @@ export class JadNavigationComponent implements OnInit {
       arabicPages:null,
       topics:null,
       countries:null,
+      hotOnFacebook:null,
+      mostRead:null,
       categoryArticles:null,
       articles:null,
       articlesIds:null
@@ -66,22 +69,82 @@ export class JadNavigationComponent implements OnInit {
     });
 
   }
+
+  fetch_new_listing(listingType:number){
+    if(listingType != this.listingType){
+      this.startScrollLoading = false;
+      this.listingType = listingType;
+      this.pageNumber = 0;
+      this.isHotAndMostRecentLoaded = false;
+      this.hasMoreToLoad = true;
+
+
+      this.get_articles();
+      // let tabs = document.querySelectorAll('.tabs-secondary .tabs-nav li');
+      // if(!tabs[listType - 1].classList.contains('current')){
+      //   document.querySelector('.tabs-secondary .tabs-nav li.current').classList.remove('current');
+      //   tabs[listType - 1].classList.add('current');
+      // }
+      
+      // this.listType = listType;
+      // if(listType != 2){
+      //   this.isEditorPick = false;
+      // }else{
+      //   this.isEditorPick = true;
+      // }
+      // this.get_articles(true);
+    }
+  } 
+  get_articles(){
+    this.http.get(_globals.API_URL + 'Data/GetJadListing?page=' + this.pageNumber + '&navigationType=' + this.listingType).subscribe((data:any) =>{
+      if(this.pageNumber == 0){
+        this.jadModel.articles = null;
+        this.jadModel.categoryArticles = null;
+        
+        //resetting
+         if(this.jadModel.hotOnFacebook){
+          this.jadModel.hotOnFacebook = null;
+         }
+         if(this.jadModel.mostRead){
+          this.jadModel.mostRead = null;
+         }
+      }
+      if(this.listingType == 0){
+        if(this.pageNumber == 0){
+          this.jadModel.categoryArticles = data.categoryArticles;
+        }else{
+          this.jadModel.categoryArticles = this.jadModel.categoryArticles.concat(data.categoryArticles);
+        }
+        if(data['categoryArticles'] == null || !data['categoryArticles'].length || (this.pageNumber >= 2 && data['categoryArticles'].length < 6)){
+          this.hasMoreToLoad = false;
+        }
+      }else{
+        if(this.pageNumber == 0){
+          this.jadModel.articles = data.articles;
+        }else{
+          this.jadModel.articles = this.jadModel.articles.concat(data.articles);
+        }
+        if(data['articles'] == null || !data['articles'].length || (this.pageNumber >= 2 && data['articles'].length < 9)){
+          this.hasMoreToLoad = false;
+        }
+      }
+      this.jadModel.articlesIds = data.articleIds;
+      
+      this.myFunctions.new_content_formatting();
+      this.startScrollLoading = true;
+      //this.homeModel.articleIds = data['articleIds'];
+      this.pageNumber++;
+      
+      this.isLoadingMore = false;
+    });
+}
+
   @HostListener("window:scroll", [])
   onWindowScroll() {
     //console.log(this.startScrollLoading);
     
     
     if(this.startScrollLoading){
-      //Latest Announcements
-      // if(this.myFunctions.is_dom_in_view('#latest-announcements-container', 500)){
-      //     if(!this.isAnnouncementsLoaded && this.pageNumber > 2){
-      //        this.isAnnouncementsLoaded = true;
-      //       this.http.get(_globals.API_URL + 'Data/GetHomeLatestAnnouncements').subscribe((data:any) =>{
-      //         this.homeModel.latestAnnouncements2 = data['entries'];
-      //         //this.homeModel.articleIds = data['articleIds'];  
-      //       });
-      //     }        
-      // }
       //Hot Section
       // if(this.myFunctions.is_dom_in_view('#hot-most-read', 500)){
       //     if(!this.isHotAndMostRecentLoaded && this.pageNumber > 1){
@@ -103,24 +166,8 @@ export class JadNavigationComponent implements OnInit {
       if(this.hasMoreToLoad && this.myFunctions.is_dom_in_view('#load-more-container', 600)){
         if(!this.isLoadingMore){
           this.isLoadingMore = true;
-          this.http.get(_globals.API_URL + 'Data/GetJadListing?page=' + this.pageNumber ).subscribe((data:any) =>{
-            
-            //this.startScrollLoading = true;
-            
-        if(data.categoryArticles != null && data.categoryArticles.length){
-          this.jadModel.categoryArticles = this.jadModel.categoryArticles.concat(data.categoryArticles);
-          this.myFunctions.new_content_formatting();
-          if(data.categoryArticles.length < 6){
-            this.hasMoreToLoad = false;
-          }
-        }else{
-          this.hasMoreToLoad = false;
-        }
-            this.pageNumber++;
-            
-            this.isLoadingMore = false;
-          });
-          //this.get_articles(false);
+          
+          this.get_articles();
         }
       }
       
@@ -152,6 +199,8 @@ export interface JadModel{
   topics:TagModel[];
   countries:CountryModel[];
   categoryArticles:CategoryWithArticles[];
+  hotOnFacebook:ArticleModel[];
+  mostRead:ArticleModel[];
   articles:ArticleModel[];
   articlesIds:string;
 }

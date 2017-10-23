@@ -13,18 +13,18 @@
 									<div class="tabs-head">
 										<nav class="tabs-nav">
 											<ul>
-												<li class="current">
+												<li class="current" (click)="fetch_new_listing(0)">
 													<a href="#tab1">RECENT STORIES</a>
 												</li>
 												
-												<li>
+												<li (click)="fetch_new_listing(1)">
 													<a href="#tab2">
 														JADALIYYA <br />
 														RECOMMENDS
 													</a>
 												</li>
 								
-												<li>
+												<li (click)="fetch_new_listing(2)">
 													<a href="#tab3">
 														ARAB UPRISINGS <br />
 														SELECTIONS
