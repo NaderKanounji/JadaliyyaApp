@@ -148,22 +148,7 @@ var $jadNavAutoplaySpeed = 5000;
 			mouseDrag:false
 		});
 
-		$('.slider-population .owl-carousel').owlCarousel({
-			loop: true,
-			items: 1,
-			margin:10,
-			nav:true,
-			navText: [
-				'<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>',
-				'<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>'
-			],
-			onInitialized: function(data) {
-				animatePopulationSVG(data.item.index);
-			},
-			onTranslated: function(data){
-				animatePopulationSVG(data.item.index);
-			}
-		});
+		
 
 		$('.slider-vox-populi .owl-carousel').owlCarousel({
 			loop: true,
@@ -675,7 +660,7 @@ var $jadNavAutoplaySpeed = 5000;
 
 				var map = new google.maps.Map(mapCanvas, mapOptions);
 
-				var myIcon = new google.maps.MarkerImage("cssimages/ico-pin.png", null, null, null, new google.maps.Size(43,43));
+				var myIcon = new google.maps.MarkerImage("assets/images/ico-pin.png", null, null, null, new google.maps.Size(43,43));
 
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng(lat, lng),
@@ -687,69 +672,12 @@ var $jadNavAutoplaySpeed = 5000;
 			google.maps.event.addDomListener(window, 'load', initialize);
 		};
 
-		if ($('.gmap2').length) {
-			function initialize() {
-				var mapCanvas = document.getElementById('map');
-				var lat = mapCanvas.dataset.lat;
-				var lng = mapCanvas.dataset.lng;
+		
+		
 
-				var mapOptions = {
-					center: new google.maps.LatLng(lat, lng),
-					zoom: 5,
-					scrollwheel: true,
-					mapTypeId: google.maps.MapTypeId.ROADMAP,
-					disableDefaultUI: true
-				}
-
-				var map = new google.maps.Map(mapCanvas, mapOptions);
-
-				var myIcon = new google.maps.MarkerImage("cssimages/ico-pin-secondary.png", null, null, null, new google.maps.Size(31,43));
-
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(lat, lng),
-					map: map,
-					icon: myIcon
-				});
-			}
-
-			google.maps.event.addDomListener(window, 'load', initialize);
-		};
-
-		function googlemap($element, $locations, zoomLevel) {
-			var mapOptions = {
-				center: null,
-				zoom: zoomLevel,
-				scrollwheel: false,
-				mapTypeId: google.maps.MapTypeId.SATELLITE,
-				disableDefaultUI: true
-			};
-			var map = new google.maps.Map(document.getElementById($element), mapOptions);
-			var bounds = new google.maps.LatLngBounds();
-
-			for ( var i = 0; i < $locations.find('li').length; i++ ) {
-				var latlng = new google.maps.LatLng($locations.find('li').eq(i).data('lat'), $locations.find('li').eq(i).data('lng'));
-
-				var myIcon = new google.maps.MarkerImage("cssimages/ico-pin2.png", null, null, null, new google.maps.Size(44,44));
-
-				var marker = new google.maps.Marker({
-					map: map,
-					position: latlng,
-					icon: myIcon
-				});
-
-				bounds.extend(latlng);
-
-				if ( i > 0 ) {
-					map.fitBounds(bounds);
-				} else {
-					map.setCenter(latlng);
-				};
-			};
-		};
-
-		if ( $('.gmap3').length ) {
-			googlemap('map', $('.list-locations'), 11);
-		};
+		// if ( $('.gmap3').length ) {
+		// 	googlemap('map', $('.list-locations'), 11);
+		// };
 
 		// Accordion
 		(function(){
@@ -1120,14 +1048,8 @@ var $jadNavAutoplaySpeed = 5000;
 
 	};
 
-	function animatePopulationSVG(index) {
-		var $path = $('.slider-population .slide:eq(' + index + ') .progress-circle');
-
-		$('.slider-population .slide .progress-circle').attr('stroke-dasharray', '0 729');
-
-		$path.attr('stroke-dasharray', $path.data('to') + ' 729');
-	}
-
+	
+	 
 	// Added by Nader
 	// function sticky_sidebar_binding(){
 	// 	$win.on('load resize', function() {
@@ -1175,6 +1097,92 @@ var $jadNavAutoplaySpeed = 5000;
 
 })(jQuery, window, document);
 
+var load_jadNavigation_map = function(){
+	if ($('.gmap2').length) {
+		function initialize() {
+			var mapCanvas = document.getElementById('map');
+			var lat = mapCanvas.dataset.lat;
+			var lng = mapCanvas.dataset.lng;
+
+			var mapOptions = {
+				center: new google.maps.LatLng(lat, lng),
+				zoom: 5,
+				scrollwheel: true,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				disableDefaultUI: true
+			}
+
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+
+			var myIcon = new google.maps.MarkerImage("assets/images/ico-pin-secondary.png", null, null, null, new google.maps.Size(31,43));
+
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(lat, lng),
+				map: map,
+				icon: myIcon
+			});
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+	};
+
+}
+var googlemap = function($element, $locations, zoomLevel) {
+	var mapOptions = {
+		center: null,
+		zoom: zoomLevel,
+		scrollwheel: false,
+		mapTypeId: google.maps.MapTypeId.SATELLITE,
+		disableDefaultUI: true
+	};
+	var map = new google.maps.Map(document.getElementById($element), mapOptions);
+	var bounds = new google.maps.LatLngBounds();
+
+	for ( var i = 0; i < $locations.find('li').length; i++ ) {
+		var latlng = new google.maps.LatLng($locations.find('li').eq(i).data('lat'), $locations.find('li').eq(i).data('lng'));
+
+		var myIcon = new google.maps.MarkerImage("assets/images/ico-pin2.png", null, null, null, new google.maps.Size(44,44));
+
+		var marker = new google.maps.Marker({
+			map: map,
+			position: latlng,
+			icon: myIcon
+		});
+
+		bounds.extend(latlng);
+
+		if ( i > 0 ) {
+			map.fitBounds(bounds);
+		} else {
+			map.setCenter(latlng);
+		};
+	};
+};
+var slider_population = function(){
+	$('.slider-population .owl-carousel').owlCarousel({
+		loop: true,
+		items: 1,
+		margin:10,
+		nav:true,
+		navText: [
+			'<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>',
+			'<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>'
+		],
+		onInitialized: function(data) {
+			animatePopulationSVG(data.item.index);
+		},
+		onTranslated: function(data){
+			animatePopulationSVG(data.item.index);
+		}
+	});
+}
+function animatePopulationSVG(index) {
+	var $path = $('.slider-population .slide:eq(' + index + ') .progress-circle');
+
+	$('.slider-population .slide .progress-circle').attr('stroke-dasharray', '0 729');
+
+	$path.attr('stroke-dasharray', $path.data('to') + ' 729');
+}
 
 // Last row posts remove border
 var removeBorderOfLastEl = function() {
@@ -1531,6 +1539,16 @@ module.exports.myFunctions = {
 			fullsize_bg();
 		},200);
 	},
+	load_init_jadNavigation_page:function(){
+		setTimeout(function(){
+			tabsInit();
+			link_filter_binding();	
+			load_jadNavigation_map();
+			//content formatting
+			no_sidebar_class();
+			fullsize_bg();
+		},200);
+	},
 	load_category_hot_section:function(){
 		setTimeout(function(){
 			slide_feed_function();
@@ -1552,6 +1570,20 @@ module.exports.myFunctions = {
 		//console.log('..');
 		nav_overlay_on_hover();
 		add_has_dropdown_class_();
+	},
+	country_sidebar:function(){
+		setTimeout(function(){
+			slider_population();
+			tabsInit();
+			if ( $('.gmap3').length ) {
+				googlemap('map', $('.list-locations'), 11);
+			};
+		},200);
+	},
+	load_jadNavigation_map:function(){
+		setTimeout(function(){
+			load_jadNavigation_map();
+		},200);
 	},
 	openSubMenu:function(){
 		openSubMenu();	

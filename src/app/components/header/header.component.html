@@ -373,9 +373,9 @@
 	</div><!-- /.shell -->
 </header><!-- /.header -->
 
-<header class=" header-secondary {{sharedModel?.country?.hasTemplte ? 'header-secondary-alt header-shadow' : ''}} {{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'header header-arabic' : ''}} {{sharedModel?.country?.hasTemplate ? '' : 'header-default'}}" *ngIf="sharedModel.currentRoute == 'details' || sharedModel.currentRoute == 'category'|| sharedModel.currentRoute == 'country'">
-	<div class="header-image" *ngIf="sharedModel?.country?.hasTemplate && sharedModel?.country?.image">
-		<img src="css/images/temp/syria-full.jpg" alt="" class="fullsize-bg">
+<header class=" header-secondary {{sharedModel?.country?.hasTemplte ? 'header-secondary-alt header-shadow' : ''}} {{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'header header-arabic' : ''}} {{sharedModel?.country?.hasTemplate ? '' : 'header-default'}}" *ngIf="sharedModel.currentRoute == 'details' || sharedModel.currentRoute == 'category'|| sharedModel.currentRoute == 'country'|| sharedModel.currentRoute == 'jadnavigation'">
+	<div class="header-image" *ngIf="sharedModel?.currentRoute == 'country' && sharedModel?.country?.hasTemplate && sharedModel?.country?.image">
+		<img src="{{RESIZED_CONTENT_PATH}}10000x225xi/{{sharedModel?.country?.image}}" alt="" class="fullsize-bg">
 	</div><!-- /.header-image -->
 	<div class="header-inner {{sharedModel?.country && !sharedModel?.country?.hasTemplate ? '' : 'hidden-xs'}}" *ngIf="sharedModel?.categoryId != ARABIC_SECTION_ID">
 		<div class="shell">
@@ -462,7 +462,7 @@
 			</div><!-- /.shell -->
 		</div><!-- /.header-inner -->
 	
-	<div class="header-outer {{sharedModel?.country?.hasTemplate ? 'header-outer-alt' : ''}} {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category' || sharedModel.currentRoute == 'country'">
+	<div class="header-outer {{sharedModel?.country?.hasTemplate ? 'header-outer-alt' : ''}} {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category' || sharedModel.currentRoute == 'country' || sharedModel.currentRoute == 'jadnavigation'">
 		<div class="shell">
 			
 				<a href="#" class="link-search link-search-secondary" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID">

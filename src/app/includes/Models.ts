@@ -64,3 +64,13 @@ export interface SharedCountryModel{
   arTitle:string;
   image:string;
 }
+export interface LabelValueModel{
+  label:string;
+  value:string;
+}
+export interface CategoryWithArticles{
+  id:number;
+  title:string;
+  customUrlTitle:string;
+  articles:ArticleModel[];
+}

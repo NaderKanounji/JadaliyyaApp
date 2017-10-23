@@ -49,7 +49,7 @@
 										</h3><!-- /.content-title -->
 								
 										<ul class="posts">
-											<li class="post" *ngFor="let item of countryModel?.mostRecent">
+											<li class="post {{item.isArabic? 'rtl' : ''}}" *ngFor="let item of countryModel?.mostRecent">
 												<div class="post-inner">
 													<header class="post-head">
 														<h2 class="post-title">
@@ -400,7 +400,7 @@
 									<p [innerHTML]="countryModel?.about"></p>
 								</div><!-- /.widget-body -->
 							</li><!-- /.widget-about -->
-							<li class="widget-about" *ngIf="countryModel?.hasTemplate && countryModel?.regression">
+							<li class="widget-about" *ngIf="countryModel?.hasTemplate && (countryModel?.regression?.populationMillion || countryModel?.regression?.populationTitle || countryModel?.regression?.populationNb)">
 								<header class="widget-head">
 									<div class="icon">
 										<span>
@@ -480,53 +480,17 @@
 										<div class="gmap3" id="map" style="height: 354px"></div><!-- /.gmap3 -->
 		
 										<ul class="list-locations">
-											<li data-lat="37.8062171" data-lng="38.0693592"></li>
-												
-											<li data-lat="36.901569" data-lng="38.3662613"></li>	
-		
-											<li data-lat="37.2360357" data-lng="39.7570657"></li>
-		
-											<li data-lat="37.609973" data-lng="38.724334"></li>
-															
-											<li data-lat="38.06116" data-lng="39.4527363"></li>
+											<li attr.data-lat="{{countryModel?.marker?.latitude}}" attr.data-lng="{{countryModel?.marker?.longitude}}"></li>
 										</ul><!-- /.list-locations -->
 		
-										<ul class="list-population">
-											<li>
+										<ul class="list-population" *ngIf="countryModel?.info?.length">
+											<li class="{{i % 2 == 0 && i > 0 ? 'left' : ''}}" *ngFor="let item of countryModel?.info; let i = index">
 												<span>
-													<strong>Population:</strong> 22,517,750
+													<strong>{{item.label}}:</strong> {{item.value}}
 												</span>
 											</li>
 											
-											<li>
-												<span>
-													<strong>GDP:</strong> $107.4 billion
-												</span>
-											</li>
-											
-											<li class="left">
-												<span>
-													<strong>Unemployment:</strong> 8.3%; Youth Employment (ages 15-24): 19.1%
-												</span>
-											</li>
-											
-											<li>
-												<span>
-													<strong>Internet Users:</strong> 4.469 million
-												</span>
-											</li>
-											
-											<li class="left">
-												<span>
-													<strong>Exchange Rate:</strong> ~ 98.00 Syrian pounds per US dollar
-												</span>
-											</li>
-											
-											<li>
-												<span>
-													<strong>Population Growth Rate:</strong> 0.913%
-												</span>
-											</li>
+										
 										</ul><!-- /.list-population -->
 									</div><!-- /.widget-body -->
 								</li><!-- /.widget-primary -->

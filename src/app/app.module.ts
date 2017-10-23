@@ -30,6 +30,8 @@ import { HotOnFacebookComponent } from './Components/common/hot-on-facebook/hot-
 import { LatestAnnouncementsComponent } from './Components/common/latest-announcements/latest-announcements.component';
 import { MoreStoriesComponent } from './Components/common/more-stories/more-stories.component';
 import { JadNavWidgetComponent } from './Components/common/jad-nav-widget/jad-nav-widget.component';
+import { JadNavigationComponent } from './components/jad-navigation/jad-navigation.component';
+import { LiLinkComponent } from './components/common/li-link/li-link.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -41,6 +43,7 @@ var routes = [
   { path: 'Category/:id/:subId/:customUrlTitle', component: CategoryComponent  },
   { path: 'Country/:id', component: CountryComponent  },
   { path: 'Country/:id/:customUrlTitle', component: CountryComponent  },
+  { path: 'JadNavigation', component: JadNavigationComponent  },
   { path: '**', redirectTo:''  }
 ];
 
@@ -66,7 +69,9 @@ var routes = [
     HotOnFacebookComponent,
     LatestAnnouncementsComponent,
     MoreStoriesComponent,
-    JadNavWidgetComponent
+    JadNavWidgetComponent,
+    JadNavigationComponent,
+    LiLinkComponent
   ],
   imports: [
     BrowserModule,

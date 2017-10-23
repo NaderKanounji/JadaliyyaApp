@@ -4,6 +4,7 @@ import { myFunctions } from './../../assets/js/functions.js';
 
 @Injectable()
 export class FunctionsService {
+  isGoogleMapLoaded:boolean = false;
   constructor() { 
     
   }
@@ -22,6 +23,9 @@ export class FunctionsService {
   load_init_category_page(){ //Category
     myFunctions.load_init_category_page();
   }
+  load_init_jadNavigation_page(){ //Category
+    myFunctions.load_init_jadNavigation_page();
+  }
   //-----------
   
   load_home_roundups_section(){ //Category
@@ -38,6 +42,9 @@ export class FunctionsService {
   }
 //end Main Block calls
 
+country_sidebar(){
+    myFunctions.country_sidebar();
+  }
   is_dom_in_view(el:string, offset:number): boolean{
     return myFunctions.is_dom_in_view(el, offset);
   }
@@ -52,6 +59,9 @@ export class FunctionsService {
   }
   load_home_main_slider(){
     myFunctions.load_home_main_slider();
+  }
+  load_jadNavigation_map(){
+    myFunctions.load_jadNavigation_map();
   }
   header_bindings(){
     myFunctions.nav_bindings();
@@ -68,6 +78,16 @@ export class FunctionsService {
       po.src = 'https://apis.google.com/js/platform.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
     })();
+  }
+  load_google_map_api(){
+    if(!this.isGoogleMapLoaded){
+      this.isGoogleMapLoaded =true;
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAAzN3gVnJqU5kpoYxmI8ER1s-MBn1D3kM';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    }
   }
   back_to_top(speed:number){
       myFunctions.back_to_top(speed);

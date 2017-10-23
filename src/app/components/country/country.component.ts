@@ -10,7 +10,7 @@ import { SortPipe } from '../../pipes/sort.pipe';
 import { CustomSortPipe } from '../../pipes/custom-sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, SharedModel, MapMarker, PageModel } from '../../includes/Models';
+import { ArticleModel, SocialMedia, SharedModel, MapMarker, PageModel, LabelValueModel } from '../../includes/Models';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -74,6 +74,8 @@ export class CountryComponent implements OnInit {
     this.sharedService.set_categoryTitle("");
     this.sharedService.alter_wrapper_classes('');
 
+    this.myFunctions.load_google_map_api();
+    
     this.route.params.subscribe(params => {
         this.countryId = params['id'];
         
@@ -82,9 +84,12 @@ export class CountryComponent implements OnInit {
           if(data.hasTemplate){
             this.sharedService.alter_wrapper_classes('wrapper-secondary');
           }
+          
+          
           this.fetch_listing_data(data["listing"], 0);
           this.sharedService.set_country({'id': this.countryId, 'title' : data.title, 'arTitle' : data.arTitle, 'hasTemplate' : data.hasTemplate, 'image' : data.image});
           this.startScrollLoading = true;
+          this.myFunctions.country_sidebar();
         });
     });
   }
@@ -227,7 +232,7 @@ interface CountryModel{
   page:PageModel;
   slideshow:ArticleModel[];
   mostRecent:ArticleModel[];
-  info:[{'key' : string, 'value' : string}];
+  info:LabelValueModel[];
   moreFeatured:ArticleModel[];
   moreRecent:ArticleModel[];
   jadNavigation:[{
