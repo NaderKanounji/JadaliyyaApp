@@ -1,0 +1,38 @@
+<div class="slider-loader">
+    <i class="ico-loader"></i>
+  </div><!-- /.slider-loader -->
+
+  <div class="slider-outer">
+    <span class="slider-meta">
+      <span class="index"></span><small>//</small><br />
+
+      <span class="all"></span>
+    </span>
+
+    <div class="slides owl-carousel" >
+
+      <div class="slide" *ngFor="let slide of model">
+        <div class="slide-image" > <!-- hide image if field is empty -->
+          <a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
+            <img src="{{RESIZED_CONTENT_PATH}}874x456xo/{{slide.image}}" alt="{{slide.title}}" class="fullsize-bg">
+          </a>
+        </div><!-- /.slide-image -->
+
+        <div class="slide-content {{slide.isArabic ? 'arabic-font' : ''}}">
+          <a routerLink="/Details/{{slide.id}}" class="slide-title" [innerHTML]="slide.smallDescription | truncate : 200"></a>
+        </div><!-- /.slide-content -->
+      </div><!-- /.slide -->
+
+  
+    </div><!-- /.slides -->
+  </div><!-- /.slider-outer -->
+
+  <div class="slider-nav">
+    <ul class="owl-carousel">
+      <li *ngFor="let slide of model" class="{{slide.isArabic ? 'rtl' : ''}}">
+        <a href="#">
+          {{slide.title}}
+        </a>
+      </li>
+    </ul>
+  </div><!-- /.slider-nav -->

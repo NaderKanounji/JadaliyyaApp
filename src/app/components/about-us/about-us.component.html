@@ -1,0 +1,126 @@
+<div class="container">
+  <section class="section section-about">
+    <div class="shell">
+      <header class="section-head">
+        <h2 class="section-title">
+          {{model?.title}}
+
+          <span>{{model?.subtitle}}</span>
+        </h2><!-- /.section-title -->
+      </header><!-- /.section-head -->
+
+      <div class="section-body">
+        <div class="cols cols-flex">
+          <div class="col {{model?.descriptions?.length > 1 ? 'col-size1' : ''}}" *ngIf="model?.descriptions?.length" [innerHTML]="model?.descriptions[0]">
+          </div><!-- /.col col-size1 -->
+
+          <div class="col col-size1" *ngIf="model?.descriptions?.length > 1" [innerHTML]="model?.descriptions[1]">
+          </div><!-- /.col col-size1 -->
+        </div><!-- /.cols cols-flex -->
+      </div><!-- /.section-body -->
+    </div><!-- /.shell -->
+  </section><!-- /.section section-about -->
+
+  <section class="section section-contributors" *ngIf="model?.rolesWithWriters?.length">
+    <div class="shell">
+      <div class="section-content">
+        <div class="cols">
+          <div class="col" *ngFor="let item of model?.rolesWithWriters.slice(0, 3); let i = index">
+            <ul class="widgets" *ngIf="item?.writers?.length">
+              <li class="widget-contributors {{i == 0 ? 'widget-contributors-large' : ''}}">
+                <div class="widget-inner">
+                  <div class="widget-head">
+                    <h3 class="widget-title">{{item?.title}}</h3><!-- /.widget-title -->
+                  </div><!-- /.widget-head -->
+
+                  <div class="widget-body">
+                    <ul class="list-contributors" li-link [model]="item?.writers?.slice(0, 15)" [route]="'Writer'" [title]="'name'">
+                     
+                    </ul><!-- /.list-contributors -->
+                  </div><!-- /.widget-body -->
+                </div><!-- /.widget-inner -->
+              </li><!-- /.widget -->
+            </ul><!-- /.widgets -->
+          </div><!-- /.col -->
+
+
+          <div class="col" *ngIf="model?.rolesWithWriters?.length > 3">
+            <ul class="widgets">
+              <li class="widget-contributors" *ngFor="let item of model?.rolesWithWriters.slice(3, 5); let i = index">
+                <div class="widget-inner">
+                  <div class="widget-head">
+                    <h3 class="widget-title">{{item?.title}}</h3><!-- /.widget-title -->
+                  </div><!-- /.widget-head -->
+
+                  <div class="widget-body">
+                    <ul class="list-contributors" li-link [model]="item.writers?.slice(0, 2)" [route]="'Writer'" [title]="'name'">
+                    </ul><!-- /.list-contributors -->
+                  </div><!-- /.widget-body -->
+                </div><!-- /.widget-inner -->
+              </li><!-- /.widget -->
+
+             
+
+              <li class="widget-contributors">
+                <a title="Contributors" routerLink="/Contributors" class="btn btn-secondary btn-transparent-white btn-block">VIEW CONTRIBUTORS</a>
+              </li><!-- /.widget-contributors -->
+            </ul><!-- /.widgets -->
+          </div><!-- /.col -->
+        </div><!-- /.cols cols-flex -->
+      </div><!-- /.section-content -->
+    </div><!-- /.shell -->
+  </section><!-- /.section section-contributors -->
+
+  <section class="section section-editors" *ngIf="model?.jadaliyyaCoEditors?.length">
+    <div class="shell">
+      <header class="section-head">
+        <h2 class="section-title">JADALIYYA CO-EDITORS</h2><!-- /.section-title -->
+      </header><!-- /.section-head -->
+
+      <div class="section-body">
+        <ul class="list-editors">
+          <li *ngFor="let role of model?.jadaliyyaCoEditors">
+            <h5>{{role.title}}</h5>
+
+            <a title="{{item.name}}" routerLink="/Writer/{{item.id}}" *ngFor="let item of role?.writers;let i = index">{{item.name}}{{i != role?.writers.length - 1 ? ', ' : ''}}</a>
+          </li>
+
+        </ul><!-- /.list-editors -->
+      </div><!-- /.section-body -->
+    </div><!-- /.shell -->
+  </section><!-- /.section section-editors -->
+
+  <div class="sidebar visible-xs-block">
+    <div class="shell">
+      <ul class="widgets">
+        <li class="widget-subscribe">
+          <div class="subscribe">
+            <i class="ico-newsletter"></i>
+          
+            <form action="?" method="post">
+              <label for="mail">
+                <span>
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+          
+                <strong>
+                  JOIN OUR <br />
+                  
+                  NEWSLETTER
+                </strong>
+              </label>
+              
+              <input type="email" id="mail" name="mail" value="" placeholder="Enter E-mail Address" class="subscribe-field">
+              
+              <input type="submit" value="Join" class="subscribe-btn btn">
+            </form>
+          </div><!-- /.subscribe -->
+          
+          <div class="socials" social-block *ngIf="sharedModel?.socialMedia?.length" [model]="sharedModel?.socialMedia" >
+        
+          </div><!-- /.socials -->
+        </li><!-- /.widget -->
+      </ul><!-- /.widgets -->
+    </div><!-- /.shell -->
+  </div><!-- /.sidebar -->
+</div><!-- /.container -->

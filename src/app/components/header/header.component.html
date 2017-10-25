@@ -121,21 +121,21 @@
 	</div><!-- /.popup-inner -->
 </div><!-- /.popup -->
 
-<div class="bar {{sharedModel?.country?.hasTemplate ? 'bar-secondary' : ''}}">
-	<a href="#" class="link-nav">
+<div class="bar {{sharedModel?.country?.hasTemplate ? 'bar-secondary' : ''}} ">
+	<a href="#" class="link-nav {{sharedModel?.isArabicSection ? 'rtl':''}}">
 		<i class="fa fa-bars" aria-hidden="true"></i>
 
-		<span>{{sharedModel?.isArabicSection ? 'صفحات':'Pages'}}</span>
+		<span >{{sharedModel?.isArabicSection ? 'صفحات':'Pages'}}</span>
 		
-		<span class="visible-xs-inline">{{sharedModel?.isArabicSection ? 'صفحات':'Menu'}}</span>
+		<span class="visible-xs-inline ">{{sharedModel?.isArabicSection ? 'صفحات':'Menu'}}</span>
 	</a>
 
 	<a routerLink="/" class="logo">Jadaliyya</a>
 
 	<nav class="nav-primary {{sharedModel?.isArabicSection ? 'rtl' : ''}}">
 		<ul>
-			<li class="{{item.id == sharedModel?.categoryId ? 'current' : ''}}" *ngFor="let item of headerCountries">
-				<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
+			<li class="{{item.id == sharedModel?.categoryId ? 'current' : ''}}" *ngFor="let item of globalModel?.headerCountries">
+					<a routerLink="{{item.id == ARABIAN_PENINSULA ? 'Category' : 'Country'}}/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}" *ngIf="!item.isOnMenu">{{item?.title}}</a>
 			</li>
 			<li class="{{sharedModel?.isArabicSection ? 'current rtl arabic' : ''}}">
 			<a routerLink="/Category/{{ARABIC_SECTION_ID}}/القسم-العربي" class="rtl arabic">القسم العربي</a>
@@ -164,7 +164,7 @@
 </div><!-- /.bar -->
 
 <nav class="nav-sidebar">
-	<a href="#" class="link-nav">
+	<a href="#" class="link-nav {{sharedModel?.isArabicSection ? 'rtl':''}}">
 		<i class="fa fa-bars" aria-hidden="true"></i>
 
 		<span class="hidden-xs">{{sharedModel?.isArabicSection ? 'صفحات':'Pages'}}</span>
@@ -182,7 +182,7 @@
 				<a routerLink="/Category/{{ARABIC_SECTION_ID}}" class="rtl">القسم العربي</a>
 			</li>
 
-			<li *ngFor="let item of headerCountries">
+			<li *ngFor="let item of globalModel?.headerCountries">
 					<a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a>
 				</li>
 
@@ -192,16 +192,16 @@
 		</ul>
 
 		<ul>
-			<li *ngFor="let item of submenuCategories">
+			<li *ngFor="let item of globalModel?.submenuCategories">
 				<a title="{{item?.title}}" routerLink="/Category/{{item?.id + (item?.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{item?.title}}</a>
 			</li>
 	
 			<li>
-				<a href="About-us.html">About</a>
+				<a title="About" routerLink="/AboutUs">About</a>
 			</li>
 
 			<li>
-				<a href="About-us.html">The Team</a>
+				<a title="About" routerLink="/AboutUs">The Team</a>
 			</li>
 
 			<li>
@@ -228,48 +228,18 @@
 			</li>
 		</ul>
 
-		<div class="socials visible-xs-block">
-			<ul>
-				<li>
-					<a href="#" class="link-twitter">
-						<i class="fa fa-twitter" aria-hidden="true"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" class="link-facebook">
-						<i class="fa fa-facebook" aria-hidden="true"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" class="link-youtube">
-						<i class="fa fa-youtube-play" aria-hidden="true"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" class="link-vimeo">
-						<i class="fa fa-vimeo" aria-hidden="true"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" class="link-soundcloud">
-						<i class="fa fa-soundcloud" aria-hidden="true"></i>
-					</a>
-				</li>
-			</ul>
+		<div class="socials visible-xs-block" social-block [model]="sharedModel?.socialMedia" *ngIf="sharedModel?.socialMedia?.length > 0">
 		</div><!-- /.socials -->
+		
 	</div><!-- /.nav-inner scrollable-vertical -->
 
 
 
-	<div class="subMenu" *ngIf="submenuCountries">
+	<div class="subMenu" *ngIf="globalModel?.submenuCountries">
 		<div class="mobTitle" onclick="closeSubMenu()">OTHER COUNTRIES</div>
 		<div class="wrap scrollable-vertical">
 		<ul>
-		<li *ngFor="let item of submenuCountries"><a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a></li>
+		<li *ngFor="let item of globalModel?.submenuCountries"><a routerLink="Country/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}">{{item?.title}}</a></li>
 		</ul>
 		</div>
 	</div>
@@ -298,9 +268,9 @@
 	<div class="shell">
 		<a routerLink="/" class="logo">Jadaliyya</a>
 
-		<nav class="nav" *ngIf="headerCategories != undefined && headerCategories.length">
+		<nav class="nav" *ngIf="globalModel?.headerCategories != undefined && globalModel?.headerCategories.length">
 			<ul>
-				<li *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
+				<li *ngFor="let cat of globalModel?.headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
 					<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}">{{cat.title}}</a>
 
 					<div class="dropdown">
@@ -373,7 +343,7 @@
 	</div><!-- /.shell -->
 </header><!-- /.header -->
 
-<header class=" header-secondary {{sharedModel?.country?.hasTemplte ? 'header-secondary-alt header-shadow' : ''}} {{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'header header-arabic' : ''}} {{sharedModel?.country?.hasTemplate ? '' : 'header-default'}}" *ngIf="sharedModel.currentRoute == 'details' || sharedModel.currentRoute == 'category'|| sharedModel.currentRoute == 'country'|| sharedModel.currentRoute == 'jadnavigation'">
+<header class=" header-secondary {{sharedModel?.country?.hasTemplte ? 'header-secondary-alt header-shadow' : ''}} {{sharedModel?.categoryId == ARABIC_SECTION_ID ? 'header header-arabic' : ''}} {{sharedModel?.country?.hasTemplate ? '' : 'header-default'}}" *ngIf="sharedModel?.headerType == 'header-secondary'">
 	<div class="header-image" *ngIf="sharedModel?.currentRoute == 'country' && sharedModel?.country?.hasTemplate && sharedModel?.country?.image">
 		<img src="{{RESIZED_CONTENT_PATH}}10000x225xi/{{sharedModel?.country?.image}}" alt="" class="fullsize-bg">
 	</div><!-- /.header-image -->
@@ -381,10 +351,10 @@
 		<div class="shell">
 			<a routerLink="/" class="logo-small">Jadaliyya</a>
 			
-			<nav class="nav" *ngIf="headerCategories != undefined && headerCategories.length">
+			<nav class="nav" *ngIf="globalModel?.headerCategories != undefined && globalModel?.headerCategories.length">
 				<ul>
 			
-					<li class="{{sharedModel?.categoryId == cat?.id ? 'current' : ''}}" *ngFor="let cat of headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
+					<li class="{{sharedModel?.categoryId == cat?.id ? 'current' : ''}}" *ngFor="let cat of globalModel?.headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
 						<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{cat.title}}</a>
 			
 						<div class="dropdown">
@@ -462,7 +432,7 @@
 			</div><!-- /.shell -->
 		</div><!-- /.header-inner -->
 	
-	<div class="header-outer {{sharedModel?.country?.hasTemplate ? 'header-outer-alt' : ''}} {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category' || sharedModel.currentRoute == 'country' || sharedModel.currentRoute == 'jadnavigation'">
+	<div class="header-outer {{sharedModel?.country?.hasTemplate ? 'header-outer-alt' : ''}} {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category' || sharedModel.currentRoute == 'country' || sharedModel.currentRoute == 'jadnavigation' || sharedModel.currentRoute == 'aboutus' ">
 		<div class="shell">
 			
 				<a href="#" class="link-search link-search-secondary" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID">
@@ -471,8 +441,8 @@
 			<h1>{{sharedModel?.country ? sharedModel?.country?.title : sharedModel?.categoryTitle}}
 				<span class="rtl" *ngIf="sharedModel?.country?.arTitle">{{sharedModel?.country?.arTitle}}</span></h1>
 
-			<ul class="list-navs rtl" *ngIf="sharedModel?.isArabicSection && headerSubCategories?.length">
-				<li class="{{sharedModel?.categoryId == item.id ? 'current' : ''}}" *ngFor="let item of headerSubCategories">
+			<ul class="list-navs rtl" *ngIf="sharedModel?.isArabicSection && globalModel?.arabicSubCategories?.length">
+				<li class="{{sharedModel?.categoryId == item.id ? 'current' : ''}}" *ngFor="let item of globalModel?.arabicSubCategories">
 					<a title="{{item.title}}" routerLink="/Category/{{ARABIC_SECTION_ID}}/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
 				</li>
 
@@ -487,7 +457,7 @@
 						<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MONTHLY_URL_TITLE}}">MONTHLY EDITIONS</a>
 					</li>
 				</ul><!-- /.list-navs -->
-			<a href="#" class="link-filter">
+			<a href="#" class="link-filter" *ngIf="sharedModel.currentRoute == 'category'">
 				Filter By
 
 				

@@ -15,7 +15,6 @@ import { _globals } from '../../includes/globals';
   styleUrls: ['./article-details.component.css']
 })
 export class ArticleDetailsComponent implements OnInit {
-  CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
   BASE_URL:string;
 
@@ -26,12 +25,12 @@ export class ArticleDetailsComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService) { }
 
   ngOnInit() {
-    this.CONTENT_PATH = _globals.CONTENT_PATH;
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
     this.BASE_URL = _globals.BASE_URL;
     this.twitterUsername = _globals.TwitterUsername;
     
     this.sharedService.set_currentRoute("details");
+    this.sharedService.set_headerType("header-secondary");
 
     this.sharedService.alter_wrapper_classes('wrapper-secondary');    
     this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);

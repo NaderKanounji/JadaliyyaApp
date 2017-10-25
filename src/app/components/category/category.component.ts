@@ -54,10 +54,7 @@ export class CategoryComponent implements OnInit {
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.socialMedia = sharedModel.socialMedia);
     this.sharedService.set_currentRoute("category");
-    this.sharedService.set_categoryTitle("");
-    this.sharedService.alter_wrapper_classes('');
-    this.sharedService.set_categoryId(null);
-    this.sharedService.set_customUrlTitle('');
+    this.sharedService.set_headerType("header-secondary");
 
     this.listingModel = {
       mainArticle:null,

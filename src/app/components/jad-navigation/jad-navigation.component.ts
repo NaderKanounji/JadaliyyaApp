@@ -45,19 +45,18 @@ export class JadNavigationComponent implements OnInit {
       mostRead:null,
       categoryArticles:null,
       articles:null,
-      articlesIds:null
+      articleIds:null
     };
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.sharedModel = sharedModel);
     this.sharedService.set_currentRoute("jadnavigation");
+    this.sharedService.set_headerType("header-secondary");
     this.sharedService.set_categoryTitle("Jad Navigation");
-    this.sharedService.alter_wrapper_classes('');
 
     this.myFunctions.load_google_map_api();
     this.http.get(_globals.API_URL + 'Data/GetJadNavigationInit').subscribe((data:any) => {
 
       this.jadModel = data;
-      console.log(this.jadModel);
       
 
       setTimeout(() => {
@@ -77,26 +76,14 @@ export class JadNavigationComponent implements OnInit {
       this.pageNumber = 0;
       this.isHotAndMostRecentLoaded = false;
       this.hasMoreToLoad = true;
+      this.jadModel.articleIds = "";
 
 
       this.get_articles();
-      // let tabs = document.querySelectorAll('.tabs-secondary .tabs-nav li');
-      // if(!tabs[listType - 1].classList.contains('current')){
-      //   document.querySelector('.tabs-secondary .tabs-nav li.current').classList.remove('current');
-      //   tabs[listType - 1].classList.add('current');
-      // }
-      
-      // this.listType = listType;
-      // if(listType != 2){
-      //   this.isEditorPick = false;
-      // }else{
-      //   this.isEditorPick = true;
-      // }
-      // this.get_articles(true);
     }
   } 
   get_articles(){
-    this.http.get(_globals.API_URL + 'Data/GetJadListing?page=' + this.pageNumber + '&navigationType=' + this.listingType).subscribe((data:any) =>{
+    this.http.get(_globals.API_URL + 'Data/GetJadListing?page=' + this.pageNumber + '&navigationType=' + this.listingType + '&idsToRemove=' + this.jadModel.articleIds).subscribe((data:any) =>{
       if(this.pageNumber == 0){
         this.jadModel.articles = null;
         this.jadModel.categoryArticles = null;
@@ -128,7 +115,7 @@ export class JadNavigationComponent implements OnInit {
           this.hasMoreToLoad = false;
         }
       }
-      this.jadModel.articlesIds = data.articleIds;
+      this.jadModel.articleIds = data.articleIds;
       
       this.myFunctions.new_content_formatting();
       this.startScrollLoading = true;
@@ -146,21 +133,19 @@ export class JadNavigationComponent implements OnInit {
     
     if(this.startScrollLoading){
       //Hot Section
-      // if(this.myFunctions.is_dom_in_view('#hot-most-read', 500)){
-      //     if(!this.isHotAndMostRecentLoaded && this.pageNumber > 1){
-      //        this.isHotAndMostRecentLoaded = true;
+      if(this.myFunctions.is_dom_in_view('#hot-most-read', 500)){
+          if(!this.isHotAndMostRecentLoaded && this.pageNumber > 1){
+             this.isHotAndMostRecentLoaded = true;
 
-      //       // this.isLoadingMore = true; 
-      //       this.http.get(_globals.API_URL + 'Data/GetHomeHotStories').subscribe((data:any) =>{
-      //         this.homeModel.hotOnFacebook = data['hotOnFacebook'];
-      //         this.homeModel.mostRead = data['mostRead'];   
-      //         //this.homeModel.articleIds = data['articleIds']; 
-      //       //  this.isLoadingMore = false;       
-      //         this.myFunctions.load_category_hot_section();
-      //       });
-      //     }
+            // this.isLoadingMore = true; 
+            this.http.get(_globals.API_URL + 'Data/GetJadHotStories').subscribe((data:any) =>{
+              this.jadModel.hotOnFacebook = data['hotOnFacebook'];
+              this.jadModel.mostRead = data['mostRead'];   
+              this.myFunctions.load_category_hot_section();
+            });
+          }
         
-      // }
+      }
       
       //Load more
       if(this.hasMoreToLoad && this.myFunctions.is_dom_in_view('#load-more-container', 600)){
@@ -202,7 +187,7 @@ export interface JadModel{
   hotOnFacebook:ArticleModel[];
   mostRead:ArticleModel[];
   articles:ArticleModel[];
-  articlesIds:string;
+  articleIds:string;
 }
 export interface CategoryModel{
   id:number,

@@ -51,7 +51,7 @@
 														
 														<div class="widget-body" *ngIf="item?.articles?.length">
 															<ul class="list-news list-news-default">
-																<li *ngFor="let post of item?.articles">
+																<li class="{{post.isArabic ? 'rtl' : ''}}" *ngFor="let post of item?.articles">
 																	<span *ngIf="post?.image">
 																		<a title="{{post.title}}" routerLink="/Details/{{post.id + (post.customUrlTitle ? '/' + post.customUrlTitle : '')}}">
 																			<img src="{{RESIZED_CONTENT_PATH}}60x60xo/{{post?.image}}" alt="{{post.titlle}}">
@@ -67,7 +67,53 @@
 													</div><!-- /.widget-inner -->
 												</li><!-- /.widget -->
 								
-											</ul><!-- /.widgets -->
+                      </ul><!-- /.widgets -->
+                      <section class="section section-articles section-articles-primary" *ngIf="jadModel?.articles?.length">
+                          <div class="section-content">
+                            <ul class="posts">
+                              <li class="post {{post.isArabic ? 'rtl' : ''}}" *ngFor="let post of jadModel?.articles?.slice(0, 15)">
+                                <post [post]="post"></post>
+                              </li><!-- /.post -->
+  
+                            </ul><!-- /.posts -->
+                          </div><!-- /.section-content -->
+                        </section><!-- /.section section-articles -->
+  
+                        
+						            <div id="hot-most-read" hot-on-facebook [model]="jadModel" *ngIf="jadModel?.articles?.length">
+                
+                        </div>
+  
+                        <section class="section section-articles section-articles-primary rtl" *ngIf="jadModel?.articles?.length > 15">
+                          <div class="section-content">
+                            <ul class="posts">
+                                <li class="post {{item.isArabic ? 'rtl' : ''}}" *ngFor="let post of jadModel?.articles?.slice(15, 19)">
+                                  <post [post]="item"></post>
+                                </li><!-- /.post -->
+                                                      
+                              <li class="post post-report">
+                                <div class="post-inner">
+                                  <div class="quote">
+                                    <div class="quote-inner">
+                                      <h5>
+                                        <a href="#">
+                                          Check out our  <strong>REPORTS PAGE</strong> and catch up on news &amp; events
+                                                                    
+                                          <i class="ico-link"></i>
+                                        </a>
+                                      </h5>
+                                    </div><!-- /.quote-inner -->
+                                  </div><!-- /.quote -->
+                                </div><!-- /.post-inner -->
+                              </li><!-- /.post -->
+
+                              <li class="post {{item.isArabic ? 'rtl' : ''}}" *ngFor="let post of jadModel?.articles?.slice(19)">
+                                <post [post]="item"></post>
+                              </li><!-- /.post -->
+
+                            </ul><!-- /.posts -->
+                          </div><!-- /.section-content -->
+                        </section><!-- /.section section-articles -->
 										</div><!-- /.tab -->
 								
 									</div><!-- /.tabs-body -->
@@ -113,16 +159,9 @@
 								</div><!-- /.subscribe -->
 					
 						
-                <div class="socials" *ngIf="sharedModel?.socialMedia?.length > 0">
-                    <ul>
-                      <li *ngFor="let item of sharedModel?.socialMedia">
-                        <a href="{{item.link}}" class="link-{{item.title | social:true}}" target="_blank">
-                          <i class="fa fa-{{item.title | social}}" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </div><!-- /.socials -->
+                <div class="socials" social-block [model]="sharedModel?.socialMedia" *ngIf="sharedModel?.socialMedia?.length > 0">
+                </div><!-- /.socials -->
+               
 							</div><!-- /.widget-content -->
 						</li><!-- /.widget -->
 					

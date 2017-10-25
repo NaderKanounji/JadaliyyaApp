@@ -65,45 +65,8 @@
         <div class="shell">
          
           <div class="section-content" > <!-- hide section if slideshow is empty -->
-            <div class="slider slider-primary" *ngIf="homeModel?.slideshow">
-              <div class="slider-loader">
-                <i class="ico-loader"></i>
-              </div><!-- /.slider-loader -->
-  
-              <div class="slider-outer">
-                <span class="slider-meta">
-                  <span class="index"></span><small>//</small><br />
-  
-                  <span class="all"></span>
-                </span>
-  
-                <div class="slides owl-carousel" >
-  
-                  <div class="slide" *ngFor="let slide of homeModel?.slideshow">
-                    <div class="slide-image" > <!-- hide image if field is empty -->
-                      <a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
-                        <img src="{{RESIZED_CONTENT_PATH}}874x456xo/{{slide.image}}" alt="{{slide.title}}" class="fullsize-bg">
-                      </a>
-                    </div><!-- /.slide-image -->
-  
-                    <div class="slide-content">
-                      <a routerLink="/Details/{{slide.id}}" class="slide-title" [innerHTML]="slide.smallDescription | truncate : 200"></a>
-                    </div><!-- /.slide-content -->
-                  </div><!-- /.slide -->
-  
+            <div class="slider slider-primary" slideshow [model]="homeModel?.slideshow" *ngIf="homeModel?.slideshow?.length">
               
-                </div><!-- /.slides -->
-              </div><!-- /.slider-outer -->
-  
-              <div class="slider-nav">
-                <ul class="owl-carousel">
-                  <li *ngFor="let slide of homeModel?.slideshow" class="">
-                    <a href="#">
-                      {{slide.title}}
-                    </a>
-                  </li>
-                </ul>
-              </div><!-- /.slider-nav -->
             </div><!-- /.slider -->
           </div><!-- /.section-content -->
   
@@ -137,15 +100,7 @@
                     </form>
                   </div><!-- /.subscribe -->
   
-                  <div class="socials" *ngIf="socialMedia?.length > 0">
-                    <ul>
-                      
-										  <li *ngFor="let item of socialMedia">
-                        <a href="{{item.link}}" class="link-{{item.title | social:true}}" target="_blank">
-                          <i class="fa fa-{{item.title | social}}" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
+                  <div class="socials" social-block [model]="socialMedia" *ngIf="socialMedia?.length > 0">
                   </div><!-- /.socials -->
                 </div><!-- /.widget-content -->
               </li><!-- /.widget -->
@@ -253,7 +208,7 @@
             <div class="list-interests" *ngIf="homeModel?.tags?.length">
               <a class="{{initialTags.indexOf(item.id) > -1 ? 'clicked' : ''}}" *ngFor="let item of homeModel?.tags.slice(0, 7)" attr.data-tag-id="{{item.id}}">{{item.title}}</a>
   
-              <a href="#" class="link-more">More</a>
+              <a href="#" class="link-more" *ngIf="homeModel?.tags?.length > 7">More</a>
   
               <a class="more {{initialTags.indexOf(item.id) > -1 ? 'clicked' : ''}}" attr.data-tag-id="{{item.id}}" *ngFor="let item of homeModel?.tags.slice(8, 29)">{{item.title}}</a>
   
@@ -534,9 +489,9 @@
                       <div class="section-content scrollable-horizontal">
                         <div class="slider slider-roundups-secondary">
                           <div class="slides">
-                            <div class="slide"  *ngFor="let parentItem of homeModel?.latestAnnouncements2; let i = index">
-                              <ul class="list-news list-news-secondary" *ngIf="i % 2 == 0">
-                                <li *ngFor="let item of homeModel?.latestAnnouncements2.slice(i, i + 2)">
+                            <div class="slide"  *ngFor="let parentItem of homeModel?.latestAnnouncements2.slice(0, (homeModel?.latestAnnouncements2?.length - (homeModel?.latestAnnouncements2?.length % 2)) / 2); let i = index">
+                              <ul class="list-news list-news-secondary" >
+                                <li *ngFor="let item of homeModel?.latestAnnouncements2.slice(i * 2, (i * 2) + 2)">
                                   <span *ngIf="item.image">
                                     <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
                                       <img src="{{RESIZED_CONTENT_PATH}}60x58xo/{{item.image}}" alt="">
@@ -1121,7 +1076,7 @@
 
               <div class="sidebar" id="sidebar-container">
                   <ul class="widgets">
-                    <li class="widget-jad hidden-xs" *ngIf="homeModel?.sidebar">
+                    <li class="widget-jad hidden-xs" *ngIf="homeModel?.sidebar?.image">
                       <div class="widget-image">
                         <a href="#">
                           <img src="../../assets/images/temp/jadmag.jpg" alt="">
@@ -1384,7 +1339,7 @@
                       
                         <div class="widget-body">
                           <canvas width="330" height="250" id="tag-canvas"></canvas>
-                          <div id="popularTags" style="display: none">
+                          <div id="tags" style="display: none">
                             <ul>
                               <li *ngFor="let item of homeModel?.sidebar?.popularTags"><a title="{{item.title}}" routerLink="/Tag/{{item.id}}">{{item.title}}</a></li>
                             </ul>

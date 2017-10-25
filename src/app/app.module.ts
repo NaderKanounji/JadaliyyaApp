@@ -32,6 +32,9 @@ import { MoreStoriesComponent } from './Components/common/more-stories/more-stor
 import { JadNavWidgetComponent } from './Components/common/jad-nav-widget/jad-nav-widget.component';
 import { JadNavigationComponent } from './components/jad-navigation/jad-navigation.component';
 import { LiLinkComponent } from './components/common/li-link/li-link.component';
+import { SocialBlockComponent } from './components/common/social-block/social-block.component';
+import { SlideshowComponent } from './components/common/slideshow/slideshow.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -44,6 +47,7 @@ var routes = [
   { path: 'Country/:id', component: CountryComponent  },
   { path: 'Country/:id/:customUrlTitle', component: CountryComponent  },
   { path: 'JadNavigation', component: JadNavigationComponent  },
+  { path: 'AboutUs', component: AboutUsComponent  },
   { path: '**', redirectTo:''  }
 ];
 
@@ -71,7 +75,10 @@ var routes = [
     MoreStoriesComponent,
     JadNavWidgetComponent,
     JadNavigationComponent,
-    LiLinkComponent
+    LiLinkComponent,
+    SocialBlockComponent,
+    SlideshowComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

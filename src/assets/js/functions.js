@@ -31,36 +31,7 @@ var $jadNavAutoplaySpeed = 5000;
 	var winH = $win.height();
 
 	$doc.ready(function() {
-		// Add class if has dropdown
-		add_has_dropdown_class_ = function(){
-			setTimeout(function(){
-				$('.nav li, .nav-access li').each(function() {
-					var $this = $(this);
-					//console.log('each');
-					if ( $this.find('.dropdown').length ) {
-						$this.addClass('has-dropdown');
-						//console.log($this.hasClass('has-dropdown'));
-					};
-				});
-			},500);
-			
-		}
 
-		// Nav hover overlay
-
-		nav_overlay_on_hover = function(){
-			$('.nav .has-dropdown').mouseenter(
-				function() {
-					$('.container').addClass('overlay');
-				}
-			);
-	
-			$('.nav .dropdown, .nav .has-dropdown > a').mouseleave(
-				function() {
-					$('.container').removeClass('overlay');
-				}
-			);
-		}
 
 		// Close nav on ESC key press
 		$doc.keyup(function(e) {
@@ -342,23 +313,7 @@ var $jadNavAutoplaySpeed = 5000;
 		
 		removeBorderOfLastEl();
 
-		// Slider Custom Scroll
-		function horizontalScroll() {
-			if( $(".scrollable-horizontal").parent('.rtl').length ) {
-				$(".scrollable-horizontal").mCustomScrollbar({
-					axis:"x",
-					scrollButtons:true,
-					mouseWheel: {
-						invert: true
-					}
-				});
-			} else {
-				$(".scrollable-horizontal").mCustomScrollbar({
-					axis:"x",
-					scrollButtons:true
-				});
-			}
-		};
+		
 		horizontalScroll();
 
 		function verticalScroll() {
@@ -436,15 +391,6 @@ var $jadNavAutoplaySpeed = 5000;
 		};
 		openPopup();
 
-		// Close Popup
-		function closePopup() {
-			$('.link-close-popup').on('click', function(event) {
-				event.preventDefault();
-
-				$.magnificPopup.close();
-			});
-		};
-		closePopup();
 
 		$('.tabs-secondary .tabs-nav a').on('click', function(event) {
 			event.preventDefault();
@@ -924,20 +870,6 @@ var $jadNavAutoplaySpeed = 5000;
 		
 
 	});
-	tags_widget_init = function(){
-		// Tags
-		$('#tag-canvas').tagcanvas({
-			textColour   : '#fff',
-			outlineColour: 'transparent',
-			bgColour     : '#3c88bc',
-			bgRadius     : 50,
-			reverse      : true,
-			depth        : 0.8,
-			maxSpeed     : 0.05,
-			textFont     : 'Arial'
-
-		},'tags');
-	};
 	profiles_carousel_init = function(){
 		var $profileSlider = $('.slider-round').owlCarousel({
 			loop     : false,
@@ -1097,6 +1029,76 @@ var $jadNavAutoplaySpeed = 5000;
 
 })(jQuery, window, document);
 
+tags_widget_init = function(){
+	// Tags
+	$('#tag-canvas').tagcanvas({
+		textColour   : '#fff',
+		outlineColour: 'transparent',
+		bgColour     : '#3c88bc',
+		bgRadius     : 50,
+		reverse      : true,
+		depth        : 0.8,
+		maxSpeed     : 0.05,
+		textFont     : 'Arial'
+
+	},'tags');
+};
+
+// Slider Custom Scroll
+ var horizontalScroll = function() {
+	if( $(".scrollable-horizontal").parent('.rtl').length ) {
+		$(".scrollable-horizontal").mCustomScrollbar({
+			axis:"x",
+			scrollButtons:true,
+			mouseWheel: {
+				invert: true
+			}
+		});
+	} else {
+		$(".scrollable-horizontal").mCustomScrollbar({
+			axis:"x",
+			scrollButtons:true
+		});
+	}
+};
+// Close Popup
+function closePopup() {
+	//console.log('closePopup');
+	$('.link-close-popup').on('click', function(event) {
+		event.preventDefault();
+
+		$.magnificPopup.close();
+	});
+};
+// Add class if has dropdown
+add_has_dropdown_class_ = function(){
+	setTimeout(function(){
+		$('.nav li, .nav-access li').each(function() {
+			var $this = $(this);
+			//console.log('each');
+			if ( $this.find('.dropdown').length ) {
+				$this.addClass('has-dropdown');
+				//console.log($this.hasClass('has-dropdown'));
+			};
+		});
+	},500);
+	
+}
+// Nav hover overlay
+
+nav_overlay_on_hover = function(){
+	$('.nav .has-dropdown').mouseenter(
+		function() {
+			$('.container').addClass('overlay');
+		}
+	);
+
+	$('.nav .dropdown, .nav .has-dropdown > a').mouseleave(
+		function() {
+			$('.container').removeClass('overlay');
+		}
+	);
+}
 var load_jadNavigation_map = function(){
 	if ($('.gmap2').length) {
 		function initialize() {
@@ -1309,6 +1311,10 @@ function slideAutoplay() {
 		slideAutoplay();
 	}, $jadNavAutoplaySpeed);
 };
+function closeSearch() {
+	$('.search').removeClass('active');
+	$('.link-search-close').removeClass('active');
+};
 // SVG Map Widget
 svg_map_init = function(){
 	$('.svg-map-anchor')
@@ -1468,17 +1474,19 @@ function closeSubMenu() {
 // Sticky Footer
 stickyFooter = function() {
 	//console.log($('#main-wrapper').length);
-	if( $('.socials-tertiary').length ) {
-		if( $(window).width() < 768 ) {
-			$('#main-wrapper').css('padding-bottom', $('.footer').outerHeight(true) + 58);
-			$('.footer').css('bottom', '58px');
+	setTimeout(function(){
+		if( $('.socials-tertiary').length ) {
+			if( $(window).width() < 768 ) {
+				$('#main-wrapper').css('padding-bottom', $('.footer').outerHeight(true) + 58);
+				$('.footer').css('bottom', '58px');
+			} else {
+				$('#main-wrapper').css('padding-bottom', $('.footer').outerHeight(true));
+				$('.footer').css('bottom', '0');
+			}
 		} else {
 			$('#main-wrapper').css('padding-bottom', $('.footer').outerHeight(true));
-			$('.footer').css('bottom', '0');
 		}
-	} else {
-		$('#main-wrapper').css('padding-bottom', $('.footer').outerHeight(true));
-	}
+	},1000);
 }
 
 
@@ -1487,8 +1495,16 @@ stickyFooter = function() {
 
 
 module.exports.myFunctions = {
+	reset_page_state:function(){
+		
+		$('.nav-sidebar, .wrapper, body').removeClass('active');
+		closeSubMenu();
+		$.magnificPopup.close();
+		closeSearch();
+	},
 	load_all_pages:function(){
 		setTimeout(function(){
+			    closePopup();
 				stickyFooter();
 				$(window).on('resize', function() {
 					stickyFooter();
@@ -1499,7 +1515,6 @@ module.exports.myFunctions = {
 		setTimeout(function(){
 			nav_overlay_on_hover();
 			add_has_dropdown_class_();
-			sliderMain();
 			moreInterests();
 			interestsToggle();
 			announcements_carousel_init();
@@ -1532,7 +1547,6 @@ module.exports.myFunctions = {
 	load_init_category_page:function(){
 		setTimeout(function(){
 			tabsInit();
-			sliderMain();
 			link_filter_binding();	
 			//content formatting
 			no_sidebar_class();
@@ -1559,6 +1573,7 @@ module.exports.myFunctions = {
 		setTimeout(function(){
 			tabsInit();
 			roundups_carousel_init();
+			horizontalScroll();
 		},200);
 	},
 	sticky_sidebar_binding: function(){
@@ -1588,8 +1603,10 @@ module.exports.myFunctions = {
 	openSubMenu:function(){
 		openSubMenu();	
 	},
-	load_home_main_slider:function(){
-		sliderMain();
+	load_slideshow:function(){
+		setTimeout(function(){
+		   sliderMain();
+	    },200);
 	},
 	homeSidebar:function(){
 		setTimeout(function(){

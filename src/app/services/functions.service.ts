@@ -9,6 +9,9 @@ export class FunctionsService {
     
   }
 //Main Block calls
+reset_page_state(){
+  myFunctions.reset_page_state();
+}
   load_all_pages(){ //All
     myFunctions.load_all_pages();
   }
@@ -57,8 +60,8 @@ country_sidebar(){
   load_fb_comments(){
     myFunctions.load_fb_comments();
   }
-  load_home_main_slider(){
-    myFunctions.load_home_main_slider();
+  load_slideshow(){
+    myFunctions.load_slideshow();
   }
   load_jadNavigation_map(){
     myFunctions.load_jadNavigation_map();

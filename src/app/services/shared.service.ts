@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { SharedModel, SocialMedia,SharedCountryModel } from '../includes/Models';
+import { SharedModel, SocialMedia,SharedCountryModel, Country, Category } from '../includes/Models';
 
 @Injectable()
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null}
+    {"headerType" : "header", "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null }
   );
   sharedModel = this.messageSource.asObservable();
 
@@ -19,6 +19,11 @@ export class SharedService {
   set_currentRoute(myCurrentRoute:string){
     let tempModel = this.messageSource.getValue();
     tempModel.currentRoute = myCurrentRoute;
+    this.messageSource.next(tempModel);
+  }
+  set_headerType(headerType:string){
+    let tempModel = this.messageSource.getValue();
+    tempModel.headerType = headerType;
     this.messageSource.next(tempModel);
   }
   set_categoryTitle(myCategoryTitle:string){

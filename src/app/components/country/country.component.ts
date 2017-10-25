@@ -71,8 +71,8 @@ export class CountryComponent implements OnInit {
     this.sharedService.sharedModel.subscribe(sharedModel => this.sharedModel = sharedModel);
     this.sharedService.set_country({'id': this.countryId, 'title' : null, 'arTitle' : null, 'hasTemplate' : false, 'image' : null});    
     this.sharedService.set_currentRoute("country");
-    this.sharedService.set_categoryTitle("");
-    this.sharedService.alter_wrapper_classes('');
+    this.sharedService.set_headerType("header-secondary");
+
 
     this.myFunctions.load_google_map_api();
     

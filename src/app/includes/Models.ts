@@ -1,3 +1,25 @@
+export interface RolesWithWriters{
+  title:string;
+  writers:WriterModel[];
+}
+export interface WriterModel{
+  id:number;
+  name:string;
+  title:string;// same as name - to eliminate confusion
+  image:string;
+  articleCount:number;
+  socialMedia:SocialMedia;
+}
+export interface GlobalModel{
+  headerCategories:Category[];
+  arabicSubCategories:Category[];
+  submenuCategories:Category[];
+  headerCountries:Country[];
+ submenuCountries:Country[];
+ footerCategories:Category[];
+ footerCountries:Country[];
+ mobileLinks:SocialMedia[];
+}
 export interface ArticleModel{
   id:number;
   customUrlTitle:string;
@@ -14,11 +36,13 @@ export interface ArticleModel{
   }
 }
 export interface SocialMedia{
+    id:number;
     title:string;
     link:string;
   }
   
  export interface SharedModel{
+    headerType:string;
     currentRoute:string;
     categoryTitle:string;
     categoryId:number;
@@ -27,6 +51,18 @@ export interface SocialMedia{
     isGoogleApiLoaded:boolean;
     socialMedia:SocialMedia[];
     country:SharedCountryModel;
+}
+
+export interface Country{
+  id:number;
+  title:string;
+  customUrlTitle:string;
+}
+export interface Category{
+  id:number,
+  title:string,
+  isOnMenu:boolean,
+  customUrlTitle:string
 }
 
 export interface TagModel{

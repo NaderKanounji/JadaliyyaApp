@@ -1,0 +1,9 @@
+
+									<ul>
+                      <li *ngFor="let item of model">
+                        <a href="{{item.link}}" class="{{addClass ? 'link-' + (item.title | social:true) : ''}}" target="_blank">
+                          <i class="fa fa-{{item.title | social}}" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      
+                    </ul>

@@ -11,6 +11,7 @@ export class LiLinkComponent implements OnInit {
   ARABIC_SECTION_ID:number;
   @Input() model:any;
   @Input() route:string;
+  @Input() title:string = "title";
   @Input() isArabic:boolean = false;
   constructor() { }
 

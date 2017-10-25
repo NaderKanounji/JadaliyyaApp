@@ -4,41 +4,8 @@
 				<div class="content">
 					<div class="content-inner">
 						<div class="content-inner-flex" *ngIf="!isArabicSection || categoryId == ARABIC_SECTION_ID">
-							<div class="slider slider-primary" *ngIf="categoryModel?.slideshow?.length > 0">
-								<div class="slider-loader">
-									<i class="ico-loader"></i>
-								</div><!-- /.slider-loader -->
+							<div class="slider slider-primary" slideshow [model]="categoryModel?.slideshow" *ngIf="categoryModel?.slideshow?.length">
 								
-								<div class="slider-outer">
-									<span class="slider-meta">
-										<span class="index"></span><small>//</small><br />
-									
-										<span class="all"></span>
-									</span>
-									
-									<div class="slides owl-carousel">
-										<div class="slide" *ngFor="let slide of categoryModel?.slideshow">
-											<div class="slide-image {{slide.youtubeLink ? 'slide-video' : ''}}">
-												<a title="{{slide.title}}" routerLink="/Details/{{slide.id}}/{{slide.customUrlTitle ? '/' + slide.customUrlTitle : ''}}">
-													<img src="{{RESIZED_CONTENT_PATH}}857x456xo/{{slide.image}}" alt="{{slide.title}}" class="fullsize-bg">
-												</a>
-											</div><!-- /.slide-image -->
-									
-											<div class="slide-content" *ngIf="slide.smallDescription">
-												<a title="{{slide.title}}" routerLink="/Details/{{slide.id}}/{{slide.customUrlTitle ? '/' + slide.customUrlTitle : ''}}" class="slide-title" [innerHTML]="slide.smallDescription | truncate:200"></a>
-											</div><!-- /.slide-content -->
-										</div><!-- /.slide -->
-									
-									</div><!-- /.slides -->
-								</div><!-- /.slider-outer -->
-
-								<div class="slider-nav">
-									<ul class="owl-carousel" >
-										<li *ngFor="let slide of categoryModel?.slideshow" class="slide.isArabic ? 'rtl' : ''">
-											<a [innerHTML]="slide.title"></a>
-										</li>
-									</ul>
-								</div><!-- /.slider-nav -->
 							</div><!-- /.slider -->
 						
 							<div class="content-aside" *ngIf="categoryModel?.mostRecent?.length > 0">
@@ -543,19 +510,11 @@
 					
 				<div class="sidebar">
 					<ul class="widgets">
-						<li class="widget-subscribe">
+						<li class="widget-subscribe" >
 							<div class="widget-content">
 								<app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
 					
-								<div class="socials" *ngIf="socialMedia?.length > 0">
-									<ul>
-										<li *ngFor="let item of socialMedia">
-											<a href="{{item.link}}" class="link-{{item.title | social:true}}" target="_blank">
-												<i class="fa fa-{{item.title | social}}" aria-hidden="true"></i>
-											</a>
-										</li>
-										
-									</ul>
+								<div class="socials" social-block [model]="socialMedia" *ngIf="socialMedia?.length > 0">
 								</div><!-- /.socials -->
 							</div><!-- /.widget-content -->
 						</li><!-- /.widget -->

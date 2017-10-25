@@ -1,4 +1,4 @@
-<li class="{{item.isArabic ? 'rtl' : ''}}" *ngFor="let item of model">
-    <a title="{{item.title}}" *ngIf="route" routerLink="/{{route}}/{{isArabic && route.toLowerCase() == 'category'? ARABIC_SECTION_ID + '/' : ''}}/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
-    <a *ngIf="!route">{{item.title}}</a>
+<li class="{{item?.isArabic ? 'rtl' : ''}}" *ngFor="let item of model">
+    <a title="{{title=='name' ? item.name : item.title }}" *ngIf="route" routerLink="/{{route}}/{{isArabic && route.toLowerCase() == 'category'? ARABIC_SECTION_ID + '/' : ''}}/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{title=='name' ? item.name : item.title }}</a>
+    <a *ngIf="!route">{{title=='name' ? item.name : item.title }}</a>
   </li>

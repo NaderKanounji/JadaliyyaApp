@@ -32,14 +32,14 @@
               <div class="slide" *ngFor="let slide of model?.hotOnFacebook">
                 <ul class="list-news list-news-dark list-feed">
                   <li>
-                    <span *ngIf="slide?.image">
+                    <span class="frame" *ngIf="slide?.image">
                       <a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
                         <img src="{{RESIZED_CONTENT_PATH}}100x73xo/{{slide.image}}" alt="{{slide.title}}">
                       </a>
                     </span>
 
                     <div>
-                      <p [innerHTML]="slide?.title"></p>
+                      <p [innerHTML]="slide?.title | truncate:40"></p>
                       
                       <a>
                         <img src="../../assets/images/temp/share.png" alt="">
@@ -59,14 +59,14 @@
               <div class="slide" *ngFor="let slide of model?.mostRead">
                 <ul class="list-news list-news-dark list-feed">
                   <li>
-                    <span *ngIf="slide?.image">
+                    <span class="frame" *ngIf="slide?.image">
                       <a title="{{slide.title}}" routerLink="/Details/{{slide.id + (slide.customUrlTitle ? '/' + slide.customUrlTitle : '')}}">
                         <img src="{{RESIZED_CONTENT_PATH}}100x73xo/{{slide.image}}" alt="{{slide.title}}">
                       </a>
                     </span>
 
                     <div>
-                      <p [innerHTML]="slide?.title"></p>
+                      <p [innerHTML]="slide?.title | truncate:40"></p>
                       
                       <a href="#">
                         <img src="../../assets/images/temp/share.png" alt="share">

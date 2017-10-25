@@ -73,6 +73,7 @@ export class HomeComponent implements OnInit {
         list3:null
       },
       sidebar:{
+        image:null,
         newton:null,
         pedagogy:null,
         quickThoughts:null,
@@ -84,7 +85,7 @@ export class HomeComponent implements OnInit {
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.socialMedia = sharedModel.socialMedia);
     this.sharedService.set_currentRoute("home");
-    this.sharedService.alter_wrapper_classes('');
+    this.sharedService.set_headerType("header");
 
     //Checking local storage for interest
     if(this.localstore.retrieve('_jad_interest') && this.localstore.retrieve('_jad_interest') != ""){
@@ -356,6 +357,7 @@ interface HomeModel{
     list3:ArticleModel;
   }
   sidebar:{
+    image:string;
     newton:FeaturedRecentModel;
     pedagogy:FeaturedRecentModel;
     quickThoughts:FeaturedRecentModel;

@@ -11,26 +11,26 @@
 
 						<ul class="list-links">
 							<li>
-								<a href="About-us.html">About</a>
+								<a title="About" routerLink="/AboutUs">About</a>
 							</li>
 
 							<li>
-								<a href="#">The Team</a>
+								<a title="About" routerLink="/AboutUs">The Team</a>
 							</li>
 
 							<li>
-								<a href="Writers.html">Authors</a>
+								<a title="Contributors" routerLink="/Contributors">Authors</a>
 							</li>
 
 							<li>
-								<a href="#">Donate</a>
+								<a title="Donate" routerLink="/Donate">Donate</a>
 							</li>
                             <li>
 								<a href="ajax/popup-advertise.html" class="link-popup">Advertise with us</a>
 							</li>
 
 							<li>
-								<a href="Contact-us.html">Contact</a>
+								<a title="Contact" routerLink="/ContactUs">Contact</a>
 							</li>
 						</ul><!-- /.list-links -->
 					</div><!-- /.col -->
@@ -67,47 +67,13 @@
 						</ul><!-- /.list-links -->
 					</div><!-- /.col -->
 
-					<div class="col">
+					<div class="col" *ngIf="globalModel?.footerCategories?.length > 8">
 						<h5>
 							Topical Pages
 						</h5>
 
-						<ul class="list-links">
-							<li>
-								<a href="Culture.html">Culture</a>
-							</li>
-
-							<li>
-								<a href="#">Cities</a>
-							</li>
-
-							<li>
-								<a href="Media.html">Media</a>
-							</li>
-
-							<li>
-								<a href="#">Law and Conflict</a>
-							</li>
-
-							<li>
-								<a href="#">Newton</a>
-							</li>
-
-							<li>
-								<a href="#">Critical Currents in Islam</a>
-							</li>
-
-							<li>
-								<a href="#">Vox Populi</a>
-							</li>
-
-							<li>
-								<a href="#">DARS (Resistance/Subversion)</a>
-							</li>
-
-							<li>
-								<a href="#">Reviews</a>
-							</li>
+						<ul class="list-links" li-link [model]="globalModel?.footerCategories?.slice(8, 17)" route="'Category'">
+							
 						</ul><!-- /.list-links -->
 					</div><!-- /.col -->
 
@@ -117,141 +83,52 @@
 						</h5>
 
 						<ul class="list-links">
-							<li>
-								<a href="#">Pedagogy</a>
+							<li *ngFor="let item of globalModel?.footerCategories?.slice(0, 8)">
+								<a title="{{item.title}}" routerLink="/Category/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
 							</li>
 
 							<li>
-								<a href="#">Quick Thoughts</a>
-							</li>
-
-							<li>
-								<a href="#">Profiles</a>
-							</li>
-
-							<li>
-								<a href="#">Photography</a>
-							</li>
-
-							<li>
-								<a href="#">Jadeo (Video)</a>
-							</li>
-
-							<li>
-								<a href="#">Jad Navigation</a>
+								<a title="Jadaliyya Navigation" routerLink="/JadNavigation">Jad Navigation</a>
 							</li>
 						</ul><!-- /.list-links -->
 					</div><!-- /.col -->
 
-					<div class="col">
+					<div class="col" *ngIf="globalModel?.footerCountries?.length">
 						<h5>
 							Country Pages
 						</h5>
 
-						<ul class="list-links">
-							<li>
-								<a href="Other-Country.html">Arabian Peninsula</a>
-							</li>
-
-							<li>
-								<a href="#">Egypt</a>
-							</li>
-
-							<li>
-								<a href="#">Maghreb</a>
-							</li>
-
-							<li>
-								<a href="#">Palestine</a>
-							</li>
-
-							<li>
-								<a href="Syria.html">Syria</a>
-							</li>
-
-							<li>
-								<a href="#">Turkey</a>
-							</li>
+						<ul class="list-links" li-link [model]="globalModel?.footerCountries?.slice(0,8)" [route]="'Country'">
 						</ul><!-- /.list-links -->
 					</div><!-- /.col -->
 
-					<div class="col">
+					<div class="col" *ngIf="globalModel?.arabicSubCategories?.length">
 						<h5>
-							<a href="Arab-sections.html">Arabic Section</a>
+							<a title="القسم العربي" routerLink="/Category/{{ARABIC_SECTION_ID}}/القسم-العربي">Arabic Section</a>
 						</h5>
 
-						<ul class="list-links rtl">
-							<li>
-								<a href="#">ثقافة</a>
-							</li>
-
-							<li>
-								<a href="Arab-sections-10.html">سياسة</a>
-							</li>
-
-							<li>
-								<a href="#">إقتصاد</a>
-							</li>
-
-							<li>
-								<a href="#">تاريخ</a>
-							</li>
+						<ul li-link class="list-links rtl" [model]="globalModel?.arabicSubCategories?.slice(0, 8)" [route]="'Category'" [isArabic]="true">
 						</ul><!-- /.list-links -->
 					</div><!-- /.col -->
 				</div><!-- /.cols -->
 			</div><!-- /.footer-content -->
 
 			<div class="footer-inner">
-				<div class="socials socials-secondary hidden-xs">
-					<ul>
-						<li>
-							<a href="#">
-								<i class="fa fa-twitter" aria-hidden="true"></i>
-							</a>
-						</li>
+					<div class="socials socials-secondary hidden-xs" social-block [model]="sharedModel?.socialMedia" [addClass]="false" *ngIf="sharedModel?.socialMedia?.length > 0">
+	                </div><!-- /.socials -->
+				
 
-						<li>
-							<a href="#">
-								<i class="fa fa-facebook" aria-hidden="true"></i>
-							</a>
-						</li>
-
-						<li>
-							<a href="#">
-								<i class="fa fa-youtube-play" aria-hidden="true"></i>
-							</a>
-						</li>
-
-						<li>
-							<a href="#">
-								<i class="fa fa-vimeo" aria-hidden="true"></i>
-							</a>
-						</li>
-
-						<li>
-							<a href="#">
-								<i class="fa fa-soundcloud" aria-hidden="true"></i>
-							</a>
-						</li>
-					</ul>
-				</div><!-- /.socials -->
-
-				<ul class="list-devices">
+				<ul class="list-devices" *ngIf="globalModel?.mobileLinks?.length">
 					<li>
 						<i class="fa fa-mobile" aria-hidden="true"></i>
 					</li>
 
-					<li>
-						<a href="#">
-							<i class="fa fa-apple" aria-hidden="true"></i>
+					<li *ngFor="let item of globalModel?.mobileLinks">
+						<a href="{{item.link}}" target="_blank">
+							<i class="fa fa-{{item.title.toLowerCase().indexOf('itunes') > -1 ? 'apple' : 'android'}}" aria-hidden="true"></i>
 						</a>
 					</li>
 
-					<li>
-						<a href="#">
-							<i class="fa fa-android" aria-hidden="true"></i>
-						</a>
-					</li>
 				</ul><!-- /.list-devices -->
 
 				<a href="ajax/newsletter-popup.html" class="link-newsletter link-popup hidden-xs">
