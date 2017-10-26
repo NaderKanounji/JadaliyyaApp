@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { SharedModel, SocialMedia,SharedCountryModel, Country, Category } from '../includes/Models';
+import { SharedModel, SocialMedia,SharedCountryModel, Country, Category, FormsData } from '../includes/Models';
 
 @Injectable()
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"headerType" : "header", "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null }
+    {"headerType" : "header", "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
+    formData:{
+      countries:null,
+      userIdentifications:null
+    }}
   );
   sharedModel = this.messageSource.asObservable();
 
@@ -59,6 +63,11 @@ export class SharedService {
   set_country(myCountry:SharedCountryModel){
     let tempModel = this.messageSource.getValue();
     tempModel.country = myCountry;
+    this.messageSource.next(tempModel);
+  }
+  set_formData(formData:FormsData){
+    let tempModel = this.messageSource.getValue();
+    tempModel.formData = formData;
     this.messageSource.next(tempModel);
   }
   //----- \Setters

@@ -56,6 +56,7 @@ export class AppComponent {
       //console.log(this.headerStructure);
       this.http.get(_globals.API_URL + 'Data/GetGlobalData').subscribe((data:any) => {
         this.sharedService.set_socialMedia(data['socialMedia']);
+        this.sharedService.set_formData(data.formData);
         this.globalModel.headerCategories = data.categories.filter(d => d.isOnMenu == true && d.id != _globals.ARABIC_SECTION_ID && d.id != _globals.ARABIAN_PENINSULA).slice(0, 10);
         this.globalModel.submenuCategories = data.categories.filter(d => d.isOnMenu == true && d.id != _globals.ARABIC_SECTION_ID).slice(10);
       

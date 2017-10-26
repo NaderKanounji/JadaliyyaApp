@@ -1055,9 +1055,9 @@ var $jadNavAutoplaySpeed = 5000;
 // 	}
 // });
 var psy_popup = function(){
-	console.log(1);
 	$('[data-psy-pop]').click(function(e){
 		e.preventDefault();
+		e.stopPropagation();
 		$.magnificPopup.open({
 			items: {
 				src: '#popup-' + $(this).attr('data-psy-pop'),
@@ -1074,7 +1074,7 @@ var psy_popup = function(){
 				beforeOpen: function() { $('html').addClass('mfp-helper'); },
 				close: function() { $('html').removeClass('mfp-helper'); }
 			}
-		});
+		});	
 	});
 	
 	

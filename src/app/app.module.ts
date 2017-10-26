@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule }   from '@angular/router';
 import { HttpClientModule }   from '@angular/common/http';
 import { Ng2Webstorage } from 'ng2-webstorage';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -16,6 +17,7 @@ import { CategoryComponent } from './Components/category/category.component';
 // Services
 import { SharedService } from './services/shared.service';
 import { FunctionsService } from './services/functions.service';
+import { MembershipService } from './services/membership.service';
 import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { SocialIconPipe } from './pipes/social-icon.pipe';
@@ -88,9 +90,10 @@ var routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    Ng2Webstorage
+    Ng2Webstorage,
+    FormsModule
   ],
-  providers: [SharedService, FunctionsService, SortPipe, CustomSortPipe],
+  providers: [SharedService, FunctionsService, SortPipe, CustomSortPipe, MembershipService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

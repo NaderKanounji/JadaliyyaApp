@@ -1,3 +1,14 @@
+export interface RegisterForm{
+  fullName:string;
+  identifies:number;
+  year:string;
+  countryId:number;
+  UserName:string;
+  password:string;
+  ComfirmPassword:string;
+}
+
+
 export interface RolesWithWriters{
   title:string;
   writers:WriterModel[];
@@ -19,6 +30,14 @@ export interface GlobalModel{
  footerCategories:Category[];
  footerCountries:Country[];
  mobileLinks:SocialMedia[];
+}
+export interface FormsData{
+  countries:IntStringModel[];
+  userIdentifications:IntStringModel[];
+}
+export interface IntStringModel{
+  key:number;
+  value:string;
 }
 export interface ArticleModel{
   id:number;
@@ -51,6 +70,7 @@ export interface SocialMedia{
     isGoogleApiLoaded:boolean;
     socialMedia:SocialMedia[];
     country:SharedCountryModel;
+    formData:FormsData;
 }
 
 export interface Country{

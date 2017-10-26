@@ -1,3 +1,123 @@
-<p>
-  login works!
-</p>
+
+
+<div class="popup popup-login mfp-hide" id="popup-login">
+	<header class="popup-head">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">Log in as</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+
+		<nav class="tabs-nav">
+			<ul>
+				<li class="current">
+					<a href="#login1">EXISTING USER</a>
+				</li>
+				
+				<li>
+					<a href="#login2">EXISTING WRITER</a>
+				</li>
+			</ul>
+		</nav><!-- /.tabs-nav -->
+	</header><!-- /.popup-head -->
+
+	<div class="popup-body">
+		<div class="tabs-body">
+			<div class="tab current" id="login1">
+				<div class="form-primary form-login" data-target="#logged-in">
+					<form action="?" method="post">
+						<div class="form-body">
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="email" class="field" name="field-email1" id="field-email1" value="" placeholder="Email Address" required>
+
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+							
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="password" class="field" name="field-pass1" id="field-pass1" value="" placeholder="Password" required>
+
+									<i class="fa fa-lock" aria-hidden="true"></i>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+
+							<div class="form-row">
+								<a href="ajax/popup-forgot-pass.html" class="link-password link-popup">forgot password?</a>
+							</div><!-- /.form-row -->
+						</div><!-- /.form-body -->
+						
+						<div class="form-actions">
+							<input type="submit" value="Log in" class="form-btn btn btn-block btn-primary btn-blue">
+
+							<span class="divider">
+								<span>or</span>
+							</span>
+
+							<ul class="list-logins">
+								<li>
+									<a href="#" class="facebook">
+										<i class="fa fa-facebook" aria-hidden="true"></i>
+
+										Facebook
+									</a>
+								</li>
+								
+								<li>
+									<a href="#" class="google-plus">
+										<i class="fa fa-google-plus" aria-hidden="true"></i>
+
+										Google
+									</a>
+								</li>
+							</ul><!-- /.list-logins -->
+
+							<small>Don’t have an account?</small>
+
+							<a class="btn btn-primary btn-transparent btn-block" data-psy-pop="register">Register</a>
+						</div><!-- /.form-actions -->
+					</form>
+				</div><!-- /.form-primary -->
+			</div><!-- /.tab -->
+
+			<div class="tab" id="login2">
+				<div class="form-primary form-login">
+					<form action="?" method="post">
+						<div class="form-body">
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="email" class="field" name="field-email2" id="field-email2" value="" placeholder="Email Address" required>
+
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+							
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="password" class="field" name="field-pass2" id="field-pass2" value="" placeholder="Password" required>
+
+									<i class="fa fa-lock" aria-hidden="true"></i>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+
+							<div class="form-row">
+								<a href="ajax/popup-forgot-pass.html" class="link-password link-popup">forgot password?</a>
+							</div><!-- /.form-row -->
+						</div><!-- /.form-body -->
+						
+						<div class="form-actions">
+							<input type="submit" value="Log in" class="form-btn btn btn-block btn-primary btn-blue">
+
+							<small>Don’t have an account?</small>
+
+							<a href="ajax/popup-register.html" class="btn btn-primary btn-transparent btn-block link-popup">Register</a>
+						</div><!-- /.form-actions -->
+					</form>
+				</div><!-- /.form-primary -->
+			</div><!-- /.tab -->
+		</div><!-- /.tabs-body -->
+	</div><!-- /.popup-body -->
+</div><!-- /.popup popup-login -->
