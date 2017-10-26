@@ -14,11 +14,11 @@ export class MembershipService {
     let body = JSON.stringify(form);
     console.log(form);
     
-    let headers = new HttpHeaders();
-    headers.set('Content-Type', 'application/json');
-    headers.set('Accept', 'application/json');
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    // headers.set('Content-Type', 'application/json');
+    // headers.set('Accept', 'application/json');
     console.log('headers: ' + headers.keys);
-    this.http.post(_globals.API_URL + 'Administrators/Registerv1', body, {headers: headers}).subscribe((data:any) =>{
+    this.http.post(_globals.API_URL + 'Administrators/Registerv1', body, {headers}).subscribe((data:any) =>{
         console.log(data);
         
     });
