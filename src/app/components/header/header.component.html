@@ -1,4 +1,392 @@
 
+<div class="popup popup-login popup-register mfp-hide" id="popup-register">
+	<header class="popup-head">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">Register as</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+
+		<nav class="tabs-nav">
+			<ul>
+				<li class="current">
+					<a href="#login1">New USER</a>
+				</li>
+				
+				<li>
+					<a href="#login2">New WRITER</a>
+				</li>
+			</ul>
+		</nav><!-- /.tabs-nav -->
+	</header><!-- /.popup-head -->
+
+	<div class="popup-body">
+		<div class="tabs-body">
+			<div class="tab current" id="login1">
+				<div class="form-primary form-login">
+					<form action="?" method="post">
+						<div class="form-body">
+							<div class="cols">
+								<div class="col col-1of2">
+									<div class="form-row">
+										<div class="form-controls">
+											<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="Full Name" required>
+
+											<i class="fa fa-user" aria-hidden="true"></i>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+									
+									<div class="form-row">
+										<div class="form-controls form-select">
+											<select name="field-identify" id="field-identify" class="select" required>
+												<option value="">User Identifies as</option>
+												<option value="1">User Identifies as1</option>
+												<option value="2">User Identifies as2</option>
+											</select>
+
+											<i class="fa fa-male" aria-hidden="true"></i>
+
+											<i class="fa fa-female" aria-hidden="true"></i>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+									
+									<div class="form-row">
+										<div class="form-controls">
+											<input type="text" class="field field-date" name="field-birth" id="field-birth" value="" placeholder="Year Of Birth" required>
+
+											<i class="fa fa-calendar-o" aria-hidden="true"></i>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+									
+									<div class="form-row">
+										<div class="form-controls form-select">
+											<select name="field-Country" id="field-Country" class="select" required>
+												<option value="">Country of residence</option>
+												<option value="1">Country of residence1</option>
+												<option value="2">Country of residence2</option>
+											</select>
+
+											<i class="fa fa-flag" aria-hidden="true"></i>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+								</div><!-- /.col col-1of2 -->
+								
+								<div class="col col-1of2">
+									<div class="form-row">
+										<div class="form-controls">
+											<input type="email" class="field" name="field-email" id="field-email" value="" placeholder="Email Address" required>
+
+											<i class="fa fa-envelope" aria-hidden="true"></i>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+
+									<div class="form-row">
+										<div class="form-controls">
+											<input type="password" class="field" name="field-pass" id="field-pass" value="" placeholder="Password" required>
+
+											<i class="fa fa-lock" aria-hidden="true"></i>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+
+									<div class="form-row">
+										<div class="form-controls">
+											<input type="password" class="field" name="field-pass2" id="field-pass2" value="" placeholder="Confirm Password" required>
+
+											<i class="fa fa-lock" aria-hidden="true"></i>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+								</div><!-- /.col col-1of2 -->
+							</div><!-- /.cols -->
+						</div><!-- /.form-body -->
+						
+						<div class="form-actions">
+							<span class="form-required">Required</span>
+
+							<input type="submit" value="Register" class="form-btn btn btn-primary btn-blue">
+						</div><!-- /.form-actions -->
+					</form>
+				</div><!-- /.form-primary -->
+			</div><!-- /.tab -->
+
+			<div class="tab" id="login2">
+				<div class="form-primary form-login" data-target="#popup-thank-you">
+					<form action="?" method="post">
+						<div class="form-body">
+							<ul class="list-steps">
+								<li>
+									<a href="#">
+										<i class="fa fa-download" aria-hidden="true"></i>
+
+										DOWNLOAD SIGNED AGREEMENT FORM
+									</a>
+								</li>
+								
+								<li>
+									<a href="#">
+										<i class="fa fa-upload" aria-hidden="true"></i>
+
+										UPLOAD SIGNED AGREEMENT FRORM
+									</a>
+								</li>
+								
+								<li>
+									<a href="#" class="link-avatar">
+										<span class="plus">
+											<i class="fa fa-plus" aria-hidden="true"></i>
+											
+											<i class="fa fa-pencil hidden" aria-hidden="true"></i>
+										</span>
+
+										<span class="image">
+											<i class="fa fa-user" aria-hidden="true"></i>
+
+											<img src="css/images/temp/writer-inner.png" alt="">
+										</span>
+
+										<span class="text">Add Picture</span>
+									</a>
+								</li>
+							</ul><!-- /.list-steps -->
+
+							<div class="form-group">
+								<div class="cols">
+									<div class="col col-1of2">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-name2" id="field-name2" value="" placeholder="Full Name" required>
+
+												<i class="fa fa-user" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+										
+										<div class="form-row">
+											<div class="form-controls form-select">
+												<select name="field-identify2" id="field-identify2" class="select" required>
+													<option value="">User Identifies as</option>
+													<option value="1">User Identifies as1</option>
+													<option value="2">User Identifies as2</option>
+												</select>
+
+												<i class="fa fa-male" aria-hidden="true"></i>
+
+												<i class="fa fa-female" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-1of2 -->
+									
+									<div class="col col-1of2">
+										<div class="form-row">
+											<div class="form-controls form-select">
+												<select name="field-Country2" id="field-Country2" class="select" required>
+													<option value="">Country of residence</option>
+													<option value="1">Country of residence1</option>
+													<option value="2">Country of residence2</option>
+												</select>
+
+												<i class="fa fa-flag" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="email" class="field" name="field-email2" id="field-email2" value="" placeholder="Email Address" required>
+
+												<i class="fa fa-envelope" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-1of2 -->
+								</div><!-- /.cols -->
+							</div><!-- /.form-group -->
+							
+							<div class="form-group">
+								<div class="cols">
+									<div class="col col-1of2">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-website" id="field-website" value="" placeholder="Website">
+
+												<i class="fa fa-external-link-square" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+										
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-facebook" id="field-facebook" value="" placeholder="Facebook">
+
+												<i class="fa fa-facebook" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-1of2 -->
+									
+									<div class="col col-1of2">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-twitter" id="field-twitter" value="" placeholder="Twitter">
+
+												<i class="fa fa-twitter" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+										
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="field-linkedin" id="field-linkedin" value="" placeholder="Linkedin">
+
+												<i class="fa fa-linkedin" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-1of2 -->
+								</div><!-- /.cols -->
+							</div><!-- /.form-group -->
+
+							<div class="form-group">
+								<div class="form-row">
+									<div class="form-controls form-controls-error">
+										<textarea class="textarea" name="field-bio" id="field-bio" placeholder="Bio" required></textarea>
+
+										<i class="fa fa-file-text" aria-hidden="true"></i>
+
+										<span class="form-error">Required</span>
+									</div><!-- /.form-controls -->
+								</div><!-- /.form-row -->
+							</div><!-- /.form-group -->
+						</div><!-- /.form-body -->
+						
+						<div class="form-actions">
+							<span class="form-required">Required</span>
+
+							<input type="submit" value="Register" class="form-btn btn btn-primary btn-blue">
+						</div><!-- /.form-actions -->
+					</form>
+				</div><!-- /.form-primary -->
+			</div><!-- /.tab -->
+		</div><!-- /.tabs-body -->
+	</div><!-- /.popup-body -->
+</div><!-- /.popup popup-login -->
+
+<div class="popup popup-login mfp-hide" id="popup-login">
+	<header class="popup-head">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">Log in as</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+
+		<nav class="tabs-nav">
+			<ul>
+				<li class="current">
+					<a href="#login1">EXISTING USER</a>
+				</li>
+				
+				<li>
+					<a href="#login2">EXISTING WRITER</a>
+				</li>
+			</ul>
+		</nav><!-- /.tabs-nav -->
+	</header><!-- /.popup-head -->
+
+	<div class="popup-body">
+		<div class="tabs-body">
+			<div class="tab current" id="login1">
+				<div class="form-primary form-login" data-target="#logged-in">
+					<form action="?" method="post">
+						<div class="form-body">
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="email" class="field" name="field-email1" id="field-email1" value="" placeholder="Email Address" required>
+
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+							
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="password" class="field" name="field-pass1" id="field-pass1" value="" placeholder="Password" required>
+
+									<i class="fa fa-lock" aria-hidden="true"></i>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+
+							<div class="form-row">
+								<a href="ajax/popup-forgot-pass.html" class="link-password link-popup">forgot password?</a>
+							</div><!-- /.form-row -->
+						</div><!-- /.form-body -->
+						
+						<div class="form-actions">
+							<input type="submit" value="Log in" class="form-btn btn btn-block btn-primary btn-blue">
+
+							<span class="divider">
+								<span>or</span>
+							</span>
+
+							<ul class="list-logins">
+								<li>
+									<a href="#" class="facebook">
+										<i class="fa fa-facebook" aria-hidden="true"></i>
+
+										Facebook
+									</a>
+								</li>
+								
+								<li>
+									<a href="#" class="google-plus">
+										<i class="fa fa-google-plus" aria-hidden="true"></i>
+
+										Google
+									</a>
+								</li>
+							</ul><!-- /.list-logins -->
+
+							<small>Don’t have an account?</small>
+
+							<a class="btn btn-primary btn-transparent btn-block" data-psy-pop="register">Register</a>
+						</div><!-- /.form-actions -->
+					</form>
+				</div><!-- /.form-primary -->
+			</div><!-- /.tab -->
+
+			<div class="tab" id="login2">
+				<div class="form-primary form-login">
+					<form action="?" method="post">
+						<div class="form-body">
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="email" class="field" name="field-email2" id="field-email2" value="" placeholder="Email Address" required>
+
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+							
+							<div class="form-row">
+								<div class="form-controls">
+									<input type="password" class="field" name="field-pass2" id="field-pass2" value="" placeholder="Password" required>
+
+									<i class="fa fa-lock" aria-hidden="true"></i>
+								</div><!-- /.form-controls -->
+							</div><!-- /.form-row -->
+
+							<div class="form-row">
+								<a href="ajax/popup-forgot-pass.html" class="link-password link-popup">forgot password?</a>
+							</div><!-- /.form-row -->
+						</div><!-- /.form-body -->
+						
+						<div class="form-actions">
+							<input type="submit" value="Log in" class="form-btn btn btn-block btn-primary btn-blue">
+
+							<small>Don’t have an account?</small>
+
+							<a href="ajax/popup-register.html" class="btn btn-primary btn-transparent btn-block link-popup">Register</a>
+						</div><!-- /.form-actions -->
+					</form>
+				</div><!-- /.form-primary -->
+			</div><!-- /.tab -->
+		</div><!-- /.tabs-body -->
+	</div><!-- /.popup-body -->
+</div><!-- /.popup popup-login -->
+
 <div class="popup popup-thank-you mfp-hide" id="popup-thank-you">
 	<div class="popup-inner">
 		<i class="ico-logo-square"></i>
@@ -147,11 +535,19 @@
 	<nav class="nav-access">
 		<ul>
 			<li>
-				<a href="ajax/popup-login.html" class="link-popup">
+				<a data-psy-pop="login">
 					<span class="rtl">دخول</span> <i class="fa fa-user" aria-hidden="true"></i>
 
 					<span class="hidden-xs">Login</span>
 				</a>
+				<!-- <a href="ajax/popup-login.html" class="link-popup">
+					<span class="rtl">دخول</span> <i class="fa fa-user" aria-hidden="true"></i>
+
+					<span class="hidden-xs">Login</span>
+				</a> -->
+			</li>
+			<li data-psy-pop="register">
+				register
 			</li>
 
 			<li class="visible-xs-inline-block">

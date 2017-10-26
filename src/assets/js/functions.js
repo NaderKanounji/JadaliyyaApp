@@ -1029,6 +1029,80 @@ var $jadNavAutoplaySpeed = 5000;
 
 })(jQuery, window, document);
 
+// $('.link-popup').magnificPopup({
+// 	type: 'ajax',
+// 	removalDelay: 300,
+// 	mainClass: 'mfp-fade',
+// 	showCloseBtn:false,
+// 	fixedContentPos: true,
+// 	callbacks: {
+// 		ajaxContentAdded: function() {
+// 			customSelects();
+// 			closePopup();
+// 			interestsToggle();
+// 			moreInterests();
+// 			tabsInit();
+// 			openPopup();
+// 			changeAvatar();
+// 			formSubmit();
+// 			popupDropdown();
+// 			progressText();
+// 			scrlLck();
+// 			datepick();
+// 		},
+// 		beforeOpen: function() { $('html').addClass('mfp-helper'); },
+// 		close: function() { $('html').removeClass('mfp-helper'); }
+// 	}
+// });
+var psy_popup = function(){
+	console.log(1);
+	$('[data-psy-pop]').click(function(e){
+		e.preventDefault();
+		$.magnificPopup.open({
+			items: {
+				src: '#popup-' + $(this).attr('data-psy-pop'),
+				type: 'inline',
+				removalDelay: 300,
+				mainClass: 'mfp-fade',
+				showCloseBtn:false,
+				fixedContentPos: true
+			},
+			callbacks:{
+				open: function() {
+					psy_popup();
+				},
+				beforeOpen: function() { $('html').addClass('mfp-helper'); },
+				close: function() { $('html').removeClass('mfp-helper'); }
+			}
+		});
+	});
+	
+	
+}
+var psych_open_popup = function(id){
+	// Show popup on load
+	if( $(id).length ) {
+		$.magnificPopup.close();
+		setTimeout(function() {
+			$.magnificPopup.open({
+				type: 'inline',
+				items: {
+					src: id
+				},
+				removalDelay: 300,
+				mainClass: 'mfp-fade',
+				showCloseBtn: false,
+				fixedBgPos: true,
+				fixedContentPos: true,
+				callbacks: {
+					beforeOpen: function() { $('html').addClass('mfp-helper'); },
+					close: function() { $('html').removeClass('mfp-helper'); }
+				}
+			});
+		}, 2000);
+	};
+}
+
 tags_widget_init = function(){
 	// Tags
 	$('#tag-canvas').tagcanvas({
@@ -1504,6 +1578,7 @@ module.exports.myFunctions = {
 	},
 	load_all_pages:function(){
 		setTimeout(function(){
+				psy_popup();
 			    closePopup();
 				stickyFooter();
 				$(window).on('resize', function() {

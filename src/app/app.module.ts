@@ -35,6 +35,8 @@ import { LiLinkComponent } from './components/common/li-link/li-link.component';
 import { SocialBlockComponent } from './components/common/social-block/social-block.component';
 import { SlideshowComponent } from './components/common/slideshow/slideshow.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { RegisterComponent } from './components/popups/register/register.component';
+import { LoginComponent } from './components/popups/login/login.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -78,7 +80,9 @@ var routes = [
     LiLinkComponent,
     SocialBlockComponent,
     SlideshowComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
