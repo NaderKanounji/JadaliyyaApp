@@ -16,6 +16,8 @@ export class MembershipService {
     
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
+    headers.set('Accept', 'application/json');
+    console.log('headers: ' + headers.keys);
     this.http.post(_globals.API_URL + 'Administrators/Registerv1', body, {headers: headers}).subscribe((data:any) =>{
         console.log(data);
         
