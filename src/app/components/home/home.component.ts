@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   homeModel: HomeModel;
   initialTags:number[] = [];
   socialMedia:SocialMedia[];
-  constructor(private localstore:LocalStorageService, private http: HttpClient, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
+  constructor(private http: HttpClient, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
 
   ngOnInit() {
     this.CONTENT_PATH = _globals.CONTENT_PATH;
@@ -88,8 +88,8 @@ export class HomeComponent implements OnInit {
     this.sharedService.set_headerType("header");
 
     //Checking local storage for interest
-    if(this.localstore.retrieve('_jad_interest') && this.localstore.retrieve('_jad_interest') != ""){
-      let tagsStr = this.localstore.retrieve('_jad_interest').split(',');      
+    if(localStorage.getItem('_jad_interest') && localStorage.getItem('_jad_interest') != ""){
+      let tagsStr = localStorage.getItem('_jad_interest').split(',');      
       tagsStr.forEach(element => {
 
         this.initialTags.push(parseInt(element));
@@ -138,7 +138,7 @@ export class HomeComponent implements OnInit {
   }
   
   fetch_new_listing(listType:number){
-    if(listType == 1 || listType == 2 || (listType == 3 && (this.localstore.retrieve('_jad_interest') || this.localstore.retrieve('_jad_interest') != ""))){
+    if(listType == 1 || listType == 2 || (listType == 3 && (localStorage.getItem('_jad_interest')|| localStorage.getItem('_jad_interest') != ""))){
       this.pageNumber = 0;
       this.startScrollLoading = false;
       this.isRoundupsLoaded = false;
@@ -165,7 +165,7 @@ export class HomeComponent implements OnInit {
 
   get_articles(isListingChanged:boolean){
       isListingChanged = isListingChanged || false;
-      this.http.get(_globals.API_URL + 'Data/GetHomeListing?isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + (this.listType == 3 && this.localstore.retrieve('_jad_interest') ? '&interests=' + this.localstore.retrieve('_jad_interest') : '') ).subscribe((data:any) =>{
+      this.http.get(_globals.API_URL + 'Data/GetHomeListing?isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + (this.listType == 3 && localStorage.getItem('_jad_interest') ? '&interests=' + localStorage.getItem('_jad_interest') : '') ).subscribe((data:any) =>{
         switch(this.pageNumber){
           case 3:
             this.homeModel.photography = data['inlineDisplayIn'];
@@ -227,7 +227,7 @@ export class HomeComponent implements OnInit {
 
   submit_interest(){
     if(document.querySelectorAll('.list-interests .clicked').length){
-      this.localstore.store('_jad_interest', this.get_interest_string());
+      localStorage.setItem('_jad_interest', this.get_interest_string());
       this.fetch_new_listing(3);
       this.myFunctions.closeInterested();
       setTimeout(() => {
@@ -235,7 +235,7 @@ export class HomeComponent implements OnInit {
       }, 200);
 
     }else{
-      this.localstore.clear('_jad_interest');
+      localStorage.removeItem('_jad_interest');
     }
   }
   get_interest_string():string{

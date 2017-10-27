@@ -25,7 +25,7 @@
 		<div class="tabs-body">
 			<div class="tab current" id="login1">
 				<div class="form-primary form-login">
-					<form (submit)="membership.register($event, registerForm.value)" #registerForm="ngForm" ngNativeValidate>
+					<form (submit)="register($event, registerForm.value)" #registerForm="ngForm" ngNativeValidate>
 						<div class="form-body">
 							<div class="cols">
 								<div class="col col-1of2">
@@ -89,7 +89,7 @@
 
 									<div class="form-row">
 										<div class="form-controls">
-											<input type="password" class="field" name="ComfirmPassword" id="field-pass2" placeholder="Confirm Password" required [(ngModel)]="registerForm.ComfirmPassword">
+											<input type="password" class="field" name="ConfirmPassword" id="field-pass2" placeholder="Confirm Password" required [(ngModel)]="registerForm.ConfirmPassword">
 
 											<i class="fa fa-lock" aria-hidden="true"></i>
 										</div><!-- /.form-controls -->
@@ -97,11 +97,28 @@
 								</div><!-- /.col col-1of2 -->
 							</div><!-- /.cols -->
 						</div><!-- /.form-body -->
-						
+						<ul class="form-errors" *ngIf="formErrors?.length">
+              <li *ngFor="let item of formErrors">{{item}}</li>
+            </ul>
 						<div class="form-actions">
 							<span class="form-required">Required</span>
 
-							<input type="submit" value="Register" class="form-btn btn btn-primary btn-blue">
+              <input type="submit" value="Register" class="form-btn btn btn-primary btn-blue" *ngIf="!isSubmitted">
+              
+							<div class="sk-fading-circle submit-loader" *ngIf="isSubmitted">
+								<div class="sk-circle1 sk-circle"></div>
+								<div class="sk-circle2 sk-circle"></div>
+								<div class="sk-circle3 sk-circle"></div>
+								<div class="sk-circle4 sk-circle"></div>
+								<div class="sk-circle5 sk-circle"></div>
+								<div class="sk-circle6 sk-circle"></div>
+								<div class="sk-circle7 sk-circle"></div>
+								<div class="sk-circle8 sk-circle"></div>
+								<div class="sk-circle9 sk-circle"></div>
+								<div class="sk-circle10 sk-circle"></div>
+								<div class="sk-circle11 sk-circle"></div>
+								<div class="sk-circle12 sk-circle"></div>
+							</div>
 						</div><!-- /.form-actions -->
 					</form>
 				</div><!-- /.form-primary -->
@@ -260,3 +277,4 @@
 		</div><!-- /.tabs-body -->
 	</div><!-- /.popup-body -->
 </div><!-- /.popup popup-login -->
+

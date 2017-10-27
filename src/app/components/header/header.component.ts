@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 import { SharedService } from '../../services/shared.service';
+import { UserService } from '../../services/user.service';
+import { MembershipService } from '../../services/membership.service';
 import { FunctionsService } from '../../services/functions.service';
 
 
 import { _globals } from '../../includes/globals';
-import { GlobalModel, ArticleModel, SharedModel, Category, Country } from '../../includes/Models';
+import { GlobalModel, ArticleModel, SharedModel, Category, Country, UserModel } from '../../includes/Models';
 
 @Component({
   selector: 'header-component',
@@ -26,6 +28,7 @@ export class HeaderComponent implements OnInit {
   headerType:string = "";
   routeId:number;
   customUrlTitle:string;
+  user:UserModel;
 
 
   sharedModel:SharedModel;
@@ -33,7 +36,7 @@ export class HeaderComponent implements OnInit {
   @Input() globalModel:GlobalModel;
   
   headerCategoryArticles:[ArticleModel[]] = [[]];
-  constructor(private route: ActivatedRoute, private sharedService:SharedService, private http:HttpClient, private myFunction:FunctionsService) { }
+  constructor(private membership:MembershipService,private userService:UserService, private route: ActivatedRoute, private sharedService:SharedService, private http:HttpClient, private myFunction:FunctionsService) { }
 
   ngOnInit() {
     
@@ -46,8 +49,9 @@ export class HeaderComponent implements OnInit {
     this.ARABIAN_PENINSULA = _globals.ARABIAN_PENINSULA;
     
     this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);
-    
-    
+
+    this.userService.user.subscribe(user => this.user = user);
+
     // this.route.params.subscribe(params => {
     //   if(params['customUrlTitle']){
     //     this.customUrlTitle = params['customUrlTitle'];
@@ -59,7 +63,7 @@ export class HeaderComponent implements OnInit {
     //this.sharedService.categoryTitle.subscribe(categoryTitle => this.categoryTitle = categoryTitle);
     //console.log(this.currentRoute);
 
-       this.myFunction.header_bindings();
+       //this.myFunction.header_bindings();
 
 
     // this.http.get(_globals.API_URL + "Data/GetHeader").subscribe((data:any) =>{

@@ -44,7 +44,21 @@ reset_page_state(){
     myFunctions.new_content_formatting();
   }
 //end Main Block calls
-
+psy_popup(){
+  myFunctions.psy_popup();
+}
+append_form_message(id:string){
+  myFunctions.append_form_message(id);
+}
+display_form_message(id:string){
+  myFunctions.display_form_message(id);
+}
+psy_open_popup(id:string){
+  myFunctions.psy_open_popup(id);
+}
+dropdown_event(){
+  myFunctions.dropdown_event();
+}
 country_sidebar(){
     myFunctions.country_sidebar();
   }

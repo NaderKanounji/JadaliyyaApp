@@ -21,6 +21,7 @@ var profiles_carousel_init;
 var tags_widget_init;
 var expand_interest_click;
 var interestsToggle;
+var dropdown_event;
 
 
 var $jadNavAutoplaySpeed = 5000;
@@ -43,12 +44,16 @@ var $jadNavAutoplaySpeed = 5000;
 			}
 		});
 
-		$('.nav-access .has-dropdown > a').on('click', function(event) {
-			event.preventDefault();
-
-			$(this).toggleClass('active');
-			$(this).next('.dropdown').toggleClass('active');
-		});
+		dropdown_event = function(){
+			$('.nav-access .has-dropdown > a').on('click', function(event) {
+				event.preventDefault();
+	
+				$(this).toggleClass('active');
+				$(this).next('.dropdown').toggleClass('active');
+			});
+	
+		}
+		dropdown_event();
 
 		
 
@@ -378,7 +383,7 @@ var $jadNavAutoplaySpeed = 5000;
 						tabsInit();
 						openPopup();
 						changeAvatar();
-						formSubmit();
+						//formSubmit();
 						popupDropdown();
 						progressText();
 						scrlLck();
@@ -552,29 +557,8 @@ var $jadNavAutoplaySpeed = 5000;
 		};
 		changeAvatar();
 
-		// Form submit
-		function formSubmit() {
-			$('.form-primary form').submit(function(event) {
-				var $thankYou = $(this).parent().data('target');
-
-				if( $thankYou !== null ) {
-					event.preventDefault();
-
-					$.magnificPopup.open({
-						items: [{
-							src: $thankYou,
-							type: 'inline',
-							fixedContentPos: true,
-							callbacks: {
-								beforeOpen: function() { $('html').addClass('mfp-helper'); },
-								close: function() { $('html').removeClass('mfp-helper'); }
-							}
-						}]
-					});
-				}
-			});
-		};
-		formSubmit();
+		
+		//formSubmit();
 
 		// Popup dropdown
 		function popupDropdown() {
@@ -1054,6 +1038,49 @@ var $jadNavAutoplaySpeed = 5000;
 // 		close: function() { $('html').removeClass('mfp-helper'); }
 // 	}
 // });
+
+// Manual Message display
+var display_form_message = function (id) {
+	var $thankYou = $(id).parent().data('target');
+
+	if( $thankYou !== null  && $thankYou !== undefined) {
+		event.preventDefault();
+
+		$.magnificPopup.open({
+			items: [{
+				src: $thankYou,
+				type: 'inline',
+				fixedContentPos: true,
+				callbacks: {
+					beforeOpen: function() { $('html').addClass('mfp-helper'); },
+					close: function() { $('html').removeClass('mfp-helper'); }
+				}
+			}]
+		});
+	}
+};
+// Form submit
+var append_form_message = function (id) {
+	$(id).submit(function(event) {
+		var $thankYou = $(this).parent().data('target');
+
+		if( $thankYou !== null  && $thankYou !== undefined) {
+			event.preventDefault();
+
+			$.magnificPopup.open({
+				items: [{
+					src: $thankYou,
+					type: 'inline',
+					fixedContentPos: true,
+					callbacks: {
+						beforeOpen: function() { $('html').addClass('mfp-helper'); },
+						close: function() { $('html').removeClass('mfp-helper'); }
+					}
+				}]
+			});
+		}
+	});
+};
 var psy_popup = function(){
 	$('[data-psy-pop]').click(function(e){
 		e.preventDefault();
@@ -1079,27 +1106,27 @@ var psy_popup = function(){
 	
 	
 }
-var psych_open_popup = function(id){
+var psy_open_popup = function(id){
 	// Show popup on load
-	if( $(id).length ) {
+	if( $('#' + id).length ) {
 		$.magnificPopup.close();
-		setTimeout(function() {
-			$.magnificPopup.open({
+		$.magnificPopup.open({
+			items: {
+				src: '#' + id,
 				type: 'inline',
-				items: {
-					src: id
-				},
 				removalDelay: 300,
 				mainClass: 'mfp-fade',
-				showCloseBtn: false,
-				fixedBgPos: true,
-				fixedContentPos: true,
-				callbacks: {
-					beforeOpen: function() { $('html').addClass('mfp-helper'); },
-					close: function() { $('html').removeClass('mfp-helper'); }
-				}
-			});
-		}, 2000);
+				showCloseBtn:false,
+				fixedContentPos: true
+			},
+			callbacks:{
+				open: function() {
+					psy_popup();
+				},
+				beforeOpen: function() { $('html').addClass('mfp-helper'); },
+				close: function() { $('html').removeClass('mfp-helper'); }
+			}
+		});	
 	};
 }
 
@@ -1750,6 +1777,15 @@ module.exports.myFunctions = {
 	},
 	closeInterested:function(){
 		closeInterested();
+	},
+	psy_open_popup:function(id){
+		psy_open_popup(id);
+	},
+	dropdown_event:function(){
+		dropdown_event();
+	},
+	psy_popup:function(){
+		psy_popup();
 	},
 
 	////MY FUNCTIONS

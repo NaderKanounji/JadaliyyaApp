@@ -1,7 +1,23 @@
 
-<app-register></app-register>
+<app-register *ngIf="!(user?.isLogged)"></app-register>
 
-<app-login></app-login>
+<div class="popup popup-thank-you mfp-hide" id="thank-you-register">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			THANK YOU!<br />
+			
+			YOU ARE NOW REGISTERED TO JADALIYYA.
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
+<app-login *ngIf="!(user?.isLogged)"></app-login>
 
 <div class="popup popup-thank-you mfp-hide" id="popup-thank-you">
 	<div class="popup-inner">
@@ -52,6 +68,7 @@
 		</a>
 	</div><!-- /.popup-inner -->
 </div><!-- /.popup -->
+
 
 <div class="popup popup-thank-you mfp-hide" id="thank-you-share">
 	<div class="popup-inner">
@@ -141,16 +158,16 @@
 			<li class="{{item.id == sharedModel?.categoryId ? 'current' : ''}}" *ngFor="let item of globalModel?.headerCountries">
 					<a routerLink="{{item.id == ARABIAN_PENINSULA ? 'Category' : 'Country'}}/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}" *ngIf="!item.isOnMenu">{{item?.title}}</a>
 			</li>
-			<li class="{{sharedModel?.isArabicSection ? 'current rtl arabic' : ''}}">
+			<li class="{{sharedModel?.isArabicSection ? 'current rtl arabic' : ''}}" *ngIf="!(user?.isLogged)">
 			<a routerLink="/Category/{{ARABIC_SECTION_ID}}/القسم-العربي" class="rtl arabic">القسم العربي</a>
 			</li>
 			
 		</ul>
 	</nav><!-- /.nav-primary -->
 
-	<nav class="nav-access">
+	<nav class="nav-access" >
 		<ul>
-			<li>
+			<li *ngIf="!(user?.isLogged)">
 				<a data-psy-pop="login">
 					<span class="rtl">دخول</span> <i class="fa fa-user" aria-hidden="true"></i>
 
@@ -161,6 +178,31 @@
 
 					<span class="hidden-xs">Login</span>
 				</a> -->
+			</li>
+			<li class="has-dropdown" *ngIf="user?.isLogged">
+				<a >
+					Welcome<span class="hidden-xs hidden-sm">: {{user?.fullname}}</span>
+				</a>
+
+				<div class="dropdown">
+					<ul>
+						<li>
+							<a title="My Favorites" routerLink="/Account/Favorites" href="##">My Favorites</a>
+						</li>
+						
+						<li>
+							<a title="My Account" routerLink="/Account">My Account </a>
+						</li>
+						
+						<li>
+							<a title="Newsletter" routerLink="/Account/Newsletter">Newsletter</a>
+						</li>
+						
+						<li>
+							<a title="Jadaliyya" (click)="membership.logout($event)">Log out</a>
+						</li>
+					</ul>
+				</div><!-- /.dropdown -->
 			</li>
 
 			<li class="visible-xs-inline-block">

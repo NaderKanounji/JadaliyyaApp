@@ -1,3 +1,16 @@
+export interface UserModel{
+  isLogged:boolean;
+  id:string;
+  fullname:string;
+  UserName:string;
+  token:string;
+}
+
+export interface LoginForm{
+  username:string;
+  password:string;
+  grant_type:string;
+}
 export interface RegisterForm{
   fullName:string;
   identifies:number;
@@ -5,7 +18,7 @@ export interface RegisterForm{
   countryId:number;
   UserName:string;
   password:string;
-  ComfirmPassword:string;
+  ConfirmPassword:string;
 }
 
 

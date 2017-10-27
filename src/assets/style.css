@@ -320,6 +320,14 @@ blockquote:last-child {
   -o-transition: opacity 0.3s;
   -ms-transition: opacity 0.3s;
 }
+.sk-fading-circle.submit-loader {
+  margin: 10px auto;
+  height: 35px;
+  width: 35px;
+}
+.sk-fading-circle.submit-loader .sk-circle:before {
+  bacground-color: rgba(12, 108, 173, 0.8);
+}
 .sk-fading-circle .sk-circle {
   width: 100%;
   height: 100%;
@@ -11415,6 +11423,14 @@ ul.items:after {
   width: 100%;
   height: 73px;
   overflow: hidden;
+}
+.form-errors {
+  padding-left: 15px;
+  margin-top: 30px;
+}
+.form-errors li {
+  color: #0c6cad;
+  font-size: 16px;
 }
 @-webkit-keyframes load-more-animation {
   0% {

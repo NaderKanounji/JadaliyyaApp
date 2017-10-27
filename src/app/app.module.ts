@@ -18,6 +18,7 @@ import { CategoryComponent } from './Components/category/category.component';
 import { SharedService } from './services/shared.service';
 import { FunctionsService } from './services/functions.service';
 import { MembershipService } from './services/membership.service';
+import { UserService } from './services/user.service';
 import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { SocialIconPipe } from './pipes/social-icon.pipe';
@@ -39,9 +40,15 @@ import { SlideshowComponent } from './components/common/slideshow/slideshow.comp
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RegisterComponent } from './components/popups/register/register.component';
 import { LoginComponent } from './components/popups/login/login.component';
+import { AccountComponent } from './components/account/account.component';
+
+//Guards
+import { AuthGuard } from './guards/auth.guard';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
+  { path: 'Account/Favorites', component: AccountComponent, canActivate:[AuthGuard]  },
+  { path: 'Account', component: AccountComponent, canActivate:[AuthGuard]   },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
   { path: 'Details/:id/:title', component: ArticleDetailsComponent  },
   { path: 'Writer/:id', component: WriterComponent  },
@@ -84,7 +91,8 @@ var routes = [
     SlideshowComponent,
     AboutUsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +101,7 @@ var routes = [
     Ng2Webstorage,
     FormsModule
   ],
-  providers: [SharedService, FunctionsService, SortPipe, CustomSortPipe, MembershipService],
+  providers: [SharedService, FunctionsService, SortPipe, CustomSortPipe, MembershipService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
