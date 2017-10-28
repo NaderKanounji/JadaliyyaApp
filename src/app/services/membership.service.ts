@@ -22,7 +22,7 @@ export class MembershipService {
   login(e, form:LoginForm){
     e.stopPropagation();
     const headers = new HttpHeaders().set("Content-Type", "application/json");
-    return this.http.post(_globals.API_URL + '/token', JSON.stringify(form), {headers}).map(response => response);
+    return this.http.post(_globals.BASE_URL + 'token', JSON.stringify(form), {headers}).map(response => response);
   }
 
   logout(e){

@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   login(e:any, loginForm:LoginForm){
     this.isSubmitted = true;
     this.formErrors = [];
+    loginForm.grant_type = 'password';
     this.membership.login(e, loginForm).subscribe((data:any) => {
       
       this.user.saveUser(data);
