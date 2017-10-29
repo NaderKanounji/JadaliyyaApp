@@ -9,7 +9,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, TagModel, FeaturedRecentModel, Profile } from '../../includes/Models';
+import { ArticleModel, SocialMedia, TagModel, FeaturedRecentModel, Profile, JadNavigationWidget } from '../../includes/Models';
 
 // import * as _globals from '../../includes/globals'; 
 
@@ -361,10 +361,7 @@ interface HomeModel{
     newton:FeaturedRecentModel;
     pedagogy:FeaturedRecentModel;
     quickThoughts:FeaturedRecentModel;
-    jadNavigation:[{
-      id:number;
-      title:string;
-    }];
+    jadNavigation:JadNavigationWidget[];
     profiles:Profile[];
     popularTags:TagModel[];
   }

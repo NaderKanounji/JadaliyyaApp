@@ -19,6 +19,10 @@
 
 <app-login *ngIf="!(user?.isLogged)"></app-login>
 
+<app-forgot-password *ngIf="!(user?.isLogged)"></app-forgot-password>
+
+
+
 <div class="popup popup-thank-you mfp-hide" id="popup-thank-you">
 	<div class="popup-inner">
 		<i class="ico-logo-square"></i>
@@ -181,7 +185,7 @@
 			</li>
 			<li class="has-dropdown" *ngIf="user?.isLogged">
 				<a >
-					Welcome<span class="hidden-xs hidden-sm">: {{user?.fullname}}</span>
+					Welcome<span class="hidden-xs hidden-sm">: {{user?.user?.fullname}}</span>
 				</a>
 
 				<div class="dropdown">
@@ -321,7 +325,7 @@
 
 		<nav class="nav" *ngIf="globalModel?.headerCategories != undefined && globalModel?.headerCategories.length">
 			<ul>
-				<li *ngFor="let cat of globalModel?.headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
+				<li class="has-dropdown" *ngFor="let cat of globalModel?.headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
 					<a title="{{cat.title}}" routerLink="/Category/{{cat.id}}">{{cat.title}}</a>
 
 					<div class="dropdown">
@@ -359,7 +363,7 @@
 										<div class="widget-body" *ngIf="">
 											<ul class="list-meta">
 												<li>
-													<a title="{{item.writer.name}}" routerLink="/Writer/{{item.writer.id}}">
+													<a title="{{item.writer.name}}" routerLink="/Contributor/{{item.writer.id}}">
 														<i class="ico-logo"></i>
 			
 														By {{item.writer.name}}
@@ -405,7 +409,7 @@
 			<nav class="nav" *ngIf="globalModel?.headerCategories != undefined && globalModel?.headerCategories.length">
 				<ul>
 			
-					<li class="{{sharedModel?.categoryId == cat?.id ? 'current' : ''}}" *ngFor="let cat of globalModel?.headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
+					<li class="has-dropdown {{sharedModel?.categoryId == cat?.id ? 'current' : ''}}" *ngFor="let cat of globalModel?.headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
 						<a title="{{cat.title}}" routerLink="/Category/{{cat.id + (cat.id == ROUNDUPS_CATEGORY_ID ? '/' + ROUNDUPS_MEDIA_URL_TITLE : '')}}">{{cat.title}}</a>
 			
 						<div class="dropdown">
@@ -442,7 +446,7 @@
 										<div class="widget-body" *ngIf="item.writer">
 											<ul class="list-meta">
 												<li>
-													<a title="{{item.writer.name}}" routerLink="/Writer/{{item.writer.id}}">
+													<a title="{{item.writer.name}}" routerLink="/Contributor/{{item.writer.id}}">
 														<i class="ico-logo"></i>
 			
 														By {{item.writer.name}}
@@ -483,7 +487,7 @@
 			</div><!-- /.shell -->
 		</div><!-- /.header-inner -->
 	
-	<div class="header-outer {{sharedModel?.country?.hasTemplate ? 'header-outer-alt' : ''}} {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="sharedModel.currentRoute == 'category' || sharedModel.currentRoute == 'country' || sharedModel.currentRoute == 'jadnavigation' || sharedModel.currentRoute == 'aboutus' ">
+	<div class="header-outer {{sharedModel?.country?.hasTemplate ? 'header-outer-alt' : ''}} {{sharedModel?.isArabicSection? 'rtl' : ''}}" *ngIf="(sharedModel?.categoryTitle && sharedModel?.categoryTitle != '') || sharedModel?.country">
 		<div class="shell">
 			
 				<a href="#" class="link-search link-search-secondary" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID">

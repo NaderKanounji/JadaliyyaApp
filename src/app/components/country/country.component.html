@@ -31,7 +31,7 @@
 													<footer class="post-foot">
 														<ul class="list-meta">
 															<li *ngIf="item.writer">
-																<a routerLink="/Writer/{{item.writer?.id}}">
+																<a routerLink="/Contributor/{{item.writer?.id}}">
 																	<i class="ico-logo"></i>
 												
 																	By {{item.writer?.name}}
@@ -94,7 +94,7 @@
                               <footer class="post-foot">
                                 <ul class="list-meta">
                                   <li *ngIf="item?.writer">
-                                    <a routerLink="/Writer/{{item?.writer?.id}}">
+                                    <a routerLink="/Contributor/{{item?.writer?.id}}">
                                       <i class="ico-logo"></i>
                               
                                       By {{item?.writer?.name}}
@@ -482,7 +482,7 @@
 					
 						<li class="widget-primary " more-stories-widget [featured]="countryModel?.moreFeatured" [recent]="countryModel?.moreRecent" *ngIf="countryModel?.moreFeatured || countryModel?.moreRecent">
                 
-            </li><!-- /.widget-primary -->
+            			</li><!-- /.widget-primary -->
 
 						<li class="widget-primary widget-jad-nav hidden-sm hidden-xs hidden-md" jad-nav-widget [countries]="countryModel?.jadNavigation" *ngIf="countryModel?.jadNavigation?.length">
                 

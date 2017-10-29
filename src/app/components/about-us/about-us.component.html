@@ -82,7 +82,7 @@
           <li *ngFor="let role of model?.jadaliyyaCoEditors">
             <h5>{{role.title}}</h5>
 
-            <a title="{{item.name}}" routerLink="/Writer/{{item.id}}" *ngFor="let item of role?.writers;let i = index">{{item.name}}{{i != role?.writers.length - 1 ? ', ' : ''}}</a>
+            <a title="{{item.name}}" routerLink="/Contributor/{{item.id}}" *ngFor="let item of role?.writers;let i = index">{{item.name}}{{i != role?.writers.length - 1 ? ', ' : ''}}</a>
           </li>
 
         </ul><!-- /.list-editors -->

@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="main">
+    <div class="shell">
+      <div class="content">
+        <section class="section section-writers" *ngIf="contributorsModel?.writers?.length">
+          <ul class="writers">
+            <li class="writer" *ngFor="let item of contributorsModel?.writers">
+              <div class="writer-inner">
+                <div class="writer-body">
+                  <a href="#" class="link-add">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                  </a>
+
+                  <div class="writer-image">
+                    <a href="Writers-inner.html">
+                      <img src="css/images/temp/writer1.png" alt="">
+                    </a>
+                  </div><!-- /.writer-image -->
+
+                  <h3 class="writer-title">
+                    <a title="{{item.name}}">{{item.name}}</a>
+                  </h3><!-- /.writer-title -->
+
+                  <div class="socials-secondary">
+                    <ul>
+                      <li *ngIf="item?.socialMedia?.facebook">
+                        <a href="item?.socialMedia?.facebook">
+                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                      </li>
+
+                      <li *ngIf="item?.socialMedia?.twitter">
+                        <a href="item?.socialMedia?.twitter">
+                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                      </li>
+
+                      <li *ngIf="item?.socialMedia?.linkedin">
+                        <a href="item?.socialMedia?.linkedin">
+                          <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                      </li>
+
+                      <li *ngIf="item?.socialMedia?.email">
+                        <a href="item?.socialMedia?.email">
+                          <i class="fa fa-external-link-square" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div><!-- /.socials-secondary -->
+                </div><!-- /.writer-body -->
+
+                <footer class="writer-foot">
+                  <a href="#" class="btn btn-primary btn-blue">Follow</a>
+
+                  <span>
+                    <strong>{{item?.articleCount}}</strong>
+
+                    articles
+                  </span>
+                </footer><!-- /.writer-foot -->
+              </div><!-- /.writer-inner -->
+            </li><!-- /.writer -->
+
+          </ul><!-- /.writers -->
+          <div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">
+						<a href="#" class="link-load">
+							<ul class="load-more-loader">
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</a>
+					</div><!-- /.content-actions -->
+        </section><!-- /.section section-writers -->
+      </div><!-- /.content -->
+
+      <div class="sidebar">
+        <ul class="widgets">
+          <li class="widget-subscribe">
+            <div class="widget-content">
+              
+								<app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
+                
+                  <div class="socials" social-block [model]="socialMedia" *ngIf="socialMedia?.length > 0">
+                  </div><!-- /.socials -->
+            </div><!-- /.widget-content -->
+          </li><!-- /.widget -->
+
+          <li class="widget-jad hidden-xs">
+            <div class="widget-image">
+              <a href="#">
+                <img src="css/images/temp/jadmag1.jpg" alt="">
+              </a>
+            </div><!-- /.widget-image -->
+          </li><!-- /.widget -->
+
+          <li class="widget-primary " more-stories-widget [featured]="contributorsModel?.featured" [recent]="contributorsModel?.recent" *ngIf="contributorsModel?.featured || contributorsModel?.recent">
+            
+          </li><!-- /.widget-primary -->
+
+          <!--#include file="ssi/jad-nav.shtml" -->
+
+          <!--#include file="ssi/widget-tags.shtml" -->
+
+          <!--#include file="ssi/mobile-widgets.shtml" -->
+        </ul><!-- /.widgets -->
+      </div><!-- /.sidebar -->
+    </div><!-- /.shell -->
+  </div><!-- /.main -->
+</div><!-- /.container -->

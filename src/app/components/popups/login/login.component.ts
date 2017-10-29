@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FunctionsService } from '../../../services/functions.service';
 import { UserService } from '../../../services/user.service';
 
-import { LoginForm } from '../../../includes/Models';
+import { LoginForm, UserModel } from '../../../includes/Models';
 import {MembershipService} from '../../../services/membership.service';
 
 @Component({
@@ -34,18 +34,25 @@ export class LoginComponent implements OnInit {
     this.formErrors = [];
     loginForm.grant_type = 'password';
     this.membership.login(e, loginForm).subscribe((data:any) => {
+      let myUser:UserModel = {isLogged: false, user:null, token: data};
+      this.membership.GetUserInfo(myUser.token).subscribe((res:any) => {
+        myUser = res;
+        this.user.saveUser(myUser);
+        this.loginForm = {
+          username:'',
+          password:'',
+          grant_type:'password'
+        };
+        setTimeout(() =>{
+            this.myFunctions.dropdown_event();
+            this.myFunctions.reset_page_state();
+        },200);
+        this.isSubmitted = false;
+      },(err) => {
+        this.isSubmitted = false;
+        this.formErrors.push(err.error.message);
+      });
       
-      this.user.saveUser(data);
-      this.loginForm = {
-        username:'',
-        password:'',
-        grant_type:'password'
-      };
-      setTimeout(() =>{
-          this.myFunctions.dropdown_event();
-          // this.myFunctions.psy_open_popup('thank-you-login');
-      },200);
-      this.isSubmitted = false;
     },(err) => {
       this.isSubmitted = false;
       this.formErrors.push(err.error.message);
@@ -54,3 +61,4 @@ export class LoginComponent implements OnInit {
   }
 
 }
+

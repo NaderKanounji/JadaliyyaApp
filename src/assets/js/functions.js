@@ -1123,7 +1123,7 @@ var psy_open_popup = function(id){
 				open: function() {
 					psy_popup();
 				},
-				beforeOpen: function() { $('html').addClass('mfp-helper'); },
+				beforeOpen: function() { closePopup();$('html').addClass('mfp-helper'); },
 				close: function() { $('html').removeClass('mfp-helper'); }
 			}
 		});	
@@ -1171,6 +1171,10 @@ function closePopup() {
 		$.magnificPopup.close();
 	});
 };
+var close_popup = function(){
+	$.magnificPopup.close();
+
+}
 // Add class if has dropdown
 add_has_dropdown_class_ = function(){
 	setTimeout(function(){
@@ -1786,6 +1790,9 @@ module.exports.myFunctions = {
 	},
 	psy_popup:function(){
 		psy_popup();
+	},
+	close_popup:function(){
+		close_popup();
 	},
 
 	////MY FUNCTIONS

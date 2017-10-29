@@ -11,20 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ArticleDetailsComponent } from './Components/article-details/article-details.component';
-import { WriterComponent } from './Components/writer/writer.component';
 import { CategoryComponent } from './Components/category/category.component';
-
-// Services
-import { SharedService } from './services/shared.service';
-import { FunctionsService } from './services/functions.service';
-import { MembershipService } from './services/membership.service';
-import { UserService } from './services/user.service';
-import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
-import { TruncatePipe } from './pipes/truncate.pipe';
-import { SocialIconPipe } from './pipes/social-icon.pipe';
-import { FilterListingPipe } from './pipes/filter-listing.pipe';
-import { SortPipe } from './pipes/sort.pipe';
-import { CustomSortPipe } from './pipes/custom-sort.pipe';
 import { JoinNewsletterComponent } from './components/common/join-newsletter/join-newsletter.component';
 import { PostComponent } from './Components/common/post/post.component';
 import { TinyPostComponent } from './Components/common/tiny-post/tiny-post.component';
@@ -41,6 +28,21 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RegisterComponent } from './components/popups/register/register.component';
 import { LoginComponent } from './components/popups/login/login.component';
 import { AccountComponent } from './components/account/account.component';
+import { ForgotPasswordComponent } from './components/popups/forgot-password/forgot-password.component';
+import { ContributorsComponent } from './components/contributors/contributors.component';
+import { ContributorDetailsComponent } from './components/contributor-details/contributor-details.component';
+
+// Services
+import { SharedService } from './services/shared.service';
+import { FunctionsService } from './services/functions.service';
+import { MembershipService } from './services/membership.service';
+import { UserService } from './services/user.service';
+import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { SocialIconPipe } from './pipes/social-icon.pipe';
+import { FilterListingPipe } from './pipes/filter-listing.pipe';
+import { SortPipe } from './pipes/sort.pipe';
+import { CustomSortPipe } from './pipes/custom-sort.pipe';
 
 //Guards
 import { AuthGuard } from './guards/auth.guard';
@@ -51,7 +53,8 @@ var routes = [
   { path: 'Account', component: AccountComponent, canActivate:[AuthGuard]   },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
   { path: 'Details/:id/:title', component: ArticleDetailsComponent  },
-  { path: 'Writer/:id', component: WriterComponent  },
+  { path: 'Contributor/:id', component: ContributorDetailsComponent  },
+  { path: 'Contributors', component: ContributorsComponent  },
   { path: 'Category/:id', component: CategoryComponent  },
   { path: 'Category/:id/:customUrlTitle', component: CategoryComponent  },
   { path: 'Category/:id/:subId/:customUrlTitle', component: CategoryComponent  },
@@ -69,7 +72,6 @@ var routes = [
     HomeComponent,
     FooterComponent,
     ArticleDetailsComponent,
-    WriterComponent,
     CategoryComponent,
     SafeUrlPipePipe,
     TruncatePipe,
@@ -92,7 +94,10 @@ var routes = [
     AboutUsComponent,
     RegisterComponent,
     LoginComponent,
-    AccountComponent
+    AccountComponent,
+    ForgotPasswordComponent,
+    ContributorsComponent,
+    ContributorDetailsComponent
   ],
   imports: [
     BrowserModule,

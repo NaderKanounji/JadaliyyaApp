@@ -10,7 +10,7 @@ import { SortPipe } from '../../pipes/sort.pipe';
 import { CustomSortPipe } from '../../pipes/custom-sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, SharedModel, MapMarker, PageModel, LabelValueModel } from '../../includes/Models';
+import { ArticleModel, SocialMedia, SharedModel, MapMarker, PageModel, LabelValueModel, JadNavigationWidget } from '../../includes/Models';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -235,10 +235,7 @@ interface CountryModel{
   info:LabelValueModel[];
   moreFeatured:ArticleModel[];
   moreRecent:ArticleModel[];
-  jadNavigation:[{
-    id:number;
-    title:string;
-  }];
+  jadNavigation:JadNavigationWidget[];
   listing:ArticleModel[];
   latestAnnouncements:ArticleModel[];
   hotOnFacebook:ArticleModel[];

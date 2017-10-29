@@ -44,6 +44,9 @@ reset_page_state(){
     myFunctions.new_content_formatting();
   }
 //end Main Block calls
+close_popup(){
+  myFunctions.close_popup();
+}
 psy_popup(){
   myFunctions.psy_popup();
 }

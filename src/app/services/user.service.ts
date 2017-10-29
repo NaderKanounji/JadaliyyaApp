@@ -6,7 +6,7 @@ import { UserModel, SharedModel } from '../includes/Models';
 export class UserService {
 
   private userSource = new BehaviorSubject<UserModel>(
-    {'isLogged': false, 'fullname': null, 'id':null,'UserName':null, 'token':null }
+    {'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null} }
   );
   
   user = this.userSource.asObservable();
@@ -14,14 +14,16 @@ export class UserService {
   constructor() { 
   }
   saveUser(data:any){
-    //Set User
-    this.clearUser();
-    let tempSource = this.userSource.getValue();
-    tempSource = data.user;
-    tempSource.isLogged = true;
-    tempSource.token = JSON.parse(data.token).access_token;
-    this.userSource.next(tempSource);
-
+    this.clearStoredUser();
+    if(data){
+      
+      this.clearUser();
+      //Set User
+      let tempSource = this.userSource.getValue();
+      tempSource = data;
+      tempSource.isLogged = true;
+      this.userSource.next(tempSource);
+    }
     //Register User to local storage
     localStorage.setItem('_jad_user',JSON.stringify(this.userSource.getValue()));
   }
@@ -31,11 +33,12 @@ export class UserService {
     }
   }
   clearUser(){    
-    this.userSource.next({'isLogged': false, 'fullname': null, 'id':null,'UserName':null, 'token':null });
+    this.userSource.next({'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null} });
   }
   clearStoredUser(){
     localStorage.removeItem('_jad_user');
   }
+
   /* Getters */
   getUser(): UserModel{
     return this.userSource.getValue();
@@ -53,29 +56,39 @@ export class UserService {
   setUser(user:UserModel){
     this.userSource.next(user);
   }
+  setUserInfo(user:any){
+    let tempSrc = this.userSource.getValue();
+    tempSrc.user = user;
+    this.userSource.next(tempSrc);
+  }
   setLogged(isLogged:boolean){
     let tempSrc = this.userSource.getValue();
     tempSrc.isLogged = isLogged;
     this.userSource.next(tempSrc);
   }
-  setFullname(fullname:string){
-    let tempSrc = this.userSource.getValue();
-    tempSrc.fullname = fullname;
-    this.userSource.next(tempSrc);
-  }
-  setToken(token:string){
+  setToken(token:any){
     let tempSrc = this.userSource.getValue();
     tempSrc.token = token;
     this.userSource.next(tempSrc);
   }
+  setAccessToken(token:string){
+    let tempSrc = this.userSource.getValue();
+    tempSrc.token.access_token = token;
+    this.userSource.next(tempSrc);
+  }
+  setFullname(fullname:string){
+    let tempSrc = this.userSource.getValue();
+    tempSrc.user.fullname = fullname;
+    this.userSource.next(tempSrc);
+  }
   setUsername(username:string){
     let tempSrc = this.userSource.getValue();
-    tempSrc.UserName = username;
+    tempSrc.user.UserName = username;
     this.userSource.next(tempSrc);
   }
   setId(id:string){
     let tempSrc = this.userSource.getValue();
-    tempSrc.id = id;
+    tempSrc.user.id = id;
     this.userSource.next(tempSrc);
   }
   /* end Setters */

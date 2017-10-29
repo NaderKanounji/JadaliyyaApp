@@ -13,14 +13,14 @@
 									<strong>Lebanon</strong>
 								</span>
 								<div class="widget-image" *ngIf="articleMode?.writer != null">
-									<a routerLink="/Writer/{{articleModel.writer?.id}}">
+									<a routerLink="/Contributor/{{articleModel.writer?.id}}">
 										<img src="{{RESIZED_CONTENT_PATH}}48x52xo/{{articleModel.writer?.image}}" alt="{{articleModel.writer?.name}}">
 									</a>
 
 									<span class="author">
 										By :<br />
 
-										<a routerLink="/Writer/{{articleModel.writer?.id}}">{{articleModel.writer.name}}</a>
+										<a routerLink="/Contributor/{{articleModel.writer?.id}}">{{articleModel.writer.name}}</a>
 									</span><!-- /.author -->
 								</div><!-- /.widget-image -->
 
@@ -197,7 +197,7 @@
 											<footer class="post-foot">
 												<ul class="list-meta">
 												<li *ngIf="articleModel.writer">
-													<a routerLink="/Writer/{{articleModel.writer.id}}">
+													<a routerLink="/Contributor/{{articleModel.writer.id}}">
 													<i class="ico-logo"></i>
 											
 													By {{articleModel.writer.name}}
@@ -356,14 +356,14 @@
 								</span>
 
 								<div class="widget-image" *ngIf="articleModel.nextArticle?.writer != null">
-										<a routerLink="/Writer/{{articleModel.nextArticle?.writer?.id}}">
+										<a routerLink="/Contributor/{{articleModel.nextArticle?.writer?.id}}">
 											<img src="{{RESIZED_CONTENT_PATH}}48x52xo/{{articleModel?.nextArticle?.writer?.image}}" alt="{{articleModel.nextArticle?.writer?.name}}">
 										</a>
 	
 										<span class="author">
 											By :<br />
 	
-											<a routerLink="/Writer/{{articleModel.nextArticle?.writer?.id}}">{{articleModel.nextArticle.writer.name}}</a>
+											<a routerLink="/Contributor/{{articleModel.nextArticle?.writer?.id}}">{{articleModel.nextArticle.writer.name}}</a>
 										</span><!-- /.author -->
 									</div><!-- /.widget-image -->
 								

@@ -31,7 +31,7 @@
 											<footer class="post-foot">
 												<ul class="list-meta">
 													<li *ngIf="item.writer">
-														<a routerLink="/Writer/{{item.writer?.id}}">
+														<a routerLink="/Contributor/{{item.writer?.id}}">
 															<i class="ico-logo"></i>
 										
 															By {{item.writer?.name}}
@@ -94,7 +94,7 @@
 															<footer class="post-foot">
 																<ul class="list-meta">
 																	<li *ngIf="listingModel?.mainArticle?.writer">
-																		<a routerLink="/Writer/{{listingModel?.mainArticle?.writer?.id}}">
+																		<a routerLink="/Contributor/{{listingModel?.mainArticle?.writer?.id}}">
 																			<i class="ico-logo"></i>
 															
 																			By {{listingModel?.mainArticle?.writer?.name}}
@@ -161,7 +161,7 @@
 																											
 																		<ul class="list-meta">
 																			<li *ngIf="item?.writer">
-																				<a title="{{item.writer?.name}}" routerLink="/Writer/{{item?.writer?.id}}">By {{item.writer?.name}}</a>
+																				<a title="{{item.writer?.name}}" routerLink="/Contributor/{{item?.writer?.id}}">By {{item.writer?.name}}</a>
 																			</li>
 																			
 																			<li *ngIf="item.date">
@@ -201,7 +201,7 @@
 																	<footer class="post-foot">
 																		<ul class="list-meta">
 																			<li *ngIf="item?.writer">
-																				<a title="{{item.writer?.name}}" routerLink="/Writer/{{item?.writer?.id}}">
+																				<a title="{{item.writer?.name}}" routerLink="/Contributor/{{item?.writer?.id}}">
 																					<i class="ico-logo"></i>
 																
 																					By {{item?.writer?.name}}
@@ -262,7 +262,7 @@
 				
 										<ul class="list-meta">
 											<li *ngIf="listingModel?.photography?.writer">
-											<a title="listingModel?.photography?.writer?.name" routerLink="/Writer/{{listingModel?.photography?.writer?.id}}">By {{listingModel?.photography?.writer?.name}}</a>
+											<a title="listingModel?.photography?.writer?.name" routerLink="/Contributor/{{listingModel?.photography?.writer?.id}}">By {{listingModel?.photography?.writer?.name}}</a>
 											</li>
 				
 											<li>
@@ -365,7 +365,7 @@
 				
 										<ul class="list-meta">
 											<li *ngIf="listingModel?.video?.writer">
-											<a title="{{listingModel?.video?.writer?.name}}" routerLink="/Writer/{{listingModel?.video?.writer?.id}}">By {{listingModel?.video?.writer?.name}}</a>
+											<a title="{{listingModel?.video?.writer?.name}}" routerLink="/Contributor/{{listingModel?.video?.writer?.id}}">By {{listingModel?.video?.writer?.name}}</a>
 											</li>
 				
 											<li>
@@ -437,7 +437,7 @@
 																								
 															<ul class="list-meta">
 																<li *ngIf="item?.writer">
-																	<a title="{{item.writer?.name}}" routerLink="/Writer/{{item?.writer?.id}}">By {{item.writer?.name}}</a>
+																	<a title="{{item.writer?.name}}" routerLink="/Contributor/{{item?.writer?.id}}">By {{item.writer?.name}}</a>
 																</li>
 																
 																<li *ngIf="item.date">
@@ -477,7 +477,7 @@
 														<footer class="post-foot">
 															<ul class="list-meta">
 																<li *ngIf="item?.writer">
-																	<a title="{{item.writer?.name}}" routerLink="/Writer/{{item?.writer?.id}}">
+																	<a title="{{item.writer?.name}}" routerLink="/Contributor/{{item?.writer?.id}}">
 																		<i class="ico-logo"></i>
 													
 																		By {{item?.writer?.name}}

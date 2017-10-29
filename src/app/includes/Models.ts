@@ -1,10 +1,18 @@
 export interface UserModel{
   isLogged:boolean;
-  id:string;
-  fullname:string;
-  UserName:string;
-  token:string;
+  user:{
+    id:string;
+    fullname:string;
+    UserName:string;
+  }
+  token:{
+    access_token:string;
+    token_type:string;
+    expires_in:number;
+    refresh_token:string;
+  }
 }
+
 
 export interface LoginForm{
   username:string;
@@ -20,8 +28,17 @@ export interface RegisterForm{
   password:string;
   ConfirmPassword:string;
 }
-
-
+export interface ContributorsComponentModel{
+  writers:WriterModel[];
+  jadNavigation:JadNavigationWidget[];
+  popularTags:TagModel[];
+  featured:ArticleModel[];
+  recent:ArticleModel[];
+}
+export interface JadNavigationWidget{
+  id:number;
+  title:string;
+}
 export interface RolesWithWriters{
   title:string;
   writers:WriterModel[];
@@ -32,7 +49,7 @@ export interface WriterModel{
   title:string;// same as name - to eliminate confusion
   image:string;
   articleCount:number;
-  socialMedia:SocialMedia;
+  socialMedia:SocialMediaModel;
 }
 export interface GlobalModel{
   headerCategories:Category[];
@@ -71,6 +88,12 @@ export interface SocialMedia{
     id:number;
     title:string;
     link:string;
+  }
+export interface SocialMediaModel{
+    facebook:string;
+    twitter:string;
+    linkedin:string;
+    email:string;
   }
   
  export interface SharedModel{

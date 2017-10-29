@@ -41,7 +41,7 @@
 							<footer class="post-foot">
 								<ul class="list-meta">
 									<li *ngIf="homeModel?.newsletterArticle?.writer">
-										<a title="{{homeModel?.newsletterArticle?.writer?.name}}" routerLink="/Writer/{{homeModel?.newsletterArticle?.writer?.id}}">
+										<a title="{{homeModel?.newsletterArticle?.writer?.name}}" routerLink="/Contributor/{{homeModel?.newsletterArticle?.writer?.id}}">
 											<i class="ico-logo"></i>
 
 											By {{homeModel?.newsletterArticle?.writer?.name}}
@@ -288,7 +288,7 @@
                                     <footer class="post-foot">
                                       <ul class="list-meta">
                                         <li *ngIf="homeModel?.listing[0]?.writer">
-                                          <a title="{{homeModel?.listing[0]?.writer?.name}}" routerLink="/Writer/{{homeModel?.listing[0]?.writer?.id}}">
+                                          <a title="{{homeModel?.listing[0]?.writer?.name}}" routerLink="/Contributor/{{homeModel?.listing[0]?.writer?.id}}">
                                             <i class="ico-logo"></i>
       
                                             By {{homeModel?.listing[0]?.writer?.name}}
@@ -534,7 +534,7 @@
       
                                 <ul class="list-meta">
                                   <li *ngIf="homeModel?.photography?.writer">
-                                    <a title="homeModel?.photography?.writer?.name" routerLink="/Writer/{{homeModel?.photography?.writer?.id}}">By {{homeModel?.photography?.writer?.name}}</a>
+                                    <a title="homeModel?.photography?.writer?.name" routerLink="/Contributor/{{homeModel?.photography?.writer?.id}}">By {{homeModel?.photography?.writer?.name}}</a>
                                   </li>
       
                                   <li>
@@ -866,7 +866,7 @@
       
                                 <ul class="list-meta">
                                   <li *ngIf="homeModel?.video?.writer">
-                                    <a title="{{homeModel?.video?.writer?.name}}" routerLink="/Writer/{{homeModel?.video?.writer?.id}}">By {{homeModel?.video?.writer?.name}}</a>
+                                    <a title="{{homeModel?.video?.writer?.name}}" routerLink="/Contributor/{{homeModel?.video?.writer?.id}}">By {{homeModel?.video?.writer?.name}}</a>
                                   </li>
       
                                   <li>
@@ -965,7 +965,7 @@
                               <footer class="post-foot">
                                   <ul class="list-meta">
                                     <li *ngIf="item?.writer">
-                                      <a title="{{item.writer?.name}}" routerLink="/Writer/{{item.writer?.id}}">
+                                      <a title="{{item.writer?.name}}" routerLink="/Contributor/{{item.writer?.id}}">
                                         <i class="ico-logo"></i>
     
                                         By {{item.writer?.name}}
@@ -1280,7 +1280,7 @@
         
                             <div class="slide-text">
                               <h3>
-                                <a title="{{item.name}}" routerLink="/Writer/{{item.id}}">{{item.name}}</a>
+                                <a title="{{item.name}}" routerLink="/Contributor/{{item.id}}">{{item.name}}</a>
                               </h3>
                             </div><!-- /.slide-text -->
                           </div><!-- /.slide -->
