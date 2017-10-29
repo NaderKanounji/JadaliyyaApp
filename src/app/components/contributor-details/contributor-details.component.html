@@ -1,3 +1,201 @@
-<p>
-  contributor-details works!
-</p>
+<div class="container">
+  <div class="main">
+    <div class="shell">
+      <div class="content">
+        <div class="content-inner">
+          <section class="section section-writers">
+            <div class="writer-primary">
+              <div class="writer-body">
+                <div class="writer-image" *ngIf="contributorModel?.image">
+                  <img src="{{RESIZED_CONTENT_PATH}}154x154xo/{{contributorModel?.image}}" alt="{{contributorModel?.title}}">
+                </div><!-- /.writer-image -->
+
+                <h2 class="writer-title">{{contributorModel?.title}}</h2><!-- /.writer-title -->
+              </div><!-- /.writer-body -->
+
+              <footer class="writer-foot">
+                <ul>
+                  <li>
+                    <a class="btn btn-primary btn-blue btn-block" data-psy-pop="login" *ngIf="!followRequested && !(user?.isLogged)">Follow</a>
+                    <a class="btn btn-primary btn-blue btn-block" (click)="ToggleFollow()"  *ngIf="!followRequested && user?.isLogged">{{contributorModel?.isFollowed ? 'Unfollow' : 'Follow'}}</a>
+                    
+                    <div class="sk-fading-circle follow-loader" *ngIf="followRequested">
+                      <div class="sk-circle1 sk-circle"></div>
+                      <div class="sk-circle2 sk-circle"></div>
+                      <div class="sk-circle3 sk-circle"></div>
+                      <div class="sk-circle4 sk-circle"></div>
+                      <div class="sk-circle5 sk-circle"></div>
+                      <div class="sk-circle6 sk-circle"></div>
+                      <div class="sk-circle7 sk-circle"></div>
+                      <div class="sk-circle8 sk-circle"></div>
+                      <div class="sk-circle9 sk-circle"></div>
+                      <div class="sk-circle10 sk-circle"></div>
+                      <div class="sk-circle11 sk-circle"></div>
+                      <div class="sk-circle12 sk-circle"></div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <span>
+                      <strong>{{contributorModel?.articleCount}}</strong>
+
+                      articles
+                    </span>
+                  </li>
+
+                  <li>
+                    <div class="socials-secondary">
+                      <ul>
+                        <li *ngIf="contributorModel?.socialMedia?.facebook">
+                          <a title="Facebook" href="{{contributorModel?.socialMedia?.facebook}}">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                          </a>
+                        </li>
+
+                        <li *ngIf="contributorModel?.socialMedia?.twitter">
+                          <a title="Twitter" href="{{contributorModel?.socialMedia?.twitter}}">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                          </a>
+                        </li>
+
+                        <li *ngIf="contributorModel?.socialMedia?.linkedin">
+                          <a title="Linkedin" href="{{contributorModel?.socialMedia?.linkedin}}">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                          </a>
+                        </li>
+
+                        <li *ngIf="contributorModel?.socialMedia?.email">
+                          <a title="Email" href="mailto:{{contributorModel?.socialMedia?.email}}">
+                            <i class="fa fa-external-link-square" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div><!-- /.socials-secondary -->
+                  </li>
+                </ul>
+              </footer><!-- /.writer-foot -->
+            </div><!-- /.writer-primary -->
+
+            <div class="section-entry" [innerHTML]="contributorModel?.bio">
+            </div><!-- /.section-entry -->
+
+            <div class="section-inner">
+              <h2 class="section-title">ARTICLES BY {{contributorModel?.title}}</h2><!-- /.section-title -->
+
+              <div class="form-filter form-filter-secondary" *ngIf="contributorModel?.writerCountries?.length">
+                <form (submit)="fetch_new_listing($event, filterForm.value)" #filterForm="ngForm">
+                  <div class="form-body">
+                    <div class="cols">
+                      <div class="col col-size1">
+                        <div class="form-row">
+                          <div class="form-controls form-controls-select">
+                            <select name="countryId" id="field-country" class="select-native" [(ngModel)]="filter.countryId" (change)="fetch_new_listing($event, filterForm.value)">
+                              <option value="0">Country</option>
+                              <option value="{{item.key}}" *ngFor="let item of contributorModel?.writerCountries">{{item.value}}</option>
+                            </select>
+                          </div><!-- /.form-controls -->
+                        </div><!-- /.form-row -->
+                      </div><!-- /.col col-size1 -->
+
+                      <div class="col col-size1" *ngIf="contributorModel?.writerCategories?.length">
+                        <div class="form-row">
+                          <div class="form-controls form-controls-select">
+                            <select name="categoryId" id="field-category" class="select-native" [(ngModel)]="filter.categoryId" (change)="fetch_new_listing($event, filterForm.value)">
+                              <option value="0">Category</option>
+                              <option value="{{item.key}}" *ngFor="let item of contributorModel?.writerCategories">{{item.value}}</option>
+                            </select>
+                          </div><!-- /.form-controls -->
+                        </div><!-- /.form-row -->
+                      </div><!-- /.col col-size1 -->
+
+                      <div class="col col-size1">
+                        <div class="form-row">
+                          <div class="form-controls">
+                            <input type="text" class="field" name="keyword" id="field-keyword" placeholder="Keyword" [(ngModel)]="filter.keyword">
+
+                            <button type="submit" class="form-btn">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                          </div><!-- /.form-controls -->
+                        </div><!-- /.form-row -->
+                      </div><!-- /.col col-size1 -->
+                    </div><!-- /.cols -->
+                  </div><!-- /.form-body -->
+                </form>
+              </div><!-- /.form-filter -->
+
+              <div class="section section-articles no-sidebar">
+                <div class="section-content">
+                  <ul class="posts">
+                    <li class="post {{item.isArabic ? 'rtl' : ''}}"  *ngFor="let item of contributorModel?.articles">
+                      
+                      <post [post]="item"></post>
+                    </li><!-- /.post -->
+
+                  </ul><!-- /.posts -->
+                </div><!-- /.section-content -->
+              </div><!-- /.section section-articles -->
+            </div><!-- /.section-inner -->
+          </section><!-- /.section section-writers -->
+        </div><!-- /.content-inner -->
+
+        <div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">
+          <a href="#" class="link-load">
+            <ul class="load-more-loader">
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </a>
+        </div><!-- /.content-actions -->
+      </div><!-- /.content -->
+
+      <div class="sidebar">
+        <ul class="widgets">
+          <li class="widget-subscribe">
+            <div class="widget-content">
+              <app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
+              
+                <div class="socials" social-block [model]="socialMedia" *ngIf="socialMedia?.length > 0">
+                </div><!-- /.socials -->
+            </div><!-- /.widget-content -->
+          </li><!-- /.widget -->
+
+          <li class="widget-jad hidden-xs">
+            <div class="widget-image">
+              <a href="#">
+                <img src="../../assets/images/temp/jadmag1.jpg" alt="">
+              </a>
+            </div><!-- /.widget-image -->
+          </li><!-- /.widget -->
+          <li class="widget-primary " more-stories-widget [featured]="contributorModel?.featured" [recent]="contributorModel?.recent" *ngIf="contributorModel?.featured || contributorModel?.recent">
+            
+          </li><!-- /.widget-primary -->
+
+          <li class="widget-primary widget-jad-nav hidden-sm hidden-xs hidden-md" jad-nav-widget [countries]="contributorModel?.jadNavigation" *ngIf="contributorModel?.jadNavigation?.length">
+            
+           </li><!-- /.widget-primary -->
+
+          <li class="widget-primary hidden-sm hidden-xs hidden-md" popular-tags-widget [model]="contributorModel?.popularTags" *ngIf="contributorModel?.popularTags?.length">
+            
+          </li><!-- /.widget-primary -->
+
+          <li class="widget-jad visible-xs-block">
+            <div class="widget-image">
+              <a href="#">
+                <img src="../../assets/images/temp/jadmag.jpg" alt="">
+              </a>
+            </div><!-- /.widget-image -->
+          </li><!-- /.widget -->
+          
+          <li class="widget-subscribe visible-xs-block">
+            <app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
+            
+            <div class="socials" social-block [model]="socialMedia" *ngIf="socialMedia?.length > 0">
+            </div><!-- /.socials -->
+          </li><!-- /.widget -->
+        </ul><!-- /.widgets -->
+      </div><!-- /.sidebar -->
+    </div><!-- /.shell -->
+  </div><!-- /.main -->
+</div><!-- /.container -->

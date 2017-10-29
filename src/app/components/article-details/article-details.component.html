@@ -71,7 +71,12 @@
 									</li>
 									
 									<li>
-										<a href="ajax/popup-favorites.html" class="link-popup">
+										<a data-psy-pop="login" *ngIf="!(user?.isLogged)">
+											<span>
+												<i class="fa fa-heart-o" aria-hidden="true"></i>
+											</span>
+										</a>
+										<a data-psy-pop="add-to-fav-confirm" *ngIf="user?.isLogged">
 											<span>
 												<i class="fa fa-heart-o" aria-hidden="true"></i>
 											</span>

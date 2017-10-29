@@ -326,7 +326,26 @@ blockquote:last-child {
   width: 35px;
 }
 .sk-fading-circle.submit-loader .sk-circle:before {
-  bacground-color: rgba(12, 108, 173, 0.8);
+  background-color: rgba(12, 108, 173, 0.8);
+}
+.sk-fading-circle.follow-loader {
+  margin: 10px auto;
+  height: 30px;
+  width: 30px;
+}
+.sk-fading-circle.follow-loader .sk-circle:before {
+  background-color: rgba(12, 108, 173, 0.8);
+}
+.sk-fading-circle.carret-loader {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 16px;
+  top: 50%;
+  margin-top: -10px;
+}
+.sk-fading-circle.carret-loader .sk-circle:before {
+  background-color: #fff;
 }
 .sk-fading-circle .sk-circle {
   width: 100%;
@@ -11423,6 +11442,12 @@ ul.items:after {
   width: 100%;
   height: 73px;
   overflow: hidden;
+}
+.dropdown-head {
+  position: relative;
+}
+a.link-folders.hide-arrow::after {
+  display: none;
 }
 .form-errors {
   padding-left: 15px;

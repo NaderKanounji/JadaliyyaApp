@@ -1330,21 +1330,8 @@
                       </div><!-- /.widget-body -->
                     </li><!-- /.widget-primary -->
         
-                    <li class="widget-primary hidden-sm hidden-xs hidden-md" *ngIf="homeModel?.sidebar?.popularTags?.length">
-                        <header class="widget-head">
-                          <h3 class="widget-title">
-                            <span>POPULAR TAGS</span>
-                          </h3><!-- /.widget-title -->
-                        </header><!-- /.widget-head -->
-                      
-                        <div class="widget-body">
-                          <canvas width="330" height="250" id="tag-canvas"></canvas>
-                          <div id="tags" style="display: none">
-                            <ul>
-                              <li *ngFor="let item of homeModel?.sidebar?.popularTags"><a title="{{item.title}}" routerLink="/Tag/{{item.id}}">{{item.title}}</a></li>
-                            </ul>
-                          </div>
-                        </div><!-- /.widget-body -->
+                    <li class="widget-primary hidden-sm hidden-xs hidden-md" popular-tags-widget [model]="homeModel?.sidebar?.popularTags" *ngIf="homeModel?.sidebar?.popularTags?.length">
+                        
                       </li><!-- /.widget-primary -->
         
                     <li class="widget-primary hidden-xs" *ngIf="homeModel?.quote">

@@ -46,6 +46,7 @@ export class AppComponent {
         this.sharedService.set_customUrlTitle('');
 
         this.myFunctions.reset_page_state();
+        this.myFunctions.load_all_pages();
       }
       
       

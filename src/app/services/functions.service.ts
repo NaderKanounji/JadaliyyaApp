@@ -92,6 +92,18 @@ country_sidebar(){
   svg_map_init(){
     myFunctions.svg_map_init();
   }
+  more_stories_widget(){
+    myFunctions.more_stories_widget();
+  }
+  tags_widget_init(){
+    myFunctions.tags_widget_init();
+  }
+  open_popupDropdown(){
+    myFunctions.open_popupDropdown();
+  }
+  close_popupDropdown(){
+    myFunctions.close_popupDropdown();
+  }
   load_google_api(){
     (function() {
       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -115,4 +127,13 @@ country_sidebar(){
   animate_to_element(id:string, offset:number, speed:number){
       myFunctions.animate_to_element(id, offset, speed);
   }
+  // history_back(lastUrl:string){
+  //  // let lastUrl = document.referrer;
+  //   //Checks if last visited url belongs to this domain
+  //   // if(lastUrl != "" && lastUrl.indexOf(document.getElementsByTagName('base')[0].href)){
+  //   //     window.history.back();
+  //   // }
+  //   // return false;
+  //   window.history.back();
+  // }
 }

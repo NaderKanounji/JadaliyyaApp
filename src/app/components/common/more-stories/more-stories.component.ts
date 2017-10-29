@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import {FunctionsService} from '../../../services/functions.service';
+
 import {ArticleModel} from '../../../includes/Models';
 import {_globals} from '../../../includes/globals';
 @Component({
@@ -12,10 +14,11 @@ export class MoreStoriesComponent implements OnInit {
   RESIZED_CONTENT_PATH:string;
   @Input() featured;
   @Input() recent;
-  constructor() { }
+  constructor(private myFunctions:FunctionsService) { }
 
   ngOnInit() {
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
+    this.myFunctions.more_stories_widget();
   }
 
 }

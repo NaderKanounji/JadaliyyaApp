@@ -10,9 +10,14 @@ export interface UserModel{
     token_type:string;
     expires_in:number;
     refresh_token:string;
-  }
+  },
+  follows:number[]
 }
-
+export interface FolderModel{
+  id:number;
+  title:string;
+  articles:ArticleModel[];
+}
 
 export interface LoginForm{
   username:string;
@@ -30,6 +35,24 @@ export interface RegisterForm{
 }
 export interface ContributorsComponentModel{
   writers:WriterModel[];
+  jadNavigation:JadNavigationWidget[];
+  popularTags:TagModel[];
+  featured:ArticleModel[];
+  recent:ArticleModel[];
+}
+export interface ContributorDetailsModel{
+  id:number;
+  isFollowed:boolean;
+  title:string;
+  image:string;
+  bio:string;
+  articleCount:number;
+  socialMedia:SocialMediaModel;
+  articles:ArticleModel[];
+  writerCountries:IntStringModel[];
+  writerCategories:IntStringModel[];
+
+  
   jadNavigation:JadNavigationWidget[];
   popularTags:TagModel[];
   featured:ArticleModel[];

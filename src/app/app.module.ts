@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { RouterModule }   from '@angular/router';
-import { HttpClientModule }   from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  }   from '@angular/common/http';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { FormsModule } from '@angular/forms';
 
@@ -37,6 +37,7 @@ import { SharedService } from './services/shared.service';
 import { FunctionsService } from './services/functions.service';
 import { MembershipService } from './services/membership.service';
 import { UserService } from './services/user.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { SocialIconPipe } from './pipes/social-icon.pipe';
@@ -46,6 +47,8 @@ import { CustomSortPipe } from './pipes/custom-sort.pipe';
 
 //Guards
 import { AuthGuard } from './guards/auth.guard';
+import { PopularTagsWidgetComponent } from './components/common/popular-tags-widget/popular-tags-widget.component';
+import { FavoriteComponent } from './components/popups/favorite/favorite.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -97,7 +100,9 @@ var routes = [
     AccountComponent,
     ForgotPasswordComponent,
     ContributorsComponent,
-    ContributorDetailsComponent
+    ContributorDetailsComponent,
+    PopularTagsWidgetComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +111,20 @@ var routes = [
     Ng2Webstorage,
     FormsModule
   ],
-  providers: [SharedService, FunctionsService, SortPipe, CustomSortPipe, MembershipService, UserService, AuthGuard],
+  providers: [
+    SharedService, 
+    FunctionsService, 
+    SortPipe, 
+    CustomSortPipe, 
+    MembershipService, 
+    UserService, 
+    AuthGuard, 
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass:AuthInterceptorService, 
+      multi:true 
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

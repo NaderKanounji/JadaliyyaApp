@@ -23,6 +23,10 @@
 
 
 
+<app-favorite-popup *ngIf="user?.isLogged"></app-favorite-popup>
+
+
+
 <div class="popup popup-thank-you mfp-hide" id="popup-thank-you">
 	<div class="popup-inner">
 		<i class="ico-logo-square"></i>
@@ -493,7 +497,11 @@
 				<a href="#" class="link-search link-search-secondary" *ngIf="sharedModel?.categoryId == ARABIC_SECTION_ID">
 					<i class="fa fa-search" aria-hidden="true"></i>
 				</a>
-			<h1>{{sharedModel?.country ? sharedModel?.country?.title : sharedModel?.categoryTitle}}
+			<h1>
+				<a routerLink="/Contributors" *ngIf="sharedModel?.currentRoute == 'contributor-details'">
+					<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				</a>
+				{{sharedModel?.country ? sharedModel?.country?.title : sharedModel?.categoryTitle}}
 				<span class="rtl" *ngIf="sharedModel?.country?.arTitle">{{sharedModel?.country?.arTitle}}</span></h1>
 
 			<ul class="list-navs rtl" *ngIf="sharedModel?.isArabicSection && globalModel?.arabicSubCategories?.length">

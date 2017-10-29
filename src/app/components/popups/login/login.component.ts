@@ -34,9 +34,11 @@ export class LoginComponent implements OnInit {
     this.formErrors = [];
     loginForm.grant_type = 'password';
     this.membership.login(e, loginForm).subscribe((data:any) => {
-      let myUser:UserModel = {isLogged: false, user:null, token: data};
+      let myUser:UserModel = {isLogged: false, user:null, token: data, follows: null};
+      this.user.setToken(data);
       this.membership.GetUserInfo(myUser.token).subscribe((res:any) => {
-        myUser = res;
+        myUser.user = res.user;
+        myUser.follows = res.follows;
         this.user.saveUser(myUser);
         this.loginForm = {
           username:'',
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
         };
         setTimeout(() =>{
             this.myFunctions.dropdown_event();
+            this.myFunctions.psy_popup();
             this.myFunctions.reset_page_state();
         },200);
         this.isSubmitted = false;

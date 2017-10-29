@@ -6,7 +6,7 @@ import { UserModel, SharedModel } from '../includes/Models';
 export class UserService {
 
   private userSource = new BehaviorSubject<UserModel>(
-    {'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null} }
+    {'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null}, follows: null }
   );
   
   user = this.userSource.asObservable();
@@ -33,7 +33,7 @@ export class UserService {
     }
   }
   clearUser(){    
-    this.userSource.next({'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null} });
+    this.userSource.next({'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null}, follows:null });
   }
   clearStoredUser(){
     localStorage.removeItem('_jad_user');
@@ -42,7 +42,11 @@ export class UserService {
   /* Getters */
   getUser(): UserModel{
     return this.userSource.getValue();
+  } 
+  getToken(): any{
+    return this.userSource.getValue().token;
   }
+
 
   isLogged():boolean{
     if(this.user){
@@ -89,6 +93,19 @@ export class UserService {
   setId(id:string){
     let tempSrc = this.userSource.getValue();
     tempSrc.user.id = id;
+    this.userSource.next(tempSrc);
+  }
+  addFollow(id:number){
+    let tempSrc = this.userSource.getValue();
+    if(!tempSrc.follows){
+      tempSrc.follows = [];
+    }
+    tempSrc.follows.push(id);
+    this.userSource.next(tempSrc);
+  }
+  removeFollow(id:number){
+    let tempSrc = this.userSource.getValue();
+    tempSrc.follows = tempSrc.follows.filter(d => d != id);
     this.userSource.next(tempSrc);
   }
   /* end Setters */

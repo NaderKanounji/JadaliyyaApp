@@ -1,0 +1,14 @@
+<header class="widget-head">
+  <h3 class="widget-title">
+    <span>POPULAR TAGS</span>
+  </h3><!-- /.widget-title -->
+</header><!-- /.widget-head -->
+
+<div class="widget-body">
+  <canvas width="330" height="250" id="tag-canvas"></canvas>
+  <div id="tags" style="display: none">
+    <ul>
+      <li *ngFor="let item of model"><a title="{{item.title}}" routerLink="/Tag/{{item.id}}">{{item.title}}</a></li>
+    </ul>
+  </div>
+</div><!-- /.widget-body -->

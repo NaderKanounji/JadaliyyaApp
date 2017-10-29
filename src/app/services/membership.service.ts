@@ -44,4 +44,17 @@ export class MembershipService {
     const headers = new HttpHeaders().set('authorization', token.token_type + ' ' + token.access_token);
     return this.http.get(_globals.API_URL + 'Administrators/GetUserInfo', {headers}).map(response => response);
   }
+
+  FollowWriter(writerId:number){
+    //const headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.post(_globals.API_URL + 'Data/FollowWriter?writerId=' + writerId, '').map(response => response);
+  }
+  UnfollowWriter(writerId:number){
+    //const headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.post(_globals.API_URL + 'Data/UnfollowWriter?writerId=' + writerId, '').map(response => response);
+  }
+
+  GetAllFolders(){
+    return this.http.get(_globals.API_URL + 'Data/GetAllFolders').map(response => response);
+  }
 }

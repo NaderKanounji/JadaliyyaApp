@@ -11,38 +11,38 @@
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                   </a>
 
-                  <div class="writer-image">
-                    <a href="Writers-inner.html">
-                      <img src="css/images/temp/writer1.png" alt="">
+                  <div class="writer-image" *ngIf="item?.image">
+                    <a title="{{item.name}}" routerLink="/Contributor/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
+                      <img src="{{RESIZED_CONTENT_PATH}}120x120xo/{{item?.image}}" alt="{{item.name}}">
                     </a>
                   </div><!-- /.writer-image -->
 
                   <h3 class="writer-title">
-                    <a title="{{item.name}}">{{item.name}}</a>
+                    <a title="{{item.name}}" routerLink="/Contributor/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.name}}</a>
                   </h3><!-- /.writer-title -->
 
                   <div class="socials-secondary">
                     <ul>
                       <li *ngIf="item?.socialMedia?.facebook">
-                        <a href="item?.socialMedia?.facebook">
+                        <a href="{{item?.socialMedia?.facebook}}">
                           <i class="fa fa-facebook" aria-hidden="true"></i>
                         </a>
                       </li>
 
                       <li *ngIf="item?.socialMedia?.twitter">
-                        <a href="item?.socialMedia?.twitter">
+                        <a href="{{item?.socialMedia?.twitter}}">
                           <i class="fa fa-twitter" aria-hidden="true"></i>
                         </a>
                       </li>
 
                       <li *ngIf="item?.socialMedia?.linkedin">
-                        <a href="item?.socialMedia?.linkedin">
+                        <a href="{{item?.socialMedia?.linkedin}}">
                           <i class="fa fa-linkedin" aria-hidden="true"></i>
                         </a>
                       </li>
 
                       <li *ngIf="item?.socialMedia?.email">
-                        <a href="item?.socialMedia?.email">
+                        <a href="mailto:{{item?.socialMedia?.email}}">
                           <i class="fa fa-external-link-square" aria-hidden="true"></i>
                         </a>
                       </li>
@@ -90,7 +90,7 @@
           <li class="widget-jad hidden-xs">
             <div class="widget-image">
               <a href="#">
-                <img src="css/images/temp/jadmag1.jpg" alt="">
+                <img src="../../assets/images/temp/jadmag1.jpg" alt="">
               </a>
             </div><!-- /.widget-image -->
           </li><!-- /.widget -->
@@ -99,11 +99,28 @@
             
           </li><!-- /.widget-primary -->
 
-          <!--#include file="ssi/jad-nav.shtml" -->
+          <li class="widget-primary widget-jad-nav hidden-sm hidden-xs hidden-md" jad-nav-widget [countries]="contributorsModel?.jadNavigation" *ngIf="contributorsModel?.jadNavigation?.length">
+            
+           </li><!-- /.widget-primary -->
 
-          <!--#include file="ssi/widget-tags.shtml" -->
+          <li class="widget-primary hidden-sm hidden-xs hidden-md" popular-tags-widget [model]="contributorsModel?.popularTags" *ngIf="contributorsModel?.popularTags?.length">
+            
+          </li><!-- /.widget-primary -->
 
-          <!--#include file="ssi/mobile-widgets.shtml" -->
+          <li class="widget-jad visible-xs-block">
+            <div class="widget-image">
+              <a href="#">
+                <img src="../../assets/images/temp/jadmag.jpg" alt="">
+              </a>
+            </div><!-- /.widget-image -->
+          </li><!-- /.widget -->
+          
+          <li class="widget-subscribe visible-xs-block">
+            <app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
+            
+            <div class="socials" social-block [model]="socialMedia" *ngIf="socialMedia?.length > 0">
+            </div><!-- /.socials -->
+          </li><!-- /.widget -->
         </ul><!-- /.widgets -->
       </div><!-- /.sidebar -->
     </div><!-- /.shell -->
