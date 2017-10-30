@@ -11,7 +11,7 @@
   </li>
   
   <li>
-    <a href="#" data-tooltip="Tooltip title" data-tooltip-hide-on-hover>
+    <a data-tooltip="create folder" data-tooltip-hide-on-hover data-psy-pop="create-folder">
       <i class="fa fa-folder" aria-hidden="true"></i>
     </a>
   </li>
@@ -22,8 +22,8 @@
     </a>
   </li>
   
-  <li class="inactive">
-    <a href="ajax/popup-rename.html" data-tooltip="Tooltip title" data-tooltip-hide-on-hover class="link-popup">
+  <li >
+    <a data-tooltip="rename folder" data-tooltip-hide-on-hover (click)="rename_popup($event)">
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
     </a>
   </li>

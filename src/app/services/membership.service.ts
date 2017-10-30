@@ -60,6 +60,9 @@ export class MembershipService {
   CreateFolderWithArticle(title:string, id:number){
     return this.http.post(_globals.API_URL + 'Data/CreateFolderWithArticle?title=' + title + '&articles=' + id, '').map(response => response)
   }
+  CreateFolder(title:string){
+    return this.http.post(_globals.API_URL + 'Data/CreateFolder?title=' + title, '').map(response => response)
+  }
   AddToFolder(folderId:number, articleId:number){
     return this.http.post(_globals.API_URL + 'Data/AddToFolder?folderId=' + folderId + '&articleId=' + articleId, '').map(response => response)
   }
@@ -68,5 +71,8 @@ export class MembershipService {
   }
   RemoveArticlesFromFolders(articlesInFolders:string){
     return this.http.post(_globals.API_URL + 'Data/RemoveArticlesFromFolders?articlesInFolders=' + articlesInFolders, '').map(response => response)
+  }
+  RenameFolder(id:number, title:string){
+    return this.http.post(_globals.API_URL + 'Data/RenameFolder?id=' + id + '&title=' + title, '').map(response => response)
   }
 }

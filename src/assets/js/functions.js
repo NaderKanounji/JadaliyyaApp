@@ -1868,7 +1868,9 @@ module.exports.myFunctions = {
 		dropdown_event();
 	},
 	psy_popup:function(){
-		psy_popup();
+		setTimeout(function(){
+			psy_popup();
+		},200);
 	},
 	close_popup:function(){
 		close_popup();

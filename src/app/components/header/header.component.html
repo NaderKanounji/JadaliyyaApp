@@ -1,4 +1,18 @@
 
+<div class="popup popup-thank-you mfp-hide" id="popup-message">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			{{sharedModel?.messagePopup}}
+		</h3><!-- /.popup-title -->
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
+
 <app-register *ngIf="!(user?.isLogged)"></app-register>
 
 <div class="popup popup-thank-you mfp-hide" id="thank-you-register">

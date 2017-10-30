@@ -134,6 +134,7 @@ export interface SocialMediaModel{
     socialMedia:SocialMedia[];
     country:SharedCountryModel;
     formData:FormsData;
+    messagePopup:string;
 }
 
 export interface Country{

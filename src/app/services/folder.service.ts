@@ -35,4 +35,17 @@ export class FolderService {
     }
     this.folderSource.next(tempModel);
   }
+
+  AddFolder(folder:FolderModel){
+    let tempModel = this.folderSource.getValue();
+    tempModel.folders.push(folder);
+    this.folderSource.next(tempModel);
+  }
+  RenameFolder(folder:FolderModel){
+    let tempModel = this.folderSource.getValue();
+    let itemToUpdate = tempModel.folders.filter(d => d.id == folder.id)[0];
+    let itemIndex =  tempModel.folders.indexOf(itemToUpdate);
+    tempModel.folders[itemIndex].title = folder.title; 
+    this.folderSource.next(tempModel);
+  }
 }

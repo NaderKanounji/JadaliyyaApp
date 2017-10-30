@@ -6,7 +6,7 @@ import { SharedModel, SocialMedia,SharedCountryModel, Country, Category, FormsDa
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"headerType" : "header", "displayActions": false, "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
+    {"headerType" : "header",'messagePopup': '' , "displayActions": false, "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
     formData:{
       countries:null,
       userIdentifications:null
@@ -28,6 +28,11 @@ export class SharedService {
   set_headerType(headerType:string){
     let tempModel = this.messageSource.getValue();
     tempModel.headerType = headerType;
+    this.messageSource.next(tempModel);
+  }
+  set_messagePopup(messagePopup:string){
+    let tempModel = this.messageSource.getValue();
+    tempModel.messagePopup = messagePopup;
     this.messageSource.next(tempModel);
   }
   set_categoryTitle(myCategoryTitle:string){
