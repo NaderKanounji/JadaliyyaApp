@@ -23,7 +23,6 @@
 
 
 
-<app-favorite-popup *ngIf="user?.isLogged"></app-favorite-popup>
 
 
 
@@ -503,13 +502,23 @@
 				</a>
 				{{sharedModel?.country ? sharedModel?.country?.title : sharedModel?.categoryTitle}}
 				<span class="rtl" *ngIf="sharedModel?.country?.arTitle">{{sharedModel?.country?.arTitle}}</span></h1>
-
+				
+				<ul class="list-navs list-navs-secondary" *ngIf="sharedModel?.currentRoute == 'favorites' || sharedModel?.currentRoute == 'shared'">
+					<li class="{{sharedModel?.currentRoute == 'favorites' ? 'current' : ''}}">
+						<a title="Favorites" routerLink="/Account/Favorites">FAVORITES</a>
+					</li>
+					
+					<li class="{{sharedModel?.currentRoute == 'shared' ? 'current' : ''}}">
+						<a title="Shared with me" routerLink="/Account/Shared">SHARED WITH ME</a>
+					</li>
+				</ul><!-- /.list-navs -->
+				<ul class="list-actions-secondary" *ngIf="(sharedModel?.currentRoute == 'favorites' || sharedModel?.currentRoute == 'shared') && sharedModel?.displayActions" app-favorites-actions>
+				
+				</ul><!-- /.list-actions-secondary -->
 			<ul class="list-navs rtl" *ngIf="sharedModel?.isArabicSection && globalModel?.arabicSubCategories?.length">
 				<li class="{{sharedModel?.categoryId == item.id ? 'current' : ''}}" *ngFor="let item of globalModel?.arabicSubCategories">
 					<a title="{{item.title}}" routerLink="/Category/{{ARABIC_SECTION_ID}}/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
-				</li>
-
-			
+				</li>			
 			</ul>
 			<ul class="list-navs list-navs-secondary" *ngIf="sharedModel.currentRoute == 'category' && sharedModel.categoryId == ROUNDUPS_CATEGORY_ID">
 					<li class="{{sharedModel?.customUrlTitle == ROUNDUPS_MEDIA_URL_TITLE ? 'current' : ''}}">

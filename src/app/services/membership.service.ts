@@ -35,18 +35,17 @@ export class MembershipService {
       this.myFunctions.psy_popup();
       this.myFunctions.close_popup();
     }, 200);
+    console.log(this.router.parseUrl);
+    
     this.router.navigate([this.router.parseUrl]);
 
   }
 
   GetUserInfo(userToken:any){
-    let token = userToken ? userToken : this.user.getUser().token;
-    const headers = new HttpHeaders().set('authorization', token.token_type + ' ' + token.access_token);
-    return this.http.get(_globals.API_URL + 'Administrators/GetUserInfo', {headers}).map(response => response);
+    return this.http.get(_globals.API_URL + 'Administrators/GetUserInfo').map(response => response);
   }
 
   FollowWriter(writerId:number){
-    //const headers = new HttpHeaders().set("Content-Type", "application/json");
     return this.http.post(_globals.API_URL + 'Data/FollowWriter?writerId=' + writerId, '').map(response => response);
   }
   UnfollowWriter(writerId:number){
@@ -56,5 +55,18 @@ export class MembershipService {
 
   GetAllFolders(){
     return this.http.get(_globals.API_URL + 'Data/GetAllFolders').map(response => response);
+  }
+
+  CreateFolderWithArticle(title:string, id:number){
+    return this.http.post(_globals.API_URL + 'Data/CreateFolderWithArticle?title=' + title + '&articles=' + id, '').map(response => response)
+  }
+  AddToFolder(folderId:number, articleId:number){
+    return this.http.post(_globals.API_URL + 'Data/AddToFolder?folderId=' + folderId + '&articleId=' + articleId, '').map(response => response)
+  }
+  DeleteFolders(folders:string){
+    return this.http.post(_globals.API_URL + 'Data/DeleteFolders?folders=' + folders, '').map(response => response)
+  }
+  RemoveArticlesFromFolders(articlesInFolders:string){
+    return this.http.post(_globals.API_URL + 'Data/RemoveArticlesFromFolders?articlesInFolders=' + articlesInFolders, '').map(response => response)
   }
 }

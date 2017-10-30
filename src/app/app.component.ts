@@ -44,6 +44,7 @@ export class AppComponent {
         this.sharedService.set_country(null);
         this.sharedService.set_categoryId(null);
         this.sharedService.set_customUrlTitle('');
+        this.sharedService.set_displayActions(false);
 
         this.myFunctions.reset_page_state();
         this.myFunctions.load_all_pages();

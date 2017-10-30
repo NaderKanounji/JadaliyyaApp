@@ -37,6 +37,7 @@ import { SharedService } from './services/shared.service';
 import { FunctionsService } from './services/functions.service';
 import { MembershipService } from './services/membership.service';
 import { UserService } from './services/user.service';
+import { FolderService } from './services/folder.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { SafeUrlPipePipe } from './pipes/safe-url-pipe.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
@@ -49,10 +50,12 @@ import { CustomSortPipe } from './pipes/custom-sort.pipe';
 import { AuthGuard } from './guards/auth.guard';
 import { PopularTagsWidgetComponent } from './components/common/popular-tags-widget/popular-tags-widget.component';
 import { FavoriteComponent } from './components/popups/favorite/favorite.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { FavoritesActionsComponent } from './components/favorites/favorites-actions/favorites-actions.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
-  { path: 'Account/Favorites', component: AccountComponent, canActivate:[AuthGuard]  },
+  { path: 'Account/Favorites', component: FavoritesComponent, canActivate:[AuthGuard]  },
   { path: 'Account', component: AccountComponent, canActivate:[AuthGuard]   },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
   { path: 'Details/:id/:title', component: ArticleDetailsComponent  },
@@ -102,7 +105,9 @@ var routes = [
     ContributorsComponent,
     ContributorDetailsComponent,
     PopularTagsWidgetComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    FavoritesComponent,
+    FavoritesActionsComponent
   ],
   imports: [
     BrowserModule,
@@ -118,6 +123,7 @@ var routes = [
     CustomSortPipe, 
     MembershipService, 
     UserService, 
+    FolderService,
     AuthGuard, 
     {
       provide: HTTP_INTERCEPTORS, 

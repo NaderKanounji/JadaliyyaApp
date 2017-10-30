@@ -6,7 +6,7 @@ import { SharedModel, SocialMedia,SharedCountryModel, Country, Category, FormsDa
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"headerType" : "header", "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
+    {"headerType" : "header", "displayActions": false, "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
     formData:{
       countries:null,
       userIdentifications:null
@@ -53,6 +53,11 @@ export class SharedService {
   set_socialMedia(mySocialMedia:SocialMedia[]){
     let tempModel = this.messageSource.getValue();
     tempModel.socialMedia = mySocialMedia;
+    this.messageSource.next(tempModel);
+  }
+  set_displayActions(displayActions:boolean){
+    let tempModel = this.messageSource.getValue();
+    tempModel.displayActions = displayActions;
     this.messageSource.next(tempModel);
   }
   set_isArabicSection(isArabic:boolean){

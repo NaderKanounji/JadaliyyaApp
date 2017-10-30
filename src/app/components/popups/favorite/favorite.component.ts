@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
 
 import { FunctionsService } from '../../../services/functions.service';
 import { MembershipService } from '../../../services/membership.service';
@@ -14,10 +15,14 @@ export class FavoriteComponent implements OnInit {
   userFolders:FolderModel[];
   isDropdownOpen:boolean = false;
   isLoadingFolders:boolean = false;
-  constructor(private myFunctions: FunctionsService, private membership: MembershipService) { }
+  isAddingArticle:boolean = false;
+  @Input() articleId:number;
+  newFolder:FolderModel;
+  formErrors:string[] = [];
+  constructor(private route: ActivatedRoute, private myFunctions: FunctionsService, private membership: MembershipService) { }
 
   ngOnInit() {
-
+    
   }
 
   dispay_folders(e){
@@ -35,8 +40,54 @@ export class FavoriteComponent implements OnInit {
       });
     }
   }
-  create_folder(e){
+  // create_folder(e){
+  //   e.stopPropagation();
+  // }
+  create_folder_and_add_article(e, newFolder:FolderModel){
     e.stopPropagation();
+    this.formErrors = [];
+    if(newFolder.title && newFolder.title != ""){
+      this.membership.CreateFolderWithArticle(newFolder.title, this.articleId).subscribe((data:any) => {
+        this.myFunctions.close_popupDropdown();
+        this.isDropdownOpen = false;
+        this.newFolder.title = '';
+        this.myFunctions.psy_open_popup('popup-added-to-fav');
+  
+      }, (err:any) => {
+        console.log(err);
+        if(err.error.message){
+          this.formErrors.push(err.error.message);
+        }else{
+          this.formErrors.push(err.error);
+        }
+      });
+    }
+
   }
 
+  add_article_to_folder(e){
+    e.stopPropagation();
+    this.formErrors = [];
+    let folderId = this.myFunctions.get_popup_dropdown_selected();
+    if(folderId && folderId != ''){
+      this.isAddingArticle = true;
+      this.membership.AddToFolder(folderId, this.articleId).subscribe((data:any) => {
+        this.myFunctions.close_popupDropdown();
+        this.isDropdownOpen = false;
+        this.myFunctions.psy_open_popup('popup-added-to-fav');
+        this.isAddingArticle = false;
+      }, (err:any) => {
+        console.log(err);
+        
+        if(err.error.message){
+          this.formErrors.push(err.error.message);
+        }else{
+          this.formErrors.push(err.error);
+        }
+        this.isAddingArticle = false;
+      });
+    }else{
+      this.formErrors.push('Select a folder first');
+    }
+  }
 }

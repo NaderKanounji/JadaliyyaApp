@@ -8,7 +8,7 @@ import { FunctionsService } from '../../../services/functions.service';
 import { UserService } from '../../../services/user.service';
 
 // import { _globals } from '../../../includes/globals';
-import { RegisterForm, SharedModel, UserModel } from '../../../includes/Models';
+import { RegisterForm, LoginForm, SharedModel, UserModel } from '../../../includes/Models';
 
 import {MembershipService} from '../../../services/membership.service';
 
@@ -34,23 +34,29 @@ export class RegisterComponent  implements OnInit{
   register(e:any, registerForm:RegisterForm){
     this.isSubmitted = true;
       this.formErrors = [];
-      this.membership.register(e, registerForm).subscribe((data:any) => {
+      this.membership.register(e, registerForm).subscribe((regdata:any) => {
+        //this.user.setUser()
+      let myUser:UserModel = {isLogged: false, user:regdata.user, token: null, follows: null};
+        let loginForm:LoginForm = {username : registerForm.UserName,password : registerForm.password, grant_type:"password" } ;
+        this.membership.login(e, loginForm).subscribe((data:any) => {
+          myUser.token = data.token;
+          this.user.saveUser(myUser);
+          this.registerForm = {
+            fullName:'',
+            identifies:null,
+            UserName:'',
+            year:'',
+            countryId:null,
+            password:'',
+            ConfirmPassword:''
+          };
+          setTimeout(() =>{
+              this.myFunctions.dropdown_event();
+              this.myFunctions.psy_open_popup('thank-you-register');
+          },200);
+          this.isSubmitted = false;
+        });
         
-        this.user.saveUser(data);
-        this.registerForm = {
-          fullName:'',
-          identifies:null,
-          UserName:'',
-          year:'',
-          countryId:null,
-          password:'',
-          ConfirmPassword:''
-        };
-        setTimeout(() =>{
-            this.myFunctions.dropdown_event();
-            this.myFunctions.psy_open_popup('thank-you-register');
-        },200);
-        this.isSubmitted = false;
       },(err) => {
         this.isSubmitted = false;
         this.formErrors.push(err.error.message);

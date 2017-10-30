@@ -59,20 +59,94 @@
 				<div class="dropdown-body scrollable-vertical" style="max-height: 250px">
 					<ul>
 						<li class="add">
-							<a (click)="create_folder($event)">Create Folder</a>
+							<a data-psy-pop="create-folder-for-article">Create Folder</a>
 						</li>
 						
-						<li class="{{i == 0 ? 'selected' : ''}}" *ngFor="let item of userFolders; let i = index">
+						<li class="{{i == 0 ? 'selected' : ''}}" attr.data-folder-id="{{item.id}}" *ngFor="let item of userFolders; let i = index">
 							<a >{{item.title}}</a>
 						</li>
 		
 					</ul>
 				</div><!-- /.dropdown-body -->
 
-				<footer class="dropdown-foot" *ngIf="userFolders?.length">
-					<a  class="btn btn-secondary btn-block btn-transparent-white" >+ Add</a>
-				</footer><!-- /.dropdown-foot -->
+				<footer class="dropdown-foot" *ngIf="!isAddingArticle && userFolders?.length">
+					<a  class="btn btn-secondary btn-block btn-transparent-white" (click)="add_article_to_folder($event)">+ Add</a>
+        </footer><!-- /.dropdown-foot -->
+        <div class="sk-fading-circle follow-loader" *ngIf="isAddingArticle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+          </div>
 			</div><!-- /.dropdown -->
+		</div><!-- /.popup-body -->
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup popup-tertiary -->
+
+<div class="popup popup-tertiary mfp-hide" id="popup-create-folder-for-article">
+	<div class="popup-inner">
+		<header class="popup-head">
+			<i class="ico-logo-square"></i>
+
+			<a href="#" class="link-close-popup">
+				<i class="fa fa-times" aria-hidden="true"></i>
+			</a>
+		</header><!-- /.popup-head -->
+
+		<div class="popup-body">
+			<h4>Create Folder</h4>
+
+			<div class="folder">
+				<div class="form-folder">
+					<form (submit)="create_folder_and_add_article($event, newFolder.value)" #newFolder="ngForm">
+						<div class="form-body">
+							<div class="form-controls">
+								<input type="text" class="field" name="title" id="field-folder"  placeholder="" [(ngModel)]="newFolder.title">
+							</div><!-- /.form-controls -->
+						</div><!-- /.form-body -->
+						<div class="form-actions">
+							<a class="" (click)="create_folder_and_add_article($event, newFolder.value)">save</a>
+						</div><!-- /.form-actions -->
+						<input type="submit" class="hidden"/>
+					</form>
+				</div><!-- /.form-folder -->
+				<div class="form-row">
+					
+				</div><!-- /.form-row -->
+
+				
+      </div><!-- /.folder -->
+      <ul class="form-errors folder-popup-errors" *ngIf="formErrors?.length">
+          <li *ngFor="let item of formErrors">{{item}}</li>
+        </ul>
+      
+		</div><!-- /.popup-body -->
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup popup-tertiary -->
+
+<div class="popup popup-tertiary mfp-hide" id="popup-added-to-fav">
+	<div class="popup-inner">
+		<header class="popup-head">
+			<i class="ico-logo-square"></i>
+
+			<a href="#" class="link-close-popup">
+				<i class="fa fa-times" aria-hidden="true"></i>
+			</a>
+		</header><!-- /.popup-head -->
+
+		<div class="popup-body">
+			<h4>
+				THE SELECTED ARTICLE HAS BEEN <br />
+				ADDED TO YOUR FOLDER!
+			</h4>
 		</div><!-- /.popup-body -->
 	</div><!-- /.popup-inner -->
 </div><!-- /.popup popup-tertiary -->

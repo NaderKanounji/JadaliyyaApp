@@ -13,6 +13,9 @@ export interface UserModel{
   },
   follows:number[]
 }
+export interface FavoritesModel{
+  folders:FolderModel[];
+}
 export interface FolderModel{
   id:number;
   title:string;
@@ -125,6 +128,7 @@ export interface SocialMediaModel{
     categoryTitle:string;
     categoryId:number;
     isArabicSection:boolean;
+    displayActions:boolean;
     customUrlTitle:string;
     isGoogleApiLoaded:boolean;
     socialMedia:SocialMedia[];

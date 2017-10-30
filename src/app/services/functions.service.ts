@@ -104,6 +104,18 @@ country_sidebar(){
   close_popupDropdown(){
     myFunctions.close_popupDropdown();
   }
+  get_popup_dropdown_selected(){
+    return myFunctions.get_popup_dropdown_selected();
+  }
+  get_selected_folders(){
+    return myFunctions.get_selected_folders();
+  }
+  get_selected_articles(){
+    return myFunctions.get_selected_articles();
+  }
+  accordion_init(){
+    myFunctions.accordion_init();
+  }
   load_google_api(){
     (function() {
       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;

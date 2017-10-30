@@ -11457,6 +11457,17 @@ a.link-folders.hide-arrow::after {
   color: #0c6cad;
   font-size: 16px;
 }
+.form-errors.folder-popup-errors {
+  width: 100%;
+  max-width: 300px;
+  /* color: #fff; */
+  font-family: 'Open Sans', sans-serif;
+  margin: 20px auto 0;
+  text-align: left;
+}
+.form-errors.folder-popup-errors li {
+  color: #fff;
+}
 @-webkit-keyframes load-more-animation {
   0% {
     -webkit-transform: translateY(0);
