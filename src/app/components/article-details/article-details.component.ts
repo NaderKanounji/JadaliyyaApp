@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 import { SharedService } from '../../services/shared.service';
@@ -25,7 +26,7 @@ export class ArticleDetailsComponent implements OnInit {
   articleModel: ArticleModel;
   user:UserModel;
   shareLink:string;
-  constructor(private userService:UserService, private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService) { }
+  constructor(private router: Router, private metaService:Meta, private userService:UserService, private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService) { }
 
   ngOnInit() {
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
@@ -50,9 +51,28 @@ export class ArticleDetailsComponent implements OnInit {
       this.http.get(_globals.API_URL + "Data/GetDetailsById?id=" + params['id']).subscribe((data:any) =>{
         this.articleModel = data;
         this.shareLink = this.BASE_URL + "Details/" + this.articleModel.id + (this.articleModel.customUrlTitle ? '/' + this.articleModel.customUrlTitle : '');
-        this.articleModel.fbShareSrc = 'https://www.facebook.com/plugins/share_button.php?href=' + this.shareLink + '&layout=button&size=small&mobile_iframe=true&appId=1742183246107369&width=59&height=20';
+        this.articleModel.fbShareSrc = 'https://www.facebook.com/plugins/share_button.php?href=' + this.shareLink + '&layout=button&size=small&mobile_iframe=true&appId=' + _globals.FACEBOOK_APP_ID + '&width=59&height=20';
         //console.log(this.articleModel);
         this.myFunctions.load_details_page();
+        if(data.metas){
+          this.metaService.addTags([
+            {name : 'description', content :data.metas.metaDescription},
+            {name : 'keywords', content :data.metas.metaKeywords},
+            {name : 'author', content : 'Jadaliyya'},
+            {name : 'og:type', content :'Website'},
+            {name : 'og:url', content :this.router.url},
+            {name : 'og:image', content :_globals.RESIZED_CONTENT_PATH + '500x500xo/' + data.metas.metaImage},
+            {name : 'og:title', content :data.metas.h1Content},
+            {name : 'og:description', content :data.metas.metaDescription},
+            {name : 'og:site_name', content : 'Jadaliyya'},
+            {name : 'twitter:card', content :_globals.RESIZED_CONTENT_PATH + '500x500xo/' + data.metas.metaImage},
+            {name : 'twitter:site', content :this.router.url},
+            {name : 'twitter:title', content :data.metas.h1Content},
+            {name : 'twitter:description', content :data.metas.metaDescription},
+            {name : 'twitter:image', content : _globals.RESIZED_CONTENT_PATH + '500x500xo/' + data.metas.metaImage},
+
+          ]);
+        }
         //this.myFunctions.back_to_top(0);
       });
    });
@@ -84,6 +104,7 @@ interface ArticleModel{
   middleQuote:string;
   descriptionArr:string[];
   date:Date;
+  country:string;
   fbShareSrc:string;
   writer:{
     id:number;

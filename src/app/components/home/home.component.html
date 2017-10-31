@@ -78,27 +78,7 @@
                 </div><!-- /.widget-image -->
   
                 <div class="widget-content">
-                  <div class="subscribe">
-                    <i class="ico-newsletter"></i>
-  
-                    <form action="?" method="post">
-                      <label for="mail">
-                        <span>
-                          <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </span>
-  
-                        <strong>
-                          JOIN OUR <br />
-  
-                          NEWSLETTER
-                        </strong>
-                      </label>
-  
-                      <input type="email" id="mail" name="mail" value="" placeholder="Enter E-mail Address" class="subscribe-field">
-  
-                      <input type="submit" value="Join" class="subscribe-btn btn">
-                    </form>
-                  </div><!-- /.subscribe -->
+                    <app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
   
                   <div class="socials" social-block [model]="socialMedia" *ngIf="socialMedia?.length > 0">
                   </div><!-- /.socials -->
@@ -144,33 +124,21 @@
                 </div><!-- /.widget-content -->
               </li><!-- /.widget -->
   
-              <li class="widget-player">
+              <li class="widget-player" *ngIf="statusModel?.JadaliyaInterviews?.length">
                 <div class="widget-content">
                   <div class="slider slider-player">
                     <div class="slides owl-carousel">
-                      <div class="slide">
-                        <h3 class="slide-title">Music Production Cycle in Palestine: From Akka to Gaza</h3><!-- /.slide-title -->
+                      <div class="slide" *ngFor="let item of statusModel?.JadaliyaInterviews">
+                        <a href="{{item?.link}}" target="_blank">
+                            <h3 class="slide-title">{{item?.title}}</h3><!-- /.slide-title -->
+                        </a>
   
-                        <span>
-                          <em>By</em> J. Boutros, S. Wansa
+                        <span *ngIf="item?.hostTitle">
+                          <em>By</em> {{item?.hostTitle}}
                         </span>
                       </div><!-- /.slide -->
   
-                      <div class="slide">
-                        <h3 class="slide-title">2Music Production Cycle in Palestine: From Akka to Gaza</h3><!-- /.slide-title -->
-  
-                        <span>
-                          <em>By</em> J. Boutros, S. Wansa
-                        </span>
-                      </div><!-- /.slide -->
-  
-                      <div class="slide">
-                        <h3 class="slide-title">3Music Production Cycle in Palestine: From Akka to Gaza</h3><!-- /.slide-title -->
-  
-                        <span>
-                          <em>By</em> J. Boutros, S. Wansa
-                        </span>
-                      </div><!-- /.slide -->
+                    
                     </div><!-- /.slides -->
   
                     <div class="slider-nav"></div><!-- /.slider-nav -->
@@ -182,7 +150,7 @@
                 </div><!-- /.widget-image -->
   
                 <div class="widget-actions">
-                  <a href="#" class="link-play"></a>
+                  <a class="link-play">{{item?.link}}</a>
                 </div><!-- /.widget-actions -->
               </li><!-- /.widget -->
             </ul><!-- /.widgets -->
@@ -436,7 +404,7 @@
                             <div class="quote">
                               <div class="quote-inner">
                                 <h5>
-                                  <a href="#">
+                                  <a  routerLink="/Category/133/Reports">
                                     Check out our  <strong>REPORTS PAGE</strong> and catch up on news &amp; events
       
                                     <i class="ico-link"></i>
@@ -573,7 +541,7 @@
                     </aside><!-- /.section-aside -->
                   </section><!-- /.section section-articles -->
       
-                  <section class="section section-hot section-hot-secondary" *ngIf="homeModel?.listing?.length > 29">
+                  <section class="section section-hot section-hot-secondary" *ngIf="pageNumber >= 4 && (statusModel?.latestInterviews?.length || statusModel?.latestPrograms?.length) ">
                     <div class="section-image">
                       <img src="../../assets/images/temp/section-hot-bg.png" alt="" class="fullsize-bg">
                     </div><!-- /.section-image -->
@@ -596,238 +564,49 @@
       
                     <div class="section-body">
                       <div class="tabs-body scrollable-horizontal">
-                        <div class="tab current" id="tab-hot21">
+                        <div class="tab current" id="tab-hot21" *ngIf="statusModel?.latestInterviews?.length">
                           <div class="slider slider-interview">
                             <div class="slides owl-carousel">
-                              <div class="slide">
+                              <div class="slide" *ngFor="let item of statusModel?.latestInterviews">
                                 <ul class="list-interviews">
                                   <li>
                                     <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/inverview1.png" alt="">
+                                      <a title="{{item?.title}}" href="{{item?.link}}" target="_blank" *ngIf="item?.imgGuest || item?.imgHost || item?.img">
+                                        <img src="{{item?.imgGuest ? item?.imgGuest : (item?.imgHost ? item?.imgHost : item?.img)}}" alt="{{item?.title}}">
                                       </a>
                                     </span>
       
                                     <div>
                                       <h4>
-                                        <a href="#">Dina el Wedidi</a>
+                                        <a title="{{item?.title}}" href="{{item?.link}}" target="_blank">{{item?.guestTitle ? item?.guestTitle : item?.hostTitle}}</a>
                                       </h4>
       
                                       <p>
-                                        <a href="#">An interview about his new book, co-authored  with Noam</a>
+                                        <a title="{{item?.title}}" href="{{item?.link}}" target="_blank">{{item?.title}}</a>
                                       </p>
                                     </div>
                                   </li>
                                 </ul><!-- /.list-news list-news-dark -->
                               </div><!-- /.slide -->
       
-                              <div class="slide">
-                                <ul class="list-interviews">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/inverview2.png" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <h4>
-                                        <a href="#">Dina el Wedidi</a>
-                                      </h4>
-      
-                                      <p>
-                                        <a href="#">An interview about his new book, co-authored  with Noam</a>
-                                      </p>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
-      
-                              <div class="slide">
-                                <ul class="list-interviews">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/inverview3.png" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <h4>
-                                        <a href="#">Dina el Wedidi</a>
-                                      </h4>
-      
-                                      <p>
-                                        <a href="#">An interview about his new book, co-authored  with Noam</a>
-                                      </p>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
-      
-                              <div class="slide">
-                                <ul class="list-interviews">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/inverview4.png" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <h4>
-                                        <a href="#">Dina el Wedidi</a>
-                                      </h4>
-      
-                                      <p>
-                                        <a href="#">An interview about his new book, co-authored  with Noam</a>
-                                      </p>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
-      
-                              <div class="slide">
-                                <ul class="list-interviews">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/inverview1.png" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <h4>
-                                        <a href="#">Dina el Wedidi</a>
-                                      </h4>
-      
-                                      <p>
-                                        <a href="#">An interview about his new book, co-authored  with Noam</a>
-                                      </p>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
-      
-                              <div class="slide">
-                                <ul class="list-interviews">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/inverview1.png" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <h4>
-                                        <a href="#">Dina el Wedidi</a>
-                                      </h4>
-      
-                                      <p>
-                                        <a href="#">An interview about his new book, co-authored  with Noam</a>
-                                      </p>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
                             </div><!-- /.slides -->
                           </div><!-- /.slider -->
                         </div><!-- /#tab-hot1.tab current -->
       
-                        <div class="tab" id="tab-hot2">
+                        <div class="tab" id="tab-hot22" *ngIf="statusModel?.latestPrograms?.length">
                           <div class="slider slider-feed">
                             <div class="slides owl-carousel">
-                              <div class="slide">
+                              <div class="slide" *ngFor="let item of statusModel?.latestPrograms">
                                 <ul class="list-news list-news-dark list-feed">
                                   <li>
                                     <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/feed2.jpg" alt="">
+                                      <a title="{{item?.title}}" href="{{item?.link}}" target="_blank" *ngIf="item?.img">
+                                        <img src="{{item?.img}}" alt="{{item?.title}}">
                                       </a>
                                     </span>
       
                                     <div>
-                                      <p>Top 100 on Jadaliyya in 2015</p>
-      
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/share.png" alt="">
-                                      </a>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
-      
-                              <div class="slide">
-                                <ul class="list-news list-news-dark list-feed">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/feed3.jpg" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <p>Top 100 on Jadaliyya in 2015</p>
-      
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/share.png" alt="">
-                                      </a>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
-      
-                              <div class="slide">
-                                <ul class="list-news list-news-dark list-feed">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/feed4.jpg" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <p>Top 100 on Jadaliyya in 2015</p>
-      
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/share.png" alt="">
-                                      </a>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
-      
-                              <div class="slide">
-                                <ul class="list-news list-news-dark list-feed">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/feed1.jpg" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <p>Top 100 on Jadaliyya in 2015</p>
-      
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/share.png" alt="">
-                                      </a>
-                                    </div>
-                                  </li>
-                                </ul><!-- /.list-news list-news-dark -->
-                              </div><!-- /.slide -->
-      
-                              <div class="slide">
-                                <ul class="list-news list-news-dark list-feed">
-                                  <li>
-                                    <span>
-                                      <a href="#">
-                                        <img src="../../assets/images/temp/feed1.jpg" alt="">
-                                      </a>
-                                    </span>
-      
-                                    <div>
-                                      <p>Top 100 on Jadaliyya in 2015</p>
+                                      <p>{{item?.title}}</p>
       
                                       <a href="#">
                                         <img src="../../assets/images/temp/share.png" alt="">
@@ -906,8 +685,10 @@
                                   </h3><!-- /.widget-title -->
                                 </div><!-- /.widget-head -->
       
-                                <div class="widget-image">
-                                  <img src="{{RESIZED_CONTENT_PATH}}344x239xo/{{homeModel?.jadalicious[0]?.image}}" alt="{{homeModel?.jadalicious[0]?.title}}" class="fullsize-bg">
+                                <div class="widget-image" >
+                                      <img src="{{RESIZED_CONTENT_PATH}}344x239xo/{{homeModel?.jadalicious[0]?.image}}" alt="{{homeModel?.jadalicious[0]?.title}}" >
+
+                                  
       
                                   <span class="widget-caption">{{homeModel?.jadalicious[0]?.title | truncate:100}}</span>
       
@@ -1276,11 +1057,11 @@
                       <div class="widget-body">
                         <div class="slider-round owl-carousel">
                           <div class="slide" *ngFor="let item of homeModel?.sidebar?.profiles">
-                            <img src="{{RESIZED_CONTENT_PATH}}245x256xo/{{item.image}}" width="245" height="256" alt="{{item.name}}" *ngIf="item.image">
+                            <img src="{{RESIZED_CONTENT_PATH}}245x256xo/{{item.image}}" alt="{{item.title}}" *ngIf="item.image">
         
                             <div class="slide-text">
                               <h3>
-                                <a title="{{item.name}}" routerLink="/Contributor/{{item.id}}">{{item.name}}</a>
+                                <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
                               </h3>
                             </div><!-- /.slide-text -->
                           </div><!-- /.slide -->
@@ -1364,8 +1145,8 @@
                       </div><!-- /.widget-image -->
                     </li><!-- /.widget -->
         
-                    <li class="widget-listen">
-                      <a href="#">
+                    <li class="widget-listen" *ngIf="homeModel?.sidebar?.listenToJadaliyya" >
+                      <a title="{{homeModel?.sidebar?.listenToJadaliyya?.title}}" routerLink="/Details/{{homeModel?.sidebar?.listenToJadaliyya?.id + (homeModel?.sidebar?.listenToJadaliyya?.customUrlTitle ? '/' + homeModel?.sidebar?.listenToJadaliyya.customUrlTitle : '')}}">
                         <i class="ico-listen"></i>
         
                         <span>LISTEN TO JADALIYYA</span>

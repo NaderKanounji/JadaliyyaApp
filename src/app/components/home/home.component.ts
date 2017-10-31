@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, HostListener } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LocalStorageService } from 'ng2-webstorage';
 
@@ -9,7 +9,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, TagModel, FeaturedRecentModel, Profile, JadNavigationWidget } from '../../includes/Models';
+import { ArticleModel, SocialMedia, TagModel, FeaturedRecentModel, Profile, JadNavigationWidget, StatusModel } from '../../includes/Models';
 
 // import * as _globals from '../../includes/globals'; 
 
@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
   //headerStructure:string;
 
   homeModel: HomeModel;
+  statusModel:StatusModel;
   initialTags:number[] = [];
   socialMedia:SocialMedia[];
   constructor(private http: HttpClient, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
@@ -79,7 +80,8 @@ export class HomeComponent implements OnInit {
         quickThoughts:null,
         jadNavigation:null,
         profiles:null,
-        popularTags:null
+        popularTags:null,
+        listenToJadaliyya:null
       }
     };
 
@@ -107,6 +109,12 @@ export class HomeComponent implements OnInit {
         this.startScrollLoading = true;
         this.myFunctions.load_home_page();
       },200);
+    });
+    //const headers = new HttpHeaders().set('Content-Type','Application/form-x');
+    this.http.get(_globals.STATUS_API_URL).subscribe((data:StatusModel) => {
+      this.statusModel = data;
+      this.myFunctions.slider_player();
+      
     });
   }
 
@@ -168,6 +176,7 @@ export class HomeComponent implements OnInit {
       this.http.get(_globals.API_URL + 'Data/GetHomeListing?isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + (this.listType == 3 && localStorage.getItem('_jad_interest') ? '&interests=' + localStorage.getItem('_jad_interest') : '') ).subscribe((data:any) =>{
         switch(this.pageNumber){
           case 3:
+          this.myFunctions.load_status_widget();
             this.homeModel.photography = data['inlineDisplayIn'];
             break;
           case 4:
@@ -217,6 +226,7 @@ export class HomeComponent implements OnInit {
           this.hasMoreToLoad = false;
         }
         this.myFunctions.new_content_formatting();
+        this.myFunctions.fullsize_bg();
         this.startScrollLoading = true;
         //this.homeModel.articleIds = data['articleIds'];
         this.pageNumber++;
@@ -362,7 +372,8 @@ interface HomeModel{
     pedagogy:FeaturedRecentModel;
     quickThoughts:FeaturedRecentModel;
     jadNavigation:JadNavigationWidget[];
-    profiles:Profile[];
+    profiles:ArticleModel[];
+    listenToJadaliyya:ArticleModel;
     popularTags:TagModel[];
   }
 }

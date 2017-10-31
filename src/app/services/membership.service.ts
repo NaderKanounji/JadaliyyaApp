@@ -23,7 +23,7 @@ export class MembershipService {
   login(e, form:LoginForm){
     e.stopPropagation();    
     const headers = new HttpHeaders().set("Content-Type", "application/json");
-    return this.http.post(_globals.BASE_URL + 'token', 'username=' + form.username + '&password=' + form.password + '&grant_type=password', {headers}).map(response => response);
+    return this.http.post(_globals.BASE_API_URL + 'token', 'username=' + form.username + '&password=' + form.password + '&grant_type=password', {headers}).map(response => response);
   }
 
   logout(e){
@@ -74,5 +74,8 @@ export class MembershipService {
   }
   RenameFolder(id:number, title:string){
     return this.http.post(_globals.API_URL + 'Data/RenameFolder?id=' + id + '&title=' + title, '').map(response => response)
+  }
+  FacebookExternalLogin(userId:string, accessToken:string){
+    return this.http.post(_globals.API_URL + 'Administrators/FacebookExternalLogin?accessToken=' + accessToken, '').map(response => response)
   }
 }

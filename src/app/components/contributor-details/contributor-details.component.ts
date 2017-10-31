@@ -53,7 +53,7 @@ export class ContributorDetailsComponent implements OnInit {
     this.sharedService.set_headerType("header-secondary");
 
     this.route.params.subscribe(params => {
-      this.http.get(_globals.LOCAL_API_URL + 'Data/GetWriterById?id=' + params['id'] + '&firstLoad=true').subscribe((data:any) => {
+      this.http.get(_globals.API_URL + 'Data/GetWriterById?id=' + params['id'] + '&firstLoad=true').subscribe((data:any) => {
         this.contributorModel = data;
       setTimeout(() => {
         this.pageNumber++;

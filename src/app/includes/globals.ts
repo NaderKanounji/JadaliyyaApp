@@ -12,18 +12,30 @@
 // export public string testvar = "test"; 
 
 export const _globals = Object.freeze({
+    //ONLINE VALUES
+    // API_URL: 'https://jadaliyyaapi.koeinbeta.com/api/',
+    // CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
+    // RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
+    // BASE_URL: 'https://jadaliyya.koeinbeta.com/',
+    // BASE_API_URL: 'https://jadaliyyaapi.koeinbeta.com/',
+    // STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
+    // TwitterUsername:'Jadaliyya',
+    
+    //LOCAL VALUES
     API_URL: 'https://shift2s.koein.com/jadaliyaapi/api/',
-    //LOCAL_API_URL: 'https://shift2s.koein.com/jadaliyaapi/api/',
-     LOCAL_API_URL: 'https://localhost:44300/api/',
+    LOCAL_API_URL: 'https://localhost:44300/api/',
     CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
     RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
    // BASE_URL: 'https://localhost:44300/',
-    BASE_URL: 'https://shift2s.koein.com/jadaliyaapi/',
-
+    BASE_URL: 'https://shift2s.koein.com/jadaliyafront/',
+    BASE_API_URL: 'https://shift2s.koein.com/jadaliyaapi/',
+    STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
     TwitterUsername:'Jadaliyya',
     
-   // testvar : "test"
 
+    FACEBOOK_APP_ID:'168318190386081',
+    GOOGLE_SECRET_CLIENT_ID:'AQ3O9R3-Q4LM03iZxDkWewWK',
+//1025188774971-fba7grbqootk9dinnu2hj1b30clnbqof.apps.googleusercontent.com        CLIENT ID
    //KMS IDs
    MEDIA_CATEGORY_TEMPLATE: 4,
    VOX_POPULI_CATEGORY_TEMPLATE: 5,

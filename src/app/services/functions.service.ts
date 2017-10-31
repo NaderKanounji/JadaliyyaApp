@@ -89,11 +89,20 @@ country_sidebar(){
   sticky_sidebar_binding(){
     myFunctions.sticky_sidebar_binding();
   }
+  slider_player(){
+    myFunctions.slider_player();
+  }
   svg_map_init(){
     myFunctions.svg_map_init();
   }
   more_stories_widget(){
     myFunctions.more_stories_widget();
+  }
+  load_status_widget(){
+    myFunctions.load_status_widget();
+  }
+  fullsize_bg(){
+    myFunctions.fullsize_bg();
   }
   tags_widget_init(){
     myFunctions.tags_widget_init();

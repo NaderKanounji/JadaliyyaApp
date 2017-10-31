@@ -13,10 +13,10 @@
 
 								<span class="widget-meta">
 									{{articleModel?.date | date}}
-									<strong>Lebanon</strong>
+									<strong>{{articleModel?.country}}</strong>
 								</span>
-								<div class="widget-image" *ngIf="articleMode?.writer != null">
-									<a routerLink="/Contributor/{{articleModel.writer?.id}}">
+								<div class="widget-image" *ngIf="articleModel?.writer">
+									<a routerLink="/Contributor/{{articleModel.writer?.id}}" *ngIf="articleModel?.writer?.image">
 										<img src="{{RESIZED_CONTENT_PATH}}48x52xo/{{articleModel.writer?.image}}" alt="{{articleModel.writer?.name}}">
 									</a>
 

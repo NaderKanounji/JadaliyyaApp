@@ -75,20 +75,7 @@ var $jadNavAutoplaySpeed = 5000;
 		}
 		sliderWheelScroll($('.slider-roundups-secondary .owl-carousel'));
 
-		// Slider Player
-
-		$('.slider-player .owl-carousel').owlCarousel({
-			loop: true,
-			items: 1,
-			margin:0,
-			nav:false,
-			autoplay: true,
-			autoplayTimeout:4000,
-			autoplayHoverPause:false,
-			animateOut: 'fadeOut',
-			animateIn: 'fadeIn',
-			dotsContainer: '.slider-player .slider-nav'
-		});
+		slider_player();
 
 		roundups_carousel_init = function(){
 			// Slider Roundups
@@ -103,26 +90,7 @@ var $jadNavAutoplaySpeed = 5000;
 			sliderWheelScroll($('.slider-roundups .owl-carousel'));
 		}
 
-		// Slider feed
-		slide_feed_function = function(){
-			$('.slider-feed .owl-carousel').owlCarousel({
-				loop: false,
-				items: 3,
-				margin:28,
-				nav:false,
-				autoWidth:true,
-				mouseDrag:false
-			});
-		}
-
-		$('.slider-interview .owl-carousel').owlCarousel({
-			loop: false,
-			items: 3,
-			margin:18,
-			nav:false,
-			autoWidth:true,
-			mouseDrag:false
-		});
+		
 
 		
 
@@ -1007,6 +975,45 @@ var $jadNavAutoplaySpeed = 5000;
 // 		close: function() { $('html').removeClass('mfp-helper'); }
 // 	}
 // });
+
+// Slider feed
+var slide_feed_function = function(){
+	$('.slider-feed .owl-carousel').owlCarousel({
+		loop: false,
+		items: 3,
+		margin:28,
+		nav:false,
+		autoWidth:true,
+		mouseDrag:false
+	});
+}
+var slide_interview_function = function(){
+	$('.slider-interview .owl-carousel').owlCarousel({
+		loop: false,
+		items: 3,
+		margin:18,
+		nav:false,
+		autoWidth:true,
+		mouseDrag:false
+	});
+}
+
+var slider_player = function(){
+	// Slider Player
+
+	$('.slider-player .owl-carousel').owlCarousel({
+		loop: true,
+		items: 1,
+		margin:0,
+		nav:false,
+		autoplay: true,
+		autoplayTimeout:4000,
+		autoplayHoverPause:false,
+		animateOut: 'fadeOut',
+		animateIn: 'fadeIn',
+		dotsContainer: '.slider-player .slider-nav'
+	});
+}
 var get_selected_folders = function(){
 	let str = '';
 	$('input[name="foldercheck"]:checked').each(function(){
@@ -1805,6 +1812,11 @@ module.exports.myFunctions = {
 	toggle_share_function:function(){
 		toggle_share_function();
 	},
+	fullsize_bg:function(){
+		setTimeout(function(){
+			fullsize_bg();
+		}, 300);
+	},
 	open_popupDropdown:function(){
 		open_popupDropdown();
 	},
@@ -1874,6 +1886,19 @@ module.exports.myFunctions = {
 	},
 	close_popup:function(){
 		close_popup();
+	},
+	slider_player:function(){
+		setTimeout(function() {
+			slider_player();
+		}, 200);
+	},
+	load_status_widget:function(){
+		setTimeout(function() {
+			tabsInit();
+			horizontalScroll();
+			slide_feed_function();
+			slide_interview_function();
+		}, 200);
 	},
 	more_stories_widget:function(){
 		setTimeout(function() {

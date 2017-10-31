@@ -21,7 +21,9 @@ export interface FolderModel{
   title:string;
   articles:ArticleModel[];
 }
-
+export interface NewsletterModel{
+  email:string;
+}
 export interface LoginForm{
   username:string;
   password:string;
@@ -68,6 +70,39 @@ export interface JadNavigationWidget{
 export interface RolesWithWriters{
   title:string;
   writers:WriterModel[];
+}
+export interface StatusModel{
+  JadaliyaInterviews:[{
+    title:string;
+    hostTitle:string;
+    arHostTitle:string;
+    guestTitle:string;
+    arGuestTitle:string;
+    imgHost:String;
+    imgGuest:string;
+    img:string;
+    link:string;
+  }],
+  latestInterviews:[{
+    title:string;
+    hostTitle:string;
+    arHostTitle:string;
+    guestTitle:string;
+    arGuestTitle:string;
+    imgHost:String;
+    imgGuest:string;
+    img:string;
+    link:string;
+  }],
+  latestPrograms:[{
+    id:number;
+    title:string;
+    arTitle:string;
+    description:string;
+    smallDescription:string;
+    img:string;
+    link:string;
+  }]
 }
 export interface WriterModel{
   id:number;
