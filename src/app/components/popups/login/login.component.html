@@ -67,6 +67,9 @@
 								<div class="sk-circle11 sk-circle"></div>
 								<div class="sk-circle12 sk-circle"></div>
 							</div>
+							<ul class="form-errors" *ngIf="formErrors?.length">
+								<li *ngFor="let item of formErrors">{{item}}</li>
+							</ul>
 							<span class="divider">
 								<span>or</span>
 							</span>
@@ -81,7 +84,9 @@
 								</li>
 								
 								<li>
-									<a href="#" class="google-plus">
+									<a class="google-plus">
+									<!-- <a class="google-plus" (click)="GoogleExternalLogin()"> -->
+										<div class="g-signin2"  data-onsuccess="GoogleExternalLogin"></div>
 										<i class="fa fa-google-plus" aria-hidden="true"></i>
 
 										Google
@@ -89,6 +94,9 @@
 								</li>
 							</ul><!-- /.list-logins -->
 
+							<ul class="form-errors" *ngIf="socialFormErrors?.length">
+									<li *ngFor="let item of socialFormErrors">{{item}}</li>
+								</ul>
 							<small>Don’t have an account?</small>
 
 							<a class="btn btn-primary btn-transparent btn-block" data-psy-pop="register">Register</a>

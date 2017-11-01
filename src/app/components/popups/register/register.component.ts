@@ -36,26 +36,43 @@ export class RegisterComponent  implements OnInit{
       this.formErrors = [];
       this.membership.register(e, registerForm).subscribe((regdata:any) => {
         //this.user.setUser()
-      let myUser:UserModel = {isLogged: false, user:regdata.user, token: null, follows: null};
-        let loginForm:LoginForm = {username : registerForm.UserName,password : registerForm.password, grant_type:"password" } ;
-        this.membership.login(e, loginForm).subscribe((data:any) => {
-          myUser.token = data.token;
-          this.user.saveUser(myUser);
-          this.registerForm = {
-            fullName:'',
-            identifies:null,
-            UserName:'',
-            year:'',
-            countryId:null,
-            password:'',
-            ConfirmPassword:''
-          };
-          setTimeout(() =>{
-              this.myFunctions.dropdown_event();
-              this.myFunctions.psy_open_popup('thank-you-register');
-          },200);
-          this.isSubmitted = false;
-        });
+        console.log(regdata);
+      let myUser:UserModel = {isLogged: false, user:regdata.user, token: regdata.token, follows: null};
+
+        this.user.saveUser(myUser);
+        this.registerForm = {
+          fullName:'',
+          identifies:null,
+          UserName:'',
+          year:'',
+          countryId:null,
+          password:'',
+          ConfirmPassword:''
+        };
+        setTimeout(() =>{
+            this.myFunctions.dropdown_event();
+            this.myFunctions.psy_open_popup('thank-you-register');
+        },200);
+        this.isSubmitted = false;
+       // let loginForm:LoginForm = {username : registerForm.UserName,password : registerForm.password, grant_type:"password" } ;
+        // this.membership.login(e, loginForm).subscribe((data:any) => {
+        //   myUser.token = data.token;
+        //   this.user.saveUser(myUser);
+        //   this.registerForm = {
+        //     fullName:'',
+        //     identifies:null,
+        //     UserName:'',
+        //     year:'',
+        //     countryId:null,
+        //     password:'',
+        //     ConfirmPassword:''
+        //   };
+        //   setTimeout(() =>{
+        //       this.myFunctions.dropdown_event();
+        //       this.myFunctions.psy_open_popup('thank-you-register');
+        //   },200);
+        //   this.isSubmitted = false;
+        // });
         
       },(err) => {
         this.isSubmitted = false;

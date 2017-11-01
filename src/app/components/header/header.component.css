@@ -1,0 +1,24 @@
+.psy-home-beta, .psy-beta-mobile, .psy-subpage-beta{
+    position: absolute;
+    color:#ffff00;
+    font-family: 'Open Sans', sans-serif;
+}
+.psy-beta-mobile{
+    display: none;
+    left:50%;
+    transform: translateX(-50%);
+    top: 8px;
+}
+.psy-subpage-beta{
+    left:14px;
+    bottom:0;
+    font-size: 0.85em;
+}
+@media (max-width:767px){
+    .psy-home-beta, .psy-subpage-beta{
+        display: none;
+    }
+    .psy-beta-mobile{
+        display: block;
+    }
+}

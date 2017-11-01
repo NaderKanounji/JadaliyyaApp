@@ -5,6 +5,7 @@ import { myFunctions } from './../../assets/js/functions.js';
 @Injectable()
 export class FunctionsService {
   isGoogleMapLoaded:boolean = false;
+  isGoogleApiLoaded:boolean = false;
   constructor() { 
     
   }
@@ -126,11 +127,13 @@ country_sidebar(){
     myFunctions.accordion_init();
   }
   load_google_api(){
-    (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/platform.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
+    if(!this.isGoogleApiLoaded){
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js?onload=resetGoogleCounter';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    }
   }
   load_google_map_api(){
     if(!this.isGoogleMapLoaded){

@@ -171,7 +171,7 @@
 		
 		<span class="visible-xs-inline ">{{sharedModel?.isArabicSection ? 'صفحات':'Menu'}}</span>
 	</a>
-
+<span class="psy-beta-mobile">BETA</span>
 	<a routerLink="/" class="logo">Jadaliyya</a>
 
 	<nav class="nav-primary {{sharedModel?.isArabicSection ? 'rtl' : ''}}">
@@ -339,7 +339,7 @@
 <header class="header" *ngIf="sharedModel?.currentRoute == 'home' ">
 	<div class="shell">
 		<a routerLink="/" class="logo">Jadaliyya</a>
-
+		<span class="psy-home-beta">BETA</span>
 		<nav class="nav" *ngIf="globalModel?.headerCategories != undefined && globalModel?.headerCategories.length">
 			<ul>
 				<li class="has-dropdown" *ngFor="let cat of globalModel?.headerCategories; let catIndex = index" (mouseover)='load_cat_articles(cat.id, catIndex)'>
@@ -422,6 +422,7 @@
 	<div class="header-inner {{sharedModel?.country && !sharedModel?.country?.hasTemplate ? '' : 'hidden-xs'}}" *ngIf="sharedModel?.categoryId != ARABIC_SECTION_ID">
 		<div class="shell">
 			<a routerLink="/" class="logo-small">Jadaliyya</a>
+			<span class="psy-subpage-beta">BETA</span>
 			
 			<nav class="nav" *ngIf="globalModel?.headerCategories != undefined && globalModel?.headerCategories.length">
 				<ul>

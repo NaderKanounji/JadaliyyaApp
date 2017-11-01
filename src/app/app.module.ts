@@ -5,7 +5,6 @@ import { RouterModule }   from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS  }   from '@angular/common/http';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { FacebookModule } from 'ngx-facebook';
-import { AuthService } from 'angular2-google-login';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -127,7 +126,6 @@ var routes = [
     MembershipService, 
     UserService, 
     FolderService,
-    AuthService,
     AuthGuard, 
     {
       provide: HTTP_INTERCEPTORS, 

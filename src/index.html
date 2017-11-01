@@ -7,6 +7,7 @@
     
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="google-signin-client_id" content="1025188774971-fba7grbqootk9dinnu2hj1b30clnbqof.apps.googleusercontent.com">
     
       <title>Jadaliyya</title>
     
@@ -29,13 +30,32 @@
 
     <div id="fb-root"></div>
     <script>
+      var googlelogincounter = 0;
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1237034823035525";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+    
+    function resetGoogleCounter(){
+      googlelogincounter = 0;
+    }
+    //GOOGLE PLUS CALLBACK
+    function GoogleExternalLogin(googleUser){  
+      setTimeout(function(){
+        if(googlelogincounter > 0){
+          // window['angularComponentRef'] might not yet be set here though
+          window['LoginComponent'].zone.run(() => {
+            window['LoginComponent'].component.GoogleExternalLogin2(googleUser); 
+          });
+        } 
+        googlelogincounter++;
+      },500);
+      
+    }
+    </script>
 
     <app-root></app-root>
 <!-- Vendor JS -->

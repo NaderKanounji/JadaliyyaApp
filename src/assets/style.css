@@ -11476,6 +11476,18 @@ a.link-folders.hide-arrow::after {
   width: 100%;
   height: 100%;
 }
+.g-signin2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.g-signin2 > div {
+  width: 100%  !important;
+  height: 100% !important;
+}
 .section-hot-secondary .slider-interview .owl-carousel .owl-stage-outer img {
   border-radius: 100%;
 }

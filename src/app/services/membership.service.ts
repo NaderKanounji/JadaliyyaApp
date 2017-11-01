@@ -41,7 +41,7 @@ export class MembershipService {
 
   }
 
-  GetUserInfo(userToken:any){
+  GetUserInfo(){
     return this.http.get(_globals.API_URL + 'Administrators/GetUserInfo').map(response => response);
   }
 
@@ -75,7 +75,15 @@ export class MembershipService {
   RenameFolder(id:number, title:string){
     return this.http.post(_globals.API_URL + 'Data/RenameFolder?id=' + id + '&title=' + title, '').map(response => response)
   }
+  // FacebookExternalLogin(userId:string, accessToken:string){
+  //   return this.http.post(_globals.API_URL + 'Administrators/FacebookExternalLogin?accessToken=' + accessToken, '').map(response => response)
+  // }
   FacebookExternalLogin(userId:string, accessToken:string){
+    //const headers = new HttpHeaders().set('accessToken', accessToken);
     return this.http.post(_globals.API_URL + 'Administrators/FacebookExternalLogin?accessToken=' + accessToken, '').map(response => response)
+  }
+  GoogleExternalLogin(googleId:string, name:string, email:string){
+    //const headers = new HttpHeaders().set('accessToken', accessToken);
+    return this.http.post(_globals.API_URL + 'Administrators/GoogleExternalLogin?email=' + email + '&googleId=' + googleId + '&name=' + name, '').map(response => response)
   }
 }
