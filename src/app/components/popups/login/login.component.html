@@ -27,7 +27,7 @@
 		<div class="tabs-body">
 			<div class="tab current" id="login1">
 				<div class="form-primary form-login" data-target="#logged-in">
-					<form (submit)="login($event, loginForm.value)" #loginForm="ngForm" ngNativeValidate>
+					<form (submit)="login($event, myloginForm.value, false)" #myloginForm="ngForm" ngNativeValidate>
 						<div class="form-body">
 							<div class="form-row">
 								<div class="form-controls">
@@ -107,11 +107,11 @@
 
 			<div class="tab" id="login2">
 				<div class="form-primary form-login">
-					<form action="?" method="post">
+					<form (submit)="login($event, writerloginForm.value, true)" #writerloginForm="ngForm" ngNativeValidate>
 						<div class="form-body">
 							<div class="form-row">
 								<div class="form-controls">
-									<input type="email" class="field" name="field-email2" id="field-email2" value="" placeholder="Email Address" required>
+									<input type="email" class="field" name="username" id="field-email2"  placeholder="Email Address" required [(ngModel)]="writerLoginForm.username">
 
 									<i class="fa fa-envelope" aria-hidden="true"></i>
 								</div><!-- /.form-controls -->
@@ -119,7 +119,7 @@
 							
 							<div class="form-row">
 								<div class="form-controls">
-									<input type="password" class="field" name="field-pass2" id="field-pass2" value="" placeholder="Password" required>
+									<input type="password" class="field" name="password" id="field-pass2" placeholder="Password" required [(ngModel)]="writerLoginForm.password">
 
 									<i class="fa fa-lock" aria-hidden="true"></i>
 								</div><!-- /.form-controls -->
@@ -131,8 +131,22 @@
 						</div><!-- /.form-body -->
 						
 						<div class="form-actions">
-							<input type="submit" value="Log in" class="form-btn btn btn-block btn-primary btn-blue">
+							<input type="submit" value="Log in" class="form-btn btn btn-block btn-primary btn-blue" *ngIf="!isSubmitted">
 
+							<div class="sk-fading-circle submit-loader" *ngIf="isSubmitted">
+									<div class="sk-circle1 sk-circle"></div>
+									<div class="sk-circle2 sk-circle"></div>
+									<div class="sk-circle3 sk-circle"></div>
+									<div class="sk-circle4 sk-circle"></div>
+									<div class="sk-circle5 sk-circle"></div>
+									<div class="sk-circle6 sk-circle"></div>
+									<div class="sk-circle7 sk-circle"></div>
+									<div class="sk-circle8 sk-circle"></div>
+									<div class="sk-circle9 sk-circle"></div>
+									<div class="sk-circle10 sk-circle"></div>
+									<div class="sk-circle11 sk-circle"></div>
+									<div class="sk-circle12 sk-circle"></div>
+								</div>
 							<small>Don’t have an account?</small>
 
 							<a class="btn btn-primary btn-transparent btn-block" data-psy-pop="register">Register</a>

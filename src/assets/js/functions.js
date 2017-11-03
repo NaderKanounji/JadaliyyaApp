@@ -211,35 +211,7 @@ var $jadNavAutoplaySpeed = 5000;
 
 		interestsToggle();
 
-		tabsInit = function () {
-			// Tabs
-			(function(){
-				// This class will be added to active tab link
-				// and the content container
-				var activeTabClass = 'current';
-
-				$('.tabs-nav a').on('click', function(event) {
-					var $tabLink = $(this);
-					var $targetTab = $($tabLink.attr('href'));
-
-					$tabLink
-						.parent() // go up to the <li> element
-						.add($targetTab)
-						.addClass(activeTabClass)
-							.siblings()
-							.removeClass(activeTabClass);
-
-					event.preventDefault();
-
-					horizontalScroll();
-
-					if( $win.width() < 768 && $tabLink.closest('.tabs').hasClass('tabs-secondary') ) {
-						$(this).closest('.tabs-nav').toggleClass('active');
-					}
-				});
-
-			})();
-		};
+		
 
 		tabsInit();
 
@@ -1022,6 +994,15 @@ var get_selected_folders = function(){
 	return str.substr(1);
 }
 var get_selected_articles = function(){
+	let arr = [];
+	$('input[name="foldercheck"]').not(':checked').each(function(){
+		$('input[name="articlecheck"][data-folder-id="' + $(this).attr('data-folder-id') + '"]:checked').each(function(){
+			arr.push($(this).attr('data-article-id'));
+		});
+	});
+	return arr.join(',');
+}
+var get_selected_articles_in_folders = function(){
 	let str = '';
 	$('input[name="foldercheck"]').not(':checked').each(function(){
 		let artStr = '';
@@ -1032,6 +1013,34 @@ var get_selected_articles = function(){
 		str += artStr.substr(1);
 	});
 	return str.substr(1);
+}
+var get_shared_selected_articles = function(){
+	let arr = [];
+	$('input[name="foldercheck"]').not(':checked').each(function(){
+		$('input[name="articlecheck"][data-folder-id="' + $(this).attr('data-folder-id') + '"]:checked').each(function(){
+			arr.push($(this).attr('data-article-id'));
+		});
+	});
+
+	$('input[name="articlecheck"][data-shared-article-id]:checked').each(function(){
+		arr.push($(this).attr('data-article-id'));
+	});
+	return str.substr(1);
+}
+
+var get_shared_folders_by_ids = function(){
+	let arr = [];
+	$('input[name="foldercheck"]:checked').each(function(){
+		arr.push($(this).attr('data-shared-folder-id'));
+	});
+	return arr.join(',');
+}
+var get_shared_articles_by_ids = function(){
+	let arr = [];
+	$('input[name="articlecheck"][data-shared-article-id]:checked').each(function(){
+		arr.push($(this).attr('data-shared-article-id'));
+	});
+	return arr.join(',');
 }
 var accordion_init = function(){
 	// Accordion
@@ -1152,6 +1161,7 @@ var append_form_message = function (id) {
 	});
 };
 var psy_popup = function(){
+	tabsInit();
 	$('[data-psy-pop]').click(function(e){
 		e.preventDefault();
 		e.stopPropagation();
@@ -1199,7 +1209,35 @@ var psy_open_popup = function(id){
 		});	
 	};
 }
+tabsInit = function () {
+	// Tabs
+	(function(){
+		// This class will be added to active tab link
+		// and the content container
+		var activeTabClass = 'current';
 
+		$('.tabs-nav a').on('click', function(event) {
+			var $tabLink = $(this);
+			var $targetTab = $($tabLink.attr('href'));
+
+			$tabLink
+				.parent() // go up to the <li> element
+				.add($targetTab)
+				.addClass(activeTabClass)
+					.siblings()
+					.removeClass(activeTabClass);
+
+			event.preventDefault();
+
+			horizontalScroll();
+
+			if( $win.width() < 768 && $tabLink.closest('.tabs').hasClass('tabs-secondary') ) {
+				$(this).closest('.tabs-nav').toggleClass('active');
+			}
+		});
+
+	})();
+};
 tags_widget_init = function(){
 	// Tags
 	$('#tag-canvas').tagcanvas({
@@ -1824,7 +1862,7 @@ module.exports.myFunctions = {
 		return get_popup_dropdown_selected();
 	},
 	close_popupDropdown:function(){
-		toggle_share_function();
+		close_popupDropdown();
 	},
 	socials_tertiary_function:function(){
 		socials_tertiary_function();
@@ -1916,6 +1954,15 @@ module.exports.myFunctions = {
 	},
 	get_selected_articles:function(){
 		return get_selected_articles();
+	},
+	get_selected_articles_in_folders:function(){
+		return get_selected_articles_in_folders();
+	},
+	get_shared_articles_by_ids:function(){
+		return get_shared_articles_by_ids();
+	},
+	get_shared_folders_by_ids:function(){
+		return get_shared_folders_by_ids();
 	},
 	////MY FUNCTIONS
 	animate_to_element:function(id, offset, speed){

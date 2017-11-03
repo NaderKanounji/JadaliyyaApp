@@ -27,7 +27,7 @@ HttpHeaders
   join(e, newsletterForm: NewsletterModel){
     e.stopPropagation();
     e.preventDefault();
-    console.log(newsletterForm);
+    //console.log(newsletterForm);
     
     this.submitted = true;
   const headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -43,7 +43,7 @@ HttpHeaders
       }
       this.submitted = false;
     }, (err) => {
-      console.log(err);
+      //console.log(err);
       
       if(err.error.message){
         this.sharedService.set_messagePopup(err.error.message);

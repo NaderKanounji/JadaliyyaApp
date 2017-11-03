@@ -65,7 +65,7 @@ export class ContributorDetailsComponent implements OnInit {
   }
 
   fetch_new_listing(e:Event, form:any){
-    console.log(form['countryId']);
+    //console.log(form['countryId']);
     this.isLoadingMore = true;
     this.hasMoreToLoad = true;
     this.pageNumber = 0;

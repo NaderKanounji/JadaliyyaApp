@@ -6,7 +6,7 @@ import { UserModel, SharedModel } from '../includes/Models';
 export class UserService {
 
   private userSource = new BehaviorSubject<UserModel>(
-    {'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null}, follows: null }
+    {'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null}, follows: null, writer:{articles:null, followers:null} }
   );
   
   user = this.userSource.asObservable();
@@ -33,7 +33,7 @@ export class UserService {
     }
   }
   clearUser(){    
-    this.userSource.next({'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null}, follows:null });
+    this.userSource.next({'isLogged': false, 'user': {'fullname': null, 'id':null,'UserName':null}, 'token':{access_token:null, expires_in:null, refresh_token:null, token_type: null}, follows:null, writer:{articles:null, followers:null} });
   }
   clearStoredUser(){
     localStorage.removeItem('_jad_user');

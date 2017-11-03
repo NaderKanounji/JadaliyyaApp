@@ -1,29 +1,34 @@
 <li>
-    <a href="#" data-tooltip="Tooltip title" data-tooltip-hide-on-hover>
+    <a data-tooltip="share" data-tooltip-hide-on-hover (click)="open_share($event)" *ngIf="route != 'shared-with-me'">
       <i class="fa fa-user-plus" aria-hidden="true"></i>
     </a>
   </li>
   
+  <!-- <li>
+    <a data-tooltip="add to favorites" data-tooltip-hide-on-hover (click)="check_favorite()">
+      <i class="fa fa-heart" aria-hidden="true"></i>
+    </a>
+  </li> -->
   <li>
-    <a data-tooltip="delete folder" data-tooltip-hide-on-hover (click)="delete($event)">
+    <a data-tooltip="delete folder" data-tooltip-hide-on-hover (click)="delete($event, route)">
       <i class="fa fa-trash" aria-hidden="true"></i>
     </a>
   </li>
   
   <li>
-    <a data-tooltip="create folder" data-tooltip-hide-on-hover data-psy-pop="create-folder">
+    <a data-tooltip="create folder" data-tooltip-hide-on-hover data-psy-pop="create-folder" *ngIf="route != 'shared-with-me'">
       <i class="fa fa-folder" aria-hidden="true"></i>
     </a>
   </li>
 
   <li class="inactive">
-    <a href="ajax/popup-info.html" data-tooltip="tooltip title" data-tooltip-hide-on-hover class="link-popup">
+    <a data-tooltip="tooltip title" data-tooltip-hide-on-hover *ngIf="route != 'shared-with-me'">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
     </a>
   </li>
   
   <li >
-    <a data-tooltip="rename folder" data-tooltip-hide-on-hover (click)="rename_popup($event)">
+    <a data-tooltip="rename folder" data-tooltip-hide-on-hover (click)="rename_popup($event)" *ngIf="route != 'shared-with-me'">
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
     </a>
   </li>

@@ -11,7 +11,21 @@ export interface UserModel{
     expires_in:number;
     refresh_token:string;
   },
-  follows:number[]
+  follows:number[],
+  writer:{
+    articles:number;
+    followers:number;
+  }
+}
+export interface ProfileModel{
+  id:string;
+  fullname:string;
+  identifies:number;
+  year:string;
+  countryId:number;
+  UserName:string;
+  password:string;
+  ConfirmPassword:string;
 }
 export interface FavoritesModel{
   folders:FolderModel[];
@@ -21,8 +35,26 @@ export interface FolderModel{
   title:string;
   articles:ArticleModel[];
 }
+export interface SharerModel{
+  id:number;
+  image:string;
+  name:string;
+}
+export interface SharedWithMeModel{
+  id:number;
+  isFolder:boolean;
+  shareDate:Date;
+  sharer:SharerModel;
+  article:ArticleModel;
+  folder:FolderModel;
+}
 export interface NewsletterModel{
   email:string;
+}
+export interface PasswordModel{
+  OldPassword:string;
+  ConfirmNewPassword:string;
+  NewPassword:string;
 }
 export interface LoginForm{
   username:string;
@@ -37,6 +69,14 @@ export interface RegisterForm{
   UserName:string;
   password:string;
   ConfirmPassword:string;
+  website:String;
+  twitter:string;
+  facebook:string;
+  linkedin:string;
+  bio:string;
+  image:string;
+  signedAgreement:string;
+  isWriter:boolean;
 }
 export interface ContributorsComponentModel{
   writers:WriterModel[];

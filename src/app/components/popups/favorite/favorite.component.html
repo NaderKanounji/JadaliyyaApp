@@ -11,7 +11,7 @@
 		</header><!-- /.popup-head -->
 
 		<div class="popup-body">
-			<h4>ARE YOU SURE YOU WANT TO ADD THIS TO YOUR FAVORITES?</h4>
+			<h4>{{articleTitle}}</h4>
 
 			<ul class="list-inline">
 				<li>
@@ -106,14 +106,14 @@
 
 			<div class="folder">
 				<div class="form-folder">
-					<form (submit)="create_folder_and_add_article($event, newFolder.value)" #newFolder="ngForm">
+					<form (submit)="create_folder_and_add_article($event, newViewFolder.value)" #newViewFolder="ngForm">
 						<div class="form-body">
 							<div class="form-controls">
 								<input type="text" class="field" name="title" id="field-folder"  placeholder="" [(ngModel)]="newFolder.title">
 							</div><!-- /.form-controls -->
 						</div><!-- /.form-body -->
 						<div class="form-actions">
-							<a class="" (click)="create_folder_and_add_article($event, newFolder.value)">save</a>
+							<a class="" (click)="create_folder_and_add_article($event, newViewFolder.value)">save</a>
 						</div><!-- /.form-actions -->
 						<input type="submit" class="hidden"/>
 					</form>

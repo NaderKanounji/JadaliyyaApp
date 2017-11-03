@@ -126,7 +126,7 @@
 
 			<div class="tab" id="login2">
 				<div class="form-primary form-login" data-target="#popup-thank-you">
-					<form action="?" method="post">
+					<form (submit)="register($event, myRegisterForm.value)" #myRegisterForm="ngForm" ngNativeValidate>
 						<div class="form-body">
 							<ul class="list-steps">
 								<li>
@@ -156,7 +156,7 @@
 										<span class="image">
 											<i class="fa fa-user" aria-hidden="true"></i>
 
-											<img src="css/images/temp/writer-inner.png" alt="">
+											<img src="../assets/images/temp/writer-inner.png" alt="">
 										</span>
 
 										<span class="text">Add Picture</span>
@@ -169,7 +169,7 @@
 									<div class="col col-1of2">
 										<div class="form-row">
 											<div class="form-controls">
-												<input type="text" class="field" name="field-name2" id="field-name2" value="" placeholder="Full Name" required>
+												<input type="text" class="field" name="fullName" id="field-name2" placeholder="Full Name" required [(ngModel)]="registerForm.fullName">
 
 												<i class="fa fa-user" aria-hidden="true"></i>
 											</div><!-- /.form-controls -->
@@ -177,7 +177,7 @@
 										
 										<div class="form-row" *ngIf="sharedModel?.formData?.userIdentifications?.length">
 											<div class="form-controls form-select">
-												<select name="field-identify2" id="field-identify2" class="select" required>
+												<select name="identifies" id="field-identify2" class="select" required [(ngModel)]="registerForm.identifies">
 													<option value="">User Identifies as</option>
 													<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.userIdentifications">{{item.value}}</option>
 												</select>
@@ -190,12 +190,11 @@
 									</div><!-- /.col col-1of2 -->
 									
 									<div class="col col-1of2">
-										<div class="form-row">
+										<div class="form-row" *ngIf="sharedModel?.formData?.countries?.length">
 											<div class="form-controls form-select">
-												<select name="field-Country2" id="field-Country2" class="select" required>
+												<select name="countryId" id="field-Country2" class="select" required [(ngModel)]="registerForm.countryId">
 													<option value="">Country of residence</option>
-													<option value="1">Country of residence1</option>
-													<option value="2">Country of residence2</option>
+													<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.countries">{{item.value}}</option>
 												</select>
 
 												<i class="fa fa-flag" aria-hidden="true"></i>
@@ -204,9 +203,35 @@
 
 										<div class="form-row">
 											<div class="form-controls">
-												<input type="email" class="field" name="field-email2" id="field-email2" value="" placeholder="Email Address" required>
+												<input type="email" class="field" name="UserName" id="field-email2" placeholder="Email Address" required [(ngModel)]="registerForm.UserName">
 
 												<i class="fa fa-envelope" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-1of2 -->
+								</div><!-- /.cols -->
+							</div><!-- /.form-group -->
+
+							<div class="form-group">
+								<div class="cols">
+									<div class="col col-1of2">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="password" class="field" name="password" id="field-password2" placeholder="Password" required [(ngModel)]="registerForm.password">
+
+												<i class="fa fa-lock" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+										
+									</div><!-- /.col col-1of2 -->
+									
+									<div class="col col-1of2">
+
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="password" class="field" name="ConfirmPassword" id="field-ConfirmPassword2" placeholder="Confirm Password" required [(ngModel)]="registerForm.ConfirmPassword">
+
+												<i class="fa fa-lock" aria-hidden="true"></i>
 											</div><!-- /.form-controls -->
 										</div><!-- /.form-row -->
 									</div><!-- /.col col-1of2 -->
@@ -218,7 +243,7 @@
 									<div class="col col-1of2">
 										<div class="form-row">
 											<div class="form-controls">
-												<input type="text" class="field" name="field-website" id="field-website" value="" placeholder="Website">
+												<input type="text" class="field" name="website" id="field-website" placeholder="Website" [(ngModel)]="registerForm.website">
 
 												<i class="fa fa-external-link-square" aria-hidden="true"></i>
 											</div><!-- /.form-controls -->
@@ -226,7 +251,7 @@
 										
 										<div class="form-row">
 											<div class="form-controls">
-												<input type="text" class="field" name="field-facebook" id="field-facebook" value="" placeholder="Facebook">
+												<input type="text" class="field" name="facebook" id="field-facebook" value="" placeholder="Facebook" [(ngModel)]="registerForm.facebook">
 
 												<i class="fa fa-facebook" aria-hidden="true"></i>
 											</div><!-- /.form-controls -->
@@ -236,7 +261,7 @@
 									<div class="col col-1of2">
 										<div class="form-row">
 											<div class="form-controls">
-												<input type="text" class="field" name="field-twitter" id="field-twitter" value="" placeholder="Twitter">
+												<input type="text" class="field" name="twitter" id="field-twitter" value="" placeholder="Twitter" [(ngModel)]="registerForm.twitter">
 
 												<i class="fa fa-twitter" aria-hidden="true"></i>
 											</div><!-- /.form-controls -->
@@ -244,7 +269,7 @@
 										
 										<div class="form-row">
 											<div class="form-controls">
-												<input type="text" class="field" name="field-linkedin" id="field-linkedin" value="" placeholder="Linkedin">
+												<input type="text" class="field" name="linkedin" id="field-linkedin" value="" placeholder="Linkedin" [(ngModel)]="registerForm.linkedin">
 
 												<i class="fa fa-linkedin" aria-hidden="true"></i>
 											</div><!-- /.form-controls -->
@@ -255,8 +280,8 @@
 
 							<div class="form-group">
 								<div class="form-row">
-									<div class="form-controls form-controls-error">
-										<textarea class="textarea" name="field-bio" id="field-bio" placeholder="Bio" required></textarea>
+									<div class="form-controls "> <!-- form-controls-error => error class -->
+										<textarea class="textarea" name="bio" id="field-bio" placeholder="Bio" required [(ngModel)]="registerForm.bio"></textarea>
 
 										<i class="fa fa-file-text" aria-hidden="true"></i>
 
@@ -265,11 +290,30 @@
 								</div><!-- /.form-row -->
 							</div><!-- /.form-group -->
 						</div><!-- /.form-body -->
+						<ul class="form-errors" *ngIf="formErrors?.length">
+							<li *ngFor="let item of formErrors">{{item}}</li>
+						</ul>
 						
 						<div class="form-actions">
 							<span class="form-required">Required</span>
 
-							<input type="submit" value="Register" class="form-btn btn btn-primary btn-blue">
+							<input type="submit" value="Register" class="form-btn btn btn-primary btn-blue" *ngIf="!isSubmitted">
+
+							<div class="sk-fading-circle submit-loader" *ngIf="isSubmitted">
+									<div class="sk-circle1 sk-circle"></div>
+									<div class="sk-circle2 sk-circle"></div>
+									<div class="sk-circle3 sk-circle"></div>
+									<div class="sk-circle4 sk-circle"></div>
+									<div class="sk-circle5 sk-circle"></div>
+									<div class="sk-circle6 sk-circle"></div>
+									<div class="sk-circle7 sk-circle"></div>
+									<div class="sk-circle8 sk-circle"></div>
+									<div class="sk-circle9 sk-circle"></div>
+									<div class="sk-circle10 sk-circle"></div>
+									<div class="sk-circle11 sk-circle"></div>
+									<div class="sk-circle12 sk-circle"></div>
+								</div>
+							<input type="hidden" name="isWriter" value="true" />
 						</div><!-- /.form-actions -->
 					</form>
 				</div><!-- /.form-primary -->

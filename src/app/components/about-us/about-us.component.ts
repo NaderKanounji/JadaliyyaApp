@@ -33,7 +33,7 @@ export class AboutUsComponent implements OnInit {
 
     this.http.get(_globals.API_URL + 'Data/GetAboutUs').subscribe((data:any) => {
       this.model = data;
-      console.log(this.model);
+      //console.log(this.model);
       
     });
   }

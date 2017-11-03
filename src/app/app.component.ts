@@ -37,7 +37,7 @@ export class AppComponent {
         this.user.setUser(JSON.parse(localStorage.getItem('_jad_user')));
       }
       if (val instanceof NavigationStart) {
-        console.log('NavigationStart');    
+        //console.log('NavigationStart');    
         this.sharedService.set_categoryTitle("");
         this.sharedService.set_isArabicSection(false);
         this.sharedService.alter_wrapper_classes('');

@@ -123,6 +123,18 @@ country_sidebar(){
   get_selected_articles(){
     return myFunctions.get_selected_articles();
   }
+  get_selected_articles_in_folders(){
+    return myFunctions.get_selected_articles_in_folders();
+  }
+  get_shared_folders_by_ids(){
+    return myFunctions.get_shared_folders_by_ids();
+  }
+  get_shared_articles_by_ids(){
+    return myFunctions.get_shared_articles_by_ids();
+  }
+  get_shared_selected_articles(){
+    return myFunctions.get_shared_selected_articles();
+  }
   accordion_init(){
     myFunctions.accordion_init();
   }

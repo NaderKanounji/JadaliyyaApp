@@ -3,8 +3,7 @@
 	<div class="popup-inner">
 		<i class="ico-logo-square"></i>
 
-		<h3 class="popup-title">
-			{{sharedModel?.messagePopup}}
+		<h3 class="popup-title" [innerHTML]="sharedModel?.messagePopup">
 		</h3><!-- /.popup-title -->
 
 		<a href="#" class="link-close-popup">
@@ -518,16 +517,16 @@
 				{{sharedModel?.country ? sharedModel?.country?.title : sharedModel?.categoryTitle}}
 				<span class="rtl" *ngIf="sharedModel?.country?.arTitle">{{sharedModel?.country?.arTitle}}</span></h1>
 				
-				<ul class="list-navs list-navs-secondary" *ngIf="sharedModel?.currentRoute == 'favorites' || sharedModel?.currentRoute == 'shared'">
+				<ul class="list-navs list-navs-secondary" *ngIf="sharedModel?.currentRoute == 'favorites' || sharedModel?.currentRoute == 'shared-with-me'">
 					<li class="{{sharedModel?.currentRoute == 'favorites' ? 'current' : ''}}">
 						<a title="Favorites" routerLink="/Account/Favorites">FAVORITES</a>
 					</li>
 					
-					<li class="{{sharedModel?.currentRoute == 'shared' ? 'current' : ''}}">
+					<li class="{{sharedModel?.currentRoute == 'shared-with-me' ? 'current' : ''}}">
 						<a title="Shared with me" routerLink="/Account/Shared">SHARED WITH ME</a>
 					</li>
 				</ul><!-- /.list-navs -->
-				<ul class="list-actions-secondary" *ngIf="(sharedModel?.currentRoute == 'favorites' || sharedModel?.currentRoute == 'shared') && sharedModel?.displayActions" app-favorites-actions>
+				<ul class="list-actions-secondary" *ngIf="(sharedModel?.currentRoute == 'favorites' || sharedModel?.currentRoute == 'shared-with-me') && sharedModel?.displayActions" app-favorites-actions [route]="sharedModel?.currentRoute">
 				
 				</ul><!-- /.list-actions-secondary -->
 			<ul class="list-navs rtl" *ngIf="sharedModel?.isArabicSection && globalModel?.arabicSubCategories?.length">
@@ -609,7 +608,7 @@
 											<i class="fa fa-search" aria-hidden="true"></i>
 		
 											<a href="#">
-												<img src="css/images/temp/filter-link.jpg" alt="">
+												<img src="../assets/images/temp/filter-link.jpg" alt="">
 											</a>
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->

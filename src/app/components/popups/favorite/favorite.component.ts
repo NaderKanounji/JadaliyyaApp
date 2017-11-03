@@ -17,9 +17,16 @@ export class FavoriteComponent implements OnInit {
   isLoadingFolders:boolean = false;
   isAddingArticle:boolean = false;
   @Input() articleId:number;
+  @Input() articleTitle:string;
   newFolder:FolderModel;
   formErrors:string[] = [];
-  constructor(private route: ActivatedRoute, private myFunctions: FunctionsService, private membership: MembershipService) { }
+  constructor(private route: ActivatedRoute, private myFunctions: FunctionsService, private membership: MembershipService) {
+    this.newFolder = {
+      articles:null,
+      id:null,
+      title:''
+    }
+   }
 
   ngOnInit() {
     
@@ -50,11 +57,12 @@ export class FavoriteComponent implements OnInit {
       this.membership.CreateFolderWithArticle(newFolder.title, this.articleId).subscribe((data:any) => {
         this.myFunctions.close_popupDropdown();
         this.isDropdownOpen = false;
+        this.myFunctions.close_popupDropdown();
         this.newFolder.title = '';
         this.myFunctions.psy_open_popup('popup-added-to-fav');
   
       }, (err:any) => {
-        console.log(err);
+        //console.log(err);
         if(err.error.message){
           this.formErrors.push(err.error.message);
         }else{
@@ -74,10 +82,11 @@ export class FavoriteComponent implements OnInit {
       this.membership.AddToFolder(folderId, this.articleId).subscribe((data:any) => {
         this.myFunctions.close_popupDropdown();
         this.isDropdownOpen = false;
+        this.myFunctions.close_popupDropdown();
         this.myFunctions.psy_open_popup('popup-added-to-fav');
         this.isAddingArticle = false;
       }, (err:any) => {
-        console.log(err);
+        //console.log(err);
         
         if(err.error.message){
           this.formErrors.push(err.error.message);

@@ -34,9 +34,12 @@ export class RegisterComponent  implements OnInit{
   register(e:any, registerForm:RegisterForm){
     this.isSubmitted = true;
       this.formErrors = [];
+      if(registerForm.bio != ''){
+        registerForm.isWriter = true;
+      }
       this.membership.register(e, registerForm).subscribe((regdata:any) => {
         //this.user.setUser()
-        console.log(regdata);
+        //console.log(regdata);
       let myUser:UserModel = {isLogged: false, user:regdata.user, token: regdata.token, follows: null};
 
         this.user.saveUser(myUser);
@@ -47,7 +50,15 @@ export class RegisterComponent  implements OnInit{
           year:'',
           countryId:null,
           password:'',
-          ConfirmPassword:''
+          ConfirmPassword:'',
+          bio:'',
+          facebook:'',
+          twitter:'',
+          linkedin:'',
+          image:'',
+          isWriter:false,
+          signedAgreement:'',
+          website:''
         };
         setTimeout(() =>{
             this.myFunctions.dropdown_event();

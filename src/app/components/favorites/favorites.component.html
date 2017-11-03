@@ -1,3 +1,59 @@
+<div class="popup popup-tertiary mfp-hide" id="popup-share-to-email">
+    <div class="popup-inner">
+      <header class="popup-head">
+        <i class="ico-logo-square"></i>
+  
+        <a href="#" class="link-close-popup">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </a>
+      </header><!-- /.popup-head -->
+  
+      <div class="popup-body">
+        <h4>SHARE WITH FRIENDS</h4>
+  
+        <div class="folder">
+          <div class="form-folder">
+            <form (submit)="share_with_friends($event, shareForm.value)" #shareForm="ngForm" ngNativeValidate>
+              <div class="form-body">
+                <div class="form-controls">
+                  <input type="text" class="field" name="email" id="field-folder"  placeholder="Email" [(ngModel)]="shareEmail" required>
+                </div><!-- /.form-controls -->
+              </div><!-- /.form-body -->
+              <div class="form-actions">
+                <a class="" (click)="share_with_friends($event, shareForm.value)" *ngIf="!shareSubmitted">save</a>
+                <div class="sk-fading-circle carret-loader" *ngIf="shareSubmitted">
+                  <div class="sk-circle1 sk-circle"></div>
+                  <div class="sk-circle2 sk-circle"></div>
+                  <div class="sk-circle3 sk-circle"></div>
+                  <div class="sk-circle4 sk-circle"></div>
+                  <div class="sk-circle5 sk-circle"></div>
+                  <div class="sk-circle6 sk-circle"></div>
+                  <div class="sk-circle7 sk-circle"></div>
+                  <div class="sk-circle8 sk-circle"></div>
+                  <div class="sk-circle9 sk-circle"></div>
+                  <div class="sk-circle10 sk-circle"></div>
+                  <div class="sk-circle11 sk-circle"></div>
+                  <div class="sk-circle12 sk-circle"></div>
+                </div>
+              </div><!-- /.form-actions -->
+              <input type="submit" class="hidden"/>
+            </form>
+            
+          </div><!-- /.form-folder -->
+          <div class="form-row">
+            
+          </div><!-- /.form-row -->
+  
+          
+        </div><!-- /.folder -->
+        <ul class="form-errors folder-popup-errors" *ngIf="shareFormErrors?.length">
+            <li *ngFor="let item of shareFormErrors">{{item}}</li>
+          </ul>
+        
+      </div><!-- /.popup-body -->
+    </div><!-- /.popup-inner -->
+  </div><!-- /.popup popup-tertiary -->
+
 <div class="popup popup-tertiary mfp-hide" id="popup-create-folder">
 	<div class="popup-inner">
 		<header class="popup-head">
@@ -13,14 +69,14 @@
 
 			<div class="folder">
 				<div class="form-folder">
-					<form (submit)="create_folder($event, newFolder.value)" #newFolder="ngForm">
+					<form (submit)="create_folder($event, newViewFolder.value)" #newViewFolder="ngForm">
 						<div class="form-body">
 							<div class="form-controls">
 								<input type="text" class="field" name="title" id="field-folder"  placeholder="" [(ngModel)]="newFolder.title">
 							</div><!-- /.form-controls -->
 						</div><!-- /.form-body -->
 						<div class="form-actions">
-              <a class="" (click)="create_folder($event, newFolder.value)" *ngIf="!isAddingFolder">save</a>
+              <a class="" (click)="create_folder($event, newViewFolder.value)" *ngIf="!isAddingFolder">save</a>
               <div class="sk-fading-circle carret-loader" *ngIf="isAddingFolder">
                 <div class="sk-circle1 sk-circle"></div>
                 <div class="sk-circle2 sk-circle"></div>
@@ -134,7 +190,7 @@
 					
 						<p>YOU HAVE (0) FOLDERS IN YOUR FAVORITES,</p>
 					
-						<a href="#" class="btn btn-tertiary btn-blue2">Create folder</a>
+						<a class="btn btn-tertiary btn-blue2" data-psy-pop="create-folder">Create folder</a>
 					</div><!-- /.section-content -->
         </div><!-- /.section-inner -->
         
@@ -171,9 +227,9 @@
                     
                     <div class="table-col table-col-size3">
                       <h3>
-                        <a href="#">{{article?.title}}</a>
+                        <a title="{{article?.title}}" routerLink="/Details/{{article?.id + (article?.customUrlTitle ? '/' + article?.customUrlTitle : '')}}">{{article?.title}}</a>
   
-                        <span *ngIf="article?.writer"><a title="{{article?.writer?.title}}" routerLink="/Contributor/{{article?.writer?.id + (article?.writer?.customUrlTitle ? '/' + article?.writer?.customUrlTitle : '')}}">{{article?.writer?.title}}</a></span>
+                        <span *ngIf="article?.writer?.name"><a title="{{article?.writer?.name}}" routerLink="/Contributor/{{article?.writer?.id + (article?.writer?.customUrlTitle ? '/' + article?.writer?.customUrlTitle : '')}}">{{article?.writer?.name}}</a></span>
                       </h3>
                     </div><!-- /.table-col table-col-size3 -->
                     

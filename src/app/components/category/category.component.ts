@@ -212,7 +212,7 @@ export class CategoryComponent implements OnInit {
               }else{
                 this.hasMoreToLoad = false;
               }
-              console.log(this.listingModel);
+              //console.log(this.listingModel);
               
               // console.log(data['entries']);
               // console.log(this.listingModel.loadMoreArticles);

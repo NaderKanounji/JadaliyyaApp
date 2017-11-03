@@ -18,6 +18,7 @@ import {MembershipService} from '../../../services/membership.service';
 export class LoginComponent implements OnInit {
 
   loginForm:LoginForm;
+  writerLoginForm:LoginForm;
   isSubmitted:boolean = false;
   formErrors:string[] = [];
   socialFormErrors:string[] = [];
@@ -42,20 +43,30 @@ export class LoginComponent implements OnInit {
       password:'',
       grant_type:'password'
     };
+    this.writerLoginForm = {
+      username:'',
+      password:'',
+      grant_type:'password'
+    };
   }
 
-  login(e:any, loginForm:LoginForm){
+  login(e:any, loginForm:LoginForm, asWriter:boolean){
     this.isSubmitted = true;
     this.formErrors = [];
     loginForm.grant_type = 'password';
     this.membership.login(e, loginForm).subscribe((data:any) => {
       let myUser:UserModel = {isLogged: false, user:null, token: data, follows: null};
       this.user.setToken(data);
-      this.membership.GetUserInfo().subscribe((res:any) => {
+      this.membership.GetUserInfo(asWriter).subscribe((res:any) => {
         myUser.user = res.user;
         myUser.follows = res.follows;
         this.user.saveUser(myUser);
         this.loginForm = {
+          username:'',
+          password:'',
+          grant_type:'password'
+        };
+        this.writerLoginForm = {
           username:'',
           password:'',
           grant_type:'password'
@@ -73,7 +84,7 @@ export class LoginComponent implements OnInit {
       
     },(err) => {
       this.isSubmitted = false;
-      this.formErrors.push(err.error.message);
+      this.formErrors.push(err.error.error_description);
       //console.error(err);
     });
   }
@@ -83,11 +94,13 @@ export class LoginComponent implements OnInit {
        this.fb.login()
          .then((response: LoginResponse) => {
           this.membership.FacebookExternalLogin(response.authResponse.userID, response.authResponse.accessToken).subscribe((data:any) =>{
-            let myUser:UserModel = {isLogged: false, user:null, token: data, follows: null};
-            this.user.setToken(data);
-            this.membership.GetUserInfo().subscribe((res:any) => {
-              myUser.user = res.user;
-              myUser.follows = res.follows;
+            let myUser:UserModel = {isLogged: false, user:data.user, token: JSON.parse(data.token), follows: null};
+            //this.user.setToken(data);
+            //console.log(data);
+            
+            //this.membership.GetUserInfo().subscribe((res:any) => {
+              //myUser.user = data.user;
+              //myUser.follows = res.follows;
               this.user.saveUser(myUser);
               this.loginForm = {
                 username:'',
@@ -100,16 +113,16 @@ export class LoginComponent implements OnInit {
                   this.myFunctions.reset_page_state();
               },200);
               this.isSubmitted = false;
-            },(err) => {
-              this.isSubmitted = false;
-              if(err.error.message){
-                this.socialFormErrors.push(err.error.message);
-              }else{
-                if(err.error){
-                  this.socialFormErrors.push(err.error);
-                }
-              }
-            });
+            //},(err) => {
+            //   this.isSubmitted = false;
+            //   if(err.error.message){
+            //     this.socialFormErrors.push(err.error.message);
+            //   }else{
+            //     if(err.error){
+            //       this.socialFormErrors.push(err.error);
+            //     }
+            //   }
+            // });
             
           });
          })
@@ -118,52 +131,52 @@ export class LoginComponent implements OnInit {
           this.fb.logout();
          });
     
-     }
-     GoogleExternalLogin2(googleUser){
-      this.socialFormErrors= [];
-       var profile = googleUser.getBasicProfile();
-      console.log(profile.getId());
+  }
+  GoogleExternalLogin2(googleUser){
+    this.socialFormErrors= [];
+      var profile = googleUser.getBasicProfile();
+    //console.log(profile.getId());
+    
+      this.membership.GoogleExternalLogin(profile.getId(), profile.getName(), profile.getEmail()).subscribe((data:any) =>{
+        let myUser:UserModel = {isLogged: false, user:data.user, token: JSON.parse(data.token), follows: null};
+        //this.user.setToken(data);
+        // this.membership.GetUserInfo().subscribe((res:any) => {
+          // myUser.user = res.user;
+          // myUser.follows = res.follows;
+          this.user.saveUser(myUser);
+          this.loginForm = {
+            username:'',
+            password:'',
+            grant_type:'password'
+          };
+          setTimeout(() =>{
+              this.myFunctions.dropdown_event();
+              this.myFunctions.psy_popup();
+              this.myFunctions.reset_page_state();
+          },200);
+          this.isSubmitted = false;
+        // },(err) => {
+        //   this.isSubmitted = false;
+        //   if(err.error.message){
+        //     this.socialFormErrors.push(err.error.message);
+        //   }else{
+        //     if(err.error){
+        //       this.socialFormErrors.push(err.error);
+        //     }
+        //   }
+        // });
+        
+      });
       
-        this.membership.GoogleExternalLogin(profile.getId(), profile.getName(), profile.getEmail()).subscribe((data:any) =>{
-          let myUser:UserModel = {isLogged: false, user:null, token: data, follows: null};
-          this.user.setToken(data);
-          this.membership.GetUserInfo().subscribe((res:any) => {
-            myUser.user = res.user;
-            myUser.follows = res.follows;
-            this.user.saveUser(myUser);
-            this.loginForm = {
-              username:'',
-              password:'',
-              grant_type:'password'
-            };
-            setTimeout(() =>{
-                this.myFunctions.dropdown_event();
-                this.myFunctions.psy_popup();
-                this.myFunctions.reset_page_state();
-            },200);
-            this.isSubmitted = false;
-          },(err) => {
-            this.isSubmitted = false;
-            if(err.error.message){
-              this.socialFormErrors.push(err.error.message);
-            }else{
-              if(err.error){
-                this.socialFormErrors.push(err.error);
-              }
-            }
-          });
-          
-        });
-       
-      // this._googleAuth.authenticateUser((userDetails)=>{
-      //   console.log('trueee');
-      //   console.log(userDetails);
-        
-      //   //YOUR_CODE_HERE 
-      //   // console.log(userDetails.getAuthResponse().id_token);
-      //  // console.log(profile);
-        
-      // });
-     }
+    // this._googleAuth.authenticateUser((userDetails)=>{
+    //   console.log('trueee');
+    //   console.log(userDetails);
+      
+    //   //YOUR_CODE_HERE 
+    //   // console.log(userDetails.getAuthResponse().id_token);
+    //  // console.log(profile);
+      
+    // });
+  }
 }
 

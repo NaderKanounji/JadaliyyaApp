@@ -7,7 +7,7 @@ import { FunctionsService } from '../services/functions.service';
 import 'rxjs/add/operator/map';
 
 import { _globals } from '../includes/globals';
-import { RegisterForm, LoginForm, UserModel } from '../includes/Models';
+import { RegisterForm, LoginForm, UserModel, ProfileModel, PasswordModel } from '../includes/Models';
 
 @Injectable()
 export class MembershipService {
@@ -35,14 +35,14 @@ export class MembershipService {
       this.myFunctions.psy_popup();
       this.myFunctions.close_popup();
     }, 200);
-    console.log(this.router.parseUrl);
+    //console.log(this.router.parseUrl);
     
     this.router.navigate([this.router.parseUrl]);
 
   }
 
-  GetUserInfo(){
-    return this.http.get(_globals.API_URL + 'Administrators/GetUserInfo').map(response => response);
+  GetUserInfo(asWriter:boolean){
+    return this.http.get(_globals.API_URL + 'Administrators/GetUserInfo?asWriter=' +  asWriter).map(response => response);
   }
 
   FollowWriter(writerId:number){
@@ -85,5 +85,28 @@ export class MembershipService {
   GoogleExternalLogin(googleId:string, name:string, email:string){
     //const headers = new HttpHeaders().set('accessToken', accessToken);
     return this.http.post(_globals.API_URL + 'Administrators/GoogleExternalLogin?email=' + email + '&googleId=' + googleId + '&name=' + name, '').map(response => response)
+  }
+  GetDetailedProfile(){
+    return this.http.get(_globals.API_URL + 'Administrators/GetDetailedUserInfo').map(response => response);
+  }
+  UpdateProfile(profileModel:ProfileModel){
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.post(_globals.API_URL + 'Administrators/UpdateBasicInfo', JSON.stringify(profileModel), {headers}).map(response => response)
+  }
+  UpdatePassword(passwordModel:PasswordModel){
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    return this.http.post(_globals.API_URL + 'Administrators/UpdateAccountInfo', JSON.stringify(passwordModel), {headers}).map(response => response)
+  }
+  ShareFoldersWithFriend(folders:string, email:string){
+    return this.http.post(_globals.API_URL + 'Data/ShareFolders?folderIds=' + folders + '&email=' + email, '').map(response => response)
+  }
+  ShareArticlesWithFriend(articles:string, email:string){
+    return this.http.post(_globals.API_URL + 'Data/ShareArticles?articleIds=' + articles + '&email=' + email, '').map(response => response)
+  }
+  DeleteSharedFoldersAndArticles(folders:string, articles:string){
+    return this.http.post(_globals.API_URL + 'Data/DeleteSharedFoldersAndArticles?folderIds=' + folders + '&articleIds=' + articles, '').map(response => response)
+  }
+  FavoriteSharedArticlesAndFolders(folders:string, articles:string, toFolderId:number){
+    return this.http.post(_globals.API_URL + 'Data/FavoriteSharedArticlesAndFolders?folderIds=' + folders + '&articleIds=' + articles + '&toFolderId=' + toFolderId, '').map(response => response)
   }
 }

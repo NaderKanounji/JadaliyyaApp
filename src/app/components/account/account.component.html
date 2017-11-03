@@ -1,3 +1,165 @@
-<p>
-  account works!
-</p>
+<div class="popup popup-tertiary mfp-hide" id="popup-old-password">
+    <div class="popup-inner">
+      <header class="popup-head">
+        <i class="ico-logo-square"></i>
+  
+        <a href="#" class="link-close-popup">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </a>
+      </header><!-- /.popup-head -->
+  
+      <div class="popup-body">
+        <h4>Insert old password</h4>
+  
+        <div class="folder">
+          <div class="form-folder">
+            <form (submit)="submit_password($event, passwordForm.value)" #passwordForm="ngForm" ngNativeValidate>
+              <div class="form-body">
+                <div class="form-controls">
+                  <input type="password" class="field" name="OldPassword" id="field-folder"  placeholder="" [(ngModel)]="passwordModel.OldPassword" required>
+                </div><!-- /.form-controls -->
+              </div><!-- /.form-body -->
+              <div class="form-actions">
+                <a class="" (click)="submit_password($event, passwordForm.value)" *ngIf="!passwordSubmitted">save</a>
+                <div class="sk-fading-circle carret-loader" *ngIf="passwordSubmitted">
+                  <div class="sk-circle1 sk-circle"></div>
+                  <div class="sk-circle2 sk-circle"></div>
+                  <div class="sk-circle3 sk-circle"></div>
+                  <div class="sk-circle4 sk-circle"></div>
+                  <div class="sk-circle5 sk-circle"></div>
+                  <div class="sk-circle6 sk-circle"></div>
+                  <div class="sk-circle7 sk-circle"></div>
+                  <div class="sk-circle8 sk-circle"></div>
+                  <div class="sk-circle9 sk-circle"></div>
+                  <div class="sk-circle10 sk-circle"></div>
+                  <div class="sk-circle11 sk-circle"></div>
+                  <div class="sk-circle12 sk-circle"></div>
+                </div>
+              </div><!-- /.form-actions -->
+              <input type="submit" class="hidden"/>
+            </form>
+            
+          </div><!-- /.form-folder -->
+          <div class="form-row">
+            
+          </div><!-- /.form-row -->
+  
+          
+        </div><!-- /.folder -->
+        <ul class="form-errors folder-popup-errors" *ngIf="passwordFormErrors?.length">
+            <li *ngFor="let item of passwordFormErrors">{{item}}</li>
+          </ul>
+        
+      </div><!-- /.popup-body -->
+    </div><!-- /.popup-inner -->
+  </div><!-- /.popup popup-tertiary -->
+
+<div class="container">
+		<section class="section section-account">
+			<div class="shell">
+				<div class="section-content">
+					<div class="form-primary form-login" data-target="#save-account">
+						<form (submit)="edit_profile($event, editForm.value)" #editForm="ngForm" ngNativeValidate>
+							<div class="form-body">
+								<div class="cols">
+									<div class="col col-1of2">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field" name="fullname" id="field-name"placeholder="Full Name" required [(ngModel)]="profileModel.fullname" requried>
+
+												<i class="fa fa-user" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+										
+										<div class="form-row" *ngIf="sharedModel?.formData?.userIdentifications?.length">
+											<div class="form-controls form-select">
+												<select name="identifies" id="field-identify" class="select" required  [(ngModel)]="profileModel.identifies" required>
+                          <option value="">User Identifies as</option>
+                          <option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.userIdentifications" [selected]="profileModel?.identifies == item?.key">{{item.value}}</option>
+												</select>
+
+												<i class="fa fa-male" aria-hidden="true"></i>
+
+												<i class="fa fa-female" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+										
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="text" class="field field-date" name="year" id="field-birth" placeholder="Year Of Birth" required [(ngModel)]="profileModel.year" requierd>
+
+												<i class="fa fa-calendar-o" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+										
+										<div class="form-row" *ngIf="sharedModel?.formData?.countries?.length">
+											<div class="form-controls form-select">
+												<select name="countryId" id="field-Country" class="select" required [(ngModel)]="profileModel.countryId" required>
+													<option value="">Country of residence</option>
+													<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.countries" [selected]="profileModel?.countryId == item?.key">{{item.value}}</option>
+												</select>
+
+												<i class="fa fa-flag" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-1of2 -->
+									
+									<div class="col col-1of2">
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="email" class="field" name="UserName" id="field-email" placeholder="Email Address" required [(ngModel)]="profileModel.UserName" readonly="readonly" requried>
+
+												<i class="fa fa-envelope" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="password" class="field" name="password" id="field-pass" placeholder="Password"  [(ngModel)]="profileModel.password">
+
+												<i class="fa fa-lock" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+
+										<div class="form-row">
+											<div class="form-controls">
+												<input type="password" class="field" name="ConfirmPassword" id="field-pass2" placeholder="Confirm Password"  [(ngModel)]="profileModel.ConfirmPassword">
+
+												<i class="fa fa-lock" aria-hidden="true"></i>
+											</div><!-- /.form-controls -->
+										</div><!-- /.form-row -->
+									</div><!-- /.col col-1of2 -->
+                </div><!-- /.cols -->
+                
+							<ul class="form-errors" *ngIf="formErrors?.length">
+                  <li *ngFor="let item of formErrors">{{item}}</li>
+                </ul>
+							</div><!-- /.form-body -->
+							
+							<div class="form-actions">
+								<span class="form-required">Required</span>
+
+								<input type="submit" value="Save" class="form-btn btn btn-primary btn-blue" *ngIf="!formSubmitted">
+                <div class="sk-fading-circle follow-loader" *ngIf="formSubmitted">
+                  <div class="sk-circle1 sk-circle"></div>
+                  <div class="sk-circle2 sk-circle"></div>
+                  <div class="sk-circle3 sk-circle"></div>
+                  <div class="sk-circle4 sk-circle"></div>
+                  <div class="sk-circle5 sk-circle"></div>
+                  <div class="sk-circle6 sk-circle"></div>
+                  <div class="sk-circle7 sk-circle"></div>
+                  <div class="sk-circle8 sk-circle"></div>
+                  <div class="sk-circle9 sk-circle"></div>
+                  <div class="sk-circle10 sk-circle"></div>
+                  <div class="sk-circle11 sk-circle"></div>
+                  <div class="sk-circle12 sk-circle"></div>
+                </div>
+							</div><!-- /.form-actions -->
+						</form>
+					</div><!-- /.form-primary -->
+				</div><!-- /.section-content -->
+			</div><!-- /.shell -->
+		</section><!-- /.section section-account -->
+
+		<!--#include file="ssi/mobile-widgets-secondary.shtml" -->
+	</div><!-- /.container -->

@@ -53,10 +53,12 @@ import { PopularTagsWidgetComponent } from './components/common/popular-tags-wid
 import { FavoriteComponent } from './components/popups/favorite/favorite.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { FavoritesActionsComponent } from './components/favorites/favorites-actions/favorites-actions.component';
+import { AccountSharedComponent } from './components/account-shared/account-shared.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
   { path: 'Account/Favorites', component: FavoritesComponent, canActivate:[AuthGuard]  },
+  { path: 'Account/Shared', component: AccountSharedComponent, canActivate:[AuthGuard]  },
   { path: 'Account', component: AccountComponent, canActivate:[AuthGuard]   },
   { path: 'Details/:id', component: ArticleDetailsComponent  },
   { path: 'Details/:id/:title', component: ArticleDetailsComponent  },
@@ -108,7 +110,8 @@ var routes = [
     PopularTagsWidgetComponent,
     FavoriteComponent,
     FavoritesComponent,
-    FavoritesActionsComponent
+    FavoritesActionsComponent,
+    AccountSharedComponent
   ],
   imports: [
     BrowserModule,

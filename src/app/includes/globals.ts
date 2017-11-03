@@ -13,24 +13,24 @@
 
 export const _globals = Object.freeze({
     //ONLINE VALUES
-    API_URL: 'http://jadaliyyaapi2.koeinbeta.com/api/', 
-    CONTENT_PATH: 'jadaliyyakms.koeinbeta.com/content/uploads/',
-    RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
-    BASE_URL: 'http://jadaliyya2.koeinbeta.com/',
-    BASE_API_URL: 'http://jadaliyyaapi2.koeinbeta.com/',
-    STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
-    TwitterUsername:'Jadaliyya',
+    // API_URL: 'http://jadaliyyaapi2.koeinbeta.com/api/', 
+    // CONTENT_PATH: 'jadaliyyakms.koeinbeta.com/content/uploads/',
+    // RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
+    // BASE_URL: 'http://jadaliyya2.koeinbeta.com/',
+    // BASE_API_URL: 'http://jadaliyyaapi2.koeinbeta.com/',
+    // STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
+    // TwitterUsername:'Jadaliyya',
     
     //LOCAL VALUES
-//     API_URL: 'https://localhost:44300/api/',
-//     LOCAL_API_URL: 'https://localhost:44300/api/',
-//     CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
-//     RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
-//    // BASE_URL: 'https://localhost:44300/',
-//     BASE_URL: 'https://shift2s.koein.com/jadaliyafront/',
-//     BASE_API_URL: 'https://shift2s.koein.com/jadaliyaapi/',
-//     STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
-//     TwitterUsername:'Jadaliyya',
+    API_URL: 'https://localhost:44300/api/',
+    LOCAL_API_URL: 'https://localhost:44300/api/',
+    CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
+    RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
+   // BASE_URL: 'https://localhost:44300/',
+    BASE_URL: 'https://shift2s.koein.com/jadaliyafront/',
+    BASE_API_URL: 'https://shift2s.koein.com/jadaliyaapi/',
+    STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
+    TwitterUsername:'Jadaliyya',
     
 
     FACEBOOK_APP_ID:'168318190386081',

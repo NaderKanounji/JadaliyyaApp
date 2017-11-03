@@ -1,0 +1,258 @@
+<div class="popup popup-tertiary mfp-hide" id="popup-add-share-to-fav">
+    <div class="popup-inner">
+      <header class="popup-head">
+        <i class="ico-logo-square"></i>
+  
+        <a href="#" class="link-close-popup">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </a>
+      </header><!-- /.popup-head -->
+  
+      <div class="popup-body">
+        <div class="dropdown">
+          <header class="dropdown-head">
+            <a class="btn btn-secondary btn-blue link-folders no-binding {{isLoadingFolders ? 'hide-arrow' : ''}}" (click)="dispay_folders($event)">Choose folder</a>
+            <div class="sk-fading-circle carret-loader" *ngIf="isLoadingFolders">
+              <div class="sk-circle1 sk-circle"></div>
+              <div class="sk-circle2 sk-circle"></div>
+              <div class="sk-circle3 sk-circle"></div>
+              <div class="sk-circle4 sk-circle"></div>
+              <div class="sk-circle5 sk-circle"></div>
+              <div class="sk-circle6 sk-circle"></div>
+              <div class="sk-circle7 sk-circle"></div>
+              <div class="sk-circle8 sk-circle"></div>
+              <div class="sk-circle9 sk-circle"></div>
+              <div class="sk-circle10 sk-circle"></div>
+              <div class="sk-circle11 sk-circle"></div>
+              <div class="sk-circle12 sk-circle"></div>
+            </div>
+          </header><!-- /.dropdown-head -->
+          
+          <div class="dropdown-body scrollable-vertical" style="max-height: 250px">
+            <ul>
+              <li class="add">
+                <a data-psy-pop="create-folder-for-article">Create Folder</a>
+              </li>
+              
+              <li class="{{i == 0 ? 'selected' : ''}}" attr.data-folder-id="{{item.id}}" *ngFor="let item of userFolders; let i = index">
+                <a >{{item.title}}</a>
+              </li>
+      
+            </ul>
+          </div><!-- /.dropdown-body -->
+  
+          <footer class="dropdown-foot" *ngIf="!isAddingArticle && userFolders?.length">
+            <a  class="btn btn-secondary btn-block btn-transparent-white" (click)="add_article_to_folder($event)">+ Add</a>
+          </footer><!-- /.dropdown-foot -->
+          <div class="sk-fading-circle follow-loader" *ngIf="isAddingArticle">
+              <div class="sk-circle1 sk-circle"></div>
+              <div class="sk-circle2 sk-circle"></div>
+              <div class="sk-circle3 sk-circle"></div>
+              <div class="sk-circle4 sk-circle"></div>
+              <div class="sk-circle5 sk-circle"></div>
+              <div class="sk-circle6 sk-circle"></div>
+              <div class="sk-circle7 sk-circle"></div>
+              <div class="sk-circle8 sk-circle"></div>
+              <div class="sk-circle9 sk-circle"></div>
+              <div class="sk-circle10 sk-circle"></div>
+              <div class="sk-circle11 sk-circle"></div>
+              <div class="sk-circle12 sk-circle"></div>
+            </div>
+        </div><!-- /.dropdown -->
+      </div><!-- /.popup-body -->
+    </div><!-- /.popup-inner -->
+  </div><!-- /.popup popup-tertiary -->
+
+<div class="container">
+		<section class="section section-fav-secondary">
+			<div class="shell">
+          <div class="sk-fading-circle favorites-init-loader" *ngIf="!initLoadDone">
+              <div class="sk-circle1 sk-circle"></div>
+              <div class="sk-circle2 sk-circle"></div>
+              <div class="sk-circle3 sk-circle"></div>
+              <div class="sk-circle4 sk-circle"></div>
+              <div class="sk-circle5 sk-circle"></div>
+              <div class="sk-circle6 sk-circle"></div>
+              <div class="sk-circle7 sk-circle"></div>
+              <div class="sk-circle8 sk-circle"></div>
+              <div class="sk-circle9 sk-circle"></div>
+              <div class="sk-circle10 sk-circle"></div>
+              <div class="sk-circle11 sk-circle"></div>
+              <div class="sk-circle12 sk-circle"></div>
+            </div>
+				<ul class="updates" *ngIf="initLoadDone && sharedWithMeModel?.length">
+					<li class="update" *ngFor="let item of sharedWithMeModel">
+						<header class="update-head" *ngIf="item?.sharer">
+                <div class="update-avatar" *ngIf="item?.sharer?.image">
+                  <img src="{{RESIZED_CONTENT_PATH}}45x45xo/{{item?.sharer?.image}}" alt="">
+                </div><!-- /.update-avatar -->
+                <div class="update-avatar" *ngIf="!(item?.sharer?.image)">
+                  <img src="../assets/images/avatar-sharer.png" alt="">
+                </div><!-- /.update-avatar -->
+
+							<p *ngIf="item?.sharer?.name">
+								<strong>{{item?.sharer?.name}}</strong>
+
+								shared this {{item?.folder ? 'folder' : 'article'}} with you
+							</p>
+						</header><!-- /.update-head -->
+
+						<div class="update-body" *ngIf="item?.folder">
+							<div class="accordion">
+								<div class="accordion-section">
+									<div class="accordion-head">
+										<div class="checkbox">
+											<input type="checkbox"  name="foldercheck" id="foldercheck-{{item?.folder?.id}}" attr.data-folder-id="{{item?.folder?.id}}" attr.data-shared-folder-id="{{item?.id}}">
+											
+											<label class="form-label" for="foldercheck-{{item?.folder?.id}}"></label>
+
+											<a >{{item?.folder?.title}}</a>
+
+											<a  class="expand"></a>
+										</div><!-- /.checkbox -->
+									</div><!-- /.accordion-head -->
+									
+									<div class="accordion-body">
+										<div class="table-articles">
+                      
+                        <div class="table-row {{article.isArabic ? 'rtl' : ''}}" *ngFor="let article of item?.folder?.articles">
+                            <div class="table-col table-col-size1">
+                              <div class="checkbox">
+                                <input type="checkbox" name="articlecheck" id="articlecheck-{{item?.folder?.id}}-{{article?.id}}" attr.data-article-id="{{article?.id}}" attr.data-folder-id="{{item?.folder?.id}}">
+                                
+                                <label class="form-label" for="articlecheck-{{item?.folder?.id}}-{{article?.id}}"></label>
+                              </div><!-- /.checkbox -->
+                            </div><!-- /.table-col table-col-size1 -->
+                            
+                            <div class="table-col table-col-size2" *ngIf="article?.image">
+                              <a title="{{article?.title}}" routerLink="/Details/{{article?.id + (article?.customUrlTitle? '/' + article?.customUrlTitle : '')}}">
+                                <img src="{{RESIZED_CONTENT_PATH}}77x55xo/{{article?.image}}" alt="{{article?.title}}">
+                              </a>
+                            </div><!-- /.table-col table-col-size2 -->
+                            
+                            <div class="table-col table-col-size3">
+                              <h3>
+                                <a title="{{article?.title}}" routerLink="/Details/{{article?.id + (article?.customUrlTitle ? '/' + article?.customUrlTitle : '')}}">{{article?.title}}</a>
+          
+                                <span *ngIf="article?.writer?.name"><a title="{{article?.writer?.name}}" routerLink="/Contributor/{{article?.writer?.id + (article?.writer?.customUrlTitle ? '/' + article?.writer?.customUrlTitle : '')}}">{{article?.writer?.name}}</a></span>
+                              </h3>
+                            </div><!-- /.table-col table-col-size3 -->
+                            
+                            <div class="table-col table-col-size4">
+                              <ul class="list-inline">
+                                <li>
+                                  <a href="#">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                  </a>
+                                </li>
+                                
+                                <li>
+                                  <a href="#" class="link-share">
+                                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                  </a>
+          
+                                  <div class="dropdown">
+                                    <ul>
+                                      <li>
+                                        <a href="#">
+                                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        </a>
+                                      </li>
+                                      
+                                      <li>
+                                        <a href="#">
+                                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        </a>
+                                      </li>
+                                      
+                                      <li>
+                                        <a href="ajax/popup-share.html" class="link-popup">
+                                          <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </div><!-- /.dropdown -->
+                                </li>
+                              </ul><!-- /.list-inline -->
+                            </div><!-- /.table-col table-col-size4 -->
+                        </div><!-- /.table-row -->
+
+										</div><!-- /.table-articles -->
+									</div><!-- /.accordion-body -->
+								</div><!-- /.accordion-section -->
+							</div><!-- /.accordion -->
+            </div><!-- /.update-body -->
+            <div class="update-body" *ngIf="item?.article">
+                <div class="table-articles">
+                    <div class="table-row {{item?.article?.isArabic ? 'rtl' : ''}}" >
+                        <div class="table-col table-col-size1">
+                          <div class="checkbox">
+                            <input type="checkbox" name="articlecheck" id="articlecheck-{{item?.article?.id}}" attr.data-article-id="{{item?.article?.id}}" attr.data-shared-article-id="{{item?.id}}">
+                            
+                            <label class="form-label" for="articlecheck-{{item?.article?.id}}"></label>
+                          </div><!-- /.checkbox -->
+                        </div><!-- /.table-col table-col-size1 -->
+                        
+                        <div class="table-col table-col-size2" *ngIf="item?.article?.image">
+                          <a title="{{item?.article?.title}}" routerLink="/Details/{{item?.article?.id + (item?.article?.customUrlTitle? '/' + item?.article?.customUrlTitle : '')}}">
+                            <img src="{{RESIZED_CONTENT_PATH}}77x55xo/{{item?.article?.image}}" alt="{{item?.article?.title}}">
+                          </a>
+                        </div><!-- /.table-col table-col-size2 -->
+                        
+                        <div class="table-col table-col-size3">
+                          <h3>
+                            <a href="#">{{item?.article?.title}}</a>
+      
+                            <span *ngIf="item?.article?.writer?.name"><a title="{{item?.article?.writer?.name}}" routerLink="/Contributor/{{item?.article?.writer?.id + (item?.article?.writer?.customUrlTitle ? '/' + item?.article?.writer?.customUrlTitle : '')}}">{{item?.article?.writer?.name}}</a></span>
+                          </h3>
+                        </div><!-- /.table-col table-col-size3 -->
+                        
+                        <div class="table-col table-col-size4">
+                          <ul class="list-inline">
+                            <li>
+                              <a href="#">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                              </a>
+                            </li>
+                            
+                            <li>
+                              <a href="#" class="link-share">
+                                <i class="fa fa-share-alt" aria-hidden="true"></i>
+                              </a>
+      
+                              <div class="dropdown">
+                                <ul>
+                                  <li>
+                                    <a href="#">
+                                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                  </li>
+                                  
+                                  <li>
+                                    <a href="#">
+                                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                  </li>
+                                  
+                                  <li>
+                                    <a href="ajax/popup-share.html" class="link-popup">
+                                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div><!-- /.dropdown -->
+                            </li>
+                          </ul><!-- /.list-inline -->
+                        </div><!-- /.table-col table-col-size4 -->
+                      </div><!-- /.table-row -->
+                </div><!-- /.table-articles -->
+              </div><!-- /.update-body -->
+					</li><!-- /.update -->
+
+				
+				</ul><!-- /.updates -->
+			</div><!-- /.shell -->
+		</section><!-- /.section section-fav-secondary -->
+
+		<!--#include file="ssi/mobile-widgets-secondary.shtml" -->
+	</div><!-- /.container -->
