@@ -32,6 +32,8 @@
 
 <app-login *ngIf="!(user?.isLogged)"></app-login>
 
+<app-submit-article *ngIf="user?.isLogged && user?.user?.isWriter"></app-submit-article>
+
 <app-forgot-password *ngIf="!(user?.isLogged)"></app-forgot-password>
 
 
@@ -205,8 +207,27 @@
 				</a>
 
 				<div class="dropdown">
-					<ul>
+					<ul class="list-works" *ngIf="user?.isLogged && user?.user?.isWriter && user?.writer">
 						<li>
+							<strong>{{user?.writer?.articles}}</strong>
+
+							articles
+						</li>
+						
+						<li>
+							<strong>{{user?.writer?.followers}}</strong>
+
+							Followers
+						</li>
+					</ul><!-- /.list-works -->
+					<ul>
+						<li *ngIf="user?.user?.isWriter && user?.writer">
+							<a data-psy-pop="submit-article">Add Article</a>
+						</li>
+						<li *ngIf="user?.user?.isWriter && user?.writer">
+							<a href="#">My Articles</a>
+						</li>
+						<li *ngIf="!(user?.user?.isWriter && user?.writer)">
 							<a title="My Favorites" routerLink="/Account/Favorites" href="##">My Favorites</a>
 						</li>
 						
@@ -214,7 +235,7 @@
 							<a title="My Account" routerLink="/Account">My Account </a>
 						</li>
 						
-						<li>
+						<li *ngIf="!(user?.user?.isWriter && user?.writer)">
 							<a title="Newsletter" routerLink="/Account/Newsletter">Newsletter</a>
 						</li>
 						

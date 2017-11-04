@@ -55,11 +55,12 @@ export class LoginComponent implements OnInit {
     this.formErrors = [];
     loginForm.grant_type = 'password';
     this.membership.login(e, loginForm).subscribe((data:any) => {
-      let myUser:UserModel = {isLogged: false, user:null, token: data, follows: null};
+      let myUser:UserModel = {isLogged: false, user:null, token: data, writer:null, follows: null};
       this.user.setToken(data);
       this.membership.GetUserInfo(asWriter).subscribe((res:any) => {
         myUser.user = res.user;
         myUser.follows = res.follows;
+        myUser.writer = res.writer;
         this.user.saveUser(myUser);
         this.loginForm = {
           username:'',
@@ -94,7 +95,7 @@ export class LoginComponent implements OnInit {
        this.fb.login()
          .then((response: LoginResponse) => {
           this.membership.FacebookExternalLogin(response.authResponse.userID, response.authResponse.accessToken).subscribe((data:any) =>{
-            let myUser:UserModel = {isLogged: false, user:data.user, token: JSON.parse(data.token), follows: null};
+            let myUser:UserModel = {isLogged: false, user:data.user, token: JSON.parse(data.token), writer:null, follows: null};
             //this.user.setToken(data);
             //console.log(data);
             
@@ -138,7 +139,7 @@ export class LoginComponent implements OnInit {
     //console.log(profile.getId());
     
       this.membership.GoogleExternalLogin(profile.getId(), profile.getName(), profile.getEmail()).subscribe((data:any) =>{
-        let myUser:UserModel = {isLogged: false, user:data.user, token: JSON.parse(data.token), follows: null};
+        let myUser:UserModel = {isLogged: false, user:data.user, token: JSON.parse(data.token), writer:null, follows: null};
         //this.user.setToken(data);
         // this.membership.GetUserInfo().subscribe((res:any) => {
           // myUser.user = res.user;

@@ -9,7 +9,9 @@ export class SharedService {
     {"headerType" : "header",'messagePopup': '' , "displayActions": false, "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
     formData:{
       countries:null,
-      userIdentifications:null
+      userIdentifications:null,
+      articleCountries:null,
+      categories:null
     }}
   );
   sharedModel = this.messageSource.asObservable();

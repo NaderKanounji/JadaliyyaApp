@@ -54,6 +54,7 @@ import { FavoriteComponent } from './components/popups/favorite/favorite.compone
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { FavoritesActionsComponent } from './components/favorites/favorites-actions/favorites-actions.component';
 import { AccountSharedComponent } from './components/account-shared/account-shared.component';
+import { SubmitArticleComponent } from './components/popups/submit-article/submit-article.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -111,7 +112,8 @@ var routes = [
     FavoriteComponent,
     FavoritesComponent,
     FavoritesActionsComponent,
-    AccountSharedComponent
+    AccountSharedComponent,
+    SubmitArticleComponent
   ],
   imports: [
     BrowserModule,

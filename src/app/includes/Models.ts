@@ -164,6 +164,8 @@ export interface GlobalModel{
 }
 export interface FormsData{
   countries:IntStringModel[];
+  categories:IntStringModel[];
+  articleCountries:IntStringModel[];
   userIdentifications:IntStringModel[];
 }
 export interface IntStringModel{
@@ -268,4 +270,17 @@ export interface CategoryWithArticles{
   title:string;
   customUrlTitle:string;
   articles:ArticleModel[];
+}
+
+export interface SubmitArticleModel{
+  title:string;
+  categoryId:number;
+  countryId:number;
+  images:string[];
+  //file:string;
+  videoUrl:string;
+  //audioUrl:string;
+  quote:string;
+  description:string;
+  date:Date;
 }

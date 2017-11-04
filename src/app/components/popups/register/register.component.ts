@@ -40,7 +40,7 @@ export class RegisterComponent  implements OnInit{
       this.membership.register(e, registerForm).subscribe((regdata:any) => {
         //this.user.setUser()
         //console.log(regdata);
-      let myUser:UserModel = {isLogged: false, user:regdata.user, token: regdata.token, follows: null};
+      let myUser:UserModel = {isLogged: false, user:regdata.user, token: regdata.token, writer:regdata.writer, follows: null};
 
         this.user.saveUser(myUser);
         this.registerForm = {
