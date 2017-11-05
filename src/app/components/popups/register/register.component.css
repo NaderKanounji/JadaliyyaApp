@@ -1,0 +1,6 @@
+.agreement-progress .psy-agreement-name{
+    font-weight: bold;
+}
+.agreement-progress .psy-agreement-progress, .agreement-progress .psy-agreement-delete{
+   float: right;
+}

@@ -1,5 +1,5 @@
 import { Component,OnInit , NgModule } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
+ import { HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
 //import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms'
 
@@ -7,7 +7,7 @@ import { SharedService } from '../../../services/shared.service';
 import { FunctionsService } from '../../../services/functions.service';
 import { UserService } from '../../../services/user.service';
 
-// import { _globals } from '../../../includes/globals';
+import { _globals } from '../../../includes/globals';
 import { RegisterForm, LoginForm, SharedModel, UserModel } from '../../../includes/Models';
 
 import {MembershipService} from '../../../services/membership.service';
@@ -23,7 +23,21 @@ export class RegisterComponent  implements OnInit{
   sharedModel:SharedModel;
   isSubmitted:boolean = false;
   formErrors:string[] = [];
-  constructor(private user:UserService, private myFunctions:FunctionsService, private sharedService:SharedService, private membership: MembershipService) { }
+  agreementUpload:{
+    progress:number;
+    name:string;
+    delete_url:string;
+    status:string;
+  }
+  constructor(private http:HttpClient, private user:UserService, private myFunctions:FunctionsService, private sharedService:SharedService, private membership: MembershipService) { 
+
+    this.agreementUpload = {
+      progress: 0,
+      name:'',
+      delete_url:'',
+      status:'empty'
+    }
+  }
 
   ngOnInit(){
 
@@ -90,5 +104,39 @@ export class RegisterComponent  implements OnInit{
         this.formErrors.push(err.error.message);
         //console.error(err);
       });
+  }
+
+  agreement_upload(event){
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        formData.append("uploadFile", file, file.name);
+        
+        let headers = new HttpHeaders().set('Accept', 'application/json');
+     
+            const req = new HttpRequest('POST', _globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=images&imagesPathController=ArticleWriter&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {
+              reportProgress: true,
+              headers:headers
+            });
+            this.http.request(req).subscribe(event => {
+              this.agreementUpload.name = file.name;
+              this.agreementUpload.status = 'uploading';
+              if (event.type === HttpEventType.UploadProgress) {
+                const percentDone = Math.round(100 * event.loaded / event.total);
+                this.agreementUpload.progress = percentDone;
+              } else if (event instanceof HttpResponse) {
+                this.agreementUpload.status = 'done';
+                this.agreementUpload.delete_url = event.body["delete_url"];
+               
+                console.log(event);
+              }
+            }, (err:any) => {
+              console.log('upload error : ');
+              console.log(err);
+              console.log(err.error);
+
+            });
+    }
   }
 }
