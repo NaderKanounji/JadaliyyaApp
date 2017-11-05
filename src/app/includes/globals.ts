@@ -23,7 +23,7 @@ export const _globals = Object.freeze({
     // TwitterUsername:'Jadaliyya',
     
     //LOCAL VALUES
-    API_URL: 'https://shift2s.koein.com/jadaliyaapi//api/',
+    API_URL: 'https://localhost:44300/api/',
     LOCAL_API_URL: 'https://localhost:44300/api/',
     CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
     RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',

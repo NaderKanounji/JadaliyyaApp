@@ -1,1 +1,55 @@
-<p>Account Articles works!</p>
+<div class="container">
+		<section class="section section-my-articles">
+			<div class="shell">
+				<div class="section-content">
+					<div class="table-articles table-articles-secondary">
+						<div class="table-row {{item?.isArabic ? 'rtl' : ''}}" *ngFor="let item of articles">
+							<div class="table-col" *ngIf="item?.image">
+								<a title="{{item?.title}}" routerLink="/Details/{{item?.id + (item?.customUrlTitle ? '/' + item?.customUrlTitle : '')}}">
+									<img src="{{RESIZED_CONTENT_PATH}}77x54xo/{{item?.image}}" alt="">
+								</a>
+							</div><!-- /.table-col -->
+							
+							<div class="table-col">
+								<h3>{{item?.title}}</h3>
+
+								<span>{{item.date | date : 'MMM d yyyy'}}</span>
+							</div><!-- /.table-col -->
+							
+							<div class="table-col">
+								<!-- <ul class="list-engagement">
+									<li>
+										<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+
+										25
+									</li>
+									
+									<li>
+										<i class="fa fa-comment" aria-hidden="true"></i>
+
+										30
+									</li>
+								</ul> -->
+
+								<ul class="list-inline">
+									<li>
+										<a href="#">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										</a>
+									</li>
+									
+									<li>
+										<a href="#">
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</a>
+									</li>
+								</ul><!-- /.list-inline -->
+							</div><!-- /.table-col -->
+						</div><!-- /.table-row -->
+					</div><!-- /.table-articles-secondary -->
+				</div><!-- /.section-content -->
+			</div><!-- /.shell -->
+		</section><!-- /.section section-my-articles -->
+
+		<!--#include file="ssi/mobile-widgets-secondary.shtml" -->
+	</div><!-- /.container -->

@@ -55,27 +55,17 @@
                       Upload
                     </span>
                 </label>
-                <div class="progress" *ngFor="let item of uploadingImages; let i = index">
-                    <div class="progress-bar " style="width: {{item?.progress}}%;">
-                      <span>{{item?.name}}</span>
-                    </div><!-- /.progress-bar -->
                 
-                    <span >
-                        <span class="{{item?.progress == 100 ? 'hidden' : ''}}">{{item?.progress}}% Uploading</span>
-                
-                      <a class="" (click)="delete_image(i)">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                      </a>
-                    </span>
-                  </div><!-- /.progress -->
 
                 <div class="progress" *ngFor="let item of uploadedImages; let i = index">
-                    <div class="progress-bar progress-done" >
+                    <div class="progress-bar " style.width="{{item?.status == 'done' ? 0 : item?.progress}}%">
                       <span>{{item?.name}}</span>
                     </div><!-- /.progress-bar -->
                 
-                    <span >                
-                      <a class="" (click)="delete_image(i)">
+                    <span class="psy-images-progress {{item?.progress > 95 ? 'white' : ''}}">
+                        <span *ngIf="item?.status == 'uploading'">{{item?.progress}}% Uploading</span>
+                
+                      <a class="" (click)="delete_image(item?.uniqueIdentifier)" *ngIf="item?.status == 'done'">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                       </a>
                     </span>

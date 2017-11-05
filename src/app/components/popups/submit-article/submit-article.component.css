@@ -1,0 +1,7 @@
+.psy-images-progress{
+    z-index: 1;
+    position: relative;
+}
+.psy-images-progress.white{
+    color:white;
+}

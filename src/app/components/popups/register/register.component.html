@@ -138,9 +138,9 @@
 								</li>
 								
 								<li>
-									<a href="#">
+									<a class="agreement-wrapper">
 										<i class="fa fa-upload" aria-hidden="true"></i>
-										<input type="file" name="agreement" *ngIf="agreementUpload.status == 'empty'" [(ngModel)]="registerForm.agreement" (change)="agreement_upload($event)" placeholder="UPLOAD SIGNED AGREEMENT FRORM" accept=".jpg, .jpeg, .png"/>
+										<input type="file" class="agreement-input" name="agreement" *ngIf="agreementUpload.status == 'empty'" [(ngModel)]="registerForm.agreement" (change)="agreement_upload($event)" placeholder="UPLOAD SIGNED AGREEMENT FRORM" accept=".pdf, .csv, .txt, .docx"/>
 										<span class="agreement-progress" *ngIf="agreementUpload.status != 'empty'">
 											<span class="psy-agreement-name">{{agreementUpload.name}}</span>
 											<span class="psy-agreement-progress" *ngIf="agreementUpload.status == 'uploading'">{{agreementUpload.progress}}%</span>
@@ -149,28 +149,28 @@
 											</span>
 										</span>
 
-										<!-- UPLOAD SIGNED AGREEMENT FRORM -->
+										<span class="" *ngIf="agreementUpload.status == 'empty'">UPLOAD SIGNED AGREEMENT FRORM</span>  
 									</a>
 								</li>
 								
 								<li>
 									<a class="link-avatar">
-											<input type="file" class="writer-image-input"  name="image" *ngIf="agreementUpload.status == 'empty' || agreementUpload.status == 'done'" [(ngModel)]="registerForm.image" (change)="image_upload($event)"  accept=".jpg, .jpeg, .png"/>
-										<span class="plus">
-											<i class="fa fa-plus" aria-hidden="true" *ngIf="agreementUpload.status == 'empty'"></i>
+											<input type="file" class="writer-image-input"  name="image" *ngIf="imageUpload.status == 'empty' || imageUpload.status == 'done'" [(ngModel)]="registerForm.image" (change)="image_upload($event)"  accept=".jpg, .jpeg, .png"/>
+										<span class="plus" *ngIf="imageUpload.status != 'uploading'">
+											<i class="fa fa-plus" aria-hidden="true" *ngIf="imageUpload.status == 'empty'"></i>
 											
-											<i class="fa fa-pencil" aria-hidden="true" *ngIf="agreementUpload.status == 'done'"></i>
+											<i class="fa fa-pencil" aria-hidden="true" *ngIf="imageUpload.status == 'done'"></i>
 										</span>
 
 										<span class="image">
-											<i class="fa fa-user" aria-hidden="true"></i>
+											<i class="fa fa-user" aria-hidden="true" *ngIf="imageUpload.status == 'empty'"></i>
 
-											<img src="../assets/images/temp/writer-inner.png" alt="" *ngIf="agreementUpload.status == 'empty'">
-											<span class="writer-image-progress" *ngIf="agreementUpload.status == 'uploading'">{{imageUpload.progress}}%</span>
-											<img src="{{imageUpload.thumbnail_url}}" alt="" *ngIf="agreementUpload.status == 'done'">
+											<img src="../assets/images/temp/writer-inner.png" alt="" *ngIf="imageUpload.status == 'empty'">
+											<span class="writer-image-progress" *ngIf="imageUpload.status == 'uploading'">{{imageUpload.progress}}%</span>
+											<img src="{{imageUpload.thumbnail}}" alt="" *ngIf="imageUpload.status == 'done'">
 										</span>
 
-										<span class="text" *ngIf="agreementUpload.status == 'empty'">Add Picture</span>
+										<span class="text" *ngIf="imageUpload.status == 'empty'">Add Picture</span>
 									</a>
 								</li>
 							</ul><!-- /.list-steps -->

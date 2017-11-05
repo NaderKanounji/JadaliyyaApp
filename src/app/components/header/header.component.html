@@ -225,7 +225,7 @@
 							<a data-psy-pop="submit-article">Add Article</a>
 						</li>
 						<li *ngIf="user?.user?.isWriter && user?.writer">
-							<a href="#">My Articles</a>
+							<a title="My Articles" routerLink="/Account/Articles/Published">My Articles</a>
 						</li>
 						<li *ngIf="!(user?.user?.isWriter && user?.writer)">
 							<a title="My Favorites" routerLink="/Account/Favorites" href="##">My Favorites</a>
@@ -564,6 +564,16 @@
 						<a title="Media Roundups" routerLink="/Category/{{ROUNDUPS_CATEGORY_ID}}/{{ROUNDUPS_MONTHLY_URL_TITLE}}">MONTHLY EDITIONS</a>
 					</li>
 				</ul><!-- /.list-navs -->
+				<ul class="list-navs list-navs-secondary" *ngIf="sharedModel?.currentRoute == 'published-articles' || sharedModel?.currentRoute == 'unpublished-articles'">
+					<li class="{{sharedModel?.currentRoute == 'published-articles' ? 'current' : ''}}">
+						<a title="Writer Articles" routerLink="/Account/Articles/Published">PUBLISHED</a>
+					</li>
+					
+					<li class="{{sharedModel?.currentRoute == 'unpublished-articles' ? 'current' : ''}}">
+						<a title="Writer Articles" routerLink="/Account/Articles/UnPublished">UNPUBLISHED</a>
+					</li>
+				</ul>
+				<a class="btn btn-tertiary btn-blue link-new-article" *ngIf="sharedModel?.currentRoute == 'published-articles' || sharedModel?.currentRoute == 'unpublished-articles'" data-psy-pop="submit-article">New Article</a>
 			<a href="#" class="link-filter" *ngIf="sharedModel.currentRoute == 'category'">
 				Filter By
 

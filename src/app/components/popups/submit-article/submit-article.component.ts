@@ -21,11 +21,12 @@ export class SubmitArticleComponent implements OnInit {
   uploadedImages:{
     delete_url:string;
     name:string;
+    progress:number;
+    uniqueIdentifier:number;
+    status:string;
   }[];
-  uploadingImages:{
-    name:string;
-    progress:string;
-  }[];
+  identifier:number = 0;
+  finalIdentifier:number = -1;
   uploadIndex:number = 0;
   isSubmitted:boolean = false;
 
@@ -40,6 +41,7 @@ export class SubmitArticleComponent implements OnInit {
       videoUrl:'',
       date:null
     }
+    this.uploadedImages = [];
   }
 
   ngOnInit() {
@@ -50,6 +52,7 @@ export class SubmitArticleComponent implements OnInit {
     e.preventDefault();
     this.formErrors = [];
     this.isSubmitted = true;
+    form.images = this.uploadedImages.map(a => a.name)
     const headers = new HttpHeaders().set("Content-Type", "application/json");
     this.http.post(_globals.API_URL + 'Data/SubmitArticle', JSON.stringify(form), {headers}).subscribe((data:ArticleModel) => {
       this.sharedService.set_messagePopup("Thank you!<br/>Your article has been submitted and waiting for approval.");
@@ -65,66 +68,60 @@ export class SubmitArticleComponent implements OnInit {
   fileChange(event){
     let fileList: FileList = event.target.files;
     console.log(fileList);
-    
+    let identifier = this.identifier++;
     if(fileList.length > 0) {
        // let file: File = fileList[0];
         let formData:FormData = new FormData();
         for (var i = 0; i < fileList.length; i++) {
           formData.append("uploadFile[]", fileList[i]);
-          this.uploadingImages.push({
+          this.uploadedImages.push({
             name:fileList[i].name,
-            progress:''
+            progress:0,
+            delete_url:'',
+            uniqueIdentifier:identifier,
+            status:'uploading'
           });
       }
         //formData.append('uploadFile', file, file.name);
         let headers = new HttpHeaders().set('Accept', 'application/json');
-        // this.http.request(_globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=images&imagesPathController=Article&IsRemoteUpload=true&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {headers})
-        //     .subscribe((data:any) => {
-        //       console.log('upload return : ');
-        //       console.log(data);
-              
-              
-        //     }, (err:any) => {
-        //       console.log('upload error : ');
-        //       console.log(err);
-        //       console.log(err.error);
-              
-        //     });
+
             const req = new HttpRequest('POST', _globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=images&imagesPathController=Article&IsRemoteUpload=true&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {
               reportProgress: true,
               headers:headers
             });
             this.http.request(req).subscribe(event => {
-              // Via this API, you get access to the raw event stream.
-              // Look for upload progress events.
               if (event.type === HttpEventType.UploadProgress) {
-                // This is an upload progress event. Compute and show the % done:
                 const percentDone = Math.round(100 * event.loaded / event.total);
-                this.uploadingImages.forEach(element => {
-                  element.progress = percentDone.toString();
+                // this.uploadedImages.find(d=> d.uniqueIdentifier == identifier).progress = percentDone;
+                this.uploadedImages.filter(d => d.uniqueIdentifier == identifier).forEach(element => {
+                  element.progress = percentDone;
                 });
-                //console.log(`File is ${percentDone}% uploaded.`);
                 
               } else if (event instanceof HttpResponse) {
-                this.uploadingImages = this.uploadingImages.filter(d => fileList.item.name.indexOf(d.name) < 0);
-                for(let i = 0; i < fileList.length; i++){
+                this.uploadedImages = this.uploadedImages.filter(d=> d.uniqueIdentifier != identifier);
+                for(let i = 0 ; i < fileList.length; i++){
                   this.uploadedImages.push({
-                    delete_url:'',
-                    name:fileList[i].name
-                  });
+                    delete_url: event.body[i]['delete_url'],
+                    progress: 100,
+                    name: event.body[i]['name'],
+                    uniqueIdentifier: this.finalIdentifier--,
+                    status:'done'
+                  })
                 }
-                this.uploadedImages.push()
-                console.log('File is completely uploaded!');
-                console.log('upload return : ');
-                console.log(event);
               }
             }, (err:any) => {
-              console.log('upload error : ');
-              console.log(err);
-              console.log(err.error);
+              // console.log('upload error : ');
+              // console.log(err);
+              // console.log(err.error);
 
             });
     }
+  }
+
+  delete_image(id){
+    let delete_url = this.uploadedImages.find(d => d.uniqueIdentifier == id).delete_url;
+    this.http.delete(delete_url);
+    this.uploadedImages = this.uploadedImages.filter(d=> d.uniqueIdentifier != id);
   }
 
 }

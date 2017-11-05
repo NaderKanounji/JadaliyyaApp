@@ -8,7 +8,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { MembershipService } from '../../services/membership.service';
 
 import { _globals } from '../../includes/globals';
-import { SharedModel, SharedWithMeModel  } from '../../includes/Models';
+import { SharedModel, ArticleModel  } from '../../includes/Models';
 
 @Component({
   selector: 'app-account-articles',
@@ -23,7 +23,7 @@ export class AccountArticlesComponent implements OnInit {
   sharedModel:SharedModel;
   isPublishedSection:boolean = true;
   // initLoadDone:boolean = false;
-  sharedWithMeModel:SharedWithMeModel[];
+  articles:ArticleModel[];
 
   constructor(private route:ActivatedRoute, private membership: MembershipService, private folder:FolderService, private myFunctions:FunctionsService, private http:HttpClient, private sharedService: SharedService) { }
 
@@ -31,30 +31,25 @@ export class AccountArticlesComponent implements OnInit {
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
 
     this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);
-    this.folder.sharedWithModel.subscribe((sharedWithMeModel:any) => this.sharedWithMeModel = sharedWithMeModel);
 
-    this.sharedService.set_currentRoute("shared-with-me");
+    this.sharedService.set_currentRoute("published-articles");
     this.sharedService.set_headerType("header-secondary");
     this.sharedService.set_categoryTitle("My Articles");
-    this.sharedService.set_displayActions(true);
+    
     this.route.params.subscribe(params => {
       if(params['title']){
-        if(params['title'] == 'Unpublished'){
+        if(params['title'].toLowerCase() == 'unpublished'){
           this.isPublishedSection = false;
+          this.sharedService.set_currentRoute("unpublished-articles");
         }
       }
       this.http.get(_globals.API_URL + 'Data/GetWriterArticles?isPublished=' + this.isPublishedSection).subscribe((data:any) => {
         
-              this.folder.setSharedWithMe(data);
-              
-              // if(this.favoritesModel.folders.length){
-              //   this.sharedService.set_displayActions(true);
-              // }
-              // this.initLoadDone = true;
-              this.myFunctions.accordion_init();
-              this.myFunctions.psy_popup();
-              
-            });
+            this.articles = data;
+            this.myFunctions.psy_popup();
+            
+          });
+      
     });
     
   }

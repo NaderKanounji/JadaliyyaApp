@@ -34,12 +34,13 @@ export class RegisterComponent  implements OnInit{
     thumbnail:string;
     delete_url:string;
     status:string;
+    name:string;
   }
   constructor(private http:HttpClient, private user:UserService, private myFunctions:FunctionsService, private sharedService:SharedService, private membership: MembershipService) { 
 
     this.agreementUpload = {
       progress: 0,
-      name:'',
+      name:null,
       delete_url:'',
       status:'empty'
     }
@@ -47,7 +48,8 @@ export class RegisterComponent  implements OnInit{
       progress: 0,
       thumbnail:'',
       delete_url:'',
-      status:'empty'
+      status:'empty',
+      name:null
     }
   }
 
@@ -63,6 +65,8 @@ export class RegisterComponent  implements OnInit{
       if(registerForm.bio != ''){
         registerForm.isWriter = true;
       }
+      registerForm.agreement = this.agreementUpload ? this.agreementUpload.name : '';
+      registerForm.image = this.imageUpload ? this.imageUpload.name : '';
       this.membership.register(e, registerForm).subscribe((regdata:any) => {
         //this.user.setUser()
         //console.log(regdata);
@@ -139,19 +143,22 @@ export class RegisterComponent  implements OnInit{
                 this.agreementUpload.progress = percentDone;
               } else if (event instanceof HttpResponse) {
                 this.agreementUpload.status = 'done';
-                this.agreementUpload.delete_url = event.body["delete_url"];
+                this.agreementUpload.delete_url = event.body[0]["delete_url"];
                
                 console.log(event);
               }
             }, (err:any) => {
-              console.log('upload error : ');
-              console.log(err);
-              console.log(err.error);
+              // console.log('upload error : ');
+              // console.log(err);
+              // console.log(err.error);
 
             });
     }
   }
   image_upload(event){
+    if(this.imageUpload.delete_url && this.imageUpload.delete_url != ''){
+      this.http.delete(this.imageUpload.delete_url);
+    }
     let fileList: FileList = event.target.files;
     if(fileList.length > 0) {
         let file: File = fileList[0];
@@ -160,7 +167,7 @@ export class RegisterComponent  implements OnInit{
         
         let headers = new HttpHeaders().set('Accept', 'application/json');
      
-            const req = new HttpRequest('POST', _globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=image&imagesPathController=ArticleWriter&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {
+            const req = new HttpRequest('POST', _globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=writerImage&imagesPathController=ArticleWriter&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {
               reportProgress: true,
               headers:headers
             });
@@ -171,18 +178,30 @@ export class RegisterComponent  implements OnInit{
                 const percentDone = Math.round(100 * event.loaded / event.total);
                 this.imageUpload.progress = percentDone;
               } else if (event instanceof HttpResponse) {
+                // console.log(event.body[0]);
                 this.imageUpload.status = 'done';
-                this.imageUpload.delete_url = event.body["delete_url"];
-                this.imageUpload.thumbnail = event.body["thumbnail_url"];
+                this.imageUpload.delete_url = event.body[0]["delete_url"];
+                // this.imageUpload.thumbnail = _globals.CONTENT_PATH + 'ArticleWriter/' +  event.body[0]["name"];
+                this.imageUpload.thumbnail = _globals.RESIZED_CONTENT_PATH + '142x142xo/' +  event.body[0]["name"];
+                this.imageUpload.name = event.body[0]["name"];
                
                 console.log(event);
               }
             }, (err:any) => {
-              console.log('upload error : ');
-              console.log(err);
-              console.log(err.error);
+              // console.log('upload error : ');
+              // console.log(err);
+              // console.log(err.error);
 
             });
+    }
+  }
+  delete_agreement(){
+    if(this.imageUpload.delete_url && this.imageUpload.delete_url != ''){
+      this.http.delete(this.imageUpload.delete_url);
+      this.agreementUpload.status = 'empty';
+      this.agreementUpload.delete_url = '';
+      this.agreementUpload.name = '';
+      this.agreementUpload.progress = 0;
     }
   }
 }
