@@ -115,7 +115,7 @@ export class RegisterComponent  implements OnInit{
         
         let headers = new HttpHeaders().set('Accept', 'application/json');
      
-            const req = new HttpRequest('POST', _globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=images&imagesPathController=ArticleWriter&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {
+            const req = new HttpRequest('POST', _globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=agreement&imagesPathController=ArticleWriter&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {
               reportProgress: true,
               headers:headers
             });

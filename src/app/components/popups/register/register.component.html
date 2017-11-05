@@ -140,9 +140,9 @@
 								<li>
 									<a href="#">
 										<i class="fa fa-upload" aria-hidden="true"></i>
-										<input type="file" name="agreement" *ngIf="agreementUpload.status == 'empty'" [(ngModel)]="submitArticleModel.images" (change)="agreement_upload($event)" placeholder="UPLOAD SIGNED AGREEMENT FRORM" accept=".jpg, .jpeg, .png"/>
+										<input type="file" name="agreement" *ngIf="agreementUpload.status == 'empty'" [(ngModel)]="registerForm.agreement" (change)="agreement_upload($event)" placeholder="UPLOAD SIGNED AGREEMENT FRORM" accept=".jpg, .jpeg, .png"/>
 										<span class="agreement-progress" *ngIf="agreementUpload.status != 'empty'">
-											<span class="psy-agreement-name">{{agreementUpload.status}}</span>
+											<span class="psy-agreement-name">{{agreementUpload.name}}</span>
 											<span class="psy-agreement-progress" *ngIf="agreementUpload.status == 'uploading'">{{agreementUpload.progress}}%</span>
 											<span class="psy-agreement-delete" *ngIf="agreementUpload.status == 'done'" (click)="delete_agreement()">
 												<i class="fa fa-trash" aria-hidden="true"></i>
