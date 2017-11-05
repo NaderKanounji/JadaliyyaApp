@@ -75,7 +75,7 @@ export interface RegisterForm{
   linkedin:string;
   bio:string;
   image:string;
-  signedAgreement:string;
+  agreement:string;
   isWriter:boolean;
 }
 export interface ContributorsComponentModel{

@@ -54,10 +54,12 @@ import { FavoriteComponent } from './components/popups/favorite/favorite.compone
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { FavoritesActionsComponent } from './components/favorites/favorites-actions/favorites-actions.component';
 import { AccountSharedComponent } from './components/account-shared/account-shared.component';
+import { AccountArticlesComponent } from './components/account-articles/account-articles.component';
 import { SubmitArticleComponent } from './components/popups/submit-article/submit-article.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
+  { path: 'Account/Articles/:title', component: AccountArticlesComponent, canActivate:[AuthGuard]  },
   { path: 'Account/Favorites', component: FavoritesComponent, canActivate:[AuthGuard]  },
   { path: 'Account/Shared', component: AccountSharedComponent, canActivate:[AuthGuard]  },
   { path: 'Account', component: AccountComponent, canActivate:[AuthGuard]   },
@@ -113,6 +115,7 @@ var routes = [
     FavoritesComponent,
     FavoritesActionsComponent,
     AccountSharedComponent,
+    AccountArticlesComponent,
     SubmitArticleComponent
   ],
   imports: [

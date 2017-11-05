@@ -484,14 +484,14 @@ var $jadNavAutoplaySpeed = 5000;
 		
 
 		// Link avatar
-		function changeAvatar() {
-			$('.link-avatar').on('click', function(event) {
-				event.preventDefault();
+		// function changeAvatar() {
+		// 	$('.link-avatar').on('click', function(event) {
+		// 		event.preventDefault();
 
-				$(this).toggleClass('active');
-			});
-		};
-		changeAvatar();
+		// 		$(this).toggleClass('active');
+		// 	});
+		// };
+		// changeAvatar();
 
 		
 		//formSubmit();

@@ -154,20 +154,23 @@
 								</li>
 								
 								<li>
-									<a href="#" class="link-avatar">
+									<a class="link-avatar">
+											<input type="file" class="writer-image-input"  name="image" *ngIf="agreementUpload.status == 'empty' || agreementUpload.status == 'done'" [(ngModel)]="registerForm.image" (change)="image_upload($event)"  accept=".jpg, .jpeg, .png"/>
 										<span class="plus">
-											<i class="fa fa-plus" aria-hidden="true"></i>
+											<i class="fa fa-plus" aria-hidden="true" *ngIf="agreementUpload.status == 'empty'"></i>
 											
-											<i class="fa fa-pencil hidden" aria-hidden="true"></i>
+											<i class="fa fa-pencil" aria-hidden="true" *ngIf="agreementUpload.status == 'done'"></i>
 										</span>
 
 										<span class="image">
 											<i class="fa fa-user" aria-hidden="true"></i>
 
-											<img src="../assets/images/temp/writer-inner.png" alt="">
+											<img src="../assets/images/temp/writer-inner.png" alt="" *ngIf="agreementUpload.status == 'empty'">
+											<span class="writer-image-progress" *ngIf="agreementUpload.status == 'uploading'">{{imageUpload.progress}}%</span>
+											<img src="{{imageUpload.thumbnail_url}}" alt="" *ngIf="agreementUpload.status == 'done'">
 										</span>
 
-										<span class="text">Add Picture</span>
+										<span class="text" *ngIf="agreementUpload.status == 'empty'">Add Picture</span>
 									</a>
 								</li>
 							</ul><!-- /.list-steps -->

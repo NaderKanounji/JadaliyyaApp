@@ -29,11 +29,23 @@ export class RegisterComponent  implements OnInit{
     delete_url:string;
     status:string;
   }
+  imageUpload:{
+    progress:number;
+    thumbnail:string;
+    delete_url:string;
+    status:string;
+  }
   constructor(private http:HttpClient, private user:UserService, private myFunctions:FunctionsService, private sharedService:SharedService, private membership: MembershipService) { 
 
     this.agreementUpload = {
       progress: 0,
       name:'',
+      delete_url:'',
+      status:'empty'
+    }
+    this.imageUpload = {
+      progress: 0,
+      thumbnail:'',
       delete_url:'',
       status:'empty'
     }
@@ -71,7 +83,7 @@ export class RegisterComponent  implements OnInit{
           linkedin:'',
           image:'',
           isWriter:false,
-          signedAgreement:'',
+          agreement:'',
           website:''
         };
         setTimeout(() =>{
@@ -128,6 +140,40 @@ export class RegisterComponent  implements OnInit{
               } else if (event instanceof HttpResponse) {
                 this.agreementUpload.status = 'done';
                 this.agreementUpload.delete_url = event.body["delete_url"];
+               
+                console.log(event);
+              }
+            }, (err:any) => {
+              console.log('upload error : ');
+              console.log(err);
+              console.log(err.error);
+
+            });
+    }
+  }
+  image_upload(event){
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        formData.append("uploadFile", file, file.name);
+        
+        let headers = new HttpHeaders().set('Accept', 'application/json');
+     
+            const req = new HttpRequest('POST', _globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=image&imagesPathController=ArticleWriter&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {
+              reportProgress: true,
+              headers:headers
+            });
+            this.http.request(req).subscribe(event => {
+              //this.agreementUpload.name = file.name;
+              this.imageUpload.status = 'uploading';
+              if (event.type === HttpEventType.UploadProgress) {
+                const percentDone = Math.round(100 * event.loaded / event.total);
+                this.imageUpload.progress = percentDone;
+              } else if (event instanceof HttpResponse) {
+                this.imageUpload.status = 'done';
+                this.imageUpload.delete_url = event.body["delete_url"];
+                this.imageUpload.thumbnail = event.body["thumbnail_url"];
                
                 console.log(event);
               }
