@@ -1,11 +1,189 @@
+
+<div class="popup popup-tertiary mfp-hide" id="popup-delete-post">
+    <div class="popup-inner">
+        <header class="popup-head">
+            <i class="ico-logo-square"></i>
+
+            <small>{{deleteArticleTitle}}</small>
+            
+            <a href="#" class="link-close-popup">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+        </header><!-- /.popup-head -->
+
+        <div class="popup-body">
+            <h4>ARE YOU SURE YOU WANT TO ADD THIS TO YOUR FAVORITES?</h4>
+
+            <ul class="list-inline">
+                <li>
+                    <a class="btn btn-secondary btn-blue" (click)="delete_post_confirmed(deleteArticleId)">Yes, Delete Article</a>
+                </li>
+                
+                <li>
+                    <a class="btn btn-secondary btn-transparent-white psy-close-popup">No, Thank you!</a>
+                </li>
+            </ul><!-- /.list-inline -->
+        </div><!-- /.popup-body -->
+    </div><!-- /.popup-inner -->
+</div><!-- /.popup popup-tertiary -->
+
+<div class="popup popup-primary mfp-hide" id="popup-edit-post">
+        <header class="popup-head">
+          <i class="ico-logo-square"></i>
+      
+          <h3 class="popup-title">NEW ARTICLE</h3><!-- /.popup-title -->
+      
+          <a href="#" class="link-close-popup">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </a>
+        </header><!-- /.popup-head -->
+      
+        <div class="popup-body">
+          <div class="form-primary">
+            <form (submit)="submit_edit($event, newArticle.value)" #newArticle="ngForm" ngNativeValidate>
+              <div class="form-body">
+                <div class="form-row">
+                  <div class="form-controls form-controls-no-ico">
+                    <input type="text" class="field" name="title" id="field-title" placeholder="Title" required [(ngModel)]="submitArticleModel.title">
+                  </div><!-- /.form-controls -->
+                </div><!-- /.form-row -->
+                
+                <div class="form-row" *ngIf="formsData?.categories?.length">
+                  <div class="form-controls form-controls-no-ico form-select">
+                    <select name="categoryId" id="field-category" class="select" required [(ngModel)]="submitArticleModel.categoryId">
+                      <option value="">Category</option>
+                      <option value="{{item.key}}" *ngFor="let item of formsData.categories">{{item.value}}</option>
+                    </select>
+                  </div><!-- /.form-controls -->
+                </div><!-- /.form-row -->
+    
+                <div class="form-row" *ngIf="formsData?.articleCountries?.length">
+                  <div class="form-controls form-controls-no-ico form-select">
+                    <select name="countryId" id="field-category" class="select" required [(ngModel)]="submitArticleModel.countryId">
+                      <option value="">Category</option>
+                      <option value="{{item.key}}" *ngFor="let item of formsData.articleCountries">{{item.value}}</option>
+                    </select>
+                  </div><!-- /.form-controls -->
+                </div><!-- /.form-row -->
+                
+                <div class="form-row">
+                    <div class="form-controls form-controls-no-ico">
+                      <input type="date" class="field" name="date" id="field-title" value="" placeholder="Date" required [(ngModel)]="submitArticleModel.date">
+                    </div><!-- /.form-controls -->
+                  </div><!-- /.form-row -->
+                <div class="form-row">
+                  <div class="form-upload">
+                    <label>
+                        <input type="file" name="images" [(ngModel)]="submitArticleModel.images" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg, .jpeg, .png" multiple/>
+                    
+                        <span>Image</span>
+                    
+                        <span class="btn">
+                          <i class="fa fa-upload" aria-hidden="true"></i>
+                    
+                          Upload
+                        </span>
+                    </label>
+                    
+    
+                    <div class="progress" *ngFor="let item of uploadedImages; let i = index">
+                        <div class="progress-bar " style.width="{{item?.status == 'done' ? 0 : item?.progress}}%">
+                          <span>{{item?.name}}</span>
+                        </div><!-- /.progress-bar -->
+                    
+                        <span class="psy-images-progress {{item?.progress > 95 ? 'white' : ''}}">
+                            <span *ngIf="item?.status == 'uploading'">{{item?.progress}}% Uploading</span>
+                    
+                          <a class="" (click)="delete_image(item?.uniqueIdentifier)" *ngIf="item?.status == 'done'">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </a>
+                        </span>
+                      </div><!-- /.progress -->
+                  
+                    <p class="form-upload-info">Recommended image size: 762x800 px </p>
+                  </div><!-- /.form-upload -->
+                </div><!-- /.form-row -->
+      
+                <!--
+                <div class="form-row">
+                  <div class="form-upload">
+                    <label>
+                        <input type="file" name="files"/>
+                    
+                        <span>File</span>
+                    
+                        <span class="btn">
+                          <i class="fa fa-upload" aria-hidden="true"></i>
+                    
+                          Upload
+                        </span>
+                    </label>
+      
+                    <p class="form-upload-info">Recommended  file size: 1 MB </p>
+                  </div>
+                </div>
+              -->
+                
+                <div class="form-row">
+                  <div class="form-controls form-controls-no-ico">
+                    <input type="text" class="field" name="videoUrl" id="field-video" placeholder="Video (URL)" [(ngModel)]="submitArticleModel.videoUrl">
+                  </div><!-- /.form-controls -->
+                </div><!-- /.form-row -->
+    
+                <div class="form-row">
+                  <div class="form-controls form-controls-no-ico">
+                    <input type="text" class="field" name="quote" id="field-video" placeholder="Middle Quote" [(ngModel)]="submitArticleModel.quote">
+                  </div><!-- /.form-controls -->
+                </div><!-- /.form-row -->
+                
+                <!-- <div class="form-row">
+                  <div class="form-controls form-controls-no-ico">
+                    <input type="text" class="field" name="field-audio" id="field-audio" value="" placeholder="Audio (URL)">
+                  </div>
+                </div> -->
+                
+                <div class="form-row">
+                  <div class="form-controls form-controls-no-ico">
+                    <textarea class="textarea textarea-large" name="description" id="field-text" placeholder="Text" required [(ngModel)]="submitArticleModel.description"></textarea>
+                  </div><!-- /.form-controls -->
+                </div><!-- /.form-row -->
+              </div><!-- /.form-body -->
+              <ul class="form-errors" *ngIf="formErrors?.length">
+                <li *ngFor="let item of formErrors">{{item}}</li>
+              </ul>
+              
+              <div class="form-actions">
+                <span class="form-required">Required</span>
+      
+                <input type="submit" value="Save" class="form-btn btn btn-primary btn-blue" *ngIf="!isSubmitted">
+                <div class="sk-fading-circle submit-loader" *ngIf="isSubmitted">
+                  <div class="sk-circle1 sk-circle"></div>
+                  <div class="sk-circle2 sk-circle"></div>
+                  <div class="sk-circle3 sk-circle"></div>
+                  <div class="sk-circle4 sk-circle"></div>
+                  <div class="sk-circle5 sk-circle"></div>
+                  <div class="sk-circle6 sk-circle"></div>
+                  <div class="sk-circle7 sk-circle"></div>
+                  <div class="sk-circle8 sk-circle"></div>
+                  <div class="sk-circle9 sk-circle"></div>
+                  <div class="sk-circle10 sk-circle"></div>
+                  <div class="sk-circle11 sk-circle"></div>
+                  <div class="sk-circle12 sk-circle"></div>
+                </div>
+              </div><!-- /.form-actions -->
+            </form>
+          </div><!-- /.form-primary -->
+        </div><!-- /.popup-body -->
+      </div><!-- /.popup -->
+
 <div class="container">
 		<section class="section section-my-articles">
 			<div class="shell">
 				<div class="section-content">
 					<div class="table-articles table-articles-secondary">
 						<div class="table-row {{item?.isArabic ? 'rtl' : ''}}" *ngFor="let item of articles">
-							<div class="table-col" *ngIf="item?.image">
-								<a title="{{item?.title}}" routerLink="/Details/{{item?.id + (item?.customUrlTitle ? '/' + item?.customUrlTitle : '')}}">
+							<div class="table-col">
+								<a title="{{item?.title}}" routerLink="/Details/{{item?.id + (item?.customUrlTitle ? '/' + item?.customUrlTitle : '')}}" *ngIf="item?.image">
 									<img src="{{RESIZED_CONTENT_PATH}}77x54xo/{{item?.image}}" alt="">
 								</a>
 							</div><!-- /.table-col -->
@@ -33,14 +211,42 @@
 
 								<ul class="list-inline">
 									<li>
-										<a href="#">
-											<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										<a (click)="edit_post(item?.id)">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" *ngIf="!isFetchingEdit"></i>                                       
+                                            <div class="sk-fading-circle action-loader" *ngIf="isFetchingEdit">
+                                                <div class="sk-circle1 sk-circle"></div>
+                                                <div class="sk-circle2 sk-circle"></div>
+                                                <div class="sk-circle3 sk-circle"></div>
+                                                <div class="sk-circle4 sk-circle"></div>
+                                                <div class="sk-circle5 sk-circle"></div>
+                                                <div class="sk-circle6 sk-circle"></div>
+                                                <div class="sk-circle7 sk-circle"></div>
+                                                <div class="sk-circle8 sk-circle"></div>
+                                                <div class="sk-circle9 sk-circle"></div>
+                                                <div class="sk-circle10 sk-circle"></div>
+                                                <div class="sk-circle11 sk-circle"></div>
+                                                <div class="sk-circle12 sk-circle"></div>
+                                            </div>
 										</a>
 									</li>
 									
 									<li>
-										<a href="#">
-											<i class="fa fa-trash" aria-hidden="true"></i>
+										<a (click)="delete_post(item?.id, 'item?.title')">
+											<i class="fa fa-trash" aria-hidden="true" *ngIf="!isDeletingArticleWriter"></i>                                           
+                                            <div class="sk-fading-circle action-loader" *ngIf="isDeletingArticleWriter">
+                                                <div class="sk-circle1 sk-circle"></div>
+                                                <div class="sk-circle2 sk-circle"></div>
+                                                <div class="sk-circle3 sk-circle"></div>
+                                                <div class="sk-circle4 sk-circle"></div>
+                                                <div class="sk-circle5 sk-circle"></div>
+                                                <div class="sk-circle6 sk-circle"></div>
+                                                <div class="sk-circle7 sk-circle"></div>
+                                                <div class="sk-circle8 sk-circle"></div>
+                                                <div class="sk-circle9 sk-circle"></div>
+                                                <div class="sk-circle10 sk-circle"></div>
+                                                <div class="sk-circle11 sk-circle"></div>
+                                                <div class="sk-circle12 sk-circle"></div>
+                                            </div>
 										</a>
 									</li>
 								</ul><!-- /.list-inline -->

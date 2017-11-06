@@ -328,6 +328,14 @@ blockquote:last-child {
 .sk-fading-circle.submit-loader .sk-circle:before {
   background-color: rgba(12, 108, 173, 0.8);
 }
+.sk-fading-circle.action-loader {
+  margin: 10px auto;
+  height: 15px;
+  width: 15px;
+}
+.sk-fading-circle.action-loader .sk-circle:before {
+  background-color: rgba(12, 108, 173, 0.8);
+}
 .sk-fading-circle.follow-loader {
   margin: 10px auto;
   height: 30px;

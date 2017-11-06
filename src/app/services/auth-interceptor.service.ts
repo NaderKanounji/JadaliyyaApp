@@ -19,8 +19,10 @@ export class AuthInterceptorService implements HttpInterceptor {
     if(token){
       request = request.clone({
         setHeaders:{
-          Authorization: token.token_type + ' ' + token.access_token
-        }
+          Authorization: token.token_type + ' ' + token.access_token,
+         // withCredentials:'true'
+        },
+        
       });
     }
     return next.handle(request).do((event:HttpEvent<any>) => {

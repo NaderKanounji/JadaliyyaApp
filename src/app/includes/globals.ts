@@ -15,10 +15,10 @@ export const _globals = Object.freeze({
     //ONLINE VALUES
     // API_URL: 'http://jadaliyyaapi2.koeinbeta.com/api/', 
     // CONTENT_PATH: 'jadaliyyakms.koeinbeta.com/content/uploads/',
-    // RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
+    // RESIZED_CONTENT_PATH: 'http://jadaliyyakms2.koeinbeta.com/Images/',
     // BASE_URL: 'http://jadaliyya2.koeinbeta.com/',
     // BASE_API_URL: 'http://jadaliyyaapi2.koeinbeta.com/',
-    //BASE_KMS_URL: 'http://shift2.koein.com/jadaliyyakms/',
+    // BASE_KMS_URL: 'http://jadaliyyakms2.koeinbeta.com/',
     // STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
     // TwitterUsername:'Jadaliyya',
     

@@ -165,7 +165,7 @@
 										<span class="image">
 											<i class="fa fa-user" aria-hidden="true" *ngIf="imageUpload.status == 'empty'"></i>
 
-											<img src="../assets/images/temp/writer-inner.png" alt="" *ngIf="imageUpload.status == 'empty'">
+											<!-- <img src="../assets/images/temp/writer-inner.png" alt="" *ngIf="imageUpload.status == 'empty'"> -->
 											<span class="writer-image-progress" *ngIf="imageUpload.status == 'uploading'">{{imageUpload.progress}}%</span>
 											<img src="{{imageUpload.thumbnail}}" alt="" *ngIf="imageUpload.status == 'done'">
 										</span>

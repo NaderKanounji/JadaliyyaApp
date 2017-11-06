@@ -58,8 +58,8 @@
 		<section class="section section-account">
 			<div class="shell">
 				<div class="section-content">
-					<div class="form-primary form-login" data-target="#save-account">
-						<form (submit)="edit_profile($event, editForm.value)" #editForm="ngForm" ngNativeValidate>
+					<div class="form-primary form-login" data-target="#save-account" >
+						<form (submit)="edit_profile($event, editForm.value)" #editForm="ngForm" ngNativeValidate *ngIf="!(tempUser?.user?.isWriter)">
 							<div class="form-body">
 								<div class="cols">
 									<div class="col col-1of2">
@@ -156,6 +156,153 @@
                 </div>
 							</div><!-- /.form-actions -->
 						</form>
+
+								<form (submit)="edit_profile($event, editWriterForm.value)" #editWriterForm="ngForm" ngNativeValidate *ngIf="tempUser?.user?.isWriter">
+									<div class="form-body">
+										<ul class="list-steps list-steps-alt">
+											<li>
+												<a href="#" class="link-avatar">
+													<!-- <span class="plus">
+														<i class="fa fa-plus" aria-hidden="true"></i>
+														
+														<i class="fa fa-pencil hidden" aria-hidden="true"></i>
+													</span>
+		
+													<span class="image">
+														<i class="fa fa-user" aria-hidden="true"></i>
+		
+														<img src="{{RESIZED_CONTENT_PATH}}142x142xo/{{profile?.image}}" alt="">
+													</span>
+		
+													<span class="text">Add Picture</span> -->
+
+													<!-- asd -->
+													<input type="file" class="writer-image-input"  name="image" *ngIf="imageUpload.status == 'empty' || imageUpload.status == 'done'" [(ngModel)]="profileModel.image" (change)="image_upload($event)"  accept=".jpg, .jpeg, .png"/>
+													<span class="plus" *ngIf="imageUpload.status != 'uploading'">
+														<i class="fa fa-plus" aria-hidden="true" *ngIf="imageUpload.status == 'empty' && !(profile?.image)"></i>
+														
+														<i class="fa fa-pencil" aria-hidden="true" *ngIf="imageUpload.status == 'done' || profile?.image"></i>
+													</span>
+			
+													<span class="image">
+														<i class="fa fa-user" aria-hidden="true" *ngIf="imageUpload.status == 'empty' && !(profile?.image)"></i>
+			
+														<!-- <img src="../assets/images/temp/writer-inner.png" alt="" *ngIf="imageUpload.status == 'empty'"> -->
+														<span class="writer-image-progress" *ngIf="imageUpload.status == 'uploading'">{{imageUpload.progress}}%</span>
+														<img src="{{imageUpload.thumbnail}}" alt="" *ngIf="imageUpload.status == 'done'">
+														<img src="{{RESIZED_CONTENT_PATH}}142x142xo/{{profile?.image}}" *ngIf="profile?.image && imageUpload.status == 'empty'">
+													</span>
+			
+													<span class="text" *ngIf="imageUpload.status == 'empty'">Add Picture</span>
+												</a>
+											</li>
+										</ul><!-- /.list-steps -->
+		
+										<div class="form-group">
+											<div class="cols">
+												<div class="col col-1of2">
+													<div class="form-row">
+														<div class="form-controls">
+																<input type="text" class="field" name="fullname" id="field-name"placeholder="Full Name" required [(ngModel)]="profileModel.fullname" requried>
+		
+															<i class="fa fa-user" aria-hidden="true"></i>
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+													
+													<div class="form-row" *ngIf="sharedModel?.formData?.userIdentifications?.length">
+														<div class="form-controls form-select">
+																<select name="identifies" id="field-identify" class="select" required  [(ngModel)]="profileModel.identifies" required>
+																	<option value="">User Identifies as</option>
+																	<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.userIdentifications" [selected]="profileModel?.identifies == item?.key">{{item.value}}</option>
+																</select>
+		
+															<i class="fa fa-male" aria-hidden="true"></i>
+		
+															<i class="fa fa-female" aria-hidden="true"></i>
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+												</div><!-- /.col col-1of2 -->
+												
+												<div class="col col-1of2">
+													<div class="form-row" *ngIf="sharedModel?.formData?.countries?.length">
+														<div class="form-controls form-select">
+																<select name="countryId" id="field-Country" class="select" required [(ngModel)]="profileModel.countryId" required>
+																	<option value="">Country of residence</option>
+																	<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.countries" [selected]="profileModel?.countryId == item?.key">{{item.value}}</option>
+																</select>
+		
+															<i class="fa fa-flag" aria-hidden="true"></i>
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+		
+													<div class="form-row">
+														<div class="form-controls">
+																<input type="email" class="field" name="UserName" id="field-email" placeholder="Email Address" required [(ngModel)]="profileModel.UserName" readonly="readonly" requried>
+				
+															<i class="fa fa-envelope" aria-hidden="true"></i>
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+												</div><!-- /.col col-1of2 -->
+											</div><!-- /.cols -->
+										</div><!-- /.form-group -->
+										
+										<div class="form-group">
+											<div class="cols">
+												<div class="col col-1of2">
+													<div class="form-row">
+														<div class="form-controls">
+															<input type="text" class="field" name="website" id="field-website" value="" placeholder="Website" [(ngModel)]="profileModel.website">
+		
+															<i class="fa fa-external-link-square" aria-hidden="true"></i>
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+													
+													<div class="form-row">
+														<div class="form-controls">
+															<input type="text" class="field" name="facebook" id="field-facebook" value="" placeholder="Facebook" [(ngModel)]="profileModel.facebook">
+		
+															<i class="fa fa-facebook" aria-hidden="true"></i>
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+												</div><!-- /.col col-1of2 -->
+												
+												<div class="col col-1of2">
+													<div class="form-row">
+														<div class="form-controls">
+															<input type="text" class="field" name="twitter" id="field-twitter" value="" placeholder="Twitter" [(ngModel)]="profileModel.twitter">
+		
+															<i class="fa fa-twitter" aria-hidden="true"></i>
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+													
+													<div class="form-row">
+														<div class="form-controls">
+															<input type="text" class="field" name="linkedin" id="field-linkedin" value="" placeholder="Linkedin" [(ngModel)]="profileModel.linkedin">
+		
+															<i class="fa fa-linkedin" aria-hidden="true"></i>
+														</div><!-- /.form-controls -->
+													</div><!-- /.form-row -->
+												</div><!-- /.col col-1of2 -->
+											</div><!-- /.cols -->
+										</div><!-- /.form-group -->
+		
+										<div class="form-group">
+											<div class="form-row">
+												<div class="form-controls">
+													<textarea class="textarea" name="bio" id="field-bio" placeholder="Bio" required [(ngModel)]="profileModel.bio"></textarea>
+		
+													<i class="fa fa-file-text" aria-hidden="true"></i>
+												</div><!-- /.form-controls -->
+											</div><!-- /.form-row -->
+										</div><!-- /.form-group -->
+									</div><!-- /.form-body -->
+									
+									<div class="form-actions">
+										<span class="form-required">Required</span>
+		
+										<input type="submit" value="Save" class="form-btn btn btn-primary btn-blue">
+									</div><!-- /.form-actions -->
+								</form>
 					</div><!-- /.form-primary -->
 				</div><!-- /.section-content -->
 			</div><!-- /.shell -->

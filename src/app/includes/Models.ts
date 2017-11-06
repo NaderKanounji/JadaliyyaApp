@@ -33,16 +33,6 @@ export interface ContactFormModel{
   inquiryType:number;
   message:string;
 }
-export interface ProfileModel{
-  id:string;
-  fullname:string;
-  identifies:number;
-  year:string;
-  countryId:number;
-  UserName:string;
-  password:string;
-  ConfirmPassword:string;
-}
 export interface FavoritesModel{
   folders:FolderModel[];
 }
@@ -92,6 +82,24 @@ export interface RegisterForm{
   bio:string;
   image:string;
   agreement:string;
+  isWriter:boolean;
+}
+
+export interface ProfileModel{
+  id:string;
+  fullname:string;
+  identifies:number;
+  year:string;
+  countryId:number;
+  UserName:string;
+  password:string;
+  ConfirmPassword:string;
+  website:String;
+  twitter:string;
+  facebook:string;
+  linkedin:string;
+  bio:string;
+  image:string;
   isWriter:boolean;
 }
 export interface ContributorsComponentModel{
@@ -295,6 +303,7 @@ export interface CategoryWithArticles{
 }
 
 export interface SubmitArticleModel{
+  id:number;
   title:string;
   categoryId:number;
   countryId:number;

@@ -26,7 +26,7 @@
 								<a title="Donate" routerLink="/Donate">Donate</a>
 							</li>
                             <li>
-								<a href="ajax/popup-advertise.html" class="link-popup">Advertise with us</a>
+								<a data-psy-pop="popup-advertise">Advertise with us</a>
 							</li>
 
 							<li>
@@ -45,12 +45,12 @@
 								<a href="#">Submission Guidelines</a>
 							</li>
 
-							<li>
-								<a href="ajax/popup-new-article-no-files.html" class="link-popup">Submit an Article</a>
+							<li *ngIf="user?.isLogged && user?.user?.isWriter">
+								<a data-psy-pop="popup-submit-article">Submit an Article</a>
 							</li>
 
 							<li>
-								<a href="ajax/popup-announcement.html" class="link-popup">Submit an Announcement</a>
+								<a data-psy-pop="popup-submit-announcment">Submit an Announcement</a>
 							</li>
 
 							<li>
@@ -58,11 +58,11 @@
 							</li>
 
 							<li>
-								<a href="Privacy-policy.html">Privacy Policy</a>
+								<a title="Privacy Policy" routerLink="/PrivacyPolicy">Privacy Policy</a>
 							</li>
 
 							<li>
-								<a href="#">Terms Of Service</a>
+								<a title="Terms Of Service" routerLink="/TermsOfServices">Terms Of Service</a>
 							</li>
 						</ul><!-- /.list-links -->
 					</div><!-- /.col -->

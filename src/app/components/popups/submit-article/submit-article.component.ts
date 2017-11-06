@@ -32,6 +32,7 @@ export class SubmitArticleComponent implements OnInit {
 
   constructor(private userService:UserService, private sharedService:SharedService, private http:HttpClient, private myFunctions:FunctionsService) { 
     this.submitArticleModel ={
+      id:null,
       categoryId:null,
       countryId:null,
       description:'',
@@ -85,7 +86,7 @@ export class SubmitArticleComponent implements OnInit {
         //formData.append('uploadFile', file, file.name);
         let headers = new HttpHeaders().set('Accept', 'application/json');
 
-            const req = new HttpRequest('POST', _globals.BASE_API_URL + 'Upload/UploadHandler.ashx?fieldName=images&imagesPathController=Article&IsRemoteUpload=true&hasCaption=False&hasDescription=False&hasCheckbox=False', formData, {
+            const req = new HttpRequest('POST', _globals.API_URL + 'Upload/UploadFiles?inputName=images&directory=Article&hasCaption=False&hasDescription=False&hasCheckbox=False&maxNumberOfFiles=99', formData, {
               reportProgress: true,
               headers:headers
             });
