@@ -1,0 +1,15 @@
+<div class="container">
+  <section class="section section-privacy">
+    <div class="shell">
+      <ul class="list-privacy" *ngIf="policies?.length">
+        <li *ngFor="let item of policies">
+          <h5>{{item.title}}</h5>
+          <p [innerHTML]="item.description"></p>
+        </li>
+     
+      </ul><!-- /.list-privacy -->
+    </div><!-- /.shell -->
+  </section><!-- /.section section-privacy -->
+
+  <!--#include file="ssi/mobile-widgets-secondary.shtml" -->
+</div><!-- /.container -->

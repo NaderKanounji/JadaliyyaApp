@@ -6,12 +6,13 @@ import { SharedModel, SocialMedia,SharedCountryModel, Country, Category, FormsDa
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"headerType" : "header",'messagePopup': '' , "displayActions": false, "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
+    {"headerType" : "header",'messagePopup': '' , "displayActions": false, "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleMapApiLoaded" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
     formData:{
       countries:null,
       userIdentifications:null,
       articleCountries:null,
-      categories:null
+      categories:null,
+      inquiryTypes:null
     }}
   );
   sharedModel = this.messageSource.asObservable();
@@ -55,6 +56,11 @@ export class SharedService {
   set_isGoogleApiLoaded(myIsGoogleApiLoaded:boolean){
     let tempModel = this.messageSource.getValue();
     tempModel.isGoogleApiLoaded = myIsGoogleApiLoaded;
+    this.messageSource.next(tempModel);
+  }
+  set_isGoogleMapApiLoaded(myIsGoogleApiLoaded:boolean){
+    let tempModel = this.messageSource.getValue();
+    tempModel.isGoogleMapApiLoaded = myIsGoogleApiLoaded;
     this.messageSource.next(tempModel);
   }
   set_socialMedia(mySocialMedia:SocialMedia[]){

@@ -509,33 +509,7 @@ var $jadNavAutoplaySpeed = 5000;
 		popupDropdown();
 		// Google Maps
 
-		if ($('.gmap').length) {
-			function initialize() {
-				var mapCanvas = document.getElementById('map');
-				var lat = mapCanvas.dataset.lat;
-				var lng = mapCanvas.dataset.lng;
-
-				var mapOptions = {
-					center: new google.maps.LatLng(lat, lng),
-					zoom: 16,
-					scrollwheel: false,
-					mapTypeId: google.maps.MapTypeId.ROADMAP,
-					disableDefaultUI: true
-				}
-
-				var map = new google.maps.Map(mapCanvas, mapOptions);
-
-				var myIcon = new google.maps.MarkerImage("assets/images/ico-pin.png", null, null, null, new google.maps.Size(43,43));
-
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(lat, lng),
-					map: map,
-					icon: myIcon
-				});
-			}
-
-			google.maps.event.addDomListener(window, 'load', initialize);
-		};
+		
 
 		
 		
@@ -948,6 +922,38 @@ var $jadNavAutoplaySpeed = 5000;
 // 	}
 // });
 
+
+//Contact us map
+
+
+var contact_us_map_init = function(){
+	if ($('.gmap').length) {
+		function initialize() {
+			var mapCanvas = document.getElementById('map');
+			var lat = mapCanvas.dataset.lat;
+			var lng = mapCanvas.dataset.lng;
+		
+			var mapOptions = {
+				center: new google.maps.LatLng(lat, lng),
+				zoom: 16,
+				scrollwheel: false,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				disableDefaultUI: true
+			}
+		
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+		
+			var myIcon = new google.maps.MarkerImage("assets/images/ico-pin.png", null, null, null, new google.maps.Size(43,43));
+		
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(lat, lng),
+				map: map,
+				icon: myIcon
+			});
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+	};
+}
 // Slider feed
 var slide_feed_function = function(){
 	$('.slider-feed .owl-carousel').owlCarousel({
@@ -1815,6 +1821,11 @@ module.exports.myFunctions = {
 	load_jadNavigation_map:function(){
 		setTimeout(function(){
 			load_jadNavigation_map();
+		},200);
+	},
+	contact_us_map_init:function(){
+		setTimeout(function(){
+			contact_us_map_init();
 		},200);
 	},
 	openSubMenu:function(){

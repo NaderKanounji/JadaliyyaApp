@@ -17,6 +17,22 @@ export interface UserModel{
     followers:number;
   }
 }
+export interface ContactInfoModel{
+  phone:string;
+  address:string;
+  email:string;
+  marker:MapMarker;
+}
+export interface ContactFormModel{
+  fullName:string;
+  countryId:number;
+  identifies:number;
+  email:string;
+  profession:string;
+  phone:string;
+  inquiryType:number;
+  message:string;
+}
 export interface ProfileModel{
   id:string;
   fullname:string;
@@ -166,6 +182,7 @@ export interface FormsData{
   countries:IntStringModel[];
   categories:IntStringModel[];
   articleCountries:IntStringModel[];
+  inquiryTypes:IntStringModel[];
   userIdentifications:IntStringModel[];
 }
 export interface IntStringModel{
@@ -208,6 +225,7 @@ export interface SocialMediaModel{
     displayActions:boolean;
     customUrlTitle:string;
     isGoogleApiLoaded:boolean;
+    isGoogleMapApiLoaded:boolean;
     socialMedia:SocialMedia[];
     country:SharedCountryModel;
     formData:FormsData;
@@ -246,6 +264,10 @@ export interface PageModel{
   smallDescription:string;
   email:string;
   twitter:string;
+}
+export interface CorporatePageTreeModel{
+  title:string;
+  description:string;
 }
 
 export interface Profile{

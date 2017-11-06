@@ -56,9 +56,13 @@ import { FavoritesActionsComponent } from './components/favorites/favorites-acti
 import { AccountSharedComponent } from './components/account-shared/account-shared.component';
 import { AccountArticlesComponent } from './components/account-articles/account-articles.component';
 import { SubmitArticleComponent } from './components/popups/submit-article/submit-article.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
+  { path: 'ContactUs', component: ContactUsComponent  },
+  { path: 'PrivacyPolicy', component: PrivacyPolicyComponent  },
   { path: 'Account/Articles/:title', component: AccountArticlesComponent, canActivate:[AuthGuard]  },
   { path: 'Account/Favorites', component: FavoritesComponent, canActivate:[AuthGuard]  },
   { path: 'Account/Shared', component: AccountSharedComponent, canActivate:[AuthGuard]  },
@@ -116,7 +120,9 @@ var routes = [
     FavoritesActionsComponent,
     AccountSharedComponent,
     AccountArticlesComponent,
-    SubmitArticleComponent
+    SubmitArticleComponent,
+    PrivacyPolicyComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

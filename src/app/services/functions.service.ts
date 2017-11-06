@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { myFunctions } from './../../assets/js/functions.js';
 
+import {SharedService} from './shared.service';
+
 @Injectable()
 export class FunctionsService {
   isGoogleMapLoaded:boolean = false;
   isGoogleApiLoaded:boolean = false;
-  constructor() { 
+  constructor(private sharedService:SharedService) { 
     
   }
 //Main Block calls
@@ -87,6 +89,9 @@ country_sidebar(){
   header_bindings(){
     myFunctions.nav_bindings();
   }
+  contact_us_map_init(){
+    myFunctions.contact_us_map_init();
+  }
   sticky_sidebar_binding(){
     myFunctions.sticky_sidebar_binding();
   }
@@ -150,6 +155,7 @@ country_sidebar(){
   load_google_map_api(){
     if(!this.isGoogleMapLoaded){
       this.isGoogleMapLoaded =true;
+      this.sharedService.set_isGoogleMapApiLoaded(true);
       (function() {
         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
         po.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAAzN3gVnJqU5kpoYxmI8ER1s-MBn1D3kM';
