@@ -1,0 +1,23 @@
+.article-video{
+    width:100%;
+    height:calc((100vw - 569px) * 0.56);
+    max-height: 544px;
+    margin-bottom: 20px;
+}
+.article-video iframe{
+    width:100%;
+    height:100%;
+}
+
+@media (max-width:1200px){
+    .article-video{
+        height:calc((100vw - 192px) * 0.56);
+        max-height: 9999px;
+    }
+}
+@media (max-width:767px){
+    .article-video{
+        height:calc((100vw + 185px) * 0.56);
+        max-height: 9999px;
+    }
+}

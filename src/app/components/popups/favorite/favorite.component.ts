@@ -60,6 +60,9 @@ export class FavoriteComponent implements OnInit {
         this.myFunctions.close_popupDropdown();
         this.newFolder.title = '';
         this.myFunctions.psy_open_popup('popup-added-to-fav');
+        setTimeout(() => {
+          this.myFunctions.close_popup();
+        }, 5000);
   
       }, (err:any) => {
         //console.log(err);
@@ -85,6 +88,9 @@ export class FavoriteComponent implements OnInit {
         this.myFunctions.close_popupDropdown();
         this.myFunctions.psy_open_popup('popup-added-to-fav');
         this.isAddingArticle = false;
+        setTimeout(() => {
+          this.myFunctions.close_popup();
+        }, 5000);
       }, (err:any) => {
         //console.log(err);
         

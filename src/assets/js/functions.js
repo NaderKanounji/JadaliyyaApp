@@ -279,28 +279,7 @@ var $jadNavAutoplaySpeed = 5000;
 			closeSubMenu();
 		});
 
-		// Show search
-		$('.link-search').on('click', function(event) {
-			event.preventDefault();
-
-			$('.search').toggleClass('active');
-			$('.link-search-close').toggleClass('active');
-			if( $('.search').hasClass('active') ) {
-				$('.search-field').focus();
-			};
-		});
-
-		// Hide search
-		$('.link-search-close').on('click', function(event) {
-			event.preventDefault();
-
-			closeSearch();
-		});
-
-		function closeSearch() {
-			$('.search').removeClass('active');
-			$('.link-search-close').removeClass('active');
-		};
+		
 
 		// Popup
 		function openPopup() {
@@ -922,10 +901,33 @@ var $jadNavAutoplaySpeed = 5000;
 // 	}
 // });
 
+var search_open_close = function(){
+	// Show search
+	$('.link-search').on('click', function(event) {
+		event.preventDefault();
+
+		$('.search').toggleClass('active');
+		$('.link-search-close').toggleClass('active');
+		if( $('.search').hasClass('active') ) {
+			$('.search-field').focus();
+		};
+	});
+
+	// Hide search
+	$('.link-search-close').on('click', function(event) {
+		event.preventDefault();
+
+		closeSearch();
+	});
+
+	function closeSearch() {
+		$('.search').removeClass('active');
+		$('.link-search-close').removeClass('active');
+	};
+}
+
 
 //Contact us map
-
-
 var contact_us_map_init = function(){
 	if ($('.gmap').length) {
 		function initialize() {
@@ -1721,6 +1723,9 @@ module.exports.myFunctions = {
 		$.magnificPopup.close();
 		closeSearch();
 		verticalScroll();
+		search_open_close();
+		$('.nav-access .has-dropdown > a').removeClass('active');
+		$('.nav-access .has-dropdown > a').next('.dropdown').removeClass('active');
 	},
 	load_all_pages:function(){
 		setTimeout(function(){
@@ -1790,6 +1795,7 @@ module.exports.myFunctions = {
 		setTimeout(function(){
 			slide_feed_function();
 			tabsInit();
+			horizontalScroll();
 		},200);
 	},
 	load_home_roundups_section:function(){

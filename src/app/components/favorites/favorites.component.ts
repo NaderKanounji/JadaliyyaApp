@@ -79,6 +79,7 @@ export class FavoritesComponent implements OnInit {
   
       }, (err:any) => {
         //console.log(err);
+        this.isAddingFolder =false;
         if(err.error.message){
           this.formErrors.push(err.error.message);
         }else{
@@ -160,5 +161,8 @@ export class FavoritesComponent implements OnInit {
     this.myFunctions.close_popup();
     this.sharedService.set_messagePopup('THANK YOU!<br/>AN EMAIL HAS BEEN SENT TO YOUR FRIEND.');
     this.myFunctions.psy_open_popup('popup-message');
+    setTimeout(() => {
+      this.myFunctions.close_popup();
+    }, 5000);
   }
 }

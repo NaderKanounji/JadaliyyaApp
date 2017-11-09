@@ -113,9 +113,9 @@ export class AccountComponent implements OnInit {
   }
 
   submit_profile(profileModel:ProfileModel, passUpdated:boolean){
+   
     this.membership.UpdateProfile(profileModel).subscribe((data:any) => {
       console.log(data);
-      
       this.formSubmitted = false;
       if(passUpdated){
         this.sharedService.set_messagePopup('Your profile & password have been successfully updated');

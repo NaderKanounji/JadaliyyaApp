@@ -9,7 +9,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, TagModel, FeaturedRecentModel, Profile, JadNavigationWidget, StatusModel } from '../../includes/Models';
+import { ArticleModel, SocialMedia, TagModel, FeaturedRecentModel, Profile, JadNavigationWidget, StatusModel, BannerModel } from '../../includes/Models';
 
 // import * as _globals from '../../includes/globals'; 
 
@@ -21,6 +21,9 @@ import { ArticleModel, SocialMedia, TagModel, FeaturedRecentModel, Profile, JadN
 export class HomeComponent implements OnInit {
   CONTENT_PATH:string;
   RESIZED_CONTENT_PATH:string;
+  NEWTON_CATEGORY_ID:number;
+  PEDAGODY_CATEGORY_ID:number;
+  QUICK_THOUGHTS_CATEGORY_ID:number;
 
   
   isEditorPick:boolean = false;
@@ -48,6 +51,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.CONTENT_PATH = _globals.CONTENT_PATH;
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
+    this.NEWTON_CATEGORY_ID = _globals.NEWTON_CATEGORY_ID;
+    this.PEDAGODY_CATEGORY_ID = _globals.PEDAGODY_CATEGORY_ID;
+    this.QUICK_THOUGHTS_CATEGORY_ID = _globals.QUICK_THOUGHTS_CATEGORY_ID;
     
     //Initializing model
     this.homeModel = {
@@ -74,7 +80,7 @@ export class HomeComponent implements OnInit {
         list3:null
       },
       sidebar:{
-        image:null,
+        banner:null,
         newton:null,
         pedagogy:null,
         quickThoughts:null,
@@ -172,6 +178,7 @@ export class HomeComponent implements OnInit {
   } 
 
   get_articles(isListingChanged:boolean){
+    this.isLoadingMore = true;
       isListingChanged = isListingChanged || false;
       this.http.get(_globals.API_URL + 'Data/GetHomeListing?isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + (this.listType == 3 && localStorage.getItem('_jad_interest') ? '&interests=' + localStorage.getItem('_jad_interest') : '') ).subscribe((data:any) =>{
         switch(this.pageNumber){
@@ -265,7 +272,7 @@ export class HomeComponent implements OnInit {
     if(this.startScrollLoading){
       //Arab Studies Institute Section
       if(this.myFunctions.is_dom_in_view('#arab-studies-container', 500)){
-          if(!this.isArabStudiesLoaded && this.pageNumber > 3){
+          if(!this.isArabStudiesLoaded && this.pageNumber > 4){
              this.isArabStudiesLoaded = true;
 
             // this.isLoadingMore = true;
@@ -319,7 +326,7 @@ export class HomeComponent implements OnInit {
       }
       //Load more
       if(this.hasMoreToLoad && this.myFunctions.is_dom_in_view('#load-more-container', 600)){
-        if(!this.isLoadingMore){
+        if(!this.isLoadingMore && this.pageNumber < 4){
           this.isLoadingMore = true;
           this.get_articles(false);
         }
@@ -346,7 +353,7 @@ export class HomeComponent implements OnInit {
 interface HomeModel{
   newsletterArticle:ArticleModel;
   slideshow:ArticleModel[];
-  rightBox:ArticleModel;
+  rightBox:BannerModel;
   latestAnnouncements1:ArticleModel[];
   latestAnnouncements2:ArticleModel[];
   tags:TagModel[];
@@ -367,7 +374,7 @@ interface HomeModel{
     list3:ArticleModel;
   }
   sidebar:{
-    image:string;
+    banner:BannerModel;
     newton:FeaturedRecentModel;
     pedagogy:FeaturedRecentModel;
     quickThoughts:FeaturedRecentModel;

@@ -18,11 +18,12 @@ import {MembershipService} from '../../../services/membership.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent  implements OnInit{
-
+  CONTENT_PATH:string;
   registerForm:RegisterForm;
   sharedModel:SharedModel;
   isSubmitted:boolean = false;
   formErrors:string[] = [];
+  years:number[] = [];
   agreementUpload:{
     progress:number;
     name:string;
@@ -37,7 +38,9 @@ export class RegisterComponent  implements OnInit{
     name:string;
   }
   constructor(private http:HttpClient, private user:UserService, private myFunctions:FunctionsService, private sharedService:SharedService, private membership: MembershipService) { 
-
+    for(let i = (new Date()).getFullYear() - 100; i < (new Date()).getFullYear() - 8 ; i++){
+      this.years.push(i);
+    }
     this.agreementUpload = {
       progress: 0,
       name:null,
@@ -51,14 +54,51 @@ export class RegisterComponent  implements OnInit{
       status:'empty',
       name:null
     }
+    this.registerForm = {
+      fullName:'',
+      identifies:0,
+      UserName:'',
+      year:'',
+      countryId:0,
+      password:'',
+      ConfirmPassword:'',
+      bio:'',
+      facebook:'',
+      twitter:'',
+      linkedin:'',
+      image:'',
+      isWriter:false,
+      agreement:'',
+      website:''
+    };
   }
 
   ngOnInit(){
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.sharedModel = sharedModel);
-
+    this.CONTENT_PATH = _globals.CONTENT_PATH;
   } 
 
+  reset_register_form(){
+    this.formErrors = [];
+    this.registerForm = {
+      fullName:'',
+      identifies:0,
+      UserName:'',
+      year:'',
+      countryId:0,
+      password:'',
+      ConfirmPassword:'',
+      bio:'',
+      facebook:'',
+      twitter:'',
+      linkedin:'',
+      image:'',
+      isWriter:false,
+      agreement:'',
+      website:''
+    };
+  }
   register(e:any, registerForm:RegisterForm){
     this.isSubmitted = true;
       this.formErrors = [];
@@ -75,10 +115,10 @@ export class RegisterComponent  implements OnInit{
         this.user.saveUser(myUser);
         this.registerForm = {
           fullName:'',
-          identifies:null,
+          identifies:0,
           UserName:'',
           year:'',
-          countryId:null,
+          countryId:0,
           password:'',
           ConfirmPassword:'',
           bio:'',
@@ -92,7 +132,14 @@ export class RegisterComponent  implements OnInit{
         };
         setTimeout(() =>{
             this.myFunctions.dropdown_event();
-            this.myFunctions.psy_open_popup('thank-you-register');
+            if(this.registerForm.isWriter){
+              this.myFunctions.psy_open_popup('thank-you-register-writer');
+            }else{
+              this.myFunctions.psy_open_popup('thank-you-register');
+            }
+            setTimeout(() => {
+              this.myFunctions.close_popup();
+            }, 5000);
         },200);
         this.isSubmitted = false;
        // let loginForm:LoginForm = {username : registerForm.UserName,password : registerForm.password, grant_type:"password" } ;
@@ -148,9 +195,6 @@ export class RegisterComponent  implements OnInit{
                 console.log(event);
               }
             }, (err:any) => {
-              // console.log('upload error : ');
-              // console.log(err);
-              // console.log(err.error);
 
             });
     }
@@ -188,10 +232,6 @@ export class RegisterComponent  implements OnInit{
                 console.log(event);
               }
             }, (err:any) => {
-              // console.log('upload error : ');
-              // console.log(err);
-              // console.log(err.error);
-
             });
     }
   }

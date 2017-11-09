@@ -40,20 +40,20 @@
 											</a>
 										</li>
 										
-										<li (click)="Tweet(shareLink, articleModel?.title, twitterUsername)">
+										<li (click)="Tweet(articleLink, articleModel?.title, twitterUsername)">
 											<a>
 												<i class="fa fa-twitter" aria-hidden="true"></i>
 											</a>
 										</li>
 										
 										<li>
-													<a href="https://plus.google.com/share?url={{shareLink}}" onclick="javascript:window.open(this.href,
+													<a href="https://plus.google.com/share?url={{articleLink}}" onclick="javascript:window.open(this.href,
 													'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
 												
 										</li>
 										
 										<li>
-											<a href="mailto:?subject={{articleModel?.title}}&body={{shareLink}}">
+											<a href="mailto:?subject={{articleModel?.title}}&body={{articleLink}}">
 												<i class="fa fa-envelope" aria-hidden="true"></i>
 											</a>
 										</li>
@@ -107,25 +107,26 @@
 
 						<article class="article article-details">
 							<div class="{{articleModel?.isArabic ? 'rtl' : ''}}" *ngIf="articleModel">
-								<div class="article-image article-image-gallery alignleft" *ngIf="articleModel.image">
-								<img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.image}}" alt="">
+								<div class="article-image article-image-gallery alignleft" *ngIf="articleModel.image && !(articleModel?.videoUrl)">
+									<img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.image}}" alt="">
 
-								<a href="#" class="link-gallery" *ngIf="articleModel?.ArticleImages != null && articleModel?.ArticleImages.length - 1 > 0">
-									<i class="fa fa-camera" aria-hidden="true"></i>
-								
-									+{{articleModel.ArticleImages.length - 1}}
-								</a>
+									<a href="#" class="link-gallery" *ngIf="articleModel?.ArticleImages != null && articleModel?.ArticleImages.length - 1 > 0">
+										<i class="fa fa-camera" aria-hidden="true"></i>
+									
+										+{{articleModel.ArticleImages.length - 1}}
+									</a>
 								</div><!-- /.article-image -->
-
+								<div class="article-video" *ngIf="articleModel?.videoUrl">
+									<iframe [src]="articleModel?.videoUrl | safeUrl" frameborder="0" allowfullscreen></iframe>
+								</div>
 								<header class="article-head">
 								<h1 class="article-title">{{articleModel.title}}</h1><!-- /.article-title -->
 
-								<a href="#" class="link-listen">
-								<!-- <a class="link-listen" href="http://app.readspeaker.com/cgi-bin/rsent?customerid=5204&amp;lang=en_us&amp;speed=[speed from 0 to 200, 140 recommended]&amp;readid=[ID of element you want read]&amp;url=[full URL of page]&amp;audiofilename=[file name for downloadable MP3 (optional)]" 
-								onclick="readpage(this.href, '[ID of element where you want player controls to display]'); return false;"
-								target="_blank"> -->
+								<!-- <a href="#" class="link-listen">
 									<img src="../../assets/images/temp/play-button.png" alt="">
-								</a>
+								</a> -->
+								<iframe [src]="articleModel.fbLikeLink | safeUrl" width="61" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+								<!-- <div class="fb-like" attr.data-href="{{articleModel?.fbLikeLink}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div> -->
 								</header><!-- /.article-head -->
 
 								<div class="article-body" id="article-body">
@@ -204,11 +205,11 @@
 											
 											<footer class="post-foot">
 												<ul class="list-meta">
-												<li *ngIf="articleModel.writer">
-													<a routerLink="/Contributor/{{articleModel.writer.id}}">
+												<li *ngIf="item?.writer">
+													<a routerLink="/Contributor/{{item?.writer?.id}}">
 													<i class="ico-logo"></i>
 											
-													By {{articleModel.writer.name}}
+													By {{item?.writer?.name}}
 													</a>
 												</li>
 												
@@ -462,13 +463,10 @@
 					
 									<header class="article-head">
 										<h1 class="article-title">{{articleModel.nextArticle.title}}</h1><!-- /.article-title -->
-					
-										<a href="#" class="link-listen">
-										<!-- <a class="link-listen" href="http://app.readspeaker.com/cgi-bin/rsent?customerid=5204&amp;lang=en_us&amp;speed=[speed from 0 to 200, 140 recommended]&amp;readid=[ID of element you want read]&amp;url=[full URL of page]&amp;audiofilename=[file name for downloadable MP3 (optional)]" 
-										onclick="readpage(this.href, '[ID of element where you want player controls to display]'); return false;"
-										target="_blank"> -->
+										<!-- <div class="fb-like" attr.data-href="{{articleModel?.fbLikeLink}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div> -->
+										<!-- <a href="#" class="link-listen">
 										<img src="../../assets/images/temp/play-button.png" alt="">
-										</a>
+										</a> -->
 									</header><!-- /.article-head -->
 					
 									<div class="article-body" id="article-body">

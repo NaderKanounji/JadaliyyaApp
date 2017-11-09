@@ -6,13 +6,25 @@ import { SharedModel, SocialMedia,SharedCountryModel, Country, Category, FormsDa
 export class SharedService {
 
   private messageSource = new BehaviorSubject<SharedModel>(
-    {"headerType" : "header",'messagePopup': '' , "displayActions": false, "currentRoute": "home", "categoryTitle":"", "categoryId" : null, "isArabicSection" : false, "isGoogleMapApiLoaded" : false, "isGoogleApiLoaded" : false,"customUrlTitle":"" ,"socialMedia" : [], "country" : null, 
-    formData:{
+    {"headerType" : "header",
+    'messagePopup': '' , 
+    "displayActions": false, 
+    "currentRoute": "home", 
+    "categoryTitle":"", 
+    "categoryId" : null, 
+    "isArabicSection" : false, 
+    "isGoogleMapApiLoaded" : false, 
+    "isGoogleApiLoaded" : false,
+    "customUrlTitle":"" ,
+    "socialMedia" : [], 
+    "country" : null, 
+    "formData":{
       countries:null,
       userIdentifications:null,
       articleCountries:null,
       categories:null,
-      inquiryTypes:null
+      inquiryTypes:null,
+      agreement:null
     }}
   );
   sharedModel = this.messageSource.asObservable();

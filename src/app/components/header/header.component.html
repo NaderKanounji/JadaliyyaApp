@@ -29,6 +29,23 @@
 		</a>
 	</div><!-- /.popup-inner -->
 </div><!-- /.popup -->
+<div class="popup popup-thank-you mfp-hide" id="thank-you-register-writer">
+	<div class="popup-inner">
+		<i class="ico-logo-square"></i>
+
+		<h3 class="popup-title">
+			THANK YOU FOR YOUR INTEREST TO <br />
+
+			JOIN OUR GROUP OF WRITERS.
+		</h3><!-- /.popup-title -->
+
+		<p>Our team will review your request and confirm back to you by email once your account is activated.</p>
+
+		<a href="#" class="link-close-popup">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</a>
+	</div><!-- /.popup-inner -->
+</div><!-- /.popup -->
 
 <app-login *ngIf="!(user?.isLogged)"></app-login>
 
@@ -398,13 +415,13 @@
 											</h3><!-- /.widget-title -->
 										</div><!-- /.widget-head -->
 			
-										<div class="widget-body" *ngIf="">
+										<div class="widget-body">
 											<ul class="list-meta">
-												<li>
-													<a title="{{item.writer.name}}" routerLink="/Contributor/{{item.writer.id}}">
+												<li *ngIf="item?.writer">
+													<a title="{{item?.writer?.name}}" routerLink="/Contributor/{{item?.writer?.id}}">
 														<i class="ico-logo"></i>
 			
-														By {{item.writer.name}}
+														By {{item?.writer?.name}}
 													</a>
 												</li>
 			
@@ -482,13 +499,13 @@
 											</h3><!-- /.widget-title -->
 										</div><!-- /.widget-head -->
 			
-										<div class="widget-body" *ngIf="item.writer">
+										<div class="widget-body" >
 											<ul class="list-meta">
-												<li>
-													<a title="{{item.writer.name}}" routerLink="/Contributor/{{item.writer.id}}">
+												<li *ngIf="item?.writer">
+													<a title="{{item?.writer?.name}}" routerLink="/Contributor/{{item?.writer?.id}}">
 														<i class="ico-logo"></i>
 			
-														By {{item.writer.name}}
+														By {{item?.writer?.name}}
 													</a>
 												</li>
 			

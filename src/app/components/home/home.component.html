@@ -73,7 +73,8 @@
           <aside class="section-aside hidden-sm">
             <ul class="widgets">
               <li class="widget-subscribe">
-                <div class="widget-image" *ngIf="homeModel?.rightBox?.image">
+                <div class="widget-image rightBox-image" *ngIf="homeModel?.rightBox?.image">
+                  <a title="{{homeModel?.rightBox.title}}" href="{{homeModel?.rightBox?.link}}" *ngIf="homeModel?.rightBox?.link" class="clickable-cover"></a>
                   <img src="{{RESIZED_CONTENT_PATH}}256x266xo/{{homeModel?.rightBox.image}}" alt="{{homeModel?.rightBox.title}}">
                 </div><!-- /.widget-image -->
   
@@ -844,9 +845,10 @@
                   </section><!-- /.section section-articles -->
                 </div><!-- /.content-inner -->
       
-                <div class="content-actions contact-load-more" id="load-more-container" *ngIf="hasMoreToLoad">
-                    <a href="#" class="link-load">
-                        <ul class="load-more-loader">
+                <div class="content-actions contact-load-more" id="load-more-container" *ngIf="hasMoreToLoad" (click)="get_articles(false)">
+                    <a class="link-load">
+                      <span  *ngIf="!isLoadingMore && startScrollLoading">Load More</span>
+                        <ul class="load-more-loader" *ngIf="isLoadingMore || !startScrollLoading">
                           <li></li>
                           <li></li>
                           <li></li>
@@ -857,10 +859,10 @@
 
               <div class="sidebar" id="sidebar-container">
                   <ul class="widgets">
-                    <li class="widget-jad hidden-xs" *ngIf="homeModel?.sidebar?.image">
+                    <li class="widget-jad hidden-xs" *ngIf="homeModel?.sidebar?.banner?.image">
                       <div class="widget-image">
-                        <a href="#">
-                          <img src="../../assets/images/temp/jadmag.jpg" alt="">
+                        <a title="{{homeModel?.sidebar?.banner?.title}}" href="{{homeModel?.sidebar?.banner?.link}}">
+                          <img src="{{RESIZED_CONTENT_PATH}}330x279xo/{{homeModel?.sidebar?.banner?.image}}" alt="">
                         </a>
                       </div><!-- /.widget-image -->
                     </li><!-- /.widget -->
@@ -870,7 +872,7 @@
                         <h3 class="widget-title">
                           <span>NEWTON</span>
         
-                          <a href="#">
+                          <a title="Newton" routerLink="/Category/{{NEWTON_CATEGORY_ID}}/newton">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                           </a>
                         </h3><!-- /.widget-title -->
@@ -923,7 +925,7 @@
                         <h3 class="widget-title">
                           <span>PEDAGOGY</span>
         
-                          <a href="#">
+                          <a title="Pedagogy" routerLink="/Category/{{PEDAGODY_CATEGORY_ID}}/pedagogy">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                           </a>
                         </h3><!-- /.widget-title -->
@@ -999,7 +1001,7 @@
                         <h3 class="widget-title">
                           <span>QUICK THOUGHTS</span>
         
-                          <a href="#">
+                          <a title="Quick Thoughts" routerLink="/Category/{{QUICK_THOUGHTS_CATEGORY_ID}}/quick-thoughts">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                           </a>
                         </h3><!-- /.widget-title -->

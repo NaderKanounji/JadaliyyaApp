@@ -186,12 +186,18 @@ export interface GlobalModel{
  footerCountries:Country[];
  mobileLinks:SocialMedia[];
 }
+export interface BannerModel{
+  title:string;
+  image:string;
+  link:string;
+}
 export interface FormsData{
   countries:IntStringModel[];
   categories:IntStringModel[];
   articleCountries:IntStringModel[];
   inquiryTypes:IntStringModel[];
   userIdentifications:IntStringModel[];
+  agreement:string;
 }
 export interface IntStringModel{
   key:number;

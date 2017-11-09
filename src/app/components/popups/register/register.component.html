@@ -10,11 +10,11 @@
 
 		<nav class="tabs-nav">
 			<ul>
-				<li class="current">
+				<li class="current" (click)="reset_register_form()">
 					<a href="#login1">New USER</a>
 				</li>
 				
-				<li>
+				<li (click)="reset_register_form()">
 					<a href="#login2">New WRITER</a>
 				</li>
 			</ul>
@@ -25,7 +25,7 @@
 		<div class="tabs-body">
 			<div class="tab current" id="login1">
 				<div class="form-primary form-login">
-					<form (submit)="register($event, registerForm.value)" #registerForm="ngForm" ngNativeValidate>
+					<form (submit)="register($event, registerMyForm.value)" #registerMyForm="ngForm" ngNativeValidate>
 						<div class="form-body">
 							<div class="cols">
 								<div class="col col-1of2">
@@ -40,8 +40,8 @@
 									<div class="form-row" *ngIf="sharedModel?.formData?.userIdentifications?.length">
 										<div class="form-controls form-select">
 											<select name="identifies" id="field-identify" class="select"  [(ngModel)]="registerForm.identifies" required>
-												<option value="">User Identifies as</option>
-                        <option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.userIdentifications">{{item.value}}</option>
+												<option value="0" >User Identifies as</option>
+												<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.userIdentifications">{{item.value}}</option>
 											</select>
 
 											<i class="fa fa-male" aria-hidden="true"></i>
@@ -51,9 +51,13 @@
 									</div><!-- /.form-row -->
 									
 									<div class="form-row">
-										<div class="form-controls">
-											<input type="text" class="field field-date" name="year" id="field-birth" placeholder="Year Of Birth" required [(ngModel)]="registerForm.year">
+										<div class="form-controls form-select">
+											<!-- <input type="text" class="field field-date" name="year" id="field-birth" placeholder="Year Of Birth" required [(ngModel)]="registerForm.year"> -->
 
+											<select name="year" id="field-year" class="select"  [(ngModel)]="registerForm.year" required>
+												<option value="" [selected]="!registerForm?.year">Year Of Birth</option>
+                        						<option value="{{item}}" *ngFor="let item of years">{{item}}</option>
+											</select>
 											<i class="fa fa-calendar-o" aria-hidden="true"></i>
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
@@ -61,7 +65,7 @@
 									<div class="form-row" *ngIf="sharedModel?.formData?.countries?.length">
 										<div class="form-controls form-select">
 											<select name="countryId" id="field-Country" class="select" required [(ngModel)]="registerForm.countryId">
-												<option value="" >Country of residence</option>
+												<option value="0" [selected]="!registerForm?.countryId" >Country of residence</option>
 												<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.countries">{{item.value}}</option>
 											</select>
 
@@ -130,7 +134,7 @@
 						<div class="form-body">
 							<ul class="list-steps">
 								<li>
-									<a href="#">
+									<a href="{{CONTENT_PATH}}CorporatePage/{{sharedModel?.formData?.agreement}}" target="_blank" *ngIf="sharedModel?.formData?.agreement">
 										<i class="fa fa-download" aria-hidden="true"></i>
 
 										DOWNLOAD SIGNED AGREEMENT FORM
@@ -189,7 +193,7 @@
 										<div class="form-row" *ngIf="sharedModel?.formData?.userIdentifications?.length">
 											<div class="form-controls form-select">
 												<select name="identifies" id="field-identify2" class="select" required [(ngModel)]="registerForm.identifies">
-													<option value="">User Identifies as</option>
+													<option value="0">User Identifies as</option>
 													<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.userIdentifications">{{item.value}}</option>
 												</select>
 
@@ -204,7 +208,7 @@
 										<div class="form-row" *ngIf="sharedModel?.formData?.countries?.length">
 											<div class="form-controls form-select">
 												<select name="countryId" id="field-Country2" class="select" required [(ngModel)]="registerForm.countryId">
-													<option value="">Country of residence</option>
+													<option value="0">Country of residence</option>
 													<option value="{{item.key}}" *ngFor="let item of sharedModel?.formData?.countries">{{item.value}}</option>
 												</select>
 

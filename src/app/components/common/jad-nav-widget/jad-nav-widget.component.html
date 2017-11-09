@@ -7,36 +7,36 @@
     <div class="widget-body">
   
       <h3 class="jad-nav-country">
-        <a title="{{countries[0]?.title}}" routerLink="/Country/{{countries[0]?.id}}">{{countries[0]?.title}}</a>
+        <a title="{{countries[0]?.title}}" target="_blank">{{countries[0]?.title}}</a>
       </h3>
   
       <div class="svg-map-wrapper">
           <div class="nav-map">
-            <span class="svg-map-anchor position-1 active" data-href="#" data-target="#map-area-1"></span>
+            <span class="svg-map-anchor position-1 active" attr.data-href="/Country/{{countries[0]?.id}}" data-target="#map-area-1"></span>
         
-            <span class="svg-map-anchor position-2" data-href="#" data-target="#map-area-2"></span>
+            <span class="svg-map-anchor position-2" attr.data-href="/Country/{{countries[1]?.id}}" data-target="#map-area-2"></span>
         
-            <span class="svg-map-anchor position-3" data-href="#" data-target="#map-area-3"></span>
+            <span class="svg-map-anchor position-3" attr.data-href="/Country/{{countries[2]?.id}}" data-target="#map-area-3"></span>
         
-            <span class="svg-map-anchor position-4" data-href="#" data-target="#map-area-4"></span>
+            <span class="svg-map-anchor position-4" attr.data-href="/Country/{{countries[3]?.id}}" data-target="#map-area-4"></span>
         
-            <span class="svg-map-anchor position-5" data-href="#" data-target="#map-area-5"></span>
+            <span class="svg-map-anchor position-5" attr.data-href="/Country/{{countries[4]?.id}}" data-target="#map-area-5"></span>
         
-            <span class="svg-map-anchor position-7" data-href="#" data-target="#map-area-7"></span>
+            <span class="svg-map-anchor position-7" attr.data-href="/Country/{{countries[5]?.id}}" data-target="#map-area-7"></span>
         
-            <span class="svg-map-anchor position-6" data-href="#" data-target="#map-area-6"></span>
+            <span class="svg-map-anchor position-6" attr.data-href="/Country/{{countries[6]?.id}}" data-target="#map-area-6"></span>
         
-            <span class="svg-map-anchor position-8" data-href="#" data-target="#map-area-8"></span>
+            <span class="svg-map-anchor position-8" attr.data-href="/Country/{{countries[7]?.id}}" data-target="#map-area-8"></span>
         
             <!-- <span class="svg-map-anchor position-9" data-href="#" data-target="#map-area-9"></span> -->
         
-            <span class="svg-map-anchor position-10" data-href="#" data-target="#map-area-10"></span>
+            <span class="svg-map-anchor position-10" attr.data-href="/Country/{{countries[8]?.id}}" data-target="#map-area-10"></span>
         
-            <span class="svg-map-anchor position-11" data-href="#" data-target="#map-area-11"></span>
+            <span class="svg-map-anchor position-11" attr.data-href="/Country/{{countries[9]?.id}}" data-target="#map-area-11"></span>
         
-            <span class="svg-map-anchor position-12" data-href="#" data-target="#map-area-12"></span>
+            <span class="svg-map-anchor position-12" attr.data-href="/Country/{{countries[10]?.id}}" data-target="#map-area-12"></span>
         
-            <span class="svg-map-anchor position-13" data-href="#" data-target="#map-area-13"></span>
+            <span class="svg-map-anchor position-13" attr.data-href="/Country/{{countries[11]?.id}}" data-target="#map-area-13"></span>
           </div><!-- /.nav-map -->
         
           <svg viewBox="0 0 526 410" style="background-color:#1b1f23; border-radius: 50%" version="1.1" x="0px" y="0px" width="222px" height="222px">
@@ -122,5 +122,5 @@
         </div><!-- /.map-wrapper -->
         
   
-      <span><a  class="link-discover">DISCOVER TOPICS &amp; COUNTIRES</a></span>
+      <span><a  class="link-discover" routerLink="/JadNavigation">DISCOVER TOPICS &amp; COUNTRIES</a></span>
     </div><!-- /.widget-body -->

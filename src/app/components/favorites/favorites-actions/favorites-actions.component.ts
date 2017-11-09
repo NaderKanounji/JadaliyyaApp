@@ -95,7 +95,7 @@ addToFavoriteModel:{
   open_share(e){
     let folders = this.myFunctions.get_selected_folders();
     let articles = this.myFunctions.get_selected_articles();
-    console.log(folders + ' - ' + articles);
+    //console.log(folders + ' - ' + articles);
     if(folders != '' || articles != ''){
       this.myFunctions.psy_open_popup('popup-share-to-email');
 

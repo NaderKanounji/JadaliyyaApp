@@ -25,7 +25,7 @@ export class ArticleDetailsComponent implements OnInit {
   twitterUsername:string;
   articleModel: ArticleModel;
   user:UserModel;
-  shareLink:string;
+  articleLink:string;
   constructor(private router: Router, private metaService:Meta, private userService:UserService, private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService) { }
 
   ngOnInit() {
@@ -50,9 +50,11 @@ export class ArticleDetailsComponent implements OnInit {
       
       this.http.get(_globals.API_URL + "Data/GetDetailsById?id=" + params['id']).subscribe((data:any) =>{
         this.articleModel = data;
-        this.shareLink = this.BASE_URL + "Details/" + this.articleModel.id + (this.articleModel.customUrlTitle ? '/' + this.articleModel.customUrlTitle : '');
-        this.articleModel.fbShareSrc = 'https://www.facebook.com/plugins/share_button.php?href=' + this.shareLink + '&layout=button&size=small&mobile_iframe=true&appId=' + _globals.FACEBOOK_APP_ID + '&width=59&height=20';
+        this.articleLink = this.BASE_URL + "Details/" + this.articleModel.id + (this.articleModel.customUrlTitle ? '/' + this.articleModel.customUrlTitle : '');
+        this.articleModel.fbShareSrc = 'https://www.facebook.com/plugins/share_button.php?href=' + this.articleLink + '&layout=button&size=small&mobile_iframe=true&appId=' + _globals.FACEBOOK_APP_ID + '&width=59&height=20';
+        this.articleModel.fbLikeLink = 'https://www.facebook.com/plugins/like.php?href=' + this.articleLink + '&width=61&layout=button_count&action=like&size=small&share=false&height=21&appId=' + _globals.FACEBOOK_APP_ID;
         //console.log(this.articleModel);
+
         this.myFunctions.load_details_page();
         if(data.metas){
           this.metaService.addTags([
@@ -106,6 +108,8 @@ interface ArticleModel{
   date:Date;
   country:string;
   fbShareSrc:string;
+  fbLikeLink:string;
+  videoUrl:string;
   writer:{
     id:number;
     name:string;

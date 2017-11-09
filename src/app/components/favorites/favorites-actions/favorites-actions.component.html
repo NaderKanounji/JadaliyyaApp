@@ -10,7 +10,7 @@
     </a>
   </li> -->
   <li>
-    <a data-tooltip="delete folder" data-tooltip-hide-on-hover (click)="delete($event, route)">
+    <a data-tooltip="delete" data-tooltip-hide-on-hover (click)="delete($event, route)">
       <i class="fa fa-trash" aria-hidden="true"></i>
     </a>
   </li>
@@ -21,11 +21,11 @@
     </a>
   </li>
 
-  <li class="inactive">
-    <a data-tooltip="tooltip title" data-tooltip-hide-on-hover *ngIf="route != 'shared-with-me'">
+  <!-- <li class="inactive">
+    <a data-tooltip="info" data-tooltip-hide-on-hover *ngIf="route != 'shared-with-me'">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
     </a>
-  </li>
+  </li> -->
   
   <li >
     <a data-tooltip="rename folder" data-tooltip-hide-on-hover (click)="rename_popup($event)" *ngIf="route != 'shared-with-me'">

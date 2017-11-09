@@ -9,24 +9,25 @@
         <i class="ico-logo-yellow"></i>
     
         <ul>
-          <li class="{{model?.hotOnFacebook ? 'current' : ''}}" *ngIf="model?.hotOnFacebook">
+          <!-- <li class="{{model?.hotOnFacebook ? 'current' : ''}}" *ngIf="model?.hotOnFacebook">
             <a href="#tab-hot1111">HOT ON FACEBOOK</a>
-          </li>
+          </li> -->
           
-          <li class="{{!(model?.hotOnFacebook) ? 'current' : ''}}" *ngIf="model?.mostRead">
+          <!-- <li class="{{!(model?.hotOnFacebook) ? 'current' : ''}}" *ngIf="model?.mostRead"> -->
+              <li class="current" *ngIf="model?.mostRead">
             <a href="#tab-hot222">MOST READ</a>
           </li>
         </ul>
       </nav><!-- /.tabs-nav -->
     
-      <a href="#">
+      <!-- <a href="#">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
-      </a>
+      </a> -->
     </header><!-- /.section-head -->
     
     <div class="section-body">
       <div class="tabs-body scrollable-horizontal">
-        <div class="tab {{model?.hotOnFacebook ? 'current' : ''}}" id="tab-hot1111" *ngIf="model?.hotOnFacebook">
+        <!-- <div class="tab {{model?.hotOnFacebook ? 'current' : ''}}" id="tab-hot1111" *ngIf="model?.hotOnFacebook">
           <div class="slider slider-feed">
             <div class="slides owl-carousel">
               <div class="slide" *ngFor="let slide of model?.hotOnFacebook">
@@ -40,20 +41,19 @@
 
                     <div>
                       <p [innerHTML]="slide?.title | truncate:40"></p>
-                      
-                      <a>
-                        <img src="../../assets/images/temp/share.png" alt="">
-                      </a>
+                      <iframe [src]="'https://www.facebook.com/plugins/like.php?href=' + BASE_URL + 'Details/' + slide?.id + (slide?.customUrlTitle ? '/' + slide?.customUrlTitle : '') + '&width=61&layout=button_count&action=like&size=small&share=false&height=21&appId=' + FACEBOOK_APP_ID | safeUrl" width="61" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+
                     </div>
                   </li>
-                </ul><!-- /.list-news list-news-dark -->
-              </div><!-- /.slide -->
+                </ul>
+              </div>
 
-            </div><!-- /.slides -->
-          </div><!-- /.slider -->
-        </div><!-- /#tab-hot1111.tab current -->
+            </div>
+          </div>
+        </div> -->
 
-        <div class="tab {{!(model?.hotOnFacebook) ? 'current' : ''}}" id="tab-hot222" *ngIf="model?.mostRead">
+        <!-- <div class="tab {{!(model?.hotOnFacebook) ? 'current' : ''}}" id="tab-hot222" *ngIf="model?.mostRead"> -->
+            <div class="tab current" id="tab-hot222" *ngIf="model?.mostRead">
           <div class="slider slider-feed">
             <div class="slides owl-carousel">
               <div class="slide" *ngFor="let slide of model?.mostRead">
@@ -67,10 +67,12 @@
 
                     <div>
                       <p [innerHTML]="slide?.title | truncate:40"></p>
+                      <iframe [src]="'https://www.facebook.com/plugins/like.php?href=' + BASE_URL + 'Details/' + slide?.id + (slide?.customUrlTitle ? '/' + slide?.customUrlTitle : '') + '&width=61&layout=button_count&action=like&size=small&share=false&height=21&appId=' + FACEBOOK_APP_ID | safeUrl" width="61" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
                       
-                      <a href="#">
+                    
+                      <!-- <a href="#">
                         <img src="../../assets/images/temp/share.png" alt="share">
-                      </a>
+                      </a> -->
                     </div>
                   </li>
                 </ul><!-- /.list-news list-news-dark -->
