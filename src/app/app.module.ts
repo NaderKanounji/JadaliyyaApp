@@ -58,10 +58,12 @@ import { AccountArticlesComponent } from './components/account-articles/account-
 import { SubmitArticleComponent } from './components/popups/submit-article/submit-article.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { SearchComponent } from './components/search/search.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
   { path: 'ContactUs', component: ContactUsComponent  },
+  { path: 'Search', component: SearchComponent  },
   { path: 'PrivacyPolicy', component: PrivacyPolicyComponent  },
   { path: 'Account/Articles/:title', component: AccountArticlesComponent, canActivate:[AuthGuard]  },
   { path: 'Account/Favorites', component: FavoritesComponent, canActivate:[AuthGuard]  },
@@ -122,7 +124,8 @@ var routes = [
     AccountArticlesComponent,
     SubmitArticleComponent,
     PrivacyPolicyComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

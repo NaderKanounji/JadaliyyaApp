@@ -18,6 +18,7 @@ export class SharedService {
     "customUrlTitle":"" ,
     "socialMedia" : [], 
     "country" : null, 
+    "searchCount" : null,
     "formData":{
       countries:null,
       userIdentifications:null,
@@ -35,6 +36,11 @@ export class SharedService {
     this.messageSource.next(sharedModel);
   }
   //----- Setters
+  set_searchCount(searchCount:number){
+    let tempModel = this.messageSource.getValue();
+    tempModel.searchCount = searchCount;
+    this.messageSource.next(tempModel);
+  }
   set_currentRoute(myCurrentRoute:string){
     let tempModel = this.messageSource.getValue();
     tempModel.currentRoute = myCurrentRoute;

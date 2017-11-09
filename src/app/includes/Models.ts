@@ -229,6 +229,15 @@ export interface SocialMediaModel{
     linkedin:string;
     email:string;
   }
+
+  export interface SearchModel{
+    countryId:number;
+    categoryId:number;
+    writerId;
+    keyword:string;
+    articles:ArticleModel[];
+    total:number;
+  }
   
  export interface SharedModel{
     headerType:string;
@@ -244,6 +253,7 @@ export interface SocialMediaModel{
     country:SharedCountryModel;
     formData:FormsData;
     messagePopup:string;
+    searchCount:number;
 }
 
 export interface Country{

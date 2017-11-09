@@ -554,6 +554,7 @@
 					<i class="fa fa-arrow-left" aria-hidden="true"></i>
 				</a>
 				{{sharedModel?.country ? sharedModel?.country?.title : sharedModel?.categoryTitle}}
+				<strong *ngIf="sharedModel?.searchCount && sharedModel?.currentRoute == 'search'">{{sharedModel?.searchCount}} articles</strong>
 				<span class="rtl" *ngIf="sharedModel?.country?.arTitle">{{sharedModel?.country?.arTitle}}</span></h1>
 				
 				<ul class="list-navs list-navs-secondary" *ngIf="sharedModel?.currentRoute == 'favorites' || sharedModel?.currentRoute == 'shared-with-me'">
@@ -592,7 +593,7 @@
 					</li>
 				</ul>
 				<a class="btn btn-tertiary btn-blue link-new-article" *ngIf="sharedModel?.currentRoute == 'published-articles' || sharedModel?.currentRoute == 'unpublished-articles'" data-psy-pop="submit-article">New Article</a>
-			<a href="#" class="link-filter" *ngIf="sharedModel.currentRoute == 'category'">
+			<a href="#" class="link-filter" *ngIf="sharedModel.currentRoute == 'category' || sharedModel?.currentRoute == 'search'">
 				Filter By
 
 				

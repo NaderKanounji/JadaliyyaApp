@@ -1,0 +1,13 @@
+<div class="container">
+  <section class="section section-articles section-results">
+    <div class="shell">
+      <div class="section-content">
+        <ul class="posts" *ngIf="model?.articles?.length">
+          <li class="post {{item?.isArabic ? 'rtl' : ''}}" *ngFor="let item of model?.articles">
+            <post [post]="item"></post>
+          </li><!-- /.post -->
+        </ul><!-- /.posts -->
+      </div><!-- /.section-content -->
+    </div><!-- /.shell -->
+  </section><!-- /.section section-articles section-results -->
+</div><!-- /.container -->
