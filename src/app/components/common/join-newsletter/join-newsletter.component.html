@@ -1,4 +1,4 @@
-<div class="subscribe">
+<div class="subscribe {{isArabic ? 'rtl' : ''}}">
   <i class="ico-newsletter"></i>
 
   <form (submit)="join($event, myNewsletterForm.value)" #myNewsletterForm="ngForm" ngNativeValidate>
@@ -7,16 +7,22 @@
         <i class="fa fa-envelope" aria-hidden="true"></i>
       </span>
 
-      <strong>
+      <strong *ngIf="!isArabic">
         JOIN OUR <br />
         
         NEWSLETTER
       </strong>
+      
+      <strong *ngIf="isArabic">
+          إنضم إلى نشرتنا<br /> الالكترونية
+        </strong>
     </label>
     
-    <input type="email" id="email" name="email" placeholder="Enter E-mail Address" class="subscribe-field" required [(ngModel)]="newsletterForm.email">
+    <input type="email" id="email" name="email" placeholder="Enter E-mail Address" class="subscribe-field" required [(ngModel)]="newsletterForm.email" *ngIf="!isArabic">
+    <input type="email" id="email" name="email" placeholder="أدخل عنوان البريد الالكتروني" class="subscribe-field" required [(ngModel)]="newsletterForm.email" *ngIf="isArabic">
     
-    <input type="submit" value="Join" class="subscribe-btn btn" *ngIf="!submitted">
+    <input type="submit" value="Join" class="subscribe-btn btn" *ngIf="!submitted && !isArabic">
+    <input type="submit" value="إنضم" class="subscribe-btn btn" *ngIf="!submitted && isArabic">
     <div class="sk-fading-circle newsletter-loader" *ngIf="submitted">
         <div class="sk-circle1 sk-circle"></div>
         <div class="sk-circle2 sk-circle"></div>

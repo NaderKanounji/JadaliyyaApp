@@ -4,7 +4,7 @@
 				<div class="content">
 					<div class="content-inner">
 						<div class="content-inner-flex" *ngIf="!isArabicSection || categoryId == ARABIC_SECTION_ID">
-							<div class="slider slider-primary" slideshow [model]="categoryModel?.slideshow" *ngIf="categoryModel?.slideshow?.length">
+							<div class="slider slider-primary {{isArabicSection ? 'ltr' : ''}}" slideshow [model]="categoryModel?.slideshow" *ngIf="categoryModel?.slideshow?.length">
 								
 							</div><!-- /.slider -->
 						
@@ -16,7 +16,7 @@
 								</h3><!-- /.content-title -->
 						
 								<ul class="posts">
-									<li class="post" *ngFor="let item of categoryModel?.mostRecent">
+									<li class="post {{item?.isArabic ? 'rtl' : ''}}" *ngFor="let item of categoryModel?.mostRecent">
 										<div class="post-inner">
 											<header class="post-head">
 												<h2 class="post-title">
@@ -498,7 +498,7 @@
 					</div><!-- /.content-inner -->
 					
 					<div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">
-						<a href="#" class="link-load">
+						<a class="link-load">
 							<ul class="load-more-loader">
 								<li></li>
 								<li></li>
@@ -512,17 +512,44 @@
 					<ul class="widgets">
 						<li class="widget-subscribe" >
 							<div class="widget-content">
-								<app-join-newsletter></app-join-newsletter><!-- /.subscribe -->
+								<app-join-newsletter [isArabic]="isArabicSection"></app-join-newsletter><!-- /.subscribe -->
 					
 								<div class="socials" social-block [model]="socialMedia" *ngIf="socialMedia?.length > 0">
 								</div><!-- /.socials -->
 							</div><!-- /.widget-content -->
 						</li><!-- /.widget -->
+						<li class="widget-player widget-player-secondary" *ngIf="statusModel?.JadaliyaInterviews?.length">
+								<div class="widget-content">
+									<div class="slider slider-player">
+										<div class="slides owl-carousel">
+											<div class="slide" *ngFor="let item of statusModel?.JadaliyaInterviews">
+												<a href="{{item?.link}}" target="_blank">
+													<h3 class="slide-title">{{item?.title}}</h3><!-- /.slide-title -->
+												</a>
+												<span *ngIf="item?.hostTitle">
+												  <em>By</em> {{item?.hostTitle}}
+												</span>
+											</div><!-- /.slide -->
+	
+										</div><!-- /.slides -->
+	
+										<div class="slider-nav"></div><!-- /.slider-nav -->
+									</div><!-- /.slider -->
+								</div><!-- /.widget-content -->
+	
+								<div class="widget-image">
+									<img src="../assets/images/temp/player-image.png" alt="">
+								</div><!-- /.widget-image -->
+	
+								<div class="widget-actions">
+									<a class="link-play"></a>
+								</div><!-- /.widget-actions -->
+							</li><!-- /.widget -->
 					
 						<li class="widget-jad">
 							<div class="widget-image">
-								<a href="#">
-									<img src="../../assets/images/temp/jadmag1.jpg" alt="">
+								<a title="{{categoryModel?.banner?.title}}" href="{{categoryModel?.banner?.link}}">
+									<img src="{{RESIZED_CONTENT_PATH}}330x279xo/{{categoryModel?.banner?.image}}" alt="">
 								</a>
 							</div><!-- /.widget-image -->
 						</li><!-- /.widget -->
@@ -565,7 +592,7 @@
 							</div><!-- /.widget-body -->
 						</li><!-- /.widget-primary -->
 
-						<li class="widget-primary widget-bdb" more-stories-widget [featured]="categoryModel?.moreFeatured" [recent]="categoryModel?.moreRecent" *ngIf="categoryModel?.moreFeatured || categoryModel?.moreRecent">
+						<li class="widget-primary widget-bdb" more-stories-widget [featured]="categoryModel?.moreFeatured" [recent]="categoryModel?.moreRecent" [isArabic]="isArabicSection" *ngIf="categoryModel?.moreFeatured || categoryModel?.moreRecent">
 
 						</li><!-- /.widget-primary -->
 					

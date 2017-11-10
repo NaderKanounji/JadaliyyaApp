@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { SharedService } from '../../services/shared.service';
 import { UserService } from '../../services/user.service';
@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   routeId:number;
   customUrlTitle:string;
   user:UserModel;
+  keyword:string = '';
 
 
   sharedModel:SharedModel;
@@ -36,7 +37,7 @@ export class HeaderComponent implements OnInit {
   @Input() globalModel:GlobalModel;
   
   headerCategoryArticles:[ArticleModel[]] = [[]];
-  constructor(private membership:MembershipService,private userService:UserService, private route: ActivatedRoute, private sharedService:SharedService, private http:HttpClient, private myFunction:FunctionsService) { }
+  constructor(private router:Router,private membership:MembershipService,private userService:UserService, private route: ActivatedRoute, private sharedService:SharedService, private http:HttpClient, private myFunction:FunctionsService) { }
 
   ngOnInit() {
     
@@ -51,7 +52,6 @@ export class HeaderComponent implements OnInit {
     this.sharedService.sharedModel.subscribe((sharedModel:any) => this.sharedModel = sharedModel);
 
     this.userService.user.subscribe(user => this.user = user);
-
     // this.route.params.subscribe(params => {
     //   if(params['customUrlTitle']){
     //     this.customUrlTitle = params['customUrlTitle'];
@@ -91,6 +91,19 @@ export class HeaderComponent implements OnInit {
   }
   openSubMenu(){
     this.myFunction.openSubMenu();
+  }
+  open_search(){
+    this.myFunction.open_search();
+  }
+  submit_search(e, form:any){
+    e.preventDefault();
+    if(form.keyword){
+      let navigationExtras: NavigationExtras = {
+        queryParams: { 'keyword': form.keyword }
+      };
+      this.router.navigate(['/Search'], navigationExtras);
+      this.keyword = '';
+    }
   }
 
 }

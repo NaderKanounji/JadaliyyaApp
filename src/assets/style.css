@@ -11380,6 +11380,10 @@ ul.items:after {
   overflow: hidden;
   display: block;
 }
+.article-group a {
+  text-decoration: underline;
+  color: #222;
+}
 .socials-tertiary .fb-iframe {
   transform: scaleY(3);
   transform-origin: 0 0;

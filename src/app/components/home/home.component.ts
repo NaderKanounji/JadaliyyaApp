@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, HostListener } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, NavigationExtras } from '@angular/router';
 
 import { LocalStorageService } from 'ng2-webstorage';
 
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
   NEWTON_CATEGORY_ID:number;
   PEDAGODY_CATEGORY_ID:number;
   QUICK_THOUGHTS_CATEGORY_ID:number;
+  PROFILES_CATEGORY_ID:number;
 
   
   isEditorPick:boolean = false;
@@ -46,7 +48,7 @@ export class HomeComponent implements OnInit {
   statusModel:StatusModel;
   initialTags:number[] = [];
   socialMedia:SocialMedia[];
-  constructor(private http: HttpClient, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
+  constructor(private router:Router,private http: HttpClient, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
 
   ngOnInit() {
     this.CONTENT_PATH = _globals.CONTENT_PATH;
@@ -54,6 +56,7 @@ export class HomeComponent implements OnInit {
     this.NEWTON_CATEGORY_ID = _globals.NEWTON_CATEGORY_ID;
     this.PEDAGODY_CATEGORY_ID = _globals.PEDAGODY_CATEGORY_ID;
     this.QUICK_THOUGHTS_CATEGORY_ID = _globals.QUICK_THOUGHTS_CATEGORY_ID;
+    this.PROFILES_CATEGORY_ID = _globals.PROFILES_CATEGORY_ID;
     
     //Initializing model
     this.homeModel = {
@@ -347,6 +350,13 @@ export class HomeComponent implements OnInit {
       }
 
     }
+  }
+
+  go_to_archive(month:number){
+    let navigationExtras: NavigationExtras = {
+      queryParams: { 'month': month }
+    };
+    this.router.navigate(['/Search'], navigationExtras);
   }
 }
 

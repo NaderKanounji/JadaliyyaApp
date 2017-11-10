@@ -7,6 +7,16 @@
             <post [post]="item"></post>
           </li><!-- /.post -->
         </ul><!-- /.posts -->
+        <div class="content-actions contact-load-more" id="load-more-container" *ngIf="hasMoreToLoad">
+            <a class="link-load">
+              <span  *ngIf="!isLoadingMore && startScrollLoading">Load More</span>
+                <ul class="load-more-loader" *ngIf="isLoadingMore">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </a>
+        </div><!-- /.content-actions -->
       </div><!-- /.section-content -->
     </div><!-- /.shell -->
   </section><!-- /.section section-articles section-results -->

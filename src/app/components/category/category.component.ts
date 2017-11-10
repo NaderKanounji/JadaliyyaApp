@@ -9,7 +9,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, SharedModel } from '../../includes/Models';
+import { ArticleModel, SocialMedia, SharedModel, BannerModel, StatusModel } from '../../includes/Models';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -41,6 +41,7 @@ export class CategoryComponent implements OnInit {
    hasMoreToLoad:boolean = true;
    isAnnouncementsLoaded:boolean = false;
 
+   statusModel:StatusModel;
    typeId:string = "";
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private sharedService:SharedService, private myFunctions:FunctionsService, private sort:SortPipe) { }
@@ -73,9 +74,9 @@ export class CategoryComponent implements OnInit {
       //Check if arabic section page
       if(this.categoryId == this.ARABIC_SECTION_ID){
         this.isArabicSection = true;
-        this.isSubCategory = true;
         if(params['subId']){
           //get sub category
+        this.isSubCategory = true;
           this.categoryId = params['subId']
         }
       }
@@ -109,6 +110,14 @@ export class CategoryComponent implements OnInit {
             this.startScrollLoading = true;
           },200);
       });
+
+      if(this.isArabicSection){
+        this.http.get(_globals.STATUS_API_URL).subscribe((data:StatusModel) => {
+          this.statusModel = data;
+          this.myFunctions.slider_player();
+          
+        });
+      }
     });
   }
 
@@ -297,6 +306,6 @@ interface CategoryModel{
   moreFeatured:ArticleModel[];
   moreRecent:ArticleModel[];
   filmReviews:ArticleModel[];
-  
+  banner:BannerModel;
 }
 

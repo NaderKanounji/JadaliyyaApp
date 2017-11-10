@@ -209,7 +209,7 @@ var $jadNavAutoplaySpeed = 5000;
 		//moreInterests();
 
 
-		interestsToggle();
+		//interestsToggle();
 
 		
 
@@ -900,17 +900,24 @@ var $jadNavAutoplaySpeed = 5000;
 // 		close: function() { $('html').removeClass('mfp-helper'); }
 // 	}
 // });
+var open_search = function(){
+	$('.search').addClass('active');
+	$('.link-search-close').addClass('active');
+	if( $('.search').hasClass('active') ) {
+		$('.search-field').focus();
+	};
+	$('.link-search-close').on('click', function(event) {
+		event.preventDefault();
 
+		closeSearch();
+	});
+}
 var search_open_close = function(){
 	// Show search
 	$('.link-search').on('click', function(event) {
 		event.preventDefault();
 
-		$('.search').toggleClass('active');
-		$('.link-search-close').toggleClass('active');
-		if( $('.search').hasClass('active') ) {
-			$('.search-field').focus();
-		};
+		open_search();
 	});
 
 	// Hide search
@@ -920,11 +927,12 @@ var search_open_close = function(){
 		closeSearch();
 	});
 
-	function closeSearch() {
-		$('.search').removeClass('active');
-		$('.link-search-close').removeClass('active');
-	};
+	
 }
+function closeSearch() {
+	$('.search').removeClass('active');
+	$('.link-search-close').removeClass('active');
+};
 
 
 //Contact us map
@@ -1185,6 +1193,9 @@ var psy_popup = function(){
 			callbacks:{
 				open: function() {
 					psy_popup();
+					if($(this).attr('data-psy-pop') == 'detailed-newsletter'){
+						interestsToggle();
+					}
 				},
 				beforeOpen: function() { $('html').addClass('mfp-helper'); },
 				close: function() { $('html').removeClass('mfp-helper'); }
@@ -1487,6 +1498,7 @@ var closeInterested = function() {
  interestsToggle = function() {
 	$('.list-interests a:not(.link-more):not(.link-all)').on('click', function(event) {
 		event.preventDefault();
+		event.stopPropagation();
 
 		$(this).toggleClass('clicked');
 
@@ -1532,10 +1544,7 @@ function slideAutoplay() {
 		slideAutoplay();
 	}, $jadNavAutoplaySpeed);
 };
-function closeSearch() {
-	$('.search').removeClass('active');
-	$('.link-search-close').removeClass('active');
-};
+
 // SVG Map Widget
 svg_map_init = function(){
 	$('.svg-map-anchor')
@@ -1722,8 +1731,9 @@ module.exports.myFunctions = {
 		closeSubMenu();
 		$.magnificPopup.close();
 		closeSearch();
+		interestsToggle();
 		verticalScroll();
-		search_open_close();
+		//search_open_close();
 		$('.nav-access .has-dropdown > a').removeClass('active');
 		$('.nav-access .has-dropdown > a').next('.dropdown').removeClass('active');
 	},
@@ -1732,7 +1742,9 @@ module.exports.myFunctions = {
 				psy_popup();
 			    closePopup();
 				stickyFooter();
+				interestsToggle();
 				verticalScroll();
+				//search_open_close();
 				$(window).on('resize', function() {
 					stickyFooter();
 				});
@@ -1743,9 +1755,9 @@ module.exports.myFunctions = {
 			nav_overlay_on_hover();
 			add_has_dropdown_class_();
 			moreInterests();
-			interestsToggle();
 			announcements_carousel_init();
 			expand_interest_click();
+			interestsToggle();
 			//content formatting
 			no_sidebar_class();
 			fullsize_bg();
@@ -1785,10 +1797,12 @@ module.exports.myFunctions = {
 		setTimeout(function(){
 			tabsInit();
 			link_filter_binding();	
-			load_jadNavigation_map();
 			//content formatting
 			no_sidebar_class();
 			fullsize_bg();
+			load_jadNavigation_map();
+			
+				
 		},200);
 	},
 	load_category_hot_section:function(){
@@ -1874,6 +1888,14 @@ module.exports.myFunctions = {
 	},
 	open_popupDropdown:function(){
 		open_popupDropdown();
+	},
+	open_search:function(){
+		open_search();
+	},
+	search_open_close:function(){
+		setTimeout(function(){
+			search_open_close();
+		},400);
 	},
 	get_popup_dropdown_selected:function(){
 		return get_popup_dropdown_selected();
@@ -1980,6 +2002,16 @@ module.exports.myFunctions = {
 	},
 	get_shared_folders_by_ids:function(){
 		return get_shared_folders_by_ids();
+	},
+	get_interest:function(id){
+		var arr = [];
+		$(id + ' .list-interests a.clicked').each(function(){
+			arr.push($(this).attr('data-id'));
+		});
+		return arr.join(',');
+	},
+	clear_interest:function(id){
+		$(id + ' .list-interests li').removeClass('clicked');
 	},
 	////MY FUNCTIONS
 	animate_to_element:function(id, offset, speed){

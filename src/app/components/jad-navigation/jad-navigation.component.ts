@@ -8,7 +8,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { SortPipe } from '../../pipes/sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, SharedModel, MapMarker, TagModel, CategoryWithArticles } from '../../includes/Models';
+import { ArticleModel, SocialMedia, SharedModel, MapMarker, TagModel, CategoryWithArticles, BannerModel } from '../../includes/Models';
 
 
 @Component({
@@ -45,7 +45,8 @@ export class JadNavigationComponent implements OnInit {
       mostRead:null,
       categoryArticles:null,
       articles:null,
-      articleIds:null
+      articleIds:null,
+      banner:null
     };
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.sharedModel = sharedModel);
@@ -53,7 +54,6 @@ export class JadNavigationComponent implements OnInit {
     this.sharedService.set_headerType("header-secondary");
     this.sharedService.set_categoryTitle("Jad Navigation");
 
-    this.myFunctions.load_google_map_api();
     this.http.get(_globals.API_URL + 'Data/GetJadNavigationInit').subscribe((data:any) => {
 
       this.jadModel = data;
@@ -188,6 +188,7 @@ export interface JadModel{
   mostRead:ArticleModel[];
   articles:ArticleModel[];
   articleIds:string;
+  banner:BannerModel;
 }
 export interface CategoryModel{
   id:number,

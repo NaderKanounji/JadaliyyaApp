@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { FunctionsService } from '../../../services/functions.service'; 
@@ -15,7 +15,8 @@ export class JoinNewsletterComponent {
 
   submitted:boolean = false;
   newsletterForm:NewsletterModel;
-HttpHeaders
+
+  @Input() isArabic:boolean = false;
   
   constructor(private http:HttpClient, private myFunctions:FunctionsService, private sharedService:SharedService) {
     this.newsletterForm = {

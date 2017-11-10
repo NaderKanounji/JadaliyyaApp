@@ -57,6 +57,13 @@ export interface SharedWithMeModel{
 export interface NewsletterModel{
   email:string;
 }
+export interface NewsletterFormModel{
+  name:string;
+  email:string;
+  countryId:number;
+  profession:string;
+  phone:string;
+}
 export interface PasswordModel{
   OldPassword:string;
   ConfirmNewPassword:string;
@@ -234,6 +241,7 @@ export interface SocialMediaModel{
     countryId:number;
     categoryId:number;
     writerId;
+    month:number;
     keyword:string;
     articles:ArticleModel[];
     total:number;

@@ -47,6 +47,12 @@ reset_page_state(){
     myFunctions.new_content_formatting();
   }
 //end Main Block calls
+search_open_close(){
+  myFunctions.search_open_close();
+}
+open_search(){
+  myFunctions.open_search();
+}
 close_popup(){
   myFunctions.close_popup();
 }
@@ -158,7 +164,7 @@ country_sidebar(){
       this.sharedService.set_isGoogleMapApiLoaded(true);
       (function() {
         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAAzN3gVnJqU5kpoYxmI8ER1s-MBn1D3kM';
+        po.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAo7B-E-aB25x-JQtlh9YGNjsdcyspK7hE';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
       })();
     }
@@ -168,6 +174,12 @@ country_sidebar(){
   }
   animate_to_element(id:string, offset:number, speed:number){
       myFunctions.animate_to_element(id, offset, speed);
+  }
+  get_interest(id:string){
+    return myFunctions.get_interest(id);
+  }
+  clear_interest(id:string){
+    myFunctions.clear_interest(id);
   }
   // history_back(lastUrl:string){
   //  // let lastUrl = document.referrer;

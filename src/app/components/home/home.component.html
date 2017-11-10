@@ -4,7 +4,7 @@
 
 			<h3 class="popup-title">STAY UPDATED<br class="visible-xs-block"/> WITH OUR LATEST ARTICLES</h3><!-- /.popup-title -->
 
-			<a href="#" class="btn btn-primary btn-blue">
+			<a class="btn btn-primary btn-blue"  data-psy-pop="detailed-newsletter">
 				<i class="fa fa-envelope" aria-hidden="true"></i>
 
 				Join Our Newsletter
@@ -977,7 +977,7 @@
         
                       <div class="widget-body">
                         <div class="form-controls form-select">
-                          <select name="field-month" id="field-month" class="select">
+                          <select name="month" id="field-month" class="select" (change)="go_to_archive($event.target.value)">
                             <option value="">Select month</option>
                             <option value="1">January</option>
                             <option value="2">February</option>
@@ -1050,7 +1050,7 @@
                         <h3 class="widget-title">
                           <span>Profiles</span>
         
-                          <a href="#">
+                          <a title="Profiles" routerLink="/Category/{{PROFILES_CATEGORY_ID}}/profiles">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                           </a>
                         </h3><!-- /.widget-title -->
@@ -1155,7 +1155,7 @@
                       </a>
                     </li><!-- /.widget-primary -->
         
-                    <li class="widget-subscribe visible-xs-block">
+                    <!-- <li class="widget-subscribe visible-xs-block">
                       <div class="subscribe">
                         <i class="ico-newsletter"></i>
         
@@ -1176,7 +1176,7 @@
         
                           <input type="submit" value="Join" class="subscribe-btn btn">
                         </form>
-                      </div><!-- /.subscribe -->
+                      </div>
         
                       <div class="socials">
                         <ul>
@@ -1210,8 +1210,8 @@
                             </a>
                           </li>
                         </ul>
-                      </div><!-- /.socials -->
-                    </li><!-- /.widget -->
+                      </div>
+                    </li> -->
                   </ul><!-- /.widgets -->
                 </div><!-- /.sidebar -->
 

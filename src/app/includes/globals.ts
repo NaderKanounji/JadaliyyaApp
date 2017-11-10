@@ -13,27 +13,27 @@
 
 export const _globals = Object.freeze({
     //ONLINE VALUES
-    // API_URL: 'http://jadaliyyaapi2.koeinbeta.com/api/', 
-    // CONTENT_PATH: 'jadaliyyakms.koeinbeta.com/content/uploads/',
-    // RESIZED_CONTENT_PATH: 'http://jadaliyyakms2.koeinbeta.com/Images/',
-    // BASE_URL: 'http://jadaliyya2.koeinbeta.com/',
-    // BASE_API_URL: 'http://jadaliyyaapi2.koeinbeta.com/',
-    // BASE_KMS_URL: 'http://jadaliyyakms2.koeinbeta.com/',
-    // STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
-    // TwitterUsername:'Jadaliyya',
-    
-    //LOCAL VALUES
-    API_URL: 'https://shift2s.koein.com/jadaliyaapi/api/',
-    LOCAL_API_URL: 'https://localhost:44300/api/',
-    CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
-    RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
-   // BASE_URL: 'https://localhost:44300/',
-    BASE_URL: 'https://shift2s.koein.com/jadaliyafront/',
-    BASE_API_URL: 'https://shift2s.koein.com/jadaliyaapi/',
-    LOCAL_BASE_API_URL: 'https://localhost:44300/',
-    BASE_KMS_URL: 'http://shift2.koein.com/jadaliyyakms/',
+    API_URL: 'http://jadaliyyaapi2.koeinbeta.com/api/', 
+    CONTENT_PATH: 'jadaliyyakms.koeinbeta.com/content/uploads/',
+    RESIZED_CONTENT_PATH: 'http://jadaliyyakms2.koeinbeta.com/Images/',
+    BASE_URL: 'http://jadaliyya2.koeinbeta.com/',
+    BASE_API_URL: 'http://jadaliyyaapi2.koeinbeta.com/',
+    BASE_KMS_URL: 'http://jadaliyyakms2.koeinbeta.com/',
     STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
     TwitterUsername:'Jadaliyya',
+    
+    //LOCAL VALUES
+//     API_URL: 'https://localhost:44300/api/',
+//     LOCAL_API_URL: 'https://localhost:44300/api/',
+//     CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/content/uploads/',
+//     RESIZED_CONTENT_PATH: 'http://shift2.koein.com/jadaliyyakms/Images/',
+//    // BASE_URL: 'https://localhost:44300/',
+//     BASE_URL: 'https://shift2s.koein.com/jadaliyafront/',
+//     BASE_API_URL: 'https://shift2s.koein.com/jadaliyaapi/',
+//     LOCAL_BASE_API_URL: 'https://localhost:44300/',
+//     BASE_KMS_URL: 'http://shift2.koein.com/jadaliyyakms/',
+//     STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
+//     TwitterUsername:'Jadaliyya',
     
 
     FACEBOOK_APP_ID:'168318190386081',
@@ -51,6 +51,7 @@ export const _globals = Object.freeze({
    NEWTON_CATEGORY_ID:138,
    PEDAGODY_CATEGORY_ID:170,
    QUICK_THOUGHTS_CATEGORY_ID:157,
+   PROFILES_CATEGORY_ID:154,
    
    ROUNDUPS_MEDIA_DISPLAY_ID:30,
    ROUNDUPS_MONTHLY_DISPLAY_ID:31,

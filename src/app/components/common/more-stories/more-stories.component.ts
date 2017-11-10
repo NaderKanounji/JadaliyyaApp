@@ -14,6 +14,7 @@ export class MoreStoriesComponent implements OnInit {
   RESIZED_CONTENT_PATH:string;
   @Input() featured;
   @Input() recent;
+  @Input() isArabic:boolean = false;
   constructor(private myFunctions:FunctionsService) { }
 
   ngOnInit() {

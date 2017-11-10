@@ -59,6 +59,7 @@ import { SubmitArticleComponent } from './components/popups/submit-article/submi
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { SearchComponent } from './components/search/search.component';
+import { DetailedNewsletterComponent } from './components/popups/detailed-newsletter/detailed-newsletter.component';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -125,7 +126,8 @@ var routes = [
     SubmitArticleComponent,
     PrivacyPolicyComponent,
     ContactUsComponent,
-    SearchComponent
+    SearchComponent,
+    DetailedNewsletterComponent
   ],
   imports: [
     BrowserModule,

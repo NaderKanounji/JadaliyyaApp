@@ -21,7 +21,7 @@
     </div><!-- /.shell -->
   </section><!-- /.section section-about -->
 
-  <section class="section section-contributors" *ngIf="model?.rolesWithWriters?.length">
+  <section class="section section-contributors" *ngIf="model?.rolesWithWriters?.length && false"> <!-- remove false to show -->
     <div class="shell">
       <div class="section-content">
         <div class="cols">
@@ -82,7 +82,7 @@
           <li *ngFor="let role of model?.jadaliyyaCoEditors">
             <h5>{{role.title}}</h5>
 
-            <a title="{{item.name}}" routerLink="/Contributor/{{item.id}}" *ngFor="let item of role?.writers;let i = index">{{item.name}}{{i != role?.writers.length - 1 ? ', ' : ''}}</a>
+            <a title="{{item.name}}" routerLink="/Contributor/{{item.id}}" *ngFor="let item of role?.writers.slice(0, 10);let i = index">{{item.name}}{{i != role?.writers.length - 1 ? ', ' : ''}}</a>
           </li>
 
         </ul><!-- /.list-editors -->

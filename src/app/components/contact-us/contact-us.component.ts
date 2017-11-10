@@ -43,10 +43,12 @@ export class ContactUsComponent implements OnInit {
     this.sharedService.set_categoryTitle("Contact Us");
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.sharedModel = sharedModel);
-    this.myFunctions.load_google_map_api();
+    //this.myFunctions.load_google_map_api();
     this.http.get(_globals.API_URL + 'Data/GetContactUs').subscribe((data:any) => {
       this.contactInfo = data;
+      setTimeout(() => {
         this.myFunctions.contact_us_map_init();
+      }, 300);
     });
   }
 

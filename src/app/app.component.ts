@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import { Router, NavigationStart }   from '@angular/router';
+import { Router, NavigationStart, NavigationEnd }   from '@angular/router';
 
 import { SharedService } from './services/shared.service';
 import { UserService } from './services/user.service';
@@ -31,12 +31,15 @@ export class AppComponent {
     mobileLinks:null
   };
 
-  constructor(private user:UserService, private router:Router, private myFunctions:FunctionsService, private sharedService:SharedService, private http:HttpClient){
+  constructor( private user:UserService, private router:Router, private myFunctions:FunctionsService, private sharedService:SharedService, private http:HttpClient){
     router.events.subscribe((val) => {
       if(localStorage.getItem('_jad_user') && localStorage.getItem('_jad_user') != ''){
         this.user.setUser(JSON.parse(localStorage.getItem('_jad_user')));
       }
       if (val instanceof NavigationStart) {
+        if(val.url.toLowerCase() !="/jadnavigation" || val.url.toLowerCase() !="/contactus"){
+          this.myFunctions.load_google_map_api();
+        }
         //console.log('NavigationStart');    
         this.sharedService.set_categoryTitle("");
         this.sharedService.set_isArabicSection(false);
@@ -49,7 +52,6 @@ export class AppComponent {
         this.myFunctions.reset_page_state();
         this.myFunctions.load_all_pages();
       }
-      
       
     });
   }

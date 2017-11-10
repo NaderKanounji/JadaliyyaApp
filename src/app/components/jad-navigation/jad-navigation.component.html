@@ -165,13 +165,13 @@
 							</div><!-- /.widget-content -->
 						</li><!-- /.widget -->
 					
-						<li class="widget-jad hidden-xs">
-							<div class="widget-image">
-								<a href="#">
-									<img src="../../assets/images/temp/jadmag1.jpg" alt="">
-								</a>
-							</div><!-- /.widget-image -->
-						</li><!-- /.widget -->
+						<li class="widget-jad">
+								<div class="widget-image">
+									<a title="{{categoryModel?.banner?.title}}" href="{{categoryModel?.banner?.link}}">
+										<img src="{{RESIZED_CONTENT_PATH}}330x279xo/{{categoryModel?.banner?.image}}" alt="">
+									</a>
+								</div><!-- /.widget-image -->
+							</li><!-- /.widget -->
 
 						<li class="widget-about hidden-xs" *ngIf="jadModel?.pages?.length">
 							<header class="widget-head">
@@ -193,7 +193,7 @@
             
             <li id="sidebar-container"></li>
  
-						<li class="widget-primary widget-topics" *ngIf="jadModel?.topics?.length">
+						<li class="widget-primary widget-topics" *ngIf="jadModel?.topics?.length && false"> <!-- remove false to show section -->
 							<header class="widget-head">
 								<h3 class="widget-title">
 									<span>Topics</span>
