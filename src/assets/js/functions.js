@@ -938,7 +938,9 @@ function closeSearch() {
 //Contact us map
 var contact_us_map_init = function(){
 	if ($('.gmap').length) {
-		function initialize() {
+		// function initialize() {
+			
+		// }
 			var mapCanvas = document.getElementById('map');
 			var lat = mapCanvas.dataset.lat;
 			var lng = mapCanvas.dataset.lng;
@@ -960,8 +962,7 @@ var contact_us_map_init = function(){
 				map: map,
 				icon: myIcon
 			});
-		}
-		google.maps.event.addDomListener(window, 'load', initialize);
+		
 	};
 }
 // Slider feed
@@ -1332,12 +1333,17 @@ nav_overlay_on_hover = function(){
 	);
 }
 var load_jadNavigation_map = function(){
-	if ($('.gmap2').length) {
-		function initialize() {
+	// if ($('.gmap2').length) {
+		// function initialize() {
+			
+		// }
+
 			var mapCanvas = document.getElementById('map');
 			var lat = mapCanvas.dataset.lat;
 			var lng = mapCanvas.dataset.lng;
-
+			console.log(mapCanvas);
+			console.log(lat);
+			console.log(lng);
 			var mapOptions = {
 				center: new google.maps.LatLng(lat, lng),
 				zoom: 5,
@@ -1355,10 +1361,8 @@ var load_jadNavigation_map = function(){
 				map: map,
 				icon: myIcon
 			});
-		}
-
-		google.maps.event.addDomListener(window, 'load', initialize);
-	};
+		
+	// };
 
 }
 var googlemap = function($element, $locations, zoomLevel) {
