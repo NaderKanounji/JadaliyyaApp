@@ -1,0 +1,28 @@
+<div class="slider slider-article" *ngIf="ArticleImages && ArticleImages?.length">
+    <div class="slider-clip">
+      <div class="slides owl-carousel">
+        <div class="slide" *ngIf="videoUrl">
+          <div class="slide-image article-video">
+              <iframe [src]="videoUrl | safeUrl" frameborder="0" allowfullscreen></iframe>
+          </div><!-- /.slide-image -->
+        </div><!-- /.slide -->
+        <div class="slide" *ngFor="let item of ArticleImages">
+          <div class="slide-image">
+            <img src="{{RESIZED_CONTENT_PATH}}866x578xi/{{item?.image}}" alt="" class="fullsize-bg">
+          </div><!-- /.slide-image -->
+        </div><!-- /.slide -->
+
+
+      </div><!-- /.slides -->
+
+      <div class="slider-thumbs owl-carousel">
+        <div class="video-thumb" *ngIf="videoUrl">
+        </div>
+        <div *ngFor="let item of ArticleImages">
+          <img src="{{RESIZED_CONTENT_PATH}}57x56xi/{{item?.image}}" alt="">
+        </div>
+        
+        
+      </div><!-- /.slider-thumbs -->
+    </div><!-- /.slider-clip -->
+  </div><!-- /.slider -->

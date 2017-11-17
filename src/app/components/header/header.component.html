@@ -184,7 +184,7 @@
 
 <div class="search">
 		<div class="search-inner">
-			<form (submit)="submit_search($event, searchForm.value)" #searchForm="ngForm">
+			<!-- <form (submit)="submit_search($event, searchForm.value)" #searchForm="ngForm">
 				<label for="q" class="hidden">Search</label>
 				
 				<input type="search" name="keyword" id="q"  placeholder="search by keyword ..." class="search-field" [(ngModel)]="keyword">
@@ -192,7 +192,8 @@
 				<button type="submit" class="search-btn">
 					<i class="fa fa-search" aria-hidden="true"></i>
 				</button>
-			</form>
+			</form> -->
+			<span class="search-coming-soon">Coming Soon ..</span>
 		</div><!-- /.search-inner -->
 	</div><!-- /.search -->
 <div class="bar {{sharedModel?.country?.hasTemplate ? 'bar-secondary' : ''}} ">
@@ -209,7 +210,7 @@
 	<nav class="nav-primary {{sharedModel?.isArabicSection ? 'rtl' : ''}}">
 		<ul>
 			<li class="{{item.id == sharedModel?.categoryId ? 'current' : ''}}" *ngFor="let item of globalModel?.headerCountries">
-					<a routerLink="{{item.id == ARABIAN_PENINSULA ? 'Category' : 'Country'}}/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}" *ngIf="!item.isOnMenu">{{item?.title}}</a>
+					<a routerLink="{{item.id == ARABIAN_PENINSULA ? 'Category' : 'Country'}}/{{item?.id}}{{item?.customUrlTitle ? '/' + item?.customUrlTitle : ''}}" *ngIf="!item.isOnMenu">{{sharedModel?.isArabicSection && item?.arTitle ? item?.arTitle : item?.title}}</a>
 			</li>
 			<li class="{{sharedModel?.isArabicSection ? 'current rtl arabic' : ''}}" *ngIf="!(user?.isLogged)">
 			<a routerLink="/Category/{{ARABIC_SECTION_ID}}/القسم-العربي" class="rtl arabic">القسم العربي</a>

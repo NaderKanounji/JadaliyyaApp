@@ -107,16 +107,17 @@
 
 						<article class="article article-details">
 							<div class="{{articleModel?.isArabic ? 'rtl' : ''}}" *ngIf="articleModel">
-								<div class="article-image article-image-gallery alignleft" *ngIf="articleModel.image && !(articleModel?.videoUrl)">
+								<div class="article-image article-image-gallery alignleft" *ngIf="articleModel.image && !(articleModel?.videoUrl) && !(articleModel?.ArticleImages?.length > 1)">
 									<img src="{{RESIZED_CONTENT_PATH}}357x383xo/{{articleModel.image}}" alt="">
 
-									<a href="#" class="link-gallery" *ngIf="articleModel?.ArticleImages != null && articleModel?.ArticleImages.length - 1 > 0">
+									<!-- <a href="#" class="link-gallery" *ngIf="articleModel?.ArticleImages != null && articleModel?.ArticleImages.length - 1 > 0">
 										<i class="fa fa-camera" aria-hidden="true"></i>
 									
 										+{{articleModel.ArticleImages.length - 1}}
-									</a>
+									</a> -->
+									
 								</div><!-- /.article-image -->
-								<div class="article-video" *ngIf="articleModel?.videoUrl">
+								<div class="article-video" *ngIf="articleModel?.videoUrl  && !(articleModel?.ArticleImages?.length > 1)">
 									<iframe [src]="articleModel?.videoUrl | safeUrl" frameborder="0" allowfullscreen></iframe>
 								</div>
 								<header class="article-head">
@@ -127,11 +128,12 @@
 								</a> -->
 								<iframe [src]="articleModel.fbLikeLink | safeUrl" width="61" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 								<!-- <div class="fb-like" attr.data-href="{{articleModel?.fbLikeLink}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div> -->
+								<app-gallery *ngIf="articleModel?.ArticleImages && articleModel?.ArticleImages?.length > 1" [ArticleImages]="articleModel?.ArticleImages" [videoUrl]="articleModel?.videoUrl"></app-gallery>
 								</header><!-- /.article-head -->
 
 								<div class="article-body" id="article-body">
 								<div class="article-group">
-									<span [innerHTML]="articleModel.descriptionArr[0]"></span>
+									<span [innerHTML]="articleModel.descriptionArr[0] | safeHTML"></span>
 									<div class="quote-primary alignright" *ngIf="articleModel?.middleQuote != null && articleModel?.middleQuote != '' && articleModel.descriptionArr.length > 1">
 									<span class="top">
 										<i class="fa fa-quote-left" aria-hidden="true"></i>
@@ -147,16 +149,16 @@
 								</div><!-- /.article-group -->
 
 								<div class="article-group" *ngIf="(articleModel.descriptionArr.length > 1 && (articleModel.middleQuote == null || articleModel.middleQuote == '')) || (articleModel.descriptionArr.length > 2)">
-									<div class="article-image alignleft" *ngIf="articleModel.ArticleImages != null && articleModel.ArticleImages.length > 0">
+									<div class="article-image alignleft" *ngIf="articleModel?.ArticleImages && articleModel?.ArticleImages?.length">
 									<img src="{{RESIZED_CONTENT_PATH}}486x324xi/{{articleModel.ArticleImages[0].image}}" alt="{{articleModel.title}}">
 									
-									<a href="#" class="link-gallery" *ngIf="articleModel.ArticleImages != null && articleModel.ArticleImages.length - 1 > 0">
+									<a href="#" class="link-gallery" *ngIf="articleModel.ArticleImages && articleModel.ArticleImages.length - 1 > 0">
 										<i class="fa fa-camera" aria-hidden="true"></i>
 									
 										+{{articleModel.ArticleImages.length - 1}}
 									</a>
 									</div><!-- /.article-image -->
-									<span [innerHTML]="articleModel.middleQuote == null || articleModel.middleQuote == '' ? articleModel.descriptionArr[1] : articleModel.descriptionArr[2]"></span>
+									<span [innerHTML]="(articleModel.middleQuote == null || articleModel.middleQuote == '' ? articleModel.descriptionArr[1] : articleModel.descriptionArr[2]) | safeHTML"></span>
 								
 								</div><!-- /.article-group -->
 								</div><!-- /.article-body -->

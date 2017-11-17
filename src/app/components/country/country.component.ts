@@ -10,7 +10,7 @@ import { SortPipe } from '../../pipes/sort.pipe';
 import { CustomSortPipe } from '../../pipes/custom-sort.pipe';
 
 import { _globals } from '../../includes/globals';
-import { ArticleModel, SocialMedia, SharedModel, MapMarker, PageModel, LabelValueModel, JadNavigationWidget } from '../../includes/Models';
+import { ArticleModel, SocialMedia, SharedModel, MapMarker, PageModel, LabelValueModel, JadNavigationWidget, BannerModel } from '../../includes/Models';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -46,6 +46,7 @@ export class CountryComponent implements OnInit {
       about:null,
       image:null,
       customUrlTitle:null,
+      banner:null,
       regression:{
         populationMillion:null,
         populationNb:null,
@@ -80,6 +81,7 @@ export class CountryComponent implements OnInit {
         this.countryId = params['id'];
         
         this.http.get(_globals.API_URL + 'Data/GetCountryInit?countryId=' + this.countryId).subscribe((data:any) => {
+          this.myFunctions.DestroyAndClearCarousel();
           this.countryModel = data;
           if(data.hasTemplate){
             this.sharedService.alter_wrapper_classes('wrapper-secondary');
@@ -90,16 +92,24 @@ export class CountryComponent implements OnInit {
           this.sharedService.set_country({'id': this.countryId, 'title' : data.title, 'arTitle' : data.arTitle, 'hasTemplate' : data.hasTemplate, 'image' : data.image});
           this.startScrollLoading = true;
           this.myFunctions.country_sidebar();
+          this.myFunctions.load_slideshow();
+          
         });
     });
   }
   fetch_listing_data(all:ArticleModel[], page:number){
     switch(page){
       case 0:
-        all = all.sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
-          return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
-        })
-        this.countryModel.listing = all.slice(0,1).concat(this.sort.transform(all.slice(1), 2, 1, true, 0, 0));
+
+        // all = all.sort(function(a,b){
+        //   return b.date > a.date ? 1 : -1;
+        // }).sort((a:ArticleModel, b:ArticleModel) => { // sorts by isArabic (false then true)
+        //   return a.isArabic != b.isArabic ?(a.isArabic? 1 : -1) : 0; //sumamry : 1 = flip cells -1 = do not flip & 0 = same values
+        // });
+        let tempEnglish = all.filter(d => !d.isArabic).sort(function(a,b){
+            return b.date > a.date ? 1 : -1;
+          });
+        this.countryModel.listing = tempEnglish.slice(0,1).concat(this.sort.transform(all.filter(d => d.id != tempEnglish[0].id), 2, 1, true, 0, 0));
         break;
       case 1: 
         this.countryModel.listing = this.countryModel.listing.concat(this.customSort.transform(all, [2,1,1,1,2,1,2,1], false));
@@ -129,6 +139,7 @@ export class CountryComponent implements OnInit {
 
   }
   get_articles(isListingChanged:boolean){
+    this.isLoadingMore = true;
     isListingChanged = isListingChanged || false;
     this.http.get(_globals.API_URL + 'Data/GetCountryListing?countryId=' + this.countryId + '&isEditorPick=' + this.isEditorPick + '&page=' + this.pageNumber + '&idsToRemoves' + this.countryModel.articleIds).subscribe((data:any) =>{
       switch(this.pageNumber){
@@ -202,7 +213,7 @@ export class CountryComponent implements OnInit {
       }
       //Load more
       if(this.hasMoreToLoad && this.myFunctions.is_dom_in_view('#load-more-container', 600)){
-        if(!this.isLoadingMore){
+        if(!this.isLoadingMore && this.pageNumber < 2){
           this.isLoadingMore = true;
           this.get_articles(false);
         }
@@ -223,6 +234,7 @@ interface CountryModel{
   about:string;
   image:string;
   customUrlTitle:string;
+  banner:BannerModel;
   regression:{
     populationTitle:string;
     populationNb:string;

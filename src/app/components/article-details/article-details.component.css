@@ -13,6 +13,7 @@
     color: #222;
 }
 
+
 @media (max-width:1200px){
     .article-video{
         height:calc((100vw - 192px) * 0.56);

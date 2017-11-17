@@ -50,29 +50,33 @@ export class ContributorsComponent implements OnInit {
     if(this.startScrollLoading){
       //Load more
       if(this.hasMoreToLoad && this.myFunctions.is_dom_in_view('#load-more-container', 300)){
-          if(!this.isLoadingMore){
-            this.isLoadingMore = true;
-            this.http.get(_globals.API_URL + 'Data/GetWriters?page=' + this.pageNumber).subscribe((data:any) =>{
-              if(data.writers != null && data.writers.length){
-                this.contributorsModel.writers = this.contributorsModel.writers.concat(data.writers);
-                if(data.writers.length < 15){
-                  this.hasMoreToLoad = false;
-                }
-              }else{
-                this.hasMoreToLoad = false;
-              }
-              
-              // console.log(data['entries']);
-              // console.log(this.listingModel.loadMoreArticles);
-              
-              this.pageNumber++;
-              
-              this.isLoadingMore = false;
-            });
+          if(!this.isLoadingMore && this.pageNumber < 2){
+            this.get_more_contributors();
           }
         
       }
     }
+  }
+
+  get_more_contributors(){
+    this.isLoadingMore = true;
+    this.http.get(_globals.API_URL + 'Data/GetWriters?page=' + this.pageNumber).subscribe((data:any) =>{
+      if(data.writers != null && data.writers.length){
+        this.contributorsModel.writers = this.contributorsModel.writers.concat(data.writers);
+        if(data.writers.length < 15){
+          this.hasMoreToLoad = false;
+        }
+      }else{
+        this.hasMoreToLoad = false;
+      }
+      
+      // console.log(data['entries']);
+      // console.log(this.listingModel.loadMoreArticles);
+      
+      this.pageNumber++;
+      
+      this.isLoadingMore = false;
+    });
   }
 }
 

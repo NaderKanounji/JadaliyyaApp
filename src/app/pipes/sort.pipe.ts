@@ -12,8 +12,12 @@ export class SortPipe implements PipeTransform {
     enSkip = enSkip || 0;
     arSkip = arSkip || 0;
     let returnedList:ArticleModel[] = [];
-    let arList = value.filter(d => d.isArabic);
-    let enList = value.filter(d => !d.isArabic);
+    let arList = value.filter(d => d.isArabic).sort(function(a,b){
+      return b.date > a.date ? 1 : -1;
+    });
+    let enList = value.filter(d => !d.isArabic).sort(function(a,b){
+      return b.date > a.date ? 1 : -1;
+    });
     let listArCount = arSkip, listEnCount = enSkip;
     let isArListing = isArabicFirst;
 

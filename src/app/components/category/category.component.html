@@ -102,7 +102,7 @@
 																	</li>
 																	
 																	<li>
-																		<a href="#">Jan 8</a>
+																		<a>{{listingModel?.mainArticle?.date | date:'MMM d'}}</a>
 																	</li>
 																</ul><!-- /.list-meta -->
 															</footer><!-- /.post-foot -->
@@ -223,9 +223,9 @@
 
 							</div><!-- /.tabs-body -->
 						</div><!-- /.tabs -->
-						<div id="hot-most-read" hot-on-facebook [model]="homeModel">
+						<!-- <div id="hot-most-read" hot-on-facebook [model]="homeModel">
 							
-						</div>
+						</div> -->
 						
 						<section class="section section-articles no-sidebar" *ngIf="isDefaultTemplate && listingModel?.loadMoreArticles &&!(categoryId == ARABIC_SECTION_ID)">
 							<div class="section-content">
@@ -375,7 +375,7 @@
 										</div><!-- /.post-content-inner -->
 									</div><!-- /.post-content -->
 				
-									<div class="post-image post-video" *ngIf="homeModlistingModelel?.video?.image">
+									<div class="post-image post-video" *ngIf="listingModel?.video?.image">
 										<a title="{{listingModel?.video?.title}}" routerLink="/Details/{{listingModel?.video?.id + (listingModel?.video?.customUrlTitle ? '/' + listingModel?.video?.customUrlTitle : '')}}">
 										<img src="{{RESIZED_CONTENT_PATH}}500x358xo/{{listingModel?.video?.image}}" alt="{{listingModel?.video?.title}}" class="fullsize-bg">
 										</a>
@@ -497,9 +497,10 @@
 						</section><!-- /.section section-articles -->
 					</div><!-- /.content-inner -->
 					
-					<div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">
+					<div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad" (click)="load_more_articles()">
 						<a class="link-load">
-							<ul class="load-more-loader">
+							<span  *ngIf="!isLoadingMore && startScrollLoading">Load More</span>
+							<ul class="load-more-loader" *ngIf="isLoadingMore || !startScrollLoading">
 								<li></li>
 								<li></li>
 								<li></li>

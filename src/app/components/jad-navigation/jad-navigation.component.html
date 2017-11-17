@@ -5,7 +5,12 @@
 					<div class="content-inner">
 						<section class="section section-jad ">
 							<div class="section-map" *ngIf="jadModel?.markers?.length">
-								<div id="map" class="gmap2" attr.data-lat="{{jadModel?.markers[0].latitude}}" attr.data-lng="{{jadModel?.markers[0].longitude}}"></div><!-- /.map -->
+								<div id="map" class="gmap2" attr.data-lat="{{jadModel?.markers[0].latitude}}" 
+								attr.data-lng="{{jadModel?.markers[0].longitude}}"></div><!-- /.map -->
+								<div class="map-markers">
+<div class="map-marker" attr.data-lng="{{marker.longitude}}" 
+attr.data-lat="{{marker.latitude}}" *ngFor="let marker of jadModel?.markers"></div>
+</div>
 							</div><!-- /.section-map -->
 						
 							<div class="section-content">

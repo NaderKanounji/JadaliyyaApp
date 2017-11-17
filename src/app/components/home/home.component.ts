@@ -246,17 +246,20 @@ export class HomeComponent implements OnInit {
   }
 
   submit_interest(){
-    if(document.querySelectorAll('.list-interests .clicked').length){
-      localStorage.setItem('_jad_interest', this.get_interest_string());
-      this.fetch_new_listing(3);
-      this.myFunctions.closeInterested();
-      setTimeout(() => {
-        this.myFunctions.animate_to_element('.tabs.tabs-secondary', -200, 800);
-      }, 200);
+    //Restore to submit interest
+    // if(document.querySelectorAll('.list-interests .clicked').length){
+    //   localStorage.setItem('_jad_interest', this.get_interest_string());
+    //   this.fetch_new_listing(3);
+    //   this.myFunctions.closeInterested();
+    //   setTimeout(() => {
+    //     this.myFunctions.animate_to_element('.tabs.tabs-secondary', -200, 800);
+    //   }, 200);
 
-    }else{
-      localStorage.removeItem('_jad_interest');
-    }
+    // }else{
+    //   localStorage.removeItem('_jad_interest');
+    // }
+    this.myFunctions.psy_toggle_class('.interest-coming-soon', 'hidden', false);
+
   }
   get_interest_string():string{
     let selectedTags = document.querySelectorAll('.list-interests .clicked');
@@ -281,6 +284,7 @@ export class HomeComponent implements OnInit {
             // this.isLoadingMore = true;
             this.http.get(_globals.API_URL + 'Data/GetHomeArabInstitute').subscribe((data:any) =>{
               this.homeModel.arabStudies = data;
+              this.myFunctions.verticalScroll();
               //this.homeModel.articleIds = data['articleIds'];    
           //    this.isLoadingMore = false;
             });

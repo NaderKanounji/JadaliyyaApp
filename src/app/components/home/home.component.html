@@ -189,6 +189,7 @@
   
             <div class="section-actions">
               <a  class="btn btn-primary btn-blue" (click)="submit_interest()">SUBMIT MY INTEREST</a>
+              <span class="interest-coming-soon hidden">Coming Soon</span>
             </div><!-- /.section-actions -->
           </div><!-- /.section-body -->
         </div><!-- /.shell -->
@@ -210,7 +211,7 @@
                             <a >EDITOR’S PICKS</a>
                           </li>
       
-                          <li class="tab-item-interests" (click)="fetch_new_listing(3)">
+                          <li class="tab-item-interests disable" (click)="fetch_new_listing(3)"> <!-- remove 'disable' to makei t work -->
                             <a >MY INTERESTS</a>
                           </li>
                         </ul>
@@ -388,9 +389,9 @@
                     </aside><!-- /.section-aside -->
                   </section><!-- /.section section-articles -->
       
-                  <div id="hot-most-read" hot-on-facebook [model]="homeModel">
+                  <!-- <div id="hot-most-read" hot-on-facebook [model]="homeModel" > 
                       
-                  </div>
+                  </div> -->
       
                   <section class="section section-articles" *ngIf="homeModel?.listing?.length > 14">
                     <div class="section-content">
@@ -468,7 +469,7 @@
                                   </span>
                                   
                                   <h4>
-                                    <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title}}</a>
+                                    <a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">{{item.title | truncate: 50}}</a>
                                   </h4>
                                 </li>
                               </ul><!-- /.list-news list-news-secondary -->
@@ -609,9 +610,9 @@
                                     <div>
                                       <p>{{item?.title}}</p>
       
-                                      <a href="#">
+                                      <!-- <a href="#">
                                         <img src="../../assets/images/temp/share.png" alt="">
-                                      </a>
+                                      </a> -->
                                     </div>
                                   </li>
                                 </ul><!-- /.list-news list-news-dark -->
@@ -1113,9 +1114,9 @@
                       </div><!-- /.widget-body -->
                     </li><!-- /.widget-primary -->
         
-                    <li class="widget-primary hidden-sm hidden-xs hidden-md" popular-tags-widget [model]="homeModel?.sidebar?.popularTags" *ngIf="homeModel?.sidebar?.popularTags?.length">
+                    <!-- <li class="widget-primary hidden-sm hidden-xs hidden-md" popular-tags-widget [model]="homeModel?.sidebar?.popularTags" *ngIf="homeModel?.sidebar?.popularTags?.length">
                         
-                      </li><!-- /.widget-primary -->
+                      </li> -->
         
                     <li class="widget-primary hidden-xs" *ngIf="homeModel?.quote">
                       <div class="quote">

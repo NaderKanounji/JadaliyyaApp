@@ -12,10 +12,13 @@ import { FunctionsService } from '../../../services/functions.service';
 export class SlideshowComponent implements OnInit {
   RESIZED_CONTENT_PATH:string;
   @Input() model:ArticleModel[];
-  constructor(private myFunctions:FunctionsService) { }
+  constructor(private myFunctions:FunctionsService) {
+
+ }
 
   ngOnInit() {
     this.RESIZED_CONTENT_PATH = _globals.RESIZED_CONTENT_PATH;
+    this.myFunctions.DestroyAndClearCarousel();
     this.myFunctions.load_slideshow();
   }
 

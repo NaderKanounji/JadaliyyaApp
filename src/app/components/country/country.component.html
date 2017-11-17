@@ -7,7 +7,6 @@
 									<div class="slider slider-primary" slideshow [model]="countryModel?.slideshow" *ngIf="countryModel?.slideshow?.length">
 											
 									</div><!-- /.slider -->
-									
 									<div class="content-aside" *ngIf="countryModel?.mostRecent?.length > 0">
 										<h3 class="content-title">
 											<i class="ico-title"></i>
@@ -102,7 +101,7 @@
                                   </li>
                                   
                                   <li>
-                                    <a href="#">Jan 8</a>
+                                    <a >{{item.date | date:'MMM d'}}</a>
                                   </li>
                                 </ul><!-- /.list-meta -->
                               </footer><!-- /.post-foot -->
@@ -119,9 +118,9 @@
 								</div><!-- /.tab -->
 							</div><!-- /.tabs-body -->
 						</div><!-- /.tabs -->
-            <div id="hot-most-read" hot-on-facebook [model]="countryModel">
+            <!-- <div id="hot-most-read" hot-on-facebook [model]="countryModel"> 
                 
-              </div>
+              </div> -->
 					
 						<section class="section section-articles" *ngIf="countryModel?.listing?.length > 14">
 							<div class="section-content">
@@ -161,16 +160,16 @@
 										
 												<div class="post-content-inner">
 													<h2 class="post-title">
-														<a href="#">Federal judge<br /> rules for Apple in New York case involving a locked iPhone</a>
+														<a routerLink="/Details/{{countryModel?.photography?.id + (countryModel?.photography?.customUrlTitle ? '/' + countryModel?.photography?.customUrlTitle : '')}}">{{countryModel?.photography?.title}}</a>
 													</h2><!-- /.post-title -->
 																						
 													<ul class="list-meta">
-														<li>
-															<a href="#">By Jadaliyya Egypt Editors</a>
+														<li *ngIf="countryModel?.photography?.writer">
+															<a routerLink="/Contributor/{{countryModel?.photography?.writer?.id}}">By {{countryModel?.photography?.writer?.name}}</a>
 														</li>
 														
 														<li>
-															<a href="#">Jan 8</a>
+															<a >{{countryModel?.photography?.date | date:'MMM d'}}</a>
 														</li>
 													</ul><!-- /.list-meta -->
 												</div><!-- /.post-content-inner -->
@@ -251,40 +250,40 @@
                   <li class="post post-bd-top {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(26, 27)">
                       <post [post]="post"></post>
                   </li><!-- /.post -->
-														
-									<li class="post post-media post-media-top" *ngIf="countryModel?.video">
-										<div class="post-inner">
-											<div class="post-content">
-												<span class="post-subtitle">
-													<i class="ico-logo-large"></i>
-										
-													Video
-												</span>
-										
-												<div class="post-content-inner">
-													<h2 class="post-title">
-														<a href="#">Federal judge<br /> rules for Apple in New York case involving a locked iPhone</a>
-													</h2><!-- /.post-title -->
-																						
-													<ul class="list-meta">
-														<li>
-															<a href="#">By Jadaliyya Egypt Editors</a>
-														</li>
-														
-														<li>
-															<a href="#">Jan 8</a>
-														</li>
-													</ul><!-- /.list-meta -->
-												</div><!-- /.post-content-inner -->
-											</div><!-- /.post-content -->
-										
-											<div class="post-image post-video">
-												<a href="#">
-													<img src="../../assets/images/temp/video.jpg" alt="" class="fullsize-bg">
-												</a>
-											</div><!-- /.post-image -->
-										</div><!-- /.post-inner -->
-									</li><!-- /.post post-media -->
+				  <li class="post post-media post-media-top" *ngIf="countryModel?.video">
+						<div class="post-inner">
+						<div class="post-content">
+							<span class="post-subtitle">
+							<i class="ico-logo-large"></i>
+	
+							Videos
+							</span>
+	
+							<div class="post-content-inner">
+							<h2 class="post-title">
+								<a title="{{countryModel?.video?.title}}" routerLink="/Details/{{countryModel?.video?.id + (countryModel?.video?.customUrlTitle ? '/' + countryModel?.video?.customUrlTitle : '')}}"></a>
+							</h2><!-- /.post-title -->
+	
+							<ul class="list-meta">
+								<li *ngIf="countryModel?.video?.writer">
+								<a title="{{countryModel?.video?.writer?.name}}" routerLink="/Contributor/{{countryModel?.video?.writer?.id}}">By {{countryModel?.video?.writer?.name}}</a>
+								</li>
+	
+								<li>
+								{{countryModel?.video?.date | date:'MMM d'}}
+								</li>
+							</ul><!-- /.list-meta -->
+							</div><!-- /.post-content-inner -->
+						</div><!-- /.post-content -->
+	
+						<div class="post-image post-video" *ngIf="countryModel?.video?.image">
+							<a title="{{countryModel?.video?.title}}" routerLink="/Details/{{countryModel?.video?.id + (countryModel?.video?.customUrlTitle ? '/' + countryModel?.video?.customUrlTitle : '')}}">
+							<img src="{{RESIZED_CONTENT_PATH}}500x358xo/{{countryModel?.video?.image}}" alt="{{countryModel?.video?.title}}" class="fullsize-bg">
+							</a>
+						</div><!-- /.post-image -->
+						</div><!-- /.post-inner -->
+					</li><!-- /.post post-media -->					
+									
 								
                   <li class="post {{isArabicSection || post.isArabic? 'rtl' : ''}}" *ngFor="let post of countryModel?.listing?.slice(27, 30)">
                       <post [post]="post"></post>
@@ -339,9 +338,10 @@
 						</section><!-- /.section section-articles -->
 					</div><!-- /.content-inner -->
 					
-					<div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">
-              <a href="#" class="link-load">
-                <ul class="load-more-loader">
+					<div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad" (click)="get_articles(false)">
+              <a class="link-load">
+					<span  *ngIf="!isLoadingMore && startScrollLoading">Load More</span>
+					  <ul class="load-more-loader" *ngIf="isLoadingMore || !startScrollLoading">
                   <li></li>
                   <li></li>
                   <li></li>
@@ -436,19 +436,19 @@
 								</div><!-- /.widget-body -->
 							</li><!-- /.widget-about -->
 
-							<li class="widget-primary" *ngIf="countryModel?.hasTemplate && countryModel?.marker">
+							<!-- <li class="widget-primary" *ngIf="countryModel?.hasTemplate && countryModel?.marker">
 									<header class="widget-head">
 										<h3 class="widget-title">
 											<span>SYRIA MAP &amp; STATS</span>
-										</h3><!-- /.widget-title -->
-									</header><!-- /.widget-head -->
+										</h3>
+									</header>
 								
 									<div class="widget-body">
-										<div class="gmap3" id="map" style="height: 354px"></div><!-- /.gmap3 -->
+										<div class="gmap3" id="map" style="height: 354px"></div>
 		
 										<ul class="list-locations">
 											<li attr.data-lat="{{countryModel?.marker?.latitude}}" attr.data-lng="{{countryModel?.marker?.longitude}}"></li>
-										</ul><!-- /.list-locations -->
+										</ul>
 		
 										<ul class="list-population" *ngIf="countryModel?.info?.length">
 											<li class="{{i % 2 == 0 && i > 0 ? 'left' : ''}}" *ngFor="let item of countryModel?.info; let i = index">
@@ -458,9 +458,9 @@
 											</li>
 											
 										
-										</ul><!-- /.list-population -->
-									</div><!-- /.widget-body -->
-								</li><!-- /.widget-primary -->
+										</ul>
+									</div>
+								</li> -->
 		
 						<li class="widget-subscribe widget-subscribe-smaller">
 							<div class="widget-content">
@@ -472,13 +472,13 @@
 							</div><!-- /.widget-content -->
 						</li><!-- /.widget -->
 					
-						<li class="widget-jad widget-jad-smaller">
-							<div class="widget-image">
-								<a href="#">
-									<img src="../../assets/images/temp/jadmag1.jpg" alt="">
-								</a>
-							</div><!-- /.widget-image -->
-						</li><!-- /.widget -->
+						<li class="widget-jad">
+								<div class="widget-image">
+									<a title="{{countryModel?.banner?.title}}" href="{{countryModel?.banner?.link}}">
+										<img src="{{RESIZED_CONTENT_PATH}}330x279xo/{{countryModel?.banner?.image}}" alt="">
+									</a>
+								</div><!-- /.widget-image -->
+							</li><!-- /.widget -->
 					
 						<li class="widget-primary " more-stories-widget [featured]="countryModel?.moreFeatured" [recent]="countryModel?.moreRecent" *ngIf="countryModel?.moreFeatured || countryModel?.moreRecent">
                 

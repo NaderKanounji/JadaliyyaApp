@@ -12,15 +12,26 @@
 // export public string testvar = "test"; 
 
 export const _globals = Object.freeze({
-    //ONLINE VALUES
+    
+    //ONLINE VALUES  jadaliyya.com
     API_URL: 'http://jadaliyyaapi2.koeinbeta.com/api/', 
     CONTENT_PATH: 'jadaliyyakms.koeinbeta.com/content/uploads/',
     RESIZED_CONTENT_PATH: 'http://jadaliyyakms2.koeinbeta.com/Images/',
-    BASE_URL: 'http://jadaliyya2.koeinbeta.com/',
+    BASE_URL: 'http://jadaliyya.com/',
     BASE_API_URL: 'http://jadaliyyaapi2.koeinbeta.com/',
     BASE_KMS_URL: 'http://jadaliyyakms2.koeinbeta.com/',
     STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
     TwitterUsername:'Jadaliyya',
+
+    //ONLINE VALUES //koeinbeta
+    // API_URL: 'http://jadaliyyaapi2.koeinbeta.com/api/', 
+    // CONTENT_PATH: 'jadaliyyakms.koeinbeta.com/content/uploads/',
+    // RESIZED_CONTENT_PATH: 'http://jadaliyyakms2.koeinbeta.com/Images/',
+    // BASE_URL: 'http://jadaliyya2.koeinbeta.com/',
+    // BASE_API_URL: 'http://jadaliyyaapi2.koeinbeta.com/',
+    // BASE_KMS_URL: 'http://jadaliyyakms2.koeinbeta.com/',
+    // STATUS_API_URL: 'http://www.statushour.com/kapi/GetJadaliyaJson',
+    // TwitterUsername:'Jadaliyya',
     
     //LOCAL VALUES
 //     API_URL: 'https://localhost:44300/api/',

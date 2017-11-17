@@ -60,6 +60,8 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { SearchComponent } from './components/search/search.component';
 import { DetailedNewsletterComponent } from './components/popups/detailed-newsletter/detailed-newsletter.component';
+import { GalleryComponent } from './Components/common/gallery/gallery.component';
+import { SafeHTMLPipe } from './pipes/safe-html.pipe';
 
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -127,10 +129,12 @@ var routes = [
     PrivacyPolicyComponent,
     ContactUsComponent,
     SearchComponent,
-    DetailedNewsletterComponent
+    DetailedNewsletterComponent,
+    GalleryComponent,
+    SafeHTMLPipe
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'jadaliyya-app'}),
     RouterModule.forRoot(routes),
     HttpClientModule,
     Ng2Webstorage,

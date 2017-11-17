@@ -15,13 +15,14 @@ export class FooterComponent implements OnInit {
   @Input() globalModel:GlobalModel;
   sharedModel:SharedModel;
   user:UserModel;
+  currentYear:number;
 
   constructor(private sharedService:SharedService, private userService:UserService) { }
 
   ngOnInit() {
     this.ARABIC_SECTION_ID = _globals.ARABIC_SECTION_ID;
     //console.log('123');
-    
+    this.currentYear = 2017;
     this.sharedService.sharedModel.subscribe(sharedModel => this.sharedModel = sharedModel);
     this.userService.user.subscribe(user => this.user = user);
     

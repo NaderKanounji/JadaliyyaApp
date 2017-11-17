@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
@@ -54,8 +54,12 @@ export class ArticleDetailsComponent implements OnInit {
         this.articleModel.fbShareSrc = 'https://www.facebook.com/plugins/share_button.php?href=' + this.articleLink + '&layout=button&size=small&mobile_iframe=true&appId=' + _globals.FACEBOOK_APP_ID + '&width=59&height=20';
         this.articleModel.fbLikeLink = 'https://www.facebook.com/plugins/like.php?href=' + this.articleLink + '&width=61&layout=button_count&action=like&size=small&share=false&height=21&appId=' + _globals.FACEBOOK_APP_ID;
         //console.log(this.articleModel);
-
+        this.myFunctions.details_slider();
         this.myFunctions.load_details_page();
+        const header = new HttpHeaders().set('Content-Type', "application/json");
+        this.http.post(_globals.API_URL + 'Data/AddViewCounter?articleId=' + this.articleModel.id, {header}).subscribe((counterDate:any)=>{
+          //nothing to show
+        });
         if(data.metas){
           this.metaService.addTags([
             {name : 'description', content :data.metas.metaDescription},
@@ -110,6 +114,10 @@ interface ArticleModel{
   fbShareSrc:string;
   fbLikeLink:string;
   videoUrl:string;
+  ArticleImages:{
+    images:string;
+    title:string;
+  }
   writer:{
     id:number;
     name:string;

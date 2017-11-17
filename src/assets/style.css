@@ -11503,6 +11503,23 @@ a.link-folders.hide-arrow::after {
 .section-hot-secondary .slider-interview .owl-carousel .owl-stage-outer img {
   border-radius: 100%;
 }
+.slider-feed .slide .list-feed li {
+  width: 280px;
+}
+.article-group ul,
+.article-group ol {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+app-gallery .slider-thumbs .owl-nav.disabled {
+  display: block;
+}
+.widget-news .widget-inner {
+  height: 100%;
+}
+.search-coming-soon {
+  font-size: 2em;
+}
 .form-errors {
   padding-left: 15px;
   margin-top: 30px;

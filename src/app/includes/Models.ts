@@ -115,6 +115,7 @@ export interface ContributorsComponentModel{
   popularTags:TagModel[];
   featured:ArticleModel[];
   recent:ArticleModel[];
+  banner:BannerModel;
 }
 export interface ContributorDetailsModel{
   id:number;
@@ -267,6 +268,7 @@ export interface SocialMediaModel{
 export interface Country{
   id:number;
   title:string;
+  arTitle:string;
   customUrlTitle:string;
 }
 export interface Category{

@@ -52,6 +52,10 @@ export class AppComponent {
         this.myFunctions.reset_page_state();
         this.myFunctions.load_all_pages();
       }
+      if (val instanceof NavigationEnd) {
+        //this.myFunctions.googleTagsAnalyticsCall();
+        this.myFunctions.load_google_tags_analytics();
+      }
       
     });
   }

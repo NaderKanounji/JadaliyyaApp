@@ -89,11 +89,26 @@ country_sidebar(){
   load_slideshow(){
     myFunctions.load_slideshow();
   }
+  DestroyAndClearCarousel(){
+    myFunctions.DestroyAndClearCarousel();
+  }
+  googleTagsAnalyticsCall(){
+    myFunctions.googleTagsAnalyticsCall();
+  }
+  details_slider(){
+    myFunctions.details_slider();
+  }
   load_jadNavigation_map(){
     myFunctions.load_jadNavigation_map();
   }
+  psy_toggle_class(id:string, className:string, add:boolean){
+    myFunctions.psy_toggle_class(id, className, add);
+  }
   header_bindings(){
     myFunctions.nav_bindings();
+  }
+  verticalScroll(){
+    myFunctions.verticalScroll();
   }
   contact_us_map_init(){
     myFunctions.contact_us_map_init();
@@ -157,6 +172,14 @@ country_sidebar(){
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
       })();
     }
+  }
+  load_google_tags_analytics(){
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://www.googletagmanager.com/gtag/js?id=UA-1090937-59';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+      myFunctions.googleTagsAnalyticsCall();
   }
   load_google_map_api(){
     if(!this.isGoogleMapLoaded){

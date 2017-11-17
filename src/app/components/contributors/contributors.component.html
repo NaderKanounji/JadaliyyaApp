@@ -63,9 +63,10 @@
             </li><!-- /.writer -->
 
           </ul><!-- /.writers -->
-          <div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad">
-						<a href="#" class="link-load">
-							<ul class="load-more-loader">
+          <div class="content-actions" id="load-more-container" *ngIf="hasMoreToLoad" (click)="get_more_contributors()">
+						<a class="link-load">
+              <span  *ngIf="!isLoadingMore && startScrollLoading">Load More</span>
+              <ul class="load-more-loader" *ngIf="isLoadingMore || !startScrollLoading">
 								<li></li>
 								<li></li>
 								<li></li>
@@ -87,14 +88,14 @@
             </div><!-- /.widget-content -->
           </li><!-- /.widget -->
 
-          <li class="widget-jad hidden-xs">
-            <div class="widget-image">
-              <a href="#">
-                <img src="../../assets/images/temp/jadmag1.jpg" alt="">
-              </a>
-            </div><!-- /.widget-image -->
-          </li><!-- /.widget -->
 
+          <li class="widget-jad">
+							<div class="widget-image">
+								<a title="{{contributorsModel?.banner?.title}}" href="{{contributorsModel?.banner?.link}}">
+									<img src="{{RESIZED_CONTENT_PATH}}330x279xo/{{contributorsModel?.banner?.image}}" alt="">
+								</a>
+							</div><!-- /.widget-image -->
+						</li><!-- /.widget -->
           <li class="widget-primary " more-stories-widget [featured]="contributorsModel?.featured" [recent]="contributorsModel?.recent" *ngIf="contributorsModel?.featured || contributorsModel?.recent">
             
           </li><!-- /.widget-primary -->

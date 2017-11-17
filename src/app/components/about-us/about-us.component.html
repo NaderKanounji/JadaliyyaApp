@@ -21,7 +21,7 @@
     </div><!-- /.shell -->
   </section><!-- /.section section-about -->
 
-  <section class="section section-contributors" *ngIf="model?.rolesWithWriters?.length && false"> <!-- remove false to show -->
+  <section class="section section-contributors" *ngIf="model?.rolesWithWriters?.length"> <!-- remove false to show -->
     <div class="shell">
       <div class="section-content">
         <div class="cols">
@@ -34,7 +34,7 @@
                   </div><!-- /.widget-head -->
 
                   <div class="widget-body">
-                    <ul class="list-contributors" li-link [model]="item?.writers?.slice(0, 15)" [route]="'Writer'" [title]="'name'">
+                    <ul class="list-contributors" li-link [model]="item?.writers?.slice(0, 20)" [route]="'Writer'" [title]="'name'">
                      
                     </ul><!-- /.list-contributors -->
                   </div><!-- /.widget-body -->
@@ -74,7 +74,7 @@
   <section class="section section-editors" *ngIf="model?.jadaliyyaCoEditors?.length">
     <div class="shell">
       <header class="section-head">
-        <h2 class="section-title">JADALIYYA CO-EDITORS</h2><!-- /.section-title -->
+        <h2 class="section-title">Pages/Sections Editors</h2><!-- /.section-title -->
       </header><!-- /.section-head -->
 
       <div class="section-body">
