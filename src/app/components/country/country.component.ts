@@ -2,7 +2,6 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-
 import { SharedService } from '../../services/shared.service';
 import { FunctionsService } from '../../services/functions.service';
 

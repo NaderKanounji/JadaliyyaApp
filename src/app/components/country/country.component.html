@@ -197,7 +197,7 @@
 
 						<div id="latest-announcements-container">
 							
-						<div class="section section-announcements ltr" *ngIf="countryModel?.latestAnnouncements2?.length">
+						<div class="section section-announcements ltr" *ngIf="countryModel?.latestAnnouncements?.length">
 							<a href="#" class="link-scroll-next">
 								<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
 							</a>
@@ -222,9 +222,9 @@
 							<div class="section-content scrollable-horizontal">
 								<div class="slider slider-roundups-secondary">
 									<div class="slides">
-										<div class="slide"  *ngFor="let parentItem of countryModel?.latestAnnouncements2; let i = index">
+										<div class="slide"  *ngFor="let parentItem of countryModel?.latestAnnouncements; let i = index">
 											<ul class="list-news list-news-secondary" *ngIf="i % 2 == 0">
-												<li *ngFor="let item of countryModel?.latestAnnouncements2.slice(i, i + 2)">
+												<li *ngFor="let item of countryModel?.latestAnnouncements.slice(i, i + 2)">
 													<span *ngIf="item.image">
 														<a title="{{item.title}}" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' + item.customUrlTitle : '')}}">
 															<img src="{{RESIZED_CONTENT_PATH}}60x58xo/{{item.image}}" alt="">

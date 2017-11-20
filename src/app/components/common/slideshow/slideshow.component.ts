@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { _globals } from '../../../includes/globals'; 
-import { ArticleModel } from '../../../includes/Models'; 
+import { _globals } from './../../../includes/globals'; 
+import { ArticleModel } from './../../../includes/Models'; 
 
-import { FunctionsService } from '../../../services/functions.service';
+import { FunctionsService } from './../../../services/functions.service';
 
 @Component({
   selector: '[slideshow]',
@@ -12,7 +12,7 @@ import { FunctionsService } from '../../../services/functions.service';
 export class SlideshowComponent implements OnInit {
   RESIZED_CONTENT_PATH:string;
   @Input() model:ArticleModel[];
-  constructor(private myFunctions:FunctionsService) {
+  constructor(public myFunctions:FunctionsService) {
 
  }
 

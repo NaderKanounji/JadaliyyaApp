@@ -9,7 +9,7 @@ import { FunctionsService } from '../../services/functions.service';
 import { UserService } from '../../services/user.service';
 
 import { _globals } from '../../includes/globals';
-import { UserModel } from '../../includes/Models';
+import { UserModel, SharedModel } from '../../includes/Models';
 // import * as _globals from '../../includes/globals'; 
 
 @Component({
@@ -93,11 +93,6 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
 
-}
-interface SharedModel{
-  headerStructure:string;
-  categoryTitle:string;
-  isGoogleApiLoaded:boolean;
 }
 
 interface ArticleModel{

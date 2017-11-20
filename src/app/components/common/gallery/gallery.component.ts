@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { _globals } from '../../../includes/globals';
+import { _globals } from './../../../includes/globals';
 
 @Component({
   selector: 'app-gallery',
@@ -10,10 +10,10 @@ import { _globals } from '../../../includes/globals';
 export class GalleryComponent implements OnInit {
 
   RESIZED_CONTENT_PATH:String;
-  @Input() ArticleImages:{
+  @Input() ArticleImages:[{
     image:string;
     title:string;
-  }
+  }]
   @Input() videoUrl:String;
   constructor() { }
 

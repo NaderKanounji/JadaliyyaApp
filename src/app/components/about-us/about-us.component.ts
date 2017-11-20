@@ -45,5 +45,5 @@ interface AboutModel{
   subtitle:string;
   descriptions:string[];
   rolesWithWriters:RolesWithWriters[];
-  jadaliyyaCoEditor:RolesWithWriters[];
+  jadaliyyaCoEditors:RolesWithWriters[];
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Output, HostListener } from '@angular/
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, NavigationExtras } from '@angular/router';
 
+import { SlideshowComponent } from './../common/slideshow/slideshow.component';
+
 import { LocalStorageService } from 'ng2-webstorage';
 
 import { SharedService } from '../../services/shared.service';
@@ -67,6 +69,7 @@ export class HomeComponent implements OnInit {
       latestAnnouncements2:null,
       tags:null,
       listing:null,
+      quote:null,
       articleIds:null,
       roundups:{
         media:null,
@@ -372,6 +375,7 @@ interface HomeModel{
   latestAnnouncements2:ArticleModel[];
   tags:TagModel[];
   listing:ArticleModel[];
+  quote:string;
   articleIds:string;
   roundups:{
     media:ArticleModel[];
@@ -383,9 +387,9 @@ interface HomeModel{
   video:ArticleModel;
   jadalicious:ArticleModel[];
   arabStudies:{
-    list1:ArticleModel;
-    list2:ArticleModel;
-    list3:ArticleModel;
+    list1:ArticleModel[];
+    list2:ArticleModel[];
+    list3:ArticleModel[];
   }
   sidebar:{
     banner:BannerModel;

@@ -4,6 +4,7 @@ export interface UserModel{
     id:string;
     fullname:string;
     UserName:string;
+    isWriter:boolean;
   }
   token:{
     access_token:string;

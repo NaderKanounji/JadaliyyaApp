@@ -5,7 +5,7 @@ import { SharedModel, SocialMedia,SharedCountryModel, Country, Category, FormsDa
 @Injectable()
 export class SharedService {
 
-  private messageSource = new BehaviorSubject<SharedModel>(
+  public messageSource = new BehaviorSubject<SharedModel>(
     {"headerType" : "header",
     'messagePopup': '' , 
     "displayActions": false, 
