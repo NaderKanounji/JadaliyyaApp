@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter, Output, HostListener } from '@angular/
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, NavigationExtras } from '@angular/router';
 
-import { SlideshowComponent } from './../common/slideshow/slideshow.component';
 
 import { LocalStorageService } from 'ng2-webstorage';
 

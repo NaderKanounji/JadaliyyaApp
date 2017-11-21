@@ -9,18 +9,18 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './Components/home/home.component';
-import { FooterComponent } from './Components/footer/footer.component';
-import { ArticleDetailsComponent } from './Components/article-details/article-details.component';
-import { CategoryComponent } from './Components/category/category.component';
+import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ArticleDetailsComponent } from './components/article-details/article-details.component';
+import { CategoryComponent } from './components/category/category.component';
 import { JoinNewsletterComponent } from './components/common/join-newsletter/join-newsletter.component';
-import { PostComponent } from './Components/common/post/post.component';
-import { TinyPostComponent } from './Components/common/tiny-post/tiny-post.component';
-import { CountryComponent } from './Components/country/country.component';
-import { HotOnFacebookComponent } from './Components/common/hot-on-facebook/hot-on-facebook.component';
-import { LatestAnnouncementsComponent } from './Components/common/latest-announcements/latest-announcements.component';
-import { MoreStoriesComponent } from './Components/common/more-stories/more-stories.component';
-import { JadNavWidgetComponent } from './Components/common/jad-nav-widget/jad-nav-widget.component';
+import { PostComponent } from './components/common/post/post.component';
+import { TinyPostComponent } from './components/common/tiny-post/tiny-post.component';
+import { CountryComponent } from './components/country/country.component';
+import { HotOnFacebookComponent } from './components/common/hot-on-facebook/hot-on-facebook.component';
+import { LatestAnnouncementsComponent } from './components/common/latest-announcements/latest-announcements.component';
+import { MoreStoriesComponent } from './components/common/more-stories/more-stories.component';
+import { JadNavWidgetComponent } from './components/common/jad-nav-widget/jad-nav-widget.component';
 import { JadNavigationComponent } from './components/jad-navigation/jad-navigation.component';
 import { LiLinkComponent } from './components/common/li-link/li-link.component';
 import { SocialBlockComponent } from './components/common/social-block/social-block.component';
@@ -60,7 +60,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { SearchComponent } from './components/search/search.component';
 import { DetailedNewsletterComponent } from './components/popups/detailed-newsletter/detailed-newsletter.component';
-import { GalleryComponent } from './Components/common/gallery/gallery.component';
+import { GalleryComponent } from './components/common/gallery/gallery.component';
 import { SafeHTMLPipe } from './pipes/safe-html.pipe';
 
 var routes = [

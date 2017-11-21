@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
-import { SlideshowComponent } from './../common/slideshow/slideshow.component';
 
 import { SharedService } from '../../services/shared.service';
 import { FunctionsService } from '../../services/functions.service';
