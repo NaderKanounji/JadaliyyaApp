@@ -1,0 +1,9 @@
+.no-search-results{
+    text-transform: uppercase;
+    color:grey;
+    font-size: 20px;
+    display: block;
+    width:100%;
+    font-weight: bold;
+    text-align: center;
+}

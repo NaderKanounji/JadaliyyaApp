@@ -49,6 +49,7 @@ import { CustomSortPipe } from './pipes/custom-sort.pipe';
 
 //Guards
 import { AuthGuard } from './guards/auth.guard';
+import { OldDetailsRedirectGuard } from './guards/old-details-redirect.guard';
 import { PopularTagsWidgetComponent } from './components/common/popular-tags-widget/popular-tags-widget.component';
 import { FavoriteComponent } from './components/popups/favorite/favorite.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
@@ -66,6 +67,8 @@ import { SafeHTMLPipe } from './pipes/safe-html.pipe';
 var routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
   { path: 'ContactUs', component: ContactUsComponent  },
+  { path: 'pages/index/:id/:title', component: ArticleDetailsComponent, canActivate:[OldDetailsRedirectGuard]  },
+  { path: 'Pages/index/:id/:title', component: ArticleDetailsComponent, canActivate:[OldDetailsRedirectGuard]  },
   { path: 'Search', component: SearchComponent  },
   { path: 'PrivacyPolicy', component: PrivacyPolicyComponent  },
   { path: 'Account/Articles/:title', component: AccountArticlesComponent, canActivate:[AuthGuard]  },
@@ -134,7 +137,7 @@ var routes = [
     SafeHTMLPipe
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'jadaliyya-app'}),
+    BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     Ng2Webstorage,
@@ -150,11 +153,12 @@ var routes = [
     UserService, 
     FolderService,
     AuthGuard, 
+    OldDetailsRedirectGuard,
     {
       provide: HTTP_INTERCEPTORS, 
       useClass:AuthInterceptorService, 
       multi:true 
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })

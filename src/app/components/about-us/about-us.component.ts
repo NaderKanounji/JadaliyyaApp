@@ -26,7 +26,6 @@ export class AboutUsComponent implements OnInit {
     this.BASE_URL = _globals.BASE_URL;
 
     this.sharedService.sharedModel.subscribe(sharedModel => this.sharedModel = sharedModel);
-    
     this.sharedService.set_currentRoute("aboutus");
     this.sharedService.set_categoryTitle("About Us");
     this.sharedService.set_headerType("header-secondary");

@@ -80,7 +80,7 @@ export class FavoriteComponent implements OnInit {
     e.stopPropagation();
     this.formErrors = [];
     let folderId = this.myFunctions.get_popup_dropdown_selected();
-    if(folderId && folderId != ''){
+    if(folderId){
       this.isAddingArticle = true;
       this.membership.AddToFolder(folderId, this.articleId).subscribe((data:any) => {
         this.myFunctions.close_popupDropdown();

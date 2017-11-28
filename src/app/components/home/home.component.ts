@@ -167,7 +167,9 @@ export class HomeComponent implements OnInit {
       this.hasMoreToLoad = true;
 
       let tabs = document.querySelectorAll('.tabs-secondary .tabs-nav li');
+      //console.log(1);
       if(!tabs[listType - 1].classList.contains('current')){
+        //console.log(2);
         document.querySelector('.tabs-secondary .tabs-nav li.current').classList.remove('current');
         tabs[listType - 1].classList.add('current');
       }
@@ -249,18 +251,18 @@ export class HomeComponent implements OnInit {
 
   submit_interest(){
     //Restore to submit interest
-    // if(document.querySelectorAll('.list-interests .clicked').length){
-    //   localStorage.setItem('_jad_interest', this.get_interest_string());
-    //   this.fetch_new_listing(3);
-    //   this.myFunctions.closeInterested();
-    //   setTimeout(() => {
-    //     this.myFunctions.animate_to_element('.tabs.tabs-secondary', -200, 800);
-    //   }, 200);
+    if(document.querySelectorAll('.list-interests .clicked').length){
+      localStorage.setItem('_jad_interest', this.get_interest_string());
+      this.fetch_new_listing(3);
+      this.myFunctions.closeInterested();
+      setTimeout(() => {
+        this.myFunctions.animate_to_element('.tabs.tabs-secondary', -200, 800);
+      }, 200);
 
-    // }else{
-    //   localStorage.removeItem('_jad_interest');
-    // }
-    this.myFunctions.psy_toggle_class('.interest-coming-soon', 'hidden', false);
+    }else{
+      localStorage.removeItem('_jad_interest');
+    }
+    //this.myFunctions.psy_toggle_class('.interest-coming-soon', 'hidden', false);
 
   }
   get_interest_string():string{

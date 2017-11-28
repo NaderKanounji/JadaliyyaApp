@@ -126,7 +126,7 @@
 								<!-- <a href="#" class="link-listen">
 									<img src="../../assets/images/temp/play-button.png" alt="">
 								</a> -->
-								<iframe [src]="articleModel.fbLikeLink | safeUrl" width="61" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+								<iframe [src]="articleModel.fbLikeLink | safeUrl" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 								<!-- <div class="fb-like" attr.data-href="{{articleModel?.fbLikeLink}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div> -->
 								<app-gallery *ngIf="articleModel?.ArticleImages && articleModel?.ArticleImages?.length > 1" [ArticleImages]="articleModel?.ArticleImages" [videoUrl]="articleModel?.videoUrl"></app-gallery>
 								</header><!-- /.article-head -->

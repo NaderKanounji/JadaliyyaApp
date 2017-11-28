@@ -190,7 +190,7 @@
   
             <div class="section-actions">
               <a  class="btn btn-primary btn-blue" (click)="submit_interest()">SUBMIT MY INTEREST</a>
-              <span class="interest-coming-soon hidden">Coming Soon</span>
+              <!-- <span class="interest-coming-soon hidden">Coming Soon</span> -->
             </div><!-- /.section-actions -->
           </div><!-- /.section-body -->
         </div><!-- /.shell -->
@@ -212,7 +212,7 @@
                             <a >EDITOR’S PICKS</a>
                           </li>
       
-                          <li class="tab-item-interests disable" (click)="fetch_new_listing(3)"> <!-- remove 'disable' to makei t work -->
+                          <li class="tab-item-interests" (click)="fetch_new_listing(3)"> <!-- remove 'disable' to makei t work -->
                             <a >MY INTERESTS</a>
                           </li>
                         </ul>
@@ -246,7 +246,7 @@
                                   <div class="post-content">
                                     <header class="post-head">
                                       <h2 class="post-title">
-                                        <a title="{{homeModel?.listing[0]?.title}}" routerLink="/Details/{{homeModel?.listing[0]?.id + (homeModel?.listing[0]?.customUrlTitle ? '/' + homeModel?.listing[0]?.customUrlTitle : '')}}">{{homeModel?.listing[0]?.title | truncate:52}}</a>
+                                        <a title="{{homeModel?.listing[0]?.title}}" routerLink="/Details/{{homeModel?.listing[0]?.id + (homeModel?.listing[0]?.customUrlTitle ? '/' + homeModel?.listing[0]?.customUrlTitle : '')}}">{{homeModel?.listing[0]?.title}}</a> <!-- {{homeModel?.listing[0]?.title | truncate:52}} -->
                                       </h2><!-- /.post-title -->
                                     </header><!-- /.post-head -->
       
@@ -500,7 +500,7 @@
       
                               <div class="post-content-inner">
                                 <h2 class="post-title">
-                                  <a title="{{homeModel?.photography?.title}}" routerLink="/Details/{{homeModel?.photography?.id + (homeModel?.photography?.customUrlTitle ? '/' + homeModel?.photography?.customUrlTitle : '')}}">{{homeModel?.photography?.title | truncate:74}}</a>
+                                  <a title="{{homeModel?.photography?.title}}" routerLink="/Details/{{homeModel?.photography?.id + (homeModel?.photography?.customUrlTitle ? '/' + homeModel?.photography?.customUrlTitle : '')}}">{{homeModel?.photography?.title }}</a> <!-- | truncate:74 -->
                                 </h2><!-- /.post-title -->
       
                                 <ul class="list-meta">
@@ -643,7 +643,7 @@
       
                               <div class="post-content-inner">
                                 <h2 class="post-title">
-                                  <a title="{{homeModel?.video?.title}}" routerLink="/Details/{{homeModel?.video?.id + (homeModel?.video?.customUrlTitle ? '/' + homeModel?.video?.customUrlTitle : '')}}"></a>
+                                  <a title="{{homeModel?.video?.title}}" routerLink="/Details/{{homeModel?.video?.id + (homeModel?.video?.customUrlTitle ? '/' + homeModel?.video?.customUrlTitle : '')}}">{{homeModel?.video?.title}}</a>
                                 </h2><!-- /.post-title -->
       
                                 <ul class="list-meta">
@@ -693,7 +693,7 @@
 
                                   
       
-                                  <span class="widget-caption">{{homeModel?.jadalicious[0]?.title | truncate:100}}</span>
+                                  <span class="widget-caption">{{homeModel?.jadalicious[0]?.title}}</span> <!--  | truncate:100 -->
       
                                   <a title="homeModel?.jadalicious[0]?.title" routerLink="/Details/{{homeModel?.jadalicious[0]?.id + (homeModel?.jadalicious[0]?.customUrlTitle ? '/' + homeModel?.jadalicious[0]?.customUrlTitle : '')}}"></a>
                                 </div><!-- /.widget-image -->
@@ -730,7 +730,7 @@
                           <div class="post-inner">
                               <header class="post-head">
                                 <h2 class="post-title">
-                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">{{item.title | truncate : 80}}</a>
+                                  <a title="item.title" routerLink="/Details/{{item.id + (item.customUrlTitle ? '/' +  item.customUrlTitle : '')}}">{{item.title }}</a> <!-- | truncate : 80 -->
                                 </h2><!-- /.post-title -->
                               </header><!-- /.post-head -->
         

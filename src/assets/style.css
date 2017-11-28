@@ -11539,6 +11539,16 @@ app-gallery .slider-thumbs .owl-nav.disabled {
 .form-errors.folder-popup-errors li {
   color: #fff;
 }
+.post-head {
+  height: auto;
+}
+.post-title {
+  margin-top: 0;
+  padding: 10px 0 20px;
+}
+.post-body {
+  height: auto;
+}
 @-webkit-keyframes load-more-animation {
   0% {
     -webkit-transform: translateY(0);

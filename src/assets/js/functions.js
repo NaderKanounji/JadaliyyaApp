@@ -23,11 +23,11 @@ var expand_interest_click;
 var interestsToggle;
 var dropdown_event;
 
-var jQuery = require('../vendors/jquery-3.1.1.min.js');
+//var jQuery = require('../vendors/jquery-3.1.1.min.js');
 // var jQuery = require("jquery");
-var window = window;
-// var document = typeof document === 'undefined' ? '' : document;
-var document = window.document;
+//var window = window;
+//var document = typeof document === 'undefined' ? '' : document;
+//var document = window.document;
 
 
 var $jadNavAutoplaySpeed = 5000;
@@ -2019,6 +2019,11 @@ module.exports.myFunctions = {
 		setTimeout(function(){
 			psy_popup();
 		},200);
+	},
+	closeSearch:function(){
+		setTimeout(function(){
+			closeSearch();
+		},100);
 	},
 	close_popup:function(){
 		close_popup();

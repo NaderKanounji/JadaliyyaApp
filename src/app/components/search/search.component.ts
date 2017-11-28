@@ -49,29 +49,39 @@ export class SearchComponent implements OnInit {
     this.sharedService.set_searchCount(0);
 
     this.route.queryParams.subscribe((params:any) => {
-      this.model.keyword = params['keyword'] ? params['keyword'] : '';
-      this.model.categoryId = params['categoryId'] ? params['categoryId'] : '';
-      this.model.countryId = params['countryId'] ? params['countryId'] : '';
-      this.model.writerId = params['writerId'] ? params['writerId'] : '';
-      this.model.month = params['month'] ? params['month'] : '';
-      this.sharedService.set_categoryTitle('Search Results For “ ' + this.model.keyword + ' ” ');
-      this.sharedService.set_searchCount(this.model.total);
-
-      
-      this.http.get(_globals.API_URL + 'Data/SearchArticles?page=0' 
-      + (this.model.keyword ? '&keyword=' + this.model.keyword : '')
-      + (this.model.categoryId ? '&categoryId=' + this.model.categoryId : '')
-      + (this.model.countryId ? '&countryId=' + this.model.countryId : '')
-      + (this.model.writerId ? '&writerId=' + this.model.writerId : '')
-      + (this.model.month ? '&month=' + this.model.month : ''))
-      .subscribe((data:any) => {
-        this.model = data;
-        this.model.articles = this.sort.transform(this.model.articles, 3, 1, false, 0, 0)
-        this.sharedService.set_searchCount(this.model.total);
-        this.pageNumber++;
-        this.isLoadingMore = false;
+      if(params['keyword']){
+        this.model.keyword = params['keyword'] ? params['keyword'] : '';
+        this.model.categoryId = params['categoryId'] ? params['categoryId'] : '';
+        this.model.countryId = params['countryId'] ? params['countryId'] : '';
+        this.model.writerId = params['writerId'] ? params['writerId'] : '';
+        this.model.month = params['month'] ? params['month'] : '';
+        this.sharedService.set_categoryTitle('Search Results For “ ' + this.model.keyword + ' ” ');
+        this.model.articles = [];
+        this.hasMoreToLoad = true;
+        this.isLoadingMore = true;
+        this.sharedService.set_searchCount(0);
+  
         
-      });
+        this.http.get(_globals.API_URL + 'Data/SearchArticles?page=0' 
+        + (this.model.keyword ? '&keyword=' + this.model.keyword : '')
+        + (this.model.categoryId ? '&categoryId=' + this.model.categoryId : '')
+        + (this.model.countryId ? '&countryId=' + this.model.countryId : '')
+        + (this.model.writerId ? '&writerId=' + this.model.writerId : '')
+        + (this.model.month ? '&month=' + this.model.month : ''))
+        .subscribe((data:any) => {
+          this.model = data;
+          this.model.articles = this.sort.transform(this.model.articles, 3, 1, false, 0, 0)
+          this.sharedService.set_searchCount(this.model.total);
+          
+          if(this.model.total <= this.model.articles.length){
+            this.hasMoreToLoad = false;
+          }else{
+            this.pageNumber++;
+          }
+          this.isLoadingMore = false;
+          
+        });
+      }
 
     });
 

@@ -4,8 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "fix-memory-limit": "cross-env LIMIT=10240 increase-memory-limit",
-    "prestart": "ng build --prod && ngc fix-memory-limit",
+    "prestart": "ng build --prod && ngc && webpack -p",
     "start": "ts-node src/server.ts"
   },
   "private": true,
@@ -20,11 +19,16 @@
     "@angular/platform-browser-dynamic": "^4.3.0",
     "@angular/platform-server": "^4.3.0",
     "@angular/router": "^4.3.0",
+    "angular2-universal": "^2.1.0-rc.1",
+    "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
     "enhanced-resolve": "^3.3.0",
+    "express": "^4.16.2",
+    "gulp-less": "^3.3.2",
     "ng2-webstorage": "^1.8.0",
     "ngx-cookie-service": "^1.0.9",
     "ngx-facebook": "^2.4.0",
+    "preboot": "^5.1.7",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
@@ -37,8 +41,11 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.1.1",
+    "cross-env": "^5.0.5",
     "gulp": "^3.9.1",
+    "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
+    "increase-memory-limit": "^1.0.3",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
@@ -51,7 +58,6 @@
     "ts-node": "^3.2.2",
     "tslint": "~5.3.2",
     "typescript": "~2.3.3",
-    "increase-memory-limit": "^1.0.3",
-    "cross-env": "^5.0.5"
+    "webpack": "^3.8.1"
   }
 }

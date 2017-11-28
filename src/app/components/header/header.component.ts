@@ -101,7 +101,13 @@ export class HeaderComponent implements OnInit {
       let navigationExtras: NavigationExtras = {
         queryParams: { 'keyword': form.keyword }
       };
-      this.router.navigate(['/Search'], navigationExtras);
+      if(this.router.url.toLowerCase() != "/search?keyword=" + form.keyword){
+        console.log(1);
+        this.router.navigate(['/Search'], navigationExtras);
+      }else{
+        this.myFunction.closeSearch();
+        console.log(2);
+      }
       this.keyword = '';
     }
   }

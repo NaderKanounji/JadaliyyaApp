@@ -1,8 +1,10 @@
+
 import 'reflect-metadata';
 import 'zone.js/dist/zone-node';
 import { platformServer, renderModuleFactory } from '@angular/platform-server'
 import { enableProdMode } from '@angular/core'
-import { AppServerModuleNgFactory } from '../dist/ngfactory/src/app/app.server.module.ngfactory'
+// import { AppServerModuleNgFactory } from '../dist/ngfactory/src/app/app.server.module.ngfactory'
+const AppServerModuleNgFactory = require(`./dist-server/main.repack.bundle`).AppServerModuleNgFactory;
 import * as express from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';
